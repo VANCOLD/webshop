@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 @RestController
 public class SearchController {
-// das ist mein kommentar
+// das ist mein Kommentar
 
     @GetMapping("/search")
     public ArrayList<Object> searchFor()
