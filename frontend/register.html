@@ -1,94 +1,213 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+<html lang="en">
+    <head>
+    
+        <title>Bootstrap Skeleton</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      
+        <style>
+            /* Container needed to position the button. Adjust the width as needed */
+            .container {
+                position: relative;
+                width: 100%;
+            }
+   
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+            /* Style the button and place it in the middle of the container/image */
+            .container .btn {
+                position: absolute;
+                top: 10%;
+                left: 90%;
+                transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                background-color: #555;
+                color: rgb(6, 6, 6);
+                font-size: 17px;
+                padding: 12px 24px;
+                border: none;
+                cursor: pointer;
+                border-radius: 10px;
+            }
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+            .container .btn:hover {
+                background-color: rgb(62, 33, 70);
+            }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
-<title>Kontaktformular</title>
-</head>
+            /* Bordered form */
+            form {
+                border: 3px solid #f1f1f1;
+            }
+            
+            /* Full-width inputs */
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+                border-radius: 10px;
+            }
+
+            /* Set a style for all buttons */
+            button {
+                background-color: #555;
+                color: rgb(6, 6, 6);
+                font-size: 17px;
+                padding: 12px 24px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 10%;
+                border-radius: 10px;
+            }
+
+            /* Add a hover effect for buttons */
+            button:hover {
+                opacity: 0.8;
+                background-color: rgb(62, 33, 70);
+            }
+
+            /* Extra style for the cancel button (red) */
+            .cancelbtn {
+                width: auto;
+                padding: 12px 24px;
+                background-color: #721e17;
+            }
+
+            /* Add padding to containers */
+            .container {
+                padding: 16px;
+            }
+
+            /* The "Forgot password" text */
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+                .cancelbtn {
+                    width: 100%;
+                }
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                padding-top: 60px;
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5px auto; /* 15% from the top and centered */
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+            }
+
+            /* The Close Button */
+            .close {
+                /* Position it in the top right corner outside of the modal */
+                position: absolute;
+                right: 25px;
+                top: 0;
+                color: #000;
+                font-size: 35px;
+                font-weight: bold;
+            }
+
+            /* Close button on hover */
+            .close:hover,
+            .close:focus {
+                color: red;
+                cursor: pointer;
+            }
+
+            /* Add Zoom Animation */
+            .animate {
+                -webkit-animation: animatezoom 0.6s;
+                animation: animatezoom 0.6s
+            }
+
+            @-webkit-keyframes animatezoom {
+                from {-webkit-transform: scale(0)}
+                to {-webkit-transform: scale(1)}
+            }
+
+            @keyframes animatezoom {
+                from {transform: scale(0)}
+                to {transform: scale(1)}
+            }
+
+        </style>
+      </head>
+
+
 <body>
 
+    <div class="container">
+        <img src="https://wallpapercave.com/wp/wp5633980.jpg" height="100%" width="100%" alt="Snow">
+        
+        <button class="btn" onclick="document.getElementById('id01').style.display='block'">Sign Up</button>
+    </div>
 
-<a href="impressum.html">Impressum</a><br>
-<a href="Support.html">Hilfsseite</a>
+    <!-- The Modal -->
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="close" title="Close Modal">&times;</span>
 
-<h3>Contact Form</h3>
+        <!-- Modal Content -->
+        <form class="modal-content animate" action="/action_page.php">
+            
+            <div class="container">
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
 
-<div class="container">
-    <form action="/action_page.php">
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
 
-        <label for="bestellnr">Bestellnummer</label>
-        <input type="text" id="bestellnr" name="Bestellnummer" placeholder="Deine Bestellnr..">
+                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                
+                <button type="submit">Sign Up</button>
+                <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
 
-        <label for="anliegen">W&auml;hle bitte dein Anliegen aus:</label>
-        <select id="anliegen" name="Anliegen">
-            <option value="Bestellschwierigkeiten">Bestellungen</option>
-            <option value="Feedback und Beschwerden">Feedback</option>
-            <option value="Koop">Kooperationsanfragen</option>
-            <option value="Presse">Presseanfragen</option>
-            <option value="Probleme und Bugs mit der Website">Bugs</option>
-        </select>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <div class="container" style="background-color:#e38aed">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
 
-        <label for="fname">Vorname</label>
-        <input type="text" id="fname" name="firstname" placeholder="Dein Vorname..">
 
-        <label for="lname">Nachname</label>
-        <input type="text" id="lname" name="lastname" placeholder="Dein Nachname..">
-
-        <label for="email">E-Mail</label>
-        <input type="text" id="email" name="email" placeholder="Deine E-Mail..">
-
-        <label for="telnr">Telefonnummer</label>
-        <input type="text" id="telnr" name="Telefonnummer" placeholder="Deine Telefonnummer..">
-
-        <label for="country">Land</label>
-        <select id="country" name="country">
-            <option value="Austria">&Ouml;sterreich</option>
-            <option value="Germany">Deutschland</option>
-            <option value="Schweiz">Schweiz</option>
-        </select>
-
-        <label for="adresse">Deine Bestelladresse</label>
-        <input type="text" id="adresse" name="adresse" placeholder="Deine Bestelladresse..">
-
-        <label for="subject">Dein Anliegen:</label>
-        <textarea id="subject" name="subject" placeholder="Schreibe uns dein Anliegen.." style="height:200px"></textarea>
-
-        <input type="submit" value="Submit">
-    </form>
-</div>
-
+    <a href="./impressum.html" >
+        Impressum
+    </a>
 </body>
 </html>
