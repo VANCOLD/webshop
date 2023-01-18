@@ -11,4 +11,6 @@ public class GameverseBackendApplication {
 		SpringApplication.run(GameverseBackendApplication.class, args);
 	}
 
+	// das ist mein test kommentar
+
 }
