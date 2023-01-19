@@ -1,4 +1,4 @@
-package com.waff.gameverse_backend;
+package com.waff.gameverse_backend.Main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
