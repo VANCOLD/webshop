@@ -7,7 +7,6 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open login.html",
             "file": "f:\\StudiumFh\\projekt\\webshop\\frontend\\login.html"
         }
     ]
