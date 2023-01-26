@@ -943,10 +943,12 @@ Footer Style
 footer p {
   text-align: center;
   padding: 30px 0px;
-  color: #fff;
+  color: #ec6090;
   font-weight: 300;
 }
-
+footer a{
+  color: #ec6090;
+}
 footer p a {
   color: #fff;
   transition: all .3s;
