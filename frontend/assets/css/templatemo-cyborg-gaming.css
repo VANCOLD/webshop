@@ -363,6 +363,7 @@ Header Style
   transition: all .5s ease 0s;
 }
 
+
 .header-area .main-nav {
   min-height: 80px;
   background: transparent;
@@ -615,6 +616,7 @@ Header Style
 }
 
 .header-area.header-sticky {
+  position: absolute;
   min-height: 70px;
 }
 
