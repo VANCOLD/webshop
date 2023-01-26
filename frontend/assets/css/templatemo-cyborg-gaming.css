@@ -363,7 +363,6 @@ Header Style
   transition: all .5s ease 0s;
 }
 
-
 .header-area .main-nav {
   min-height: 80px;
   background: transparent;
@@ -616,7 +615,6 @@ Header Style
 }
 
 .header-area.header-sticky {
-  position: absolute;
   min-height: 70px;
 }
 
@@ -947,10 +945,6 @@ footer p {
   padding: 30px 0px;
   color: #fff;
   font-weight: 300;
-}
-
-footer a{
-  color: #ec6090;
 }
 
 footer p a {
