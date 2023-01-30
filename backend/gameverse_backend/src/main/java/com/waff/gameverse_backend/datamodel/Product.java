@@ -31,7 +31,7 @@ public class Product
     private Float       price;
 
     @Column(name = "image")
-    private URL         image;
+    private String      image;
 
     @Column(name = "tax")
     private Integer     tax;
@@ -51,7 +51,7 @@ public class Product
     //////////////////////////////////////////////////////////////////////
 
     public Product( Long pid, String name, String description,
-                   Float price, URL image, Integer tax,
+                   Float price, String image, Integer tax,
                    Long hpid, Integer amount, Date available )
     {
         this.pid            = pid;
@@ -88,7 +88,7 @@ public class Product
         return price;
     }
 
-    public URL getImage() {
+    public String getImage() {
         return image;
     }
 

@@ -2,13 +2,14 @@ package com.waff.gameverse_backend.datamodel;
 
 import jakarta.persistence.*;
 
+import java.net.URL;
+import java.util.Date;
+
 @Entity
-@Table(name = "Game")
 public class Game extends Product
 {
 
     @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
     @JoinColumn(name = "cg_id", referencedColumnName = "cg_id")
     private ConsoleGeneration consoleGen;
 
@@ -36,5 +37,16 @@ public class Game extends Product
     {
         super();
         this.esrb = esrb;
+    }
+
+    public Game(Long pid, String name, String description,
+                Float price, String image, Integer tax,
+                Long hpid, Integer amount, Date available,
+                String esrb)
+    {
+
+        super(pid, name, description, price, image, tax, hpid, amount, available);
+        this.esrb = esrb;
+
     }
 }
