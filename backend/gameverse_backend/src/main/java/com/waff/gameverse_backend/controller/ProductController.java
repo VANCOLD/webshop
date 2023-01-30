@@ -1,7 +1,7 @@
-package com.waff.gameverse_backend.Controller;
+package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.Datenmodell.Product;
-import com.waff.gameverse_backend.Repository.ProductRepository;
+import com.waff.gameverse_backend.datamodel.Product;
+import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

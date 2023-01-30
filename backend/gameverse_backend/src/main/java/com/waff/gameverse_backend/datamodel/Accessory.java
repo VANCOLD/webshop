@@ -1,4 +1,4 @@
-package com.waff.gameverse_backend.Datenmodell;
+package com.waff.gameverse_backend.datamodel;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
