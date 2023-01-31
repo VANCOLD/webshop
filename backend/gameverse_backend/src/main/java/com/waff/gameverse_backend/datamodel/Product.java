@@ -36,6 +36,10 @@ public class Product
     @Column(name = "tax")
     private Integer     tax;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "h_id", referencedColumnName = "h_id")
+    private Producer producer;
+
     @Column(name = "internal_pid")
     private Long        hpid;
 
@@ -107,4 +111,6 @@ public class Product
     public Date getAvailable() {
         return available;
     }
+
+    public Producer getProducer() { return producer; }
 }

@@ -23,7 +23,7 @@ public class ConsoleController {
     }
 
     @PostMapping
-    public ResponseEntity<Console> createProduct(@RequestBody Console console) {
+    public ResponseEntity<Console> createConsole(@RequestBody Console console) {
         console = (Console) conRepo.save(console);
         return ResponseEntity.created(URI.create("http://localhost:8080/consoles")).body(console);
     }

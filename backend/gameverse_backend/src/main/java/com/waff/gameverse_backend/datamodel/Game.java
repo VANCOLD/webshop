@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Game extends Product
@@ -17,17 +19,17 @@ public class Game extends Product
     private String  esrb;
 
 
-    /*
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "tutorial_tags",
-            joinColumns = { @JoinColumn(name = "pid") },
-            inverseJoinColumns = { @JoinColumn(name = "tag_id") })
-            private Set<Genre> genres = new HashSet<>();
-*/
+    @JoinTable(name = "Genre",
+            joinColumns = { @JoinColumn(name = "gid") },
+            inverseJoinColumns = { @JoinColumn(name = "gid") })
+    private Set<Genre> genres = new HashSet<>();
+
 
     public Game() {
         this("");

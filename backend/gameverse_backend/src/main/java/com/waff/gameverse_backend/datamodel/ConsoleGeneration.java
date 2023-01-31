@@ -11,14 +11,14 @@ public class ConsoleGeneration {
     @Column(name = "cg_id")
     private Long cg_id;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "name")
+    private String name;
 
     public Long getCg_id() {
         return cg_id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 }
