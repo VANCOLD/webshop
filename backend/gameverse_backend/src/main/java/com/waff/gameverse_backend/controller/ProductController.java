@@ -26,7 +26,7 @@ public class ProductController
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         product = (Product) prodRepo.save(product);
-        return ResponseEntity.created(URI.create("http://localhost:8080/products")).body(product);
+        return ResponseEntity.created(URI.create("http://localhost:808k0/products")).body(product);
     }
 
 }

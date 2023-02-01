@@ -16,6 +16,5 @@ import org.springframework.stereotype.Repository;
  *
  * @param <T> unser Generic Datentyp. Wird pro Unterrepository angepasst
  */
-@Primary
-@Repository
+@Primary @Repository
 public interface ProductRepository<T extends Product> extends JpaRepository<T,  Long> {}

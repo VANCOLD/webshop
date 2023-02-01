@@ -4,7 +4,6 @@ import com.waff.gameverse_backend.datamodel.Console;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-@Qualifier
-@Repository
+@Qualifier @Repository
 public interface ConsoleRepository extends ProductRepository<Console> {
 }

@@ -1,10 +1,15 @@
 package com.waff.gameverse_backend.datamodel;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Table(name = "ConsoleGeneration")
-public class ConsoleGeneration {
+@Entity @Table(name = "ConsoleGeneration")
+@Setter @Getter @AllArgsConstructor @NoArgsConstructor
+public class ConsoleGeneration
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,11 +19,4 @@ public class ConsoleGeneration {
     @Column(name = "name")
     private String name;
 
-    public Long getCg_id() {
-        return cg_id;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

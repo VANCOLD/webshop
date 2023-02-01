@@ -1,20 +1,17 @@
 package com.waff.gameverse_backend.datamodel;
 
-
 import jakarta.persistence.*;
-import java.net.URL;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
 
-
-@Entity
-@Table(name = "Product")
+@Entity @Table(name = "Product")
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Product
 {
-
-
-    //////////////////////////////////////////////////////////////////////
-    ////////////         Instance Variables                   ////////////
-    //////////////////////////////////////////////////////////////////////
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,68 +46,4 @@ public class Product
     @Column(name = "available")
     private Date        available;
 
-
-    //////////////////////////////////////////////////////////////////////
-    ////////////              Constructors                    ////////////
-    //////////////////////////////////////////////////////////////////////
-
-    public Product( Long pid, String name, String description,
-                   Float price, String image, Integer tax,
-                   Long hpid, Integer amount, Date available )
-    {
-        this.pid            = pid;
-        this.name           = name;
-        this.description    = description;
-        this.price          = price;
-        this.image          = image;
-        this.tax            = tax;
-        this.hpid           = hpid;
-        this.amount         = amount;
-        this.available      = available;
-    }
-
-    public Product() {}
-
-
-    //////////////////////////////////////////////////////////////////////
-    ////////////              Getter Methods                  ////////////
-    //////////////////////////////////////////////////////////////////////
-
-    public Long getPid() {
-        return pid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public Integer getTax() {
-        return tax;
-    }
-
-    public Long getHpid() {
-        return hpid;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public Date getAvailable() {
-        return available;
-    }
-
-    public Producer getProducer() { return producer; }
 }
