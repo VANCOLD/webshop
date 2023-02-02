@@ -12,20 +12,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public class ProductController
+public abstract class ProductController<T extends Product>
 {
 
     @Autowired
-    private ProductRepository prodRepo;
+    private ProductRepository<T> prodRepo;
 
     @GetMapping
-    public List<Product> findAll() {
+    public List<T> findAll() {
         return prodRepo.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        product = (Product) prodRepo.save(product);
+    public ResponseEntity<T> createProduct(@RequestBody T product) {
+        product = (T) prodRepo.save(product);
         return ResponseEntity.created(URI.create("http://localhost:808k0/products")).body(product);
     }
 
