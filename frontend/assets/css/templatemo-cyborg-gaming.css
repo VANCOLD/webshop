@@ -68,9 +68,10 @@ ul, li {
   list-style: none;
 }
 
+/*
 header, nav, section, article, aside, footer, hgroup {
   display: block;
-}
+}*/   
 
 * {
   box-sizing: border-box;
@@ -956,11 +957,15 @@ footer p a:hover {
   color: #ec6090;
 }
 
+.bg-footer {
+  background-color: #ec6090;
+}
+
 /* 
 ---------------------------------------------
 Featured Games Style
 --------------------------------------------- 
-*/
+*/  
 
 .featured-games {
   border-radius: 23px;
