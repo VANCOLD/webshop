@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public abstract class ProductController<T extends Product>
+public class ProductController<T extends Product>
 {
 
     @Autowired
