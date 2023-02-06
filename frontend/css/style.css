@@ -109,6 +109,8 @@ Navigationsbar Style
 .icon-button i {
   font-size:32px;
   color:#ec6090;
+  width:64px;
+  height:auto;
 }
 
 .icon-button p {
@@ -116,15 +118,36 @@ Navigationsbar Style
   color:white;
 }
 
-.input-wrapper {
-  display:inline-block;
-  position: relative
+.search-icon {
+  border-bottom:  1px solid #ec6090;
+  padding-bottom: 4px;
+  padding-left:   4px;
 }
-.input-wrapper:after {
-  font-family: 'FontAwesome';
-  content: '\f002';
-  position: absolute;
-  right: 6px;
+
+.icon-button input {
+  outline: none;
+  background-color: #1f2122;
+  color: white;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 1px solid #ec6090;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+.icon-button input:focus {
+  outline: none;
+  background-color: #1f2122;
+  color: white;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 1px solid #ec6090;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0; 
 }
 
 /* 
