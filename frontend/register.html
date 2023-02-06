@@ -10,14 +10,13 @@
       
         <style>
 
-            body {
+            .background {
                 background-image: url("./images/register-bg.jpg");
-                background-size: auto;
-                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-repeat:repeat;
             }
 
             .login-container {
-                margin-top:20px;
                 background-color:whitesmoke;
             }
 
@@ -29,17 +28,13 @@
       </head>
 
 
-<body>
+<body class="background">
 
-    <div class="fluid-container col-lg-12">
-
-
-        
+    <div class="container-fluid ">   
 
         <div class="row">
 
-            <div class="col-lg-2"></div>
-            <div class="container login-container rounded-4 col-lg-6">
+            <div class="container login-container rounded-4 w-50 h-auto mt-5 mb-5">
 
                 <nav>
                     <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
@@ -204,7 +199,6 @@
                 </div>
                       
             </div>
-            <div class="col-lg-2"></div>
         </div>
     </div>
 </body>
