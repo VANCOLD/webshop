@@ -102,25 +102,30 @@ Navigationsbar Style
 --------------------------------------------- 
 */
 
-figcaption {
-  color: white;
-  font-size: 12px;
-  text-align: center;
+.icon-button {
+  text-align:center; 
+  color:#ec6090;
 }
 
-figure {
-  padding: 0px;
-  margin:  0px;
+.icon-button i {
+  font-size:32px;
 }
 
-figure img{
-  width:  45px;
-  height: 45px;
+.icon-button p {
+  font-size: 16px;
+  font-style: bold;
+  color:white;
 }
 
-.logo {
-  width:256px;
-  height: 100px;
+.input-wrapper {
+  display:inline-block;
+  position: relative
+}
+.input-wrapper:after {
+  font-family: 'FontAwesome';
+  content: '\f002';
+  position: absolute;
+  right: 6px;
 }
 
 /* 
@@ -133,7 +138,7 @@ footer p {
   text-align: center;
   padding: 30px 0px;
   color: #fff;
-  font-weight: 300;
+  font-weight: 300; 
 }
 
 footer p a {
