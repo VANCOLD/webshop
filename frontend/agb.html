@@ -3,185 +3,205 @@
 
   <head>
 
+    <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>Gamerverse - Allgemeine Geschäftsbedingungen</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <!-- Fontawesome-->
+    <script src="https://kit.fontawesome.com/d84ba81ad4.js" crossorigin="anonymous"></script>
+   
+    <!-- Unser eigenes CSS-->
+    <link rel="stylesheet" href="./css/style.css">
 
   </head>
 
+  <body>
 
-<body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
+    <!-- ***** Header Area Start ***** -->
+    <header>
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="support.html">Hilfe</a></li>
-                      <li><a href="impressum.html">Impressum</a></li>
-                      <li><a href="login.html">Login</a></li>
-                      <li><a href="register.html">Registrieren <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+          <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
+            <div class="logo">
+              <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
             </div>
+            <div class="d-flex flex-row">
+              <div class="nav-link" onclick="navbehave()">
+                <div class="icon-button">
+                  <div class="input-group">
+                    <input type="text" class="form-control "  placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
+                    <div class="input-group-append">
+                      <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                    </div>    
+                  </div>
+                </div>
+              </div>
+              <div>
+                <a class="nav-link" href="./support.html">
+                  <div class="icon-button">
+                    <i class="fa-regular fa-circle-question"></i>
+                    <p>Support</p>    
+                  </div>  
+                </a>
+              </div>
+              <div>
+                <a class="nav-link" href="./register.html">
+                  <div class="icon-button">
+                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                    <p>Cart</p>
+                  </div>
+                </a>      
+              </div>
+              <div>
+                <a class="nav-link" href="./register.html">
+                  <div class="icon-button">
+                    <i class="fa-regular fa-user fa-fw"></i>
+                    <p>Profile</p>
+                  </div>
+                </a>
+              </div>
+          </nav>
         </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+  <main>  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <div class="heading-section">
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
-          <div class="heading-section">
+              <h4>Allgemeine Geschäftsbedingungen (AGB)</h4>
+              <br>
 
-            <h4>Allgemeine Geschäftsbedingungen (AGB)</h4>
-            <br>
+              <h5><em>Geltungsbereich</em></h5>
+              <p>Diese Allgemeinen Geschäftsbedingungen (im Folgenden "AGB") gelten für alle Verträge, Lieferungen und sonstigen Leistungen, die durch uns angeboten und erbracht werden.</p>
+              <br>
 
-            <h5><em>Geltungsbereich</em></h5>
-            <p>Diese Allgemeinen Geschäftsbedingungen (im Folgenden "AGB") gelten für alle Verträge, Lieferungen und sonstigen Leistungen, die durch uns angeboten und erbracht werden.</p>
-            <br>
+              <h5><em>Vertragsschluss</em></h5>
+              <p>Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot, sondern einen unverbindlichen Online-Katalog dar. Durch Anklicken des Buttons „Kaufen“ geben Sie eine verbindliche Bestellung der im Warenkorb enthaltenen Waren ab. Die Bestätigung des Eingangs der Bestellung erfolgt zusammen mit der Annahme der Bestellung unmittelbar nach dem Absenden durch eine automatisierte E-Mail. Mit dieser E-Mail-Bestätigung ist der Kaufvertrag zustande gekommen.</p>
+              <br>
 
-            <h5><em>Vertragsschluss</em></h5>
-            <p>Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot, sondern einen unverbindlichen Online-Katalog dar. Durch Anklicken des Buttons „Kaufen“ geben Sie eine verbindliche Bestellung der im Warenkorb enthaltenen Waren ab. Die Bestätigung des Eingangs der Bestellung erfolgt zusammen mit der Annahme der Bestellung unmittelbar nach dem Absenden durch eine automatisierte E-Mail. Mit dieser E-Mail-Bestätigung ist der Kaufvertrag zustande gekommen.</p>
-            <br>
+              <h5><em>Lieferbedingungen</em></h5>
+              <p>Die Lieferung erfolgt innerhalb von 3-5 Werktagen nach Zahlungseingang.</p>
+              <br>
 
-            <h5><em>Lieferbedingungen</em></h5>
-            <p>Die Lieferung erfolgt innerhalb von 3-5 Werktagen nach Zahlungseingang.</p>
-            <br>
+              <h5><em>Zahlungsbedingungen</em></h5>
+              <p>Die Zahlung erfolgt per Vorkasse, PayPal oder Kreditkarte.</p>
+              <br>
 
-            <h5><em>Zahlungsbedingungen</em></h5>
-            <p>Die Zahlung erfolgt per Vorkasse, PayPal oder Kreditkarte.</p>
-            <br>
+              <h5><em>Rückgaberichtlinie</em></h5>
+              <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
+              <br>
 
-            <h5><em>Rückgaberichtlinie</em></h5>
-            <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat.</p>
-            <br>
+              <h5><em>Haftungsausschluss</em></h5>
+              <p>Wir übernehmen keine Haftung für Schäden, die durch unsachgemäße Verwendung der Ware entstehen.</p>
+              <br>
 
-            <h5><em>Haftungsausschluss</em></h5>
-            <p>Wir übernehmen keine Haftung für Schäden, die durch unsachgemäße Verwendung der Ware entstehen.</p>
-            <br>
+              <h5><em>Mindestalter</em></h5>
+              <p>Unsere Produkte dürfen nur von Personen ab 18 Jahren gekauft werden.</p>
+              <br>
+              <br>
 
-            <h5><em>Mindestalter</em></h5>
-            <p>Unsere Produkte dürfen nur von Personen ab 18 Jahren gekauft werden.</p>
-            <br>
-            <br>
+              <h4>Datenschutzrichtlinie</h4>
 
-            <h4>Datenschutzrichtlinie</h4>
+              <h5><em>Erhebung, Verarbeitung und Nutzung personenbezogener Daten</em></h5>
+              <p>Wir erheben, verarbeiten und nutzen personenbezogene Daten (z.B. Name, Anschrift, E-Mail-Adresse, Telefonnummer, Bankverbindung, IP-Adresse) nur im Rahmen der geltenden datenschutzrechtlichen Bestimmungen.</p>
+              <br>
 
-            <h5><em>Erhebung, Verarbeitung und Nutzung personenbezogener Daten</em></h5>
-            <p>Wir erheben, verarbeiten und nutzen personenbezogene Daten (z.B. Name, Anschrift, E-Mail-Adresse, Telefonnummer, Bankverbindung, IP-Adresse) nur im Rahmen der geltenden datenschutzrechtlichen Bestimmungen.</p>
-            <br>
+              <h5><em>Weitergabe von Daten</em></h5>
+              <p>Eine Weitergabe von Daten an Dritte erfolgt nur, wenn dies zur Vertragserfüllung erforderlich ist (z.B. an das mit der Lieferung beauftragte Versandunternehmen) oder wenn wir aufgrund gesetzlicher Vorschriften dazu</p>
 
-            <h5><em>Weitergabe von Daten</em></h5>
-            <p>Eine Weitergabe von Daten an Dritte erfolgt nur, wenn dies zur Vertragserfüllung erforderlich ist (z.B. an das mit der Lieferung beauftragte Versandunternehmen) oder wenn wir aufgrund gesetzlicher Vorschriften dazu</p>
-
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
   
-  <footer class="pt-5">
-    <div class="container pt-5">
-      <div class="row pb-5">
-            <div class="col-md-4 mt-4">
-              <span class="text-center text-wrap">
-                <h5>Contact Us</h5>
-                <ul class="list-unstyled">
-                  <li><a href="support.html">FAQs</a></li>
-                  <li><a href="./contact.html">Contact Us</a></li>
-                </ul>
-              </span>  
-            </div>
-            <div class="col-md-4  mt-4">
-              <span class="text-center text-wrap">
-                <h5>Join Our Community</h5>                
-                <ul class="list-unstyled">  
-                  <li><a href="https://discord.gg/cbppR7Yc" target="_blank">Discord</a></li>              
-                  <li><a href="./register.html">Sign Up</a></li>
-                  <li><a href="./login.html">Log in</a></li>
-                </ul>
-              </span>
-            </div>
-            <div class="col-md-4  mt-4">
-              <span class="text-center text-wrap">
-                <h5>About Us</h5>
-                <ul class="list-unstyled">
-                  <li><a href="./impressum.html">Impressum</a></li>
-                  <li><a href="./agb.html">AGBs</a></li>
-                </ul>
-              </span>
-            </div>        
+    <footer class="bg-footer container-fluid w-100 h-100">
+      <div class="d-none d-md-block">
+        <div class="d-flex flex-row justify-content-center mt-2">
+          <div class="mx-3 my-3">
+            <span class="text-center text-wrap">
+              <h6>Contact</h6>
+              <ul class="list-unstyled">
+                <li><a href="support.html">Support</a></li>
+                <li><a href="./contact.html">Contact Us</a></li>
+                <li><a href="#">Complaints</a></li>
+              </ul>
+            </span>  
+          </div>
+          <div class="col-1"></div>
+
+          <div class="mx-3 my-3">
+            <span class="text-center text-wrap">
+              <h6>Information</h6>                
+              <ul class="list-unstyled"></li>              
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Payment methods</a></li>
+              </ul> 
+            </span>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="mx-3 my-3">
+            <span class="text-center text-wrap">
+              <h6>More</h6>
+              <ul class="list-unstyled">
+                <li><a href="./impressum.html">Impressum</a></li>
+                <li><a href="./agb.html">AGBs</a></li>
+                <li><a href="">Data Protection</a></li>
+              </ul>
+            </span>
+          </div>     
+        </div>   
       </div>
-    </div>
-    <div class="container-fluid bg-secondary ">
-      <div class="container text-center">
-          <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
+      <div class="d-md-none small-links mt-3 mb-3">
+          
+          <li style="border-top: 1 solid white;" class="list-group-item">
+            <a>Contact
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a>Information
+
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a>More
+
+            </a>
+          </li>
+        </ul>
       </div>
-  </div>
-  </footer>
+      <hr class="mb-4 w-50 d-none d-lg-block">
 
-
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
-
+      <div class="d-flex flex-row justify-content-center">
+        <ul class="list-unstyled socials">
+          <li><i class="fa-brands fa-discord"></i></li>
+          <li><i class="fa-brands fa-instagram"></i></li>
+          <li><i class="fa-brands fa-facebook"></i></li>
+          <li><i class="fa-brands fa-tiktok"></i></li>
+          <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+      </div>
+      <div class="container-fluid text-center bg-footer">
+        <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
+      </div>
+    </footer>
 
   </body>
 
