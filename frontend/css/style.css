@@ -100,6 +100,11 @@ Navigationsbar Style
 --------------------------------------------- 
 */
 
+
+input     {
+  min-width:600px;
+}
+
 .icon-button {
   text-align:center; 
 }
@@ -154,11 +159,15 @@ Footer Style
 --------------------------------------------- 
 */
 
+footer a {
+  font-size: 14 px;  
+}
+
 footer p {
   text-align: center;
-  padding: 30px 0px;
   color: #fff;
   font-weight: 300; 
+  font-size: 12px ;
 }
 
 footer {
@@ -181,15 +190,21 @@ footer {
 
 footer > hr {
   color:white; 
-  height:2px; 
+  height: 1px; 
   margin: 0 auto;
+}
+
+.small-links :first-of-type {
+  border-top:none;
 }
 
 .small-links li{
   background-color: #ec6090;
   text-align: center;
   color:white;
-  border-color:white; 
+  border-color:white;
+  border-left: none;
+  border-right:none; 
 }
 
 
@@ -245,7 +260,7 @@ Responsive Style
 
 @media (min-width: 1200px) {
   .socials li i {
-    font-size:48px;
+    font-size:32px;
     margin-left:16px;
     margin-right:16px;
   }
@@ -253,7 +268,7 @@ Responsive Style
 
 @media (max-width: 1200px) {
   .socials li i {
-    font-size:32px;
+    font-size:24px;
     margin-left:12px;
     margin-right:12px;
   }
@@ -261,7 +276,7 @@ Responsive Style
 
 @media (max-width: 767px) {
   .socials li i {
-    font-size:20px;
+    font-size:18px;
     margin-left:8px;
     margin-right:8px;
   }
