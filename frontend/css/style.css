@@ -63,8 +63,11 @@ img {
 body .page-content {
   background-color: #27292a;
   border-radius: 23px;
-  width:90%
+  width:85%;
+
+  margin: 0 auto;
 }
+
 
 ::selection {
   background: #e75e8d;
