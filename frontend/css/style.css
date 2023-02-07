@@ -93,7 +93,27 @@ p {
 
 ::-moz-selection {
   background: #e75e8d;
-  color: #fff;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color:#ec6090;
+}
+
+.container-fluid{
+  padding: 0 !important;
+}
+
+.row {
+  margin: 0;
+}
+
+main {
+  flex:1;
 }
 
 /* 
