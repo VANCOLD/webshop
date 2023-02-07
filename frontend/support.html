@@ -11,7 +11,10 @@
     <title>Cyborg - Awesome HTML5 Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d84ba81ad4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
 
 
     <!-- Additional CSS Files -->
@@ -132,39 +135,50 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="support.html" class="active">Hilfe</a></li>
-                      <li><a href="impressum.html">Impressum</a></li>
-                      <li><a href="login.html">Login</a></li>
-                      <li><a href="register.html">Registrieren <img src="assets/images/profile-header.jpg" alt=""></a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+  <header>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
+          <div class="logo">
+            <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="nav-link" onclick="navbehave()">
+              <div class="icon-button">
+                <div class="input-group">
+                  <input type="text" class="form-control "  placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
+                  <div class="input-group-append">
+                    <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                  </div>    
+                </div>
+              </div>
             </div>
-        </div>
+            <div>
+              <a class="nav-link" href="./support.html">
+                <div class="icon-button">
+                  <i class="fa-regular fa-circle-question"></i>
+                  <p>Support</p>    
+                </div>  
+              </a>
+            </div>
+            <div>
+              <a class="nav-link" href="./register.html">
+                <div class="icon-button">
+                  <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                  <p>Cart</p>
+                </div>
+              </a>      
+            </div>
+            <div>
+              <a class="nav-link" href="./register.html">
+                <div class="icon-button">
+                  <i class="fa-regular fa-user fa-fw"></i>
+                  <p>Profile</p>
+                </div>
+              </a>
+            </div>
+        </nav>
+      </div>
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
