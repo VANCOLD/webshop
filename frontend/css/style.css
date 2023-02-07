@@ -88,6 +88,12 @@ main {
   flex:1;
 }
 
+.orderbox {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* 
 ---------------------------------------------
 Navigationsbar Style
@@ -142,7 +148,6 @@ Navigationsbar Style
   -webkit-border-radius: 0; 
 } 
 
-
 /* 
 ---------------------------------------------
 Footer Style
@@ -174,11 +179,19 @@ footer {
   margin-top:16px;
 }
 
-hr {
+footer > hr {
   color:white; 
   height:2px; 
   margin: 0 auto;
 }
+
+.small-links li{
+  background-color: #ec6090;
+  text-align: center;
+  color:white;
+  border-color:white; 
+}
+
 
 /* 
 ---------------------------------------------
