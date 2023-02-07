@@ -1,3 +1,9 @@
+/* 
+---------------------------------------------
+Global Styles
+--------------------------------------------- 
+*/
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -7,16 +13,6 @@ figure, header, nav, section, article, aside, footer, figcaption {
   border: 0;
   outline: 0;
 }
-ul, li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/*
-header, nav, section, article, aside, footer, hgroup {
-  display: block;
-}*/   
 
 * {
   box-sizing: border-box;
@@ -30,14 +26,16 @@ html, body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #1f2122;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
-	color: #CCC;
+	color: white;
   text-decoration: none !important;
 }
 a:hover {
-	color: #F99;
+	color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,71 +60,10 @@ img {
   overflow: hidden;
 }
 
-/* 
----------------------------------------------
-Accordion Style
---------------------------------------------- 
-*/
-
-.accordion-button:focus {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
-
-/*
-Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
-Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
-*/
-button.accordion-button::after  {
-  filter:brightness(0%);
-}
-
-/* 
----------------------------------------------
-Support Page Styles
---------------------------------------------- 
-*/
-
-.faq {
-  text-align: center;
-}
-
-.accordion-button {
-background-color: #e75e8d;
-}
-
-.accordion-button:not(.collapsed) {
-background-color: #e75e8d;
-}
-
-.accordion-button:not(.collapsed) {
-  color: black;
-}
-
-/* 
----------------------------------------------
-Global Styles
---------------------------------------------- 
-*/
-
-html,
-body {
-  background: #1f2122;
-  font-family: 'Poppins', sans-serif;
-}
-
 body .page-content {
   background-color: #27292a;
   border-radius: 23px;
   width:90%
-}
-
-p {
-  font-size: 15px;
-  color: #666;
-  line-height: 30px;
-  margin-bottom: 0px;
 }
 
 ::selection {
@@ -137,14 +74,6 @@ p {
 ::-moz-selection {
   background: #e75e8d;
   color: white;
-}
-
-a {
-  color: white;
-}
-
-a:hover {
-  color:#ec6090;
 }
 
 .container-fluid{
@@ -227,17 +156,71 @@ footer p {
   font-weight: 300; 
 }
 
-footer p a {
-  color: #fff;
-  transition: all .3s;
-}
-
-footer p a:hover {
-  color: #ec6090;
+footer {
+  position:relative;
+  bottom:0px;
 }
 
 .bg-footer {
   background-color: #ec6090;
+}
+
+.socials {
+  color: white;
+}
+
+.socials li {
+  display:inline;
+  margin-top:16px;
+}
+
+hr {
+  color:white; 
+  height:2px; 
+  margin: 0 auto;
+}
+
+/* 
+---------------------------------------------
+Accordion Style
+--------------------------------------------- 
+*/
+
+.accordion-button:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+
+/*
+Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
+Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
+*/
+button.accordion-button::after  {
+  filter:brightness(0%);
+}
+
+
+/* 
+---------------------------------------------
+Support Page Styles
+--------------------------------------------- 
+*/
+
+.faq {
+  text-align: center;
+}
+
+.accordion-button {
+background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+  color: black;
 }
 
 /* 
@@ -246,20 +229,30 @@ Responsive Style
 --------------------------------------------- 
 */
 
-body {
-  overflow-x: hidden;
-}
 
-@media (max-width: 767px) {
-  body {
-    padding: 0px 30px;
+@media (min-width: 1200px) {
+  .socials li i {
+    font-size:48px;
+    margin-left:16px;
+    margin-right:16px;
   }
 }
 
-@media (max-width: 992px) {
-
-}
-
 @media (max-width: 1200px) {
-
+  .socials li i {
+    font-size:32px;
+    margin-left:12px;
+    margin-right:12px;
+  }
 }
+
+@media (max-width: 767px) {
+  .socials li i {
+    font-size:20px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+}
+
+
+
