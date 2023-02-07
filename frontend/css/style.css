@@ -84,6 +84,32 @@ button.accordion-button::after  {
 
 /* 
 ---------------------------------------------
+Support Page Styles
+--------------------------------------------- 
+*/
+
+.faq {
+  text-align: center;
+}
+
+.content > p {
+color:white;
+}
+
+.accordion-button {
+background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+  color: black;
+}
+
+/* 
+---------------------------------------------
 Global Styles
 --------------------------------------------- 
 */
