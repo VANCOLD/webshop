@@ -27,11 +27,12 @@
 
   <body>
 
+  <!-- Website ist in 3 Teile geteilt; header, main, footer; orderbox wird benutzt um den footer nach unten ans Ende zu platzieren bzw Navbar nach oben-->
   <div class="orderbox">
     <!-- ***** Header Area Start ***** -->
     <header>
 
-      <div class="container-fluid ">
+      <div class="container-fluid">
         <div class="row">
 
           <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
@@ -40,7 +41,7 @@
               <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
             </div>
 
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row"> <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
               
               <div class="nav-link" onclick="">
                 <div class="icon-button">
@@ -65,7 +66,7 @@
               <div>
                 <a class="nav-link" href="./register.html">
                   <div class="icon-button">
-                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
                     <p>Cart</p>
                   </div>
                 </a>      
@@ -74,7 +75,7 @@
               <div>
                 <a class="nav-link" href="./register.html">
                   <div class="icon-button">
-                    <i class="fa-regular fa-user fa-fw"></i>
+                    <i class="fa-regular fa-user"></i>
                     <p>Sign In</p>
                   </div>
                 </a>
@@ -139,63 +140,92 @@
     <footer class="bg-footer container-fluid w-100 h-100">
         
       <div class="d-none d-md-block"> <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
+        
         <div class="d-flex flex-row justify-content-center mt-2"> <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+          
           <div class="mx-3 my-3">
-            <span class="text-center text-wrap">
+            <div class="text-center text-wrap">
               <h6>Contact</h6>
               <ul class="list-unstyled">
                 <li><a href="support.html">Support</a></li>
                 <li><a href="./contact.html">Contact Us</a></li>
                 <li><a href="#">Complaints</a></li>
               </ul>
-            </span>  
+            </div>  
           </div>
+          
           <div class="col-1"></div>
 
           <div class="mx-3 my-3">
-            <span class="text-center text-wrap">
+            <div class="text-center text-wrap">
               <h6>Information</h6>                
               <ul class="list-unstyled"></li>              
                 <li><a href="#">Jobs</a></li>
                 <li><a href="#">Press</a></li>
                 <li><a href="#">Payment methods</a></li>
               </ul> 
-            </span>
+            </div>
           </div>
 
           <div class="col-1"></div>
 
           <div class="mx-3 my-3">
-            <span class="text-center text-wrap">
+            <div class="text-center text-wrap">
               <h6>More</h6>
               <ul class="list-unstyled">
                 <li><a href="./impressum.html">Impressum</a></li>
                 <li><a href="./agb.html">AGBs</a></li>
                 <li><a href="">Data Protection</a></li>
               </ul>
-            </span>
+            </div>
           </div>     
         </div>   
 
       </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
 
 
-      <div class="d-md-none small-links mt-3 mb-3"> <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
-          
-          <li style="border-top: 1 solid white;" class="list-group-item">
-            <a>Contact
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a>Information
+      <div class="d-md-none small-links mt-5 mb-3"> <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
+        <ul class="container-fluid justify-content-center"> 
+          <div class="row">
+            <li class="list-group-item">
+              
+              <a data-bs-toggle="collapse" href="#collapseContact" role="button" aria-expanded="t" aria-controls="collapseContact">Contact</a>
+              <div class="collapse" id="collapseContact">
+                <ul class="list-unstyled buttonlist">
+                  <li><a href="support.html">Support</a></li>
+                  <li><a href="./contact.html">Contact Us</a></li>
+                  <li><a href="#">Complaints</a></li>
+                </ul>  
+              </div>
 
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a>More
+            </li>
 
-            </a>
-          </li>
+            <li class="list-group-item">
+              
+              <a data-bs-toggle="collapse" href="#collapseInformation" role="button" aria-expanded="t" aria-controls="collapseInformation">Information</a>
+              <div class="collapse" id="collapseInformation">
+                <ul class="list-unstyled buttonlist">              
+                  <li><a href="#">Jobs</a></li>
+                  <li><a href="#">Press</a></li>
+                  <li><a href="#">Payment methods</a></li>
+                </ul> 
+              </div>
+
+            </li>
+
+            <li class="list-group-item">
+              
+              <a data-bs-toggle="collapse" href="#collapseMore" role="button" aria-expanded="t" aria-controls="collapseMore">More</a>
+              <div class="collapse" id="collapseMore">
+                <ul class="list-unstyled buttonlist">
+                  <li><a href="./impressum.html">Impressum</a></li>
+                  <li><a href="./agb.html">AGBs</a></li>
+                  <li><a href="">Data Protection</a></li>
+                </ul>
+              </div>
+
+            </li>
+          </div>  
         </ul>
       </div> <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
 

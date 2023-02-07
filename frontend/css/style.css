@@ -116,6 +116,7 @@ Navigationsbar Style
   padding-left:   4px;
 }
 
+
 .icon-button input {
   outline: none;
   background-color: #1e1e1e;
@@ -185,9 +186,6 @@ footer > hr {
   margin: 0 auto;
 }
 
-.small-links :first-of-type {
-  border-top:none;
-}
 
 .small-links li{
   background-color: #ec6090;
@@ -198,6 +196,10 @@ footer > hr {
   border-right:none; 
 }
 
+.buttonlist {
+  font-style:none;
+  font-size: 12px;;
+}
 
 /* 
 ---------------------------------------------
