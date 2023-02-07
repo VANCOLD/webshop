@@ -64,9 +64,30 @@ img {
 
 /* 
 ---------------------------------------------
+Accordion Style
+--------------------------------------------- 
+*/
+
+.accordion-button:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+
+/*
+Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
+Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
+*/
+button.accordion-button::after  {
+  filter:brightness(0%);
+}
+
+/* 
+---------------------------------------------
 Global Styles
 --------------------------------------------- 
 */
+
 html,
 body {
   background: #1f2122;
