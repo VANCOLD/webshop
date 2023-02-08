@@ -17,7 +17,6 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #1f2122;
-
   background-color: #1e1e1e;
 }
 
@@ -40,25 +39,18 @@ ul {
   margin-bottom: 0px;
 }
 
-p {
-  font-size: 15px;
-  line-height: 30px;
-  color: #fff;
-}
-
-img {
-  width: 100%;
-  overflow: hidden;
-}
 
 body .page-content {
   background-color: #27292a;
   border-radius: 23px;
   width:85%;
-
   margin: 0 auto;
 }
 
+
+.page-content {
+  margin: 15%;
+}
 
 ::selection {
   background: #e75e8d;
@@ -82,6 +74,7 @@ main {
   flex:1;
 }
 
+/* Trick um den Footer ans Ende der Seite zu schieben */
 .orderbox {
   display: flex;
   flex-direction: column;
@@ -125,6 +118,8 @@ Navigationsbar Style
   border-right: 0px;
   border-top: 0px;
   border-bottom: 1px solid #ec6090;
+
+  /* Entfernt den Rand (Border) des Inputs; */
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 }
@@ -138,6 +133,8 @@ Navigationsbar Style
   border-right: 0px;
   border-top: 0px;
   border-bottom: 1px solid #ec6090;
+
+  /* Entfernt den Fokus (blaue Umrandung) */
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-appearance: none;
@@ -201,27 +198,6 @@ footer > hr {
   font-size: 12px;;
 }
 
-/* 
----------------------------------------------
-Accordion Style
---------------------------------------------- 
-*/
-
-.accordion-button:focus {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
-
-/*
-Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
-Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
-*/
-button.accordion-button::after  {
-  filter:brightness(0%);
-}
-
-
 
 /* 
 ---------------------------------------------
@@ -230,10 +206,11 @@ Impressum Style
 */
 
 .justified {
-  text-align: justify;
+  text-align: center;
   text-justify: inter-word;
   text-align-last: center;
   color:darkgray;
+  
 }
 
 
@@ -259,6 +236,33 @@ background-color: #e75e8d;
   color: black;
 }
 
+
+/* Wir entfernen hier den Rand des Buttons wenn wir ihn anklicken */
+.accordion-button:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+
+/*
+Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
+Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
+*/
+button.accordion-button::after  {
+  filter:brightness(0%);
+}
+
+/* 
+---------------------------------------------
+Home Page Style
+--------------------------------------------- 
+*/
+
+#carouselGames {
+  margin:0; 
+  padding:0;
+}
+
 /* 
 ---------------------------------------------
 Responsive Style
@@ -266,29 +270,49 @@ Responsive Style
 */
 
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) 
+{
+
   .socials li i {
     font-size:32px;
     margin-left:16px;
     margin-right:16px;
   }
+
+  footer{
+    width:100%;
+    height:100%;
+  }
+
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) 
+{
+
   .socials li i {
     font-size:24px;
     margin-left:12px;
     margin-right:12px;
   }
+
+  footer{
+    width:100%;
+    height:100%;
+  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px) 
+{
+
   .socials li i {
     font-size:18px;
     margin-left:8px;
     margin-right:8px;
   }
+
+  footer{   
+    width:100%;
+    height:100%;
+  }
+
 }
-
-
-
