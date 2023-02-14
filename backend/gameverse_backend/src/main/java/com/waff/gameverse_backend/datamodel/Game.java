@@ -9,7 +9,8 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name="game") @Setter @Getter @AllArgsConstructor @NoArgsConstructor
+@Entity(name="game")
+@Setter @Getter @AllArgsConstructor @NoArgsConstructor
 public class Game extends Product
 {
 
