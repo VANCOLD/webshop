@@ -1,6 +1,6 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.service.UserService;
+import com.waff.gameverse_backend.service.CartService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/carts")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class UserController
+public class CartController
 {
-
-    private UserService userService;
-
+    private CartService cartService;
 }

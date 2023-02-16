@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Qualifier @Repository
-public interface MerchandiseRepository extends ProductRepository<Merchandise>  {
+public interface MerchandiseRepository extends ProductRepository<Merchandise>
+{
 
 }
