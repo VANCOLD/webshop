@@ -1,6 +1,9 @@
 package com.waff.gameverse_backend.datamodel;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,14 +17,20 @@ import java.util.Set;
 public class Game extends Product
 {
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cg_id", referencedColumnName = "cg_id")
     private ConsoleGeneration consoleGen;
 
+
+    @NotBlank
+    @NotNull
+    @NotEmpty
     @Column(name = "esrb")
     private String  esrb;
 
 
+    @NotNull
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
