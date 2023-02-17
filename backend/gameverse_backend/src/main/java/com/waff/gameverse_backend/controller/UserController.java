@@ -2,6 +2,7 @@ package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.datamodel.User;
 import com.waff.gameverse_backend.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class UserController
     private UserService userService;
 
     @PostMapping("/create")
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody @Valid User user){
         return userService.createUser(user);
     }
 
