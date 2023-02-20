@@ -13,25 +13,25 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserController
 {
 
     private UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping
     public User createUser(@RequestBody @Valid User user){
         return userService.createUser(user);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     public User deleteUser(@RequestBody User user){
         return userService.deleteUser(user);
     }
 
     @GetMapping("/{id}")
-    public Optional<User> findUser(@PathVariable Long uId){return userService.findUserById(uId); }
+    public Optional<User> findUser(@PathVariable Long id){return userService.findUserById(id); }
 
     @GetMapping
     public List<User> findAllUsers(){

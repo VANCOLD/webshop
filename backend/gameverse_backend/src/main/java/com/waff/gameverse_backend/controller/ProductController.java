@@ -14,37 +14,37 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class ProductController
 {
 
     private ProductService prodService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Product> findAllProducts() { return prodService.findAllProducts(); }
 
-    @GetMapping("/consoles/all")
+    @GetMapping("/consoles")
     public List<Console> findAllConsole() {
         return prodService.findAllConsole();
     }
 
-    @GetMapping("/accessories/all")
+    @GetMapping("/accessories")
     public List<Accessory> findAllAccessory() {
         return prodService.findAllAccessory();
     }
 
-    @GetMapping("/merchandise/all")
+    @GetMapping("/merchandise")
     public List<Merchandise> findAllMerchandise() {
         return prodService.findAllMerchandise();
     }
 
-    @GetMapping("/giftcards/all")
+    @GetMapping("/giftcards")
     public List<Giftcard> findAllGiftcard() {
         return prodService.findAllGiftcard();
     }
 
-    @GetMapping("/games/all")
+    @GetMapping("/games")
     public List<Game> findAllGames() {
         return prodService.findAllGames();
     }
@@ -74,53 +74,53 @@ public class ProductController
     public Optional<Game> findGamesById(@PathVariable long Id) { return prodService.findGamesById(Id); }
 
 
-    @PostMapping("/create")
+    @PostMapping
     public Product saveProduct(@RequestBody @Valid Product product) {return (Product) prodService.saveProduct(product);}
 
-    @PostMapping("/console/create")
+    @PostMapping("/console")
     public Console saveConsole(@RequestBody @Valid Console console) {return prodService.saveConsole(console);}
 
-    @PostMapping("/accessory/create")
+    @PostMapping("/accessory")
     public Accessory saveAccessory(@RequestBody @Valid Accessory accessory) {return prodService.saveAccessory(accessory);}
 
-    @PostMapping("/merchandise/create")
+    @PostMapping("/merchandise")
     public Merchandise saveMerchandise(@RequestBody @Valid Merchandise merchandise) {return prodService.saveMerchandise(merchandise);}
 
-    @PostMapping("/giftcard/create")
+    @PostMapping("/giftcard")
     public Giftcard saveGiftcard(@RequestBody @Valid Giftcard giftcard) {return prodService.saveGiftcard(giftcard);}
 
-    @PostMapping("/game/create")
+    @PostMapping("/game")
     public Game saveGames(@RequestBody @Valid Game game) {return prodService.saveGame(game);}
 
     
 
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     public Product deleteProduct(@RequestBody @Valid Product product) {
         return prodService.deleteProduct(product);
     }
 
-    @DeleteMapping("/console/delete")
+    @DeleteMapping("/console")
     public Console deleteConsole(@RequestBody @Valid Console console) {
         return prodService.deleteConsole(console);
     }
 
-    @DeleteMapping("/accessory/delete")
+    @DeleteMapping("/accessory")
     public Accessory deleteAccessory(@RequestBody @Valid Accessory accessory) {
         return prodService.deleteAccessory(accessory);
     }
 
-    @DeleteMapping("/merchandise/delete")
+    @DeleteMapping("/merchandise")
     public Merchandise deleteMerchandise(@RequestBody @Valid Merchandise merchandise) {
         return prodService.deleteMerchandise(merchandise);
     }
 
-    @DeleteMapping("/giftcard/delete")
+    @DeleteMapping("/giftcard")
     public Giftcard deleteGiftcard(@RequestBody @Valid Giftcard giftcard) {
         return prodService.deleteGiftcard(giftcard);
     }
 
-    @DeleteMapping("/game/delete")
+    @DeleteMapping("/game")
     public Game deleteGame(@RequestBody @Valid Game game) {
         return prodService.deleteGame(game);
     }
