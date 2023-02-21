@@ -20,15 +20,11 @@ public class User
     @Column(name ="uid")
     private Long uid;
 
-    @NotNull
-    @NotBlank
-    @NotEmpty
+    @NotNull @NotBlank @NotEmpty
     @Column(name="username")
     private String username;
 
-    @NotNull
-    @NotBlank
-    @NotEmpty
+    @NotNull @NotBlank @NotEmpty
     @Column(name="password")
     private String password;
 

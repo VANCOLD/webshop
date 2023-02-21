@@ -3,10 +3,6 @@ package com.waff.gameverse_backend.controller;
 import com.waff.gameverse_backend.datamodel.User;
 import com.waff.gameverse_backend.service.UserService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +10,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserController
 {
 
     private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public User createUser(@RequestBody @Valid User user){
@@ -26,7 +25,7 @@ public class UserController
     }
 
     @DeleteMapping
-    public User deleteUser(@RequestBody User user){
+    public User deleteUser(@RequestBody @Valid User user){
         return userService.deleteUser(user);
     }
 

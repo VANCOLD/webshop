@@ -23,9 +23,7 @@ public class Game extends Product
     private ConsoleGeneration consoleGen;
 
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name = "esrb")
     private String  esrb;
 

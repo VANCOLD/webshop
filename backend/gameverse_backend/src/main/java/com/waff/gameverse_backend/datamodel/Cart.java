@@ -30,12 +30,10 @@ public class Cart
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "uid", referencedColumnName = "uid")
-    @Column(name="user")
     private User user;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sid", referencedColumnName = "sid")
-    @Column(name="status")
     private Status status;
 }
