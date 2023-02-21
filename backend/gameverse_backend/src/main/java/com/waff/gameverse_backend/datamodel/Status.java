@@ -21,9 +21,7 @@ public class Status
     private Long sid;
 
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name="status")
     private String status;
 }

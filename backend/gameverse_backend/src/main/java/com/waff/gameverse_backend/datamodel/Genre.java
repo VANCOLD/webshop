@@ -20,9 +20,7 @@ public class Genre
     private Long gid;
 
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name = "name")
     private String name;
 

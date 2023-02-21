@@ -20,9 +20,7 @@ public class Producer
     private Long h_id;
 
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name = "name")
     private String name;
 

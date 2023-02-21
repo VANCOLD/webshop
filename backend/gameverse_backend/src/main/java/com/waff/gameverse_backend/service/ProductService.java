@@ -4,12 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.waff.gameverse_backend.datamodel.*;
-import com.waff.gameverse_backend.repository.ProductRepository;
-import com.waff.gameverse_backend.repository.AccessoryRepository;
-import com.waff.gameverse_backend.repository.MerchandiseRepository;
-import com.waff.gameverse_backend.repository.GameRepository;
-import com.waff.gameverse_backend.repository.ConsoleRepository;
-import com.waff.gameverse_backend.repository.GiftcardRepository;
+import com.waff.gameverse_backend.repository.*;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -26,6 +21,10 @@ public class ProductService
     private MerchandiseRepository merchRepo;
     private GiftcardRepository  giftRepo;
     private GameRepository gameRepo;
+
+    private GenreRepository genreRepo;
+
+    private ConsoleGenerationRepository conGenRepo;
 
 
     public List<Product> findAllProducts() {

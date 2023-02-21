@@ -20,10 +20,12 @@ public class ConsoleGeneration
     private Long cg_id;
 
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name = "name")
     private String name;
 
+
+    @NotBlank @NotNull @NotEmpty
+    @Column(name =  "iconPath")
+    private String iconPath;
 }
