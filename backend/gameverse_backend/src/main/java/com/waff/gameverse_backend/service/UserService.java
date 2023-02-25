@@ -2,6 +2,7 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.datamodel.User;
 import com.waff.gameverse_backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 public class UserService
 {
+    @Autowired
     private UserRepository userRepo;
 
     public UserService(UserRepository userRepo) {

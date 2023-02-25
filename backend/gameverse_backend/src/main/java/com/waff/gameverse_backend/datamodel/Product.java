@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.datamodel;
 
 
+import com.waff.gameverse_backend.embedded.ProductType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 public class Product
 {
@@ -48,5 +49,7 @@ public class Product
     @Column(name = "available")
     private Date        available;
 
+    @Embedded
+    private ProductType type;
 
 }

@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ConsoleGenerationRepository extends JpaRepository<ConsoleGeneration, Long> {
-}
+public interface ConsoleGenerationRepository extends JpaRepository<ConsoleGeneration, Long> {}
