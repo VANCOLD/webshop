@@ -1,13 +1,12 @@
 package com.waff.gameverse_backend.datamodel;
 
 
-import com.waff.gameverse_backend.embedded.ProductType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -47,9 +46,10 @@ public class Product
     private Integer     amount;
 
     @Column(name = "available")
-    private Date        available;
+    private LocalDateTime available;
 
-    @Embedded
-    private ProductType type;
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @JoinColumn(name="cid", referencedColumnName = "cid")
+    private Category category;
 
 }

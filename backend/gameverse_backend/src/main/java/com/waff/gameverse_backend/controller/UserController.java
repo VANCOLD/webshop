@@ -2,7 +2,6 @@ package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.datamodel.User;
 import com.waff.gameverse_backend.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +19,12 @@ public class UserController
     }
 
     @PostMapping
-    public User createUser(@RequestBody @Valid User user){
+    public User createUser(@RequestBody User user){
         return userService.createUser(user);
     }
 
     @DeleteMapping
-    public User deleteUser(@RequestBody @Valid User user){
+    public User deleteUser(@RequestBody User user){
         return userService.deleteUser(user);
     }
 
