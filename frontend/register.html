@@ -1,45 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
     
-        <title>Bootstrap Skeleton</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-      
-        <style>
+<head>
 
-            .background {
-                background-image: url("./images/register-bg.jpg");
-                background-size: 100% 100%;
-                background-repeat:repeat;
-            }
+    <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            .login-container {
-                background-color:whitesmoke;
-            }
+    <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-            .form-group + .form-group {
-                margin-top: 8px;
-            }
+    <title>Impressum</title>
 
-        </style>
-      </head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- Fontawesome-->
+    <script src="https://kit.fontawesome.com/d84ba81ad4.js" crossorigin="anonymous"></script> <!-- Gibt uns Icons (Social Media / Navbar)-->
+    
+    <!-- Unser eigenes CSS-->
+    <link rel="stylesheet" href="./css/style.css">
 
+    <style>
+        header {
+            min-height: 5px; /* Adjust this value according to your design */
+            background-color: #1e1e1e; /* Add your desired background color here */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .background {
+            background-image: url("./images/register-bg.png");
+            background-size: cover; /* Updated property */
+            background-repeat: no-repeat; /* Updated property */
+            background-position: center; /* Added property */
+        }
+    
+        .login-container {
+            background-color: whitesmoke;
+            border-bottom-left-radius: 50px; /* Adjust this value according to your preference */
+        }
+    
+        .form-group + .form-group {
+            margin-top: 8px;
+        }
+    
+        .custom-border-radius {
+             border-radius: 50px;  
+        }
+    
+        .custom-h1-color {
+            color: #e75e8d; /* Replace 'red' with your desired color */
+        }
+    
+        .custom-button-color {
+            color: #e75e8d;
+        }
+    
+        .custom-button-rounded-color {
+            color: #e75e8d;
+            border-top-right-radius: 50px;
+        }
+    
+        .custom-button-bgcolor {
+            background-color: #e75e8d;
+        }
+    
+        .custom-button-bgcolor:hover,
+        .custom-button-color:hover,
+        .custom-button-rounded-color:hover {
+            background-color: #e75e8d;
+            color: #ffffff; /* You can change the text color on hover here, if needed */
+        }
+        
+    </style>
 
-<body class="background">
+  </head> 
+
+  <body class="background">
+
+       <!-- ***** Header Area Start ***** -->
+       <header>
+        
+        <div class="container-fluid">
+          <div class="row">
+  
+            <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center clearfix">
+  
+              <div class="logo">
+                <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
+              </div>
+  
+              <div class="d-flex flex-row"> <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+                
+                <div class="nav-link" onclick="">
+                  <div class="icon-button">
+                    <div class="input-group">
+                      <input type="text" class="form-control search-form"  placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
+                      <div class="input-group-append">
+                        <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                      </div>    
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <a class="nav-link" href="./support.html">
+                    <div class="icon-button">
+                      <i class="fa-regular fa-circle-question"></i>
+                      <p>Support</p>    
+                    </div>  
+                  </a>
+                </div>
+  
+                <div>
+                  <a class="nav-link" href="./register.html">
+                    <div class="icon-button">
+                      <i class="fa-solid fa-cart-shopping"></i>
+                      <p>Cart</p>
+                    </div>
+                  </a>      
+                </div>
+  
+                <div>
+                  <a class="nav-link" href="./register.html">
+                    <div class="icon-button">
+                      <i class="fa-regular fa-user"></i>
+                      <p>Sign In</p>
+                    </div>
+                  </a>
+                </div>
+  
+              </div> <!-- END d-flex flex-row -->
+            </nav>
+          </div> <!-- END row-->
+        </div> <!-- END container-fluid -->
+      </header>
 
     <div class="container-fluid ">   
 
         <div class="row">
 
-            <div class="container login-container rounded-4 w-50 h-auto mt-5 mb-5">
+            <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5">
+
 
                 <nav>
                     <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-signup-tab" data-bs-toggle="tab" data-bs-target="#nav-signup" type="button" role="tab" aria-controls="nav-signup" aria-selected="true" style="font-size:19px">Sign Up</button>
-                        <button class="nav-link" id="nav-signin-tab" data-bs-toggle="tab" data-bs-target="#nav-signin" type="button" role="tab" aria-controls="nav-signin" aria-selected="false" style="font-size:19px">Sign In</button>
+                        <button class="nav-link custom-button-color"  id="nav-signup-tab" data-bs-toggle="tab" data-bs-target="#nav-signup" type="button" role="tab" aria-controls="nav-signup" aria-selected="true" style="font-size:19px",>Sign Up</button>
+                        <button class="nav-link custom-button-rounded-color"  id="nav-signin-tab" data-bs-toggle="tab" data-bs-target="#nav-signin" type="button" role="tab" aria-controls="nav-signin" aria-selected="false" style="font-size:19px">Sign In</button>
                     </div>
                 </nav>
                 
@@ -52,7 +160,7 @@
                                 <div class="form-group nav-justified">
                                     <div class="col-lg-8">
                                         <br>
-                                        <h1>Sign Up</h1>
+                                        <h1 class="custom-h1-color">Sign Up</h1>
                                         <p>Please fill in this form to create an account.</p>
                                     </div>
 
@@ -122,7 +230,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-5"></div>
-                                            <button class="btn btn-primary col-lg-2 form-control-sm input-sm" type="submit">Register</button>
+                                            <button class="btn btn-primary col-lg-2 form-control-sm input-sm custom-button-bgcolor" type="submit">Register</button>
                                             <div class="col-lg-5"></div>
                                         </div>
                                     </div>
@@ -130,7 +238,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <p style="position:relative; text-align:center; font-size:12px; margin-top:4px;">By creating an account you agree to our <a href="agb.html">Terms & Privacy</a>.</p>
+                                        <p style="position:relative; text-align:center; font-size:12px; margin-top:4px;">By creating an account you agree to our <a href="agb.html" style="color:#e75e8d;">Terms & Privacy</a>.</p>
                                     </div>
                                 </div>
                             </form>
@@ -170,7 +278,7 @@
                                         <div class="form-group d-inline-flex align-items-center">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-3">
-                                                <button class="btn btn-primary form-control" type="submit">Login</button>
+                                                <button class="btn btn-primary form-control custom-button-bgcolor" type="submit">Login</button>
                                             </div>
                                             <div class="col-lg-1"></div>
                                             <div class="col-lg-7 d-inline-flex align-items-center">
@@ -189,7 +297,7 @@
                                 <div class="row">
                                     <div class="container fluid-containner col-lg-12">
                                         <br>
-                                        <p style="text-align:center;">Forgot <a href="#">password?</a></p>
+                                        <p style="text-align:center;">Forgot <a href="#" style="color:#e75e8d;">password?</a></p>
                                     </div>
                                 </div>
                             </form>
