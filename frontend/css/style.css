@@ -142,6 +142,15 @@ Navigationsbar Style
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
 } 
 
+/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 /* 
 ---------------------------------------------
 Footer Style
@@ -257,6 +266,7 @@ button.accordion-button::after  {
 Home Page Style
 --------------------------------------------- 
 */
+
 
 #carouselGames {
   margin:0; 

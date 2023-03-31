@@ -1,17 +1,40 @@
 package com.waff.gameverse_backend.controller;
 
+import com.waff.gameverse_backend.datamodel.Cart;
 import com.waff.gameverse_backend.service.CartService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Optional;
+
 
 @RestController
-@RequestMapping("/carts")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@RequestMapping("/api/carts")
 public class CartController
 {
-    private CartService cartService;
+    private final CartService cartService;
+
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
+    }
+
+    @PostMapping
+    public Cart createCart(@RequestBody @Valid Cart cart) {
+        return cartService.createCart(cart);
+    }
+
+    @DeleteMapping
+    public Cart deleteCart(@RequestBody @Valid Cart cart) {
+        return cartService.deleteCart(cart);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Cart> findCart(@PathVariable Long id) {
+        return cartService.findUserById(id);
+    }
+
+    @GetMapping
+    public List<Cart> findAllCarts(){
+        return cartService.findAllCarts();
+    }
 }

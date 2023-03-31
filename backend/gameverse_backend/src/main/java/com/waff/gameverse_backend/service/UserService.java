@@ -2,8 +2,7 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.datamodel.User;
 import com.waff.gameverse_backend.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -11,10 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor @NoArgsConstructor
 public class UserService
 {
+    @Autowired
     private UserRepository userRepo;
+
+    public UserService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     public User createUser(User user){
         return userRepo.save(user);

@@ -20,10 +20,7 @@ public class Status
     @Column(name="sid")
     private Long sid;
 
-
-    @NotBlank
-    @NotNull
-    @NotEmpty
+    @NotBlank @NotNull @NotEmpty
     @Column(name="status")
     private String status;
 }

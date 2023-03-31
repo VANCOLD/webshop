@@ -6,13 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.net.URL;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 @Setter @Getter @NoArgsConstructor @AllArgsConstructor
 public class Product
 {
@@ -48,7 +46,10 @@ public class Product
     private Integer     amount;
 
     @Column(name = "available")
-    private Date        available;
+    private LocalDateTime available;
 
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @JoinColumn(name="cid", referencedColumnName = "cid")
+    private Category category;
 
 }
