@@ -14,7 +14,6 @@ import lombok.Setter;
 public class Position
 {
     @Id
-    @GeneratedValue
     @Column(name="positionId")
     private Long positionId;
 

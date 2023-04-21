@@ -5,22 +5,23 @@ import java.util.Optional;
 
 import com.waff.gameverse_backend.datamodel.*;
 import com.waff.gameverse_backend.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService
 {
 
-    @Autowired
-    private ProductRepository prodRepo;
+    private final ProductRepository prodRepo;
 
-    @Autowired
-    private GenreRepository genreRepo;
+    private final GenreRepository genreRepo;
 
-    @Autowired
-    private ConsoleGenerationRepository conGenRepo;
+    private final ConsoleGenerationRepository conGenRepo;
 
+    public ProductService(ProductRepository prodRepository, GenreRepository genreRepo, ConsoleGenerationRepository conGenRepo) {
+        this.prodRepo   = prodRepository;
+        this.genreRepo  = genreRepo;
+        this.conGenRepo = conGenRepo;
+    }
 
     public List<Product> findAllProducts() {
         return prodRepo.findAll();

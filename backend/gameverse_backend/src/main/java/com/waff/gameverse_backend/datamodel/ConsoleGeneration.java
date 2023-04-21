@@ -9,15 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity @Table(name = "ConsoleGeneration")
+@Entity @Table(name = "console_generation")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 public class ConsoleGeneration
 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cg_id")
-    private Long cg_id;
+    private Long cgid;
 
 
     @NotBlank @NotNull @NotEmpty
@@ -26,6 +25,6 @@ public class ConsoleGeneration
 
 
     @NotBlank @NotNull @NotEmpty
-    @Column(name =  "iconPath")
+    @Column(name =  "icon_path")
     private String iconPath;
 }

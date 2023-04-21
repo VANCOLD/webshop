@@ -17,7 +17,6 @@ public class Cart
 {
 
     @Id
-    @GeneratedValue
     @Column(name="cartId")
     private Long cartId;
 
@@ -36,4 +35,5 @@ public class Cart
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sid", referencedColumnName = "sid")
     private Status status;
+
 }

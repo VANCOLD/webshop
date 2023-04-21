@@ -16,7 +16,6 @@ public class Product
 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pid")
     private Long pid;
 
@@ -39,7 +38,7 @@ public class Product
     private Long        hpid;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "h_id", referencedColumnName = "h_id")
+    @JoinColumn(name = "proid", referencedColumnName = "proid")
     private Producer producer;
 
     @Column(name = "amount")

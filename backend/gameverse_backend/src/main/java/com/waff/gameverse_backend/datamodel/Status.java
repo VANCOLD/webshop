@@ -16,7 +16,6 @@ public class Status
 {
 
     @Id
-    @GeneratedValue
     @Column(name="sid")
     private Long sid;
 
