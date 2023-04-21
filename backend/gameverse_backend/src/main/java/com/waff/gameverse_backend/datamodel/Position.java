@@ -11,8 +11,7 @@ import lombok.Setter;
 @Entity
 @Table(name="Position")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
-public class Position
-{
+public class Position{
     @Id
     @Column(name="positionId")
     private Long positionId;
