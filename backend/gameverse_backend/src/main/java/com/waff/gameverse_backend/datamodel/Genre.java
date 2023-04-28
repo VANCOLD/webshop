@@ -15,7 +15,6 @@ public class Genre
 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gid")
     private Long gid;
 

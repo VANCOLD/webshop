@@ -28,9 +28,9 @@ public class CartController
         return cartService.deleteCart(cart);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Cart> findCart(@PathVariable Long id) {
-        return cartService.findUserById(id);
+    @GetMapping("/{cartid}")
+    public Optional<Cart> findCart(@PathVariable Long cartid) {
+        return cartService.findUserById(cartid);
     }
 
     @GetMapping
