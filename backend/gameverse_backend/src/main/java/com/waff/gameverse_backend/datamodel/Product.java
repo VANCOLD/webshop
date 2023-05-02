@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 
 @Entity
@@ -50,5 +51,8 @@ public class Product
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name="cid", referencedColumnName = "cid")
     private Category category;
+
+    @ManyToMany
+    private Set<Genre> genres;
 
 }

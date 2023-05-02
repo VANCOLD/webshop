@@ -25,9 +25,9 @@ public class ProducerController {
         List<Producer> response = this.producerService.findAllProducers();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The producer-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The producer-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
@@ -36,9 +36,9 @@ public class ProducerController {
         Optional<Producer> returnValue = producerService.findProducerById(id);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("No producer found with the id " + id, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No producer found with the id " + id);
     }
 
     @DeleteMapping("/{id}")
@@ -46,14 +46,14 @@ public class ProducerController {
     {
 
         if(id < 0)
-            return new ResponseEntity<>("A producer with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A producer with an id smaller than 0 can not exist!");
 
         Optional<Producer> returnValue = this.producerService.deleteProducer(id);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("The producer with the id " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The producer with the id " + id + " doesn't exist!");
     }
 
 
@@ -61,14 +61,14 @@ public class ProducerController {
     public ResponseEntity<?> saveProducer(@RequestBody Producer producer)
     {
         if(producer.getProid() < 0)
-            return new ResponseEntity<>("A producer with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A producer with an id smaller than 0 can not exist!");
 
         Producer returnValue = this.producerService.saveProducer(producer);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A producer with the id " + producer.getProid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A producer with the id " + producer.getProid() + " already exists!");
     }
 
 
@@ -77,7 +77,7 @@ public class ProducerController {
     {
         Long pid = producer.getProid();
         if(pid < 0)
-            return new ResponseEntity<>("A producer with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A producer with an id smaller than 0 can not exist!");
 
 
         Optional<Producer> findValue = this.producerService.findProducerById(pid);
@@ -86,11 +86,11 @@ public class ProducerController {
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The producer with the id " + pid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The producer with the id " + pid + " you are trying to update doesn't exist!");
 
         returnValue.setProid(pid);
         returnValue.setName(producer.getName());
 
-        return new ResponseEntity<>( this.producerService.saveProducer(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok( this.producerService.saveProducer(returnValue));
     }
 }

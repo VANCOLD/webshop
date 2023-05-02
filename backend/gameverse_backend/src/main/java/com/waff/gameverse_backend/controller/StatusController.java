@@ -25,9 +25,9 @@ public class StatusController {
         List<Status> response = this.statusService.findAllStatus();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The status-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The status-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{sid}")
@@ -36,9 +36,9 @@ public class StatusController {
         Optional<Status> returnValue = statusService.findStatusById(sid);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
          else
-            return new ResponseEntity<>("No status found with the id " + sid, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No status found with the id " + sid);
     }
 
     @DeleteMapping("/{sid}")
@@ -46,14 +46,14 @@ public class StatusController {
     {
 
         if(sid < 0)
-            return new ResponseEntity<>("A status with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A status with an id smaller than 0 can not exist!");
 
         Optional<Status> returnValue = this.statusService.deleteStatus(sid);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
          else
-            return new ResponseEntity<>("The status with the id " + sid + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The status with the id " + sid + " doesn't exist!");
     }
 
 
@@ -61,14 +61,14 @@ public class StatusController {
     public ResponseEntity<?> saveStatus(@RequestBody Status status)
     {
         if(status.getSid() < 0)
-            return new ResponseEntity<>("A status with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A status with an id smaller than 0 can not exist!");
 
         Status returnValue = this.statusService.saveStatus(status);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A status with the id " + status.getSid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A status with the id " + status.getSid() + " already exists!");
     }
 
 
@@ -77,7 +77,7 @@ public class StatusController {
     {
         Long sid = status.getSid();
         if(sid < 0)
-            return new ResponseEntity<>("A status with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A status with an id smaller than 0 can not exist!");
 
 
         Optional<Status> findValue = this.statusService.findStatusById(sid);
@@ -86,11 +86,11 @@ public class StatusController {
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The status with the id " + sid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The status with the id " + sid + " you are trying to update doesn't exist!");
 
         returnValue.setSid(sid);
         returnValue.setStatus(status.getStatus());
 
-        return new ResponseEntity<>( this.statusService.saveStatus(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok(this.statusService.saveStatus(returnValue));
     }
 }

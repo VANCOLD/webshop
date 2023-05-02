@@ -25,9 +25,9 @@ public class GenreController {
         List<Genre> response = this.genreService.findAllGenres();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The genre-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The genre-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
@@ -36,9 +36,9 @@ public class GenreController {
         Optional<Genre> returnValue = genreService.findGenreById(id);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("No genre found with the id " + id, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No genre found with the id " + id);
     }
 
     @DeleteMapping("/{id}")
@@ -46,14 +46,14 @@ public class GenreController {
     {
 
         if(id < 0)
-            return new ResponseEntity<>("A genre with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A genre with an id smaller than 0 can not exist!");
 
         Optional<Genre> returnValue = this.genreService.deleteGenre(id);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("The genre with the id " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The genre with the id " + id + " doesn't exist!");
     }
 
 
@@ -61,14 +61,14 @@ public class GenreController {
     public ResponseEntity<?> saveGenre(@RequestBody Genre genre)
     {
         if(genre.getGid() < 0)
-            return new ResponseEntity<>("A genre with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A genre with an id smaller than 0 can not exist!");
 
         Genre returnValue = this.genreService.saveGenre(genre);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A genre with the id " + genre.getGid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A genre with the id " + genre.getGid() + " already exists!");
     }
 
 
@@ -77,7 +77,7 @@ public class GenreController {
     {
         Long gid = genre.getGid();
         if(gid < 0)
-            return new ResponseEntity<>("A genre with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A genre with an id smaller than 0 can not exist!");
 
 
         Optional<Genre> findValue = this.genreService.findGenreById(gid);
@@ -86,11 +86,11 @@ public class GenreController {
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The genre with the id " + gid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The genre with the id " + gid + " you are trying to update doesn't exist!");
 
         returnValue.setGid(gid);
         returnValue.setName(genre.getName());
 
-        return new ResponseEntity<>( this.genreService.saveGenre(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok( this.genreService.saveGenre(returnValue));
     }
 }

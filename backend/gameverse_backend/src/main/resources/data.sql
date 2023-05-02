@@ -11,8 +11,9 @@ TRUNCATE TABLE producer;
 TRUNCATE TABLE product;
 TRUNCATE TABLE status;
 TRUNCATE TABLE user;
+TRUNCATE TABLE roles;
+TRUNCATE TABLE privileges;
 
-SET FOREIGN_KEY_CHECKS=1;
 
 
 /* Insert section; After truncating we should be safe to insert */
@@ -21,15 +22,17 @@ INSERT INTO category ( cid, name ) VALUES
 (1,"console"),
 (2,"merchandise"),
 (3,"accessory"),
-(4,"giftcards");
+(4,"giftcards"),
+(5,"sale");
 
 
 INSERT INTO status ( sid, status ) VALUES
-(0,"complete"),
+(0,"ongoing"),
 (1,"aborted"),
-(2,"ongoing"),
+(2,"completed"),
 (3,"terminated"),
-(4,"in transaction");
+(4,"in transaction"),
+(5,"network error");
 
 
 INSERT INTO console_generation ( cg_id, name, icon_path ) VALUES
@@ -57,3 +60,14 @@ INSERT INTO genre ( gid, name ) VALUES
 INSERT INTO user ( uid, username, password, admin ) VALUES
 (0,"user","$2a$12$OYGJkmTY7HfiVNgi3yRB3OwIErDYI1b8g6VwAoY5jkhfBpEFxlxTG",false),
 (1,"admin","$2a$12$/BL/ZgCUW7z.GzFYsatgZ.nfAuuyNHRpEbmkVbe5UWryxc0495jQO",true);
+
+
+INSERT INTO producer ( proid, name ) VALUES
+(0,"Nintendo"),
+(1,"Sony"),
+(2,"Microsoft"),
+(3,"Square Enix"),
+(4,"Naughty Dog");
+
+
+SET FOREIGN_KEY_CHECKS=1;

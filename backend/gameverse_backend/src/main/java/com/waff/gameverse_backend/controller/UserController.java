@@ -26,9 +26,9 @@ public class UserController
         List<User> response = this.userService.findAllUsers();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The user-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{uid}")
@@ -37,9 +37,9 @@ public class UserController
         Optional<User> returnValue = userService.findUserById(uid);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("No user found with the id " + uid, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user found with the id " + uid);
     }
 
     @DeleteMapping
@@ -47,14 +47,14 @@ public class UserController
     {
 
         if(uid < 0)
-            return new ResponseEntity<>("A user with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
 
         Optional<User> returnValue = this.userService.deleteUser(uid);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("The user with the id " + uid + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user with the id " + uid + " doesn't exist!");
     }
 
 
@@ -62,14 +62,14 @@ public class UserController
     public ResponseEntity<?> saveUser(@RequestBody User user)
     {
         if(user.getUid() < 0)
-            return new ResponseEntity<>("A user with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
 
         User returnValue = this.userService.saveUser(user);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A user with the id " + user.getUid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with the id " + user.getUid() + " already exists!");
     }
 
 
@@ -78,7 +78,7 @@ public class UserController
     {
         Long uid = user.getUid();
         if(uid < 0)
-            return new ResponseEntity<>("A user with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
 
 
         Optional<User> findValue = this.userService.findUserById(uid);
@@ -87,13 +87,13 @@ public class UserController
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The user with the id " + uid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The user with the id " + uid + " you are trying to update doesn't exist!");
 
         returnValue.setUid(uid);
         returnValue.setUsername(user.getUsername());
         returnValue.setPassword(user.getPassword());
-        returnValue.setAdmin(user.getAdmin());
+        returnValue.setRoles(user.getRoles());
 
-        return new ResponseEntity<>( this.userService.saveUser(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok(this.userService.saveUser(returnValue));
     }
 }

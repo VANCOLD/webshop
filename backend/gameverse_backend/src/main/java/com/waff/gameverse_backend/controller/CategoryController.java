@@ -25,9 +25,9 @@ public class CategoryController {
         List<Category> response = this.categoryService.findAllCategories();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The category-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The category-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
@@ -36,9 +36,9 @@ public class CategoryController {
         Optional<Category> returnValue = categoryService.findCategoryById(id);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("No category found with the id " + id, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No category found with the id " + id);
 
     }
 
@@ -47,14 +47,14 @@ public class CategoryController {
     {
 
         if(id < 0)
-            return new ResponseEntity<>("A category with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A category with an id smaller than 0 can not exist!");
 
         Optional<Category> returnValue = this.categoryService.deleteCategory(id);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("The category with the id " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The category with the id " + id + " doesn't exist!");
     }
 
 
@@ -62,14 +62,14 @@ public class CategoryController {
     public ResponseEntity<?> saveCategory(@RequestBody Category category)
     {
         if(category.getCid() < 0)
-            return new ResponseEntity<>("A category with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A category with an id smaller than 0 can not exist!");
 
         Category returnValue = this.categoryService.saveCategory(category);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A category with the id " + category.getCid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A category with the id " + category.getCid() + " already exists!");
     }
 
 
@@ -78,7 +78,7 @@ public class CategoryController {
     {
         Long cid = category.getCid();
         if(cid < 0)
-            return new ResponseEntity<>("A category with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A category with an id smaller than 0 can not exist!");
 
 
         Optional<Category> findValue = this.categoryService.findCategoryById(cid);
@@ -87,11 +87,11 @@ public class CategoryController {
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The category with the id " + cid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The category with the id " + cid + " you are trying to update doesn't exist!");
 
         returnValue.setCid(cid);
         returnValue.setName(category.getName());
 
-        return new ResponseEntity<>( this.categoryService.saveCategory(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok( this.categoryService.saveCategory(returnValue));
     }
 }

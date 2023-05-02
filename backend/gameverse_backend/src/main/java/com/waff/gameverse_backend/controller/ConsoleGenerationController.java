@@ -25,9 +25,9 @@ public class ConsoleGenerationController {
         List<ConsoleGeneration> response = this.consoleGenerationService.findAllConsoleGeneration();
 
         if (response.isEmpty() )
-            return new ResponseEntity<>("The console generation-list is empty!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The console generation-list is empty!");
         else
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{cgid}")
@@ -36,9 +36,9 @@ public class ConsoleGenerationController {
         Optional<ConsoleGeneration> returnValue = consoleGenerationService.findConsoleGenerationById(cgid);
 
         if( returnValue.isPresent()  )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("No console generation found with the id " + cgid, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No console generation found with the id " + cgid);
     }
 
     @DeleteMapping("/{cgid}")
@@ -46,14 +46,14 @@ public class ConsoleGenerationController {
     {
 
         if(cgid < 0)
-            return new ResponseEntity<>("A console generation with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A console generation with an id smaller than 0 can not exist!");
 
         Optional<ConsoleGeneration> returnValue = this.consoleGenerationService.deleteConsoleGeneration(cgid);
 
         if( returnValue.isPresent() )
-            return new ResponseEntity<>(returnValue.get(), HttpStatus.OK);
+            return ResponseEntity.ok(returnValue.get());
         else
-            return new ResponseEntity<>("The console generation with the id " + cgid + " doesn't exist!", HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The console generation with the id " + cgid + " doesn't exist!");
     }
 
 
@@ -61,14 +61,14 @@ public class ConsoleGenerationController {
     public ResponseEntity<?> saveConsoleGeneration(@RequestBody ConsoleGeneration consoleGeneration)
     {
         if(consoleGeneration.getCgid() < 0)
-            return new ResponseEntity<>("A console generation with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A console generation with an id smaller than 0 can not exist!");
 
         ConsoleGeneration returnValue = this.consoleGenerationService.saveConsoleGeneration(consoleGeneration);
 
         if( returnValue != null )
-            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+            return ResponseEntity.ok(returnValue);
         else
-            return new ResponseEntity<>("A console generation with the id " + consoleGeneration.getCgid() + " already exists!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A console generation with the id " + consoleGeneration.getCgid() + " already exists!");
     }
 
 
@@ -77,7 +77,7 @@ public class ConsoleGenerationController {
     {
         Long cgid = consoleGeneration.getCgid();
         if(cgid < 0)
-            return new ResponseEntity<>("A console generation with an id smaller than 0 can not exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("A console generation with an id smaller than 0 can not exist!");
 
 
         Optional<ConsoleGeneration> findValue = this.consoleGenerationService.findConsoleGenerationById(cgid);
@@ -86,12 +86,12 @@ public class ConsoleGenerationController {
         if(findValue.isPresent())
             returnValue = findValue.get();
         else
-            return new ResponseEntity<>("The console generation with the id " + cgid + " you are trying to update doesn't exist!", HttpStatus.CONFLICT);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The console generation with the id " + cgid + " you are trying to update doesn't exist!");
 
         returnValue.setCgid(cgid);
         returnValue.setName(consoleGeneration.getName());
         returnValue.setIconPath(consoleGeneration.getIconPath());
 
-        return new ResponseEntity<>( this.consoleGenerationService.saveConsoleGeneration(returnValue), HttpStatus.OK );
+        return ResponseEntity.ok( this.consoleGenerationService.saveConsoleGeneration(returnValue) );
     }
 }
