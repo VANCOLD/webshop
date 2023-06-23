@@ -6,18 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity @Table(name = "console_generation")
+import java.util.Set;
+
+@Entity
+@Table(name="privileges")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
-public class ConsoleGeneration
-{
+public class Privileges {
 
     @Id
-    @Column(name = "cg_id")
-    private Long cgid;
+    @Column(name="privID")
+    private Long privID;
 
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
-    @Column(name =  "icon_path")
-    private String iconPath;
+    @ManyToMany
+    private Set<Roles> roles;
+
 }

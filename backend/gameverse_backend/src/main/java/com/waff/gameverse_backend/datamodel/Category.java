@@ -15,7 +15,6 @@ import lombok.Setter;
 public class Category {
 
     @Id
-    @GeneratedValue
     @Column(name="cid")
     private Long cid;
 

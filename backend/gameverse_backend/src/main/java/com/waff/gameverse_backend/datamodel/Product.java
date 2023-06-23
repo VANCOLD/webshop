@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 
 @Entity
@@ -16,7 +17,6 @@ public class Product
 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pid")
     private Long pid;
 
@@ -39,7 +39,7 @@ public class Product
     private Long        hpid;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "h_id", referencedColumnName = "h_id")
+    @JoinColumn(name = "proid", referencedColumnName = "proid")
     private Producer producer;
 
     @Column(name = "amount")
@@ -51,5 +51,8 @@ public class Product
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name="cid", referencedColumnName = "cid")
     private Category category;
+
+    @ManyToMany
+    private Set<Genre> genres;
 
 }
