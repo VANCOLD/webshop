@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.waff.gameverse_backend.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +29,7 @@ public class Cart
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sid", referencedColumnName = "sid")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
 }

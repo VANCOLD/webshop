@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.datamodel.Cart;
 import com.waff.gameverse_backend.repository.CartRepository;
 import com.waff.gameverse_backend.repository.PositionRepository;
-import com.waff.gameverse_backend.repository.StatusRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +22,6 @@ public class CartService
 
     @Autowired
     private PositionRepository posRepo;
-
-    @Autowired
-    private StatusRepository statusRepo;
 
     public List<Cart> findAllCarts() {
         return this.cartRepo.findAll();

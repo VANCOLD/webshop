@@ -16,8 +16,7 @@ public class Genre
     @Id
     @Column(name = "gid")
     private Long gid;
-
-
+    
     @Column(name = "name")
     private String name;
 
