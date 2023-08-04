@@ -1,63 +1,51 @@
 /* Needed to be able to truncate without violating referential integrity */
-SET FOREIGN_KEY_CHECKS=0;
+SET
+FOREIGN_KEY_CHECKS=0;
 
-/* The actual truncation part;  */
-TRUNCATE TABLE cart;
-TRUNCATE TABLE category;
-TRUNCATE TABLE console_generation;
-TRUNCATE TABLE genre;
-TRUNCATE TABLE position;
-TRUNCATE TABLE producer;
-TRUNCATE TABLE product;
-TRUNCATE TABLE status;
-TRUNCATE TABLE user;
-TRUNCATE TABLE roles;
 TRUNCATE TABLE privileges;
+TRUNCATE TABLE roles;
+TRUNCATE TABLE privileges_in_role;
+TRUNCATE TABLE users;
 
 
+INSERT INTO privileges (name)
+VALUES ("view_profile"), -- 1
+       ("view_cart"),    -- 2
+       ("view_users"),   -- 3
+       ("edit_profile"), -- 4
+       ("edit_cart"),    -- 5
+       ("edit_users"),   -- 6
+       ("edit_products"); -- 7
 
-/* Insert section; After truncating we should be safe to insert */
-INSERT INTO category ( name ) VALUES
-("game"),
-("console"),
-("merchandise"),
-("accessory"),
-("giftcards"),
-("sale");
+INSERT INTO roles (name)
+VALUES ("user"),    -- 1
+       ("support"), -- 2
+       ("admin"); -- 3
 
-INSERT INTO console_generation ( name, icon_path ) VALUES
-("Playstation 5","icon_ps5.png"),
-("Playstation 4","icon_ps4.png"),
-("XBOX Series","icon_xbs.png"),
-("XBOX One","icon_xbo.png"),
-("Nintendo Switch","icon_ns.png");
+INSERT INTO privileges_in_role (role_id, privilege_id)
+VALUES (1, 1), -- 1
+       (1, 2), -- 2
+       (1, 4), -- 3
+       (2, 1), -- 4
+       (2, 2), -- 5
+       (2, 3), -- 6
+       (2, 4), -- 7
+       (2, 5), -- 8
+       (2, 7), -- 9
+       (3, 1), -- 10
+       (3, 2), -- 11
+       (3, 3), -- 12
+       (3, 4), -- 13
+       (3, 5), -- 14
+       (3, 6), -- 15
+       (3, 7);
+-- 16
 
+/* password is always the word password for each user */
+INSERT INTO users (username, password, role_id)
+VALUES ("user", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1),
+       ("moderator", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1),
+       ("admin", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1);
 
-INSERT INTO genre ( name ) VALUES
-("Action"),
-("Adventure"),
-("Beat ''em up"),
-("Jump and Run"),
-("Racing"),
-("Roleplay"),
-("Simulation"),
-("Sports"),
-("Puzzle"),
-("Shooter");
-
-
-/* Password encrypted with bscript, user = password */
-INSERT INTO user ( username, password, admin ) VALUES
-("user","$2a$12$OYGJkmTY7HfiVNgi3yRB3OwIErDYI1b8g6VwAoY5jkhfBpEFxlxTG",false),
-("admin","$2a$12$/BL/ZgCUW7z.GzFYsatgZ.nfAuuyNHRpEbmkVbe5UWryxc0495jQO",true);
-
-
-INSERT INTO producer ( name ) VALUES
-("Nintendo"),
-("Sony"),
-("Microsoft"),
-("Square Enix"),
-("Naughty Dog");
-
-
-SET FOREIGN_KEY_CHECKS=1;
+SET
+FOREIGN_KEY_CHECKS=1;
