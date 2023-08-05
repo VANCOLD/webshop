@@ -1,17 +1,29 @@
 package com.waff.gameverse_backend.dto;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class PrivilegeDto implements Serializable {
 
-  private String name;
+    @Positive
+    private Long id;
+
+    @NotNull
+    @NotEmpty
+    private String name;
+
+    public PrivilegeDto() {
+        this("");
+    }
+
+    public PrivilegeDto(String name) {
+        this.name = name;
+    }
 }

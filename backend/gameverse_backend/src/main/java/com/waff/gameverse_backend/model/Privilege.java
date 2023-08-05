@@ -17,22 +17,22 @@ import org.springframework.security.core.GrantedAuthority;
 @Table(name = "privileges")
 public class Privilege implements GrantedAuthority, DataTransferObject<PrivilegeDto> {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "privilege_id")
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "privilege_id")
+    private Long id;
 
-  @Column(name = "name")
-  private String name;
+    @Column(name = "name")
+    private String name;
 
 
-  @Override
-  public String getAuthority() {
-    return this.name;
-  }
+    @Override
+    public String getAuthority() {
+        return this.name;
+    }
 
-  @Override
-  public PrivilegeDto convertToDto() {
-    return new PrivilegeDto(this.name);
-  }
+    @Override
+    public PrivilegeDto convertToDto() {
+        return new PrivilegeDto(this.name);
+    }
 }

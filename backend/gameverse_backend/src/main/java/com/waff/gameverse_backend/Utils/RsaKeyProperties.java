@@ -13,13 +13,13 @@ import java.security.interfaces.RSAPublicKey;
 @Component
 public class RsaKeyProperties {
 
-  private RSAPublicKey rsaPublicKey;
+    private RSAPublicKey rsaPublicKey;
 
-  private RSAPrivateKey rsaPrivateKey;
+    private RSAPrivateKey rsaPrivateKey;
 
-  public RsaKeyProperties() {
-    KeyPair keyPair = KeyGenerator.generateRsaKey();
-    this.rsaPublicKey = (RSAPublicKey) keyPair.getPublic();
-    this.rsaPrivateKey = (RSAPrivateKey) keyPair.getPrivate();
-  }
+    public RsaKeyProperties() {
+        KeyPair keyPair = KeyGenerator.generateRsaKey();
+        this.rsaPublicKey = (RSAPublicKey) keyPair.getPublic();
+        this.rsaPrivateKey = (RSAPrivateKey) keyPair.getPrivate();
+    }
 }

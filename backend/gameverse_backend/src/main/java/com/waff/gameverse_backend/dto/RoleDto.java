@@ -2,9 +2,8 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -17,14 +16,28 @@ import java.util.List;
  */
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class RoleDto implements Serializable {
 
-  @NotNull
-  @NotEmpty
-  private String name;
+    @Positive
+    private Long id;
 
-  @NotNull
-  private List<PrivilegeDto> privileges;
+    @NotNull
+    @NotEmpty
+    private String name;
+
+    @NotNull
+    private List<PrivilegeDto> privileges;
+
+    public RoleDto() {
+        this("", List.of());
+    }
+
+    public RoleDto(String name) {
+        this(name, List.of());
+    }
+
+    public RoleDto(String name, List<PrivilegeDto> privileges) {
+        this.name = name;
+        this.privileges = privileges;
+    }
 }

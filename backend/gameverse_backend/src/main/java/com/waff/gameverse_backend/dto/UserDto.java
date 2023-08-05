@@ -1,19 +1,39 @@
 package com.waff.gameverse_backend.dto;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDto implements Serializable {
 
-  private String username;
+    @Positive
+    private Long id;
 
-  private RoleDto role;
+    @NotNull
+    @NotEmpty
+    private String username;
+
+    @NotNull
+    private RoleDto role;
+
+
+    public UserDto() {
+        this("", new RoleDto());
+    }
+
+    public UserDto(String username) {
+        this(username, new RoleDto());
+    }
+
+    public UserDto(String username, RoleDto role) {
+        this.username = username;
+        this.role = role;
+    }
+
 }

@@ -21,64 +21,64 @@ import java.util.Collection;
 public class User implements UserDetails, DataTransferObject<UserDto> {
 
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
 
-  @Column(name = "username", unique = true)
-  private String username;
+    @Column(name = "username", unique = true)
+    private String username;
 
-  @Column(name = "password")
-  private String password;
+    @Column(name = "password")
+    private String password;
 
-  @OneToOne
-  @JoinColumn(name = "role_id")
-  private Role role;
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-  public User(String username, String password, Role role) {
-    this.username = username;
-    this.password = password;
-    this.role = role;
-  }
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return this.role.getPrivileges();
-  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.role.getPrivileges();
+    }
 
-  @Override
-  public String getPassword() {
-    return this.password;
-  }
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
 
-  @Override
-  public String getUsername() {
-    return this.username;
-  }
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-  @Override
-  public UserDto convertToDto() {
-    return new UserDto(this.username, this.role.convertToDto());
-  }
+    @Override
+    public UserDto convertToDto() {
+        return new UserDto(this.username, this.role.convertToDto());
+    }
 }

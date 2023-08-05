@@ -17,29 +17,29 @@ import java.util.stream.Collectors;
 @Service
 public class TokenService {
 
-  @Autowired
-  private JwtDecoder jwtDecoder;
+    @Autowired
+    private JwtDecoder jwtDecoder;
 
-  @Autowired
-  private JwtEncoder jwtEncoder;
+    @Autowired
+    private JwtEncoder jwtEncoder;
 
-  public String generateJwt(Authentication authentication) {
+    public String generateJwt(Authentication authentication) {
 
-    Instant now = Instant.now();
-    String scope = authentication.getAuthorities()
-      .stream()
-      .map(GrantedAuthority::getAuthority)
-      .collect(Collectors.joining(" "));
+        Instant now = Instant.now();
+        String scope = authentication.getAuthorities()
+            .stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.joining(" "));
 
-    JwtClaimsSet claims = JwtClaimsSet.builder()
-      .issuer("self")
-      .issuedAt(now)
-      .subject(authentication.getName())
-      .claim("roles", scope)
-      .build();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+            .issuer("self")
+            .issuedAt(now)
+            .subject(authentication.getName())
+            .claim("roles", scope)
+            .build();
 
 
-    return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-  }
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
 
 }

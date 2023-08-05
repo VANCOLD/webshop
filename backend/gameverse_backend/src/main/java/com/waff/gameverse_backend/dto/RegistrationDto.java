@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RegistrationDto implements Serializable {
 
-  String username;
+    @NotNull
+    @NotEmpty
+    String username;
 
-  String password;
+    @NotNull
+    @NotEmpty
+    String password;
 }
