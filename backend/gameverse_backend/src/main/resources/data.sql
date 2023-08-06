@@ -43,7 +43,7 @@ VALUES (1, 1), -- 1
 /* password is always the word password for each user */
 INSERT INTO users (username, password, role_id) VALUES
        ("user", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1),      -- 1
-       ("moderator", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1), -- 2
-       ("admin", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 1);     -- 3
+       ("moderator", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 2), -- 2
+       ("admin", "$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq", 3);     -- 3
 
 SET FOREIGN_KEY_CHECKS=1;

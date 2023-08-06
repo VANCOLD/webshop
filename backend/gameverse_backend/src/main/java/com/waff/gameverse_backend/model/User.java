@@ -42,6 +42,12 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
         this.role = role;
     }
 
+    public User(UserDto userDto) {
+        this.username = userDto.getUsername();
+        this.password = userDto.getPassword();
+        this.role     = new Role(userDto.getRole());
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.role.getPrivileges();
@@ -79,6 +85,6 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
 
     @Override
     public UserDto convertToDto() {
-        return new UserDto(this.username, this.role.convertToDto());
+        return new UserDto(this.username, this.password, this.role.convertToDto());
     }
 }

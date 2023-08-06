@@ -24,7 +24,7 @@ public class PrivilegeService {
         return this.privilegeRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Privilege mit der gegeben Id existiert nicht"));
     }
 
-    public Set<Privilege> findByIds(Iterable<Long> ids) {
+    public Set<Privilege> findAllByIds(Iterable<Long> ids) {
         return new HashSet<>(this.privilegeRepository.findAllById(ids));
     }
 
@@ -64,9 +64,9 @@ public class PrivilegeService {
 
     }
 
-    public Privilege delete(PrivilegeDto privilegeDto) {
+    public Privilege delete(Long id) {
 
-        var toDelete = this.privilegeRepository.findById(privilegeDto.getId())
+        var toDelete = this.privilegeRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Privilege mit der gegebenen Id existiert nicht!"));
 
         this.privilegeRepository.delete(toDelete);

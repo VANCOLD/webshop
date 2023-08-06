@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +25,7 @@ public class UserService implements UserDetailsService {
         return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User mit der gegeben Id existiert nicht"));
     }
 
-    public Set<User> findByIds(Iterable<Long> ids) {
+    public Set<User> findAllByIds(Iterable<Long> ids) {
         return new HashSet<>(this.userRepository.findAllById(ids));
     }
 
@@ -37,14 +38,13 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public User save(String name) {
+    public User save(UserDto userDto) {
 
-        var toCheck = this.userRepository.findByUsername(name);
+        var toCheck = this.userRepository.findByUsername(userDto.getUsername());
 
         if(toCheck.isEmpty()) {
 
-            User toSave = new User();
-            toSave.setUsername(name);
+            User toSave = new User(userDto);
             return this.userRepository.save(toSave);
 
         } else {
@@ -60,13 +60,15 @@ public class UserService implements UserDetailsService {
         if(userDto.getUsername().isEmpty()) { throw new IllegalArgumentException("Der Name des Users darf nicht leer sein!"); }
 
         toUpdate.setUsername(userDto.getUsername());
+        toUpdate.setPassword(userDto.getPassword());
+        toUpdate.setRole(new Role(userDto.getRole()));
         return this.userRepository.save(toUpdate);
 
     }
 
-    public User delete(UserDto userDto) {
+    public User delete(Long id) {
 
-        var toDelete = this.userRepository.findById(userDto.getId())
+        var toDelete = this.userRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("User mit der gegebenen Id existiert nicht!"));
 
         this.userRepository.delete(toDelete);

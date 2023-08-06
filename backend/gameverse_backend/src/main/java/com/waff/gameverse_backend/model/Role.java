@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -31,6 +32,12 @@ public class Role implements DataTransferObject<RoleDto> {
     @JoinTable(name = "privileges_in_role", joinColumns = {@JoinColumn(name = "role_id")},
         inverseJoinColumns = {@JoinColumn(name = "privilege_id")})
     private Set<Privilege> privileges;
+
+    public Role(RoleDto roleDto) {
+        this.name       = roleDto.getName();
+        this.privileges = new HashSet<>(roleDto.getPrivileges().stream().map(privilege -> new Privilege(privilege)).toList());
+
+    }
 
     @Override
     public RoleDto convertToDto() {

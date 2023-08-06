@@ -26,6 +26,10 @@ public class Privilege implements GrantedAuthority, DataTransferObject<Privilege
     private String name;
 
 
+    public Privilege(PrivilegeDto privilegeDto) {
+        this.name = privilegeDto.getName();
+    }
+
     @Override
     public String getAuthority() {
         return this.name;

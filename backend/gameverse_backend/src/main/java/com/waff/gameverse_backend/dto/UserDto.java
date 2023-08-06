@@ -20,19 +20,28 @@ public class UserDto implements Serializable {
     private String username;
 
     @NotNull
+    @NotEmpty
+    private String password;
+
+    @NotNull
     private RoleDto role;
 
 
     public UserDto() {
-        this("", new RoleDto());
+        this("", "", new RoleDto());
     }
 
     public UserDto(String username) {
-        this(username, new RoleDto());
+        this(username, "", new RoleDto());
     }
 
-    public UserDto(String username, RoleDto role) {
+    public UserDto(String username, String password) {
+        this(username, password, new RoleDto());
+    }
+
+    public UserDto(String username, String password, RoleDto role) {
         this.username = username;
+        this.password = password;
         this.role = role;
     }
 

@@ -24,7 +24,7 @@ public class RoleService {
         return this.roleRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Role mit der gegeben Id existiert nicht"));
     }
 
-    public Set<Role> findByIds(Iterable<Long> ids) {
+    public Set<Role> findAllByIds(Iterable<Long> ids) {
         return new HashSet<>(this.roleRepository.findAllById(ids));
     }
 
@@ -64,9 +64,9 @@ public class RoleService {
 
     }
 
-    public Role delete(RoleDto roleDto) {
+    public Role delete(Long id) {
 
-        var toDelete = this.roleRepository.findById(roleDto.getId())
+        var toDelete = this.roleRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Role mit der gegebenen Id existiert nicht!"));
 
         this.roleRepository.delete(toDelete);
