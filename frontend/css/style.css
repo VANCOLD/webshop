@@ -5,80 +5,81 @@ Global Styles
 */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, body {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #1f2122;
-  background-color: #1e1e1e;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #1f2122;
+    background-color: #1e1e1e;
 }
 
 a {
-	color: white;
-  text-decoration: none !important;
+    color: white;
+    text-decoration: none !important;
 }
+
 a:hover {
-	color: white;
+    color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  color: #fff;
-  font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #fff;
+    font-weight: 700;
 }
 
 ul {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 
 body .page-content {
-  background-color: #27292a;
-  border-radius: 23px;
-  width:85%;
-  margin: 0 auto;
+    background-color: #27292a;
+    border-radius: 23px;
+    width: 85%;
+    margin: 0 auto;
 }
 
 
 .page-content {
-  margin: 15%;
+    margin: 15%;
 }
 
 ::selection {
-  background: #e75e8d;
-  color: #fff;
+    background: #e75e8d;
+    color: #fff;
 }
 
 ::-moz-selection {
-  background: #e75e8d;
-  color: white;
+    background: #e75e8d;
+    color: white;
 }
 
-.container-fluid{
-  padding: 0 !important;
+.container-fluid {
+    padding: 0 !important;
 }
 
 .row {
-  margin: 0;
+    margin: 0;
 }
 
 main {
-  flex:1;
+    flex: 1;
 }
 
 /* Trick um den Footer ans Ende der Seite zu schieben */
 .orderbox {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* 
@@ -88,66 +89,66 @@ Navigationsbar Style
 */
 
 .icon-button {
-  text-align:center; 
+    text-align: center;
 }
 
 .icon-button i {
-  font-size:32px;
-  color:#ec6090;
-  width:64px;
-  height:auto;
+    font-size: 32px;
+    color: #ec6090;
+    width: 64px;
+    height: auto;
 }
 
 .icon-button p {
-  font-size: 16px;
-  color:white;
+    font-size: 16px;
+    color: white;
 }
 
 .search-icon {
-  border-bottom:  1px solid #ec6090;
-  padding-bottom: 4px;
-  padding-left:   4px;
+    border-bottom: 1px solid #ec6090;
+    padding-bottom: 4px;
+    padding-left: 4px;
 }
 
 
 .icon-button input {
-  outline: none;
-  background-color: #1e1e1e;
-  color: white;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
+    outline: none;
+    background-color: #1e1e1e;
+    color: white;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    border-bottom: 1px solid #ec6090;
 
-  /* Entfernt den Rand (Border) des Inputs; */
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
+    /* Entfernt den Rand (Border) des Inputs; */
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
-  
+
 
 .icon-button input:focus {
-  outline: none;
-  background-color: #1f2122;
-  color: white;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
+    outline: none;
+    background-color: #1f2122;
+    color: white;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    border-bottom: 1px solid #ec6090;
 
-  /* Entfernt den Fokus (blaue Umrandung) */
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0; 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
-} 
+    /* Entfernt den Fokus (blaue Umrandung) */
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 /* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
 
 .clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 
@@ -158,53 +159,53 @@ Footer Style
 */
 
 footer a {
-  font-size: 14 px;  
+    font-size: 14px;
 }
 
 footer p {
-  text-align: center;
-  color: #fff;
-  font-weight: 300; 
-  font-size: 12px ;
+    text-align: center;
+    color: #fff;
+    font-weight: 300;
+    font-size: 12px;
 }
 
 footer {
-  position:relative;
-  bottom:0px;
+    position: relative;
+    bottom: 0px;
 }
 
 .bg-footer {
-  background-color: #ec6090;
+    background-color: #ec6090;
 }
 
 .socials {
-  color: white;
+    color: white;
 }
 
 .socials li {
-  display:inline;
-  margin-top:16px;
+    display: inline;
+    margin-top: 16px;
 }
 
 footer > hr {
-  color:white; 
-  height: 1px; 
-  margin: 0 auto;
+    color: white;
+    height: 1px;
+    margin: 0 auto;
 }
 
 
-.small-links li{
-  background-color: #ec6090;
-  text-align: center;
-  color:white;
-  border-color:white;
-  border-left: none;
-  border-right:none; 
+.small-links li {
+    background-color: #ec6090;
+    text-align: center;
+    color: white;
+    border-color: white;
+    border-left: none;
+    border-right: none;
 }
 
 .buttonlist {
-  font-style:none;
-  font-size: 12px;;
+    font-style: none;
+    font-size: 12px;;
 }
 
 
@@ -215,11 +216,11 @@ Impressum Style
 */
 
 .justified {
-  text-align: center;
-  text-justify: inter-word;
-  text-align-last: center;
-  color:darkgray;
-  
+    text-align: center;
+    text-justify: inter-word;
+    text-align-last: center;
+    color: darkgray;
+
 }
 
 
@@ -230,26 +231,26 @@ Support Page Styles
 */
 
 .faq {
-  text-align: center;
+    text-align: center;
 }
 
 .accordion-button {
-background-color: #e75e8d;
+    background-color: #e75e8d;
 }
 
 .accordion-button:not(.collapsed) {
-background-color: #e75e8d;
+    background-color: #e75e8d;
 }
 
 .accordion-button:not(.collapsed) {
-  color: black;
+    color: black;
 }
 
 
 /* Wir entfernen hier den Rand des Buttons wenn wir ihn anklicken */
 .accordion-button:focus {
-  box-shadow: none;
-  -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 
@@ -257,8 +258,8 @@ background-color: #e75e8d;
 Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
 Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
 */
-button.accordion-button::after  {
-  filter:brightness(0%);
+button.accordion-button::after {
+    filter: brightness(0%);
 }
 
 /* 
@@ -269,8 +270,8 @@ Home Page Style
 
 
 #carouselGames {
-  margin:0; 
-  padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 /* 
@@ -281,270 +282,268 @@ Shopping Cart Style
 
 /* Shopping Cart Container */
 .cart-container {
-  background-color: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 30px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 /* Shopping Cart Header */
 .cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ebebeb;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 20px;
 }
 
 /* Shopping Cart Title */
 .cart-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
 }
 
 /* Shopping Cart Item */
 .cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 /* Shopping Cart Item Image */
 .cart-item img {
-  max-width: 100%;
-  height: auto;
-  margin-right: 20px;
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
 }
 
 /* Shopping Cart Item Details */
 .cart-item-details {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 /* Shopping Cart Item Title */
 .cart-item-details h5 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #000;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
 }
 
 /* Shopping Cart Item Platform */
 .cart-item-details p:nth-child(2) {
-  font-size: 14px;
-  color: #666;
-  margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
 }
 
 /* Shopping Cart Item Price */
 .cart-item-details p:nth-child(3) {
-  font-size: 16px;
-  color: #e75e8d;
-  font-weight: 600;
-  margin: 5px 0;
+    font-size: 16px;
+    color: #e75e8d;
+    font-weight: 600;
+    margin: 5px 0;
 }
 
 /* Shopping Cart Item Quantity */
 .cart-item-quantity {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
 /* Shopping Cart Item Quantity Button */
 .btn-quantity {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #f2f2f2;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #666;
-  cursor: pointer;
-  margin: 0 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    margin: 0 10px;
 }
 
 /* Shopping Cart Item Quantity Button Hover */
 .btn-quantity:hover {
-  background-color: #e75e8d;
-  color: #fff;
+    background-color: #e75e8d;
+    color: #fff;
 }
 
 /* Shopping Cart Item Quantity Button Plus */
 .plus::before {
-  content: "+";
+    content: "+";
 }
 
 /* Shopping Cart Item Quantity Button Minus */
 .minus::before {
-  content: "-";
+    content: "-";
 }
 
 /* Shopping Cart Item Quantity Value */
 .quantity {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 10px;
 }
 
 /* Shopping Cart Item Remove Button */
 .btn-remove {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #f2f2f2;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #666;
-  cursor: pointer;
-  position: relative;
-  left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    left: 10px;
 }
 
 /* Shopping Cart Item Remove Button Icon */
 .btn-remove::after {
-  content: "\f00d";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 16px;
-  color: #e75e8d;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 16px;
+    color: #e75e8d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Shopping Cart Total */
 .cart-total {
-  margin-top: 30px;
-  text-align: right;
-  }
-  
-  .cart-total h5 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  }
-  
-  .cart-total p {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  }
-  
-  .cart-total button.btn-primary {
-  margin-top: 10px;
-  }
-  
-  @media (max-width: 767px) {
-  .cart-item-details {
-  margin-left: 20px;
-  }
-  .cart-item-quantity {
-  margin-right: 20px;
-  }
-  }
-  
-  @media (max-width: 576px) {
-  .cart-table {
-  overflow-x: auto;
-  }
-  .cart-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  }
-  .cart-item img {
-  max-width: 100%;
-  margin-bottom: 10px;
-  }
-  .cart-item-details {
-  text-align: center;
-  }
-  .cart-item-quantity {
-  margin-top: 10px;
-  }
-  .cart-total {
-  margin-top: 20px;
-  }
-  }
+    margin-top: 30px;
+    text-align: right;
+}
+
+.cart-total h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cart-total p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.cart-total button.btn-primary {
+    margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+    .cart-item-details {
+        margin-left: 20px;
+    }
+
+    .cart-item-quantity {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-table {
+        overflow-x: auto;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-item img {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .cart-item-details {
+        text-align: center;
+    }
+
+    .cart-item-quantity {
+        margin-top: 10px;
+    }
+
+    .cart-total {
+        margin-top: 20px;
+    }
+}
 
 
-
-
-
-
-/* 
+/*
 ---------------------------------------------
 Responsive Style
 --------------------------------------------- 
 */
 
 
-@media (min-width: 1200px) 
-{
+@media (min-width: 1200px) {
 
-  .socials li i {
-    font-size:32px;
-    margin-left:16px;
-    margin-right:16px;
-  }
+    .socials li i {
+        font-size: 32px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
 
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-
-}
-
-@media (max-width: 1200px) 
-{
-
-  .socials li i {
-    font-size:24px;
-    margin-left:12px;
-    margin-right:12px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-}
-
-@media (max-width: 767px) 
-{
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
+    footer {
+        min-width: 100%;
+        min-height: 100%;
+    }
 
 }
 
-@media (min-width: 767px) 
-{
+@media (max-width: 1200px) {
 
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
+    .socials li i {
+        font-size: 24px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
 
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
+    footer {
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .socials li i {
+        font-size: 18px;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    footer {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+}
+
+@media (min-width: 767px) {
+
+    .socials li i {
+        font-size: 18px;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    footer {
+        min-width: 100%;
+        min-height: 100%;
+    }
 
 }
