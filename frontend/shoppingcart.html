@@ -10,7 +10,7 @@
     <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Impressum</title>
+    <title>Shopping Cart</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
   </head> 
-
+  
        <!-- ***** Header Area Start ***** -->
        <header>
 
@@ -41,14 +41,13 @@
                 <div class="nav-link" onclick="">
                   <div class="icon-button">
                     <div class="input-group">
-                      <input type="text" class="form-control search-form"  placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
+                      <input type="text" class="form-control search-form"  placeholder="Search" aria-label="Searchfield" aria-describedby="search-field">
                       <div class="input-group-append">
                         <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
                       </div>    
                     </div>
                   </div>
                 </div>
-                
                 <div>
                   <a class="nav-link" href="./support.html">
                     <div class="icon-button">
@@ -57,16 +56,14 @@
                     </div>  
                   </a>
                 </div>
-  
                 <div>
-                  <a class="nav-link" href="./register.html">
+                  <a class="nav-link" href="./shoppingcart.html">
                     <div class="icon-button">
                       <i class="fa-solid fa-cart-shopping"></i>
                       <p>Cart</p>
                     </div>
                   </a>      
                 </div>
-  
                 <div>
                   <a class="nav-link" href="./register.html">
                     <div class="icon-button">
@@ -75,14 +72,11 @@
                     </div>
                   </a>
                 </div>
-  
               </div> <!-- END d-flex flex-row -->
             </nav>
           </div> <!-- END row-->
         </div> <!-- END container-fluid -->
-  
       </header>
-
       <body>
         <div>
           <div class="cart-container">
@@ -143,7 +137,112 @@
               <button class="btn-remove"></button>
             </div>
           </div>
-          
         </div>
       </body>
+      <footer class="bg-footer container-fluid w-100 h-100">
+        
+        <div class="d-none d-md-block"> <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
+          
+          <div class="d-flex flex-row justify-content-center mt-2"> <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+            
+            <div class="mx-3 my-3">
+              <div class="text-center text-wrap">
+                <h6>Contact</h6>
+                <ul class="list-unstyled">
+                  <li><a href="support.html">Support</a></li>
+                  <li><a href="./contact.html">Contact Us</a></li>
+                  <li><a href="#">Complaints</a></li>
+                </ul>
+              </div>  
+            </div>
+            
+            <div class="col-1"></div>
   
+            <div class="mx-3 my-3">
+              <div class="text-center text-wrap">
+                <h6>Information</h6>                
+                <ul class="list-unstyled"></li>              
+                  <li><a href="#">Jobs</a></li>
+                  <li><a href="#">Press</a></li>
+                  <li><a href="#">Payment methods</a></li>
+                </ul> 
+              </div>
+            </div>
+  
+            <div class="col-1"></div>
+  
+            <div class="mx-3 my-3">
+              <div class="text-center text-wrap">
+                <h6>More</h6>
+                <ul class="list-unstyled">
+                  <li><a href="./impressum.html">Impressum</a></li>
+                  <li><a href="./agb.html">AGBs</a></li>
+                  <li><a href="">Data Protection</a></li>
+                </ul>
+              </div>
+            </div>     
+          </div> 
+          <div class="d-md-none small-links mb-3 w-100 h-100"> <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
+            <ul class="container-fluid justify-content-center"> 
+              <div class="row">
+                <li class="list-group-item">  
+                  
+                  <a data-bs-toggle="collapse" href="#collapseContact" role="button" aria-expanded="t" aria-controls="collapseContact">Contact</a>
+                  <div class="collapse" id="collapseContact">
+                    <ul class="list-unstyled buttonlist">
+                      <li><a href="support.html">Support</a></li>
+                      <li><a href="./contact.html">Contact Us</a></li>
+                      <li><a href="#">Complaints</a></li>
+                    </ul>  
+                  </div>
+    
+                </li>
+    
+                <li class="list-group-item">
+                  
+                  <a data-bs-toggle="collapse" href="#collapseInformation" role="button" aria-expanded="t" aria-controls="collapseInformation">Information</a>
+                  <div class="collapse" id="collapseInformation">
+                    <ul class="list-unstyled buttonlist">              
+                      <li><a href="#">Jobs</a></li>
+                      <li><a href="#">Press</a></li>
+                      <li><a href="#">Payment methods</a></li>
+                    </ul> 
+                  </div>
+    
+                </li>
+    
+                <li class="list-group-item">
+                  
+                  <a data-bs-toggle="collapse" href="#collapseMore" role="button" aria-expanded="t" aria-controls="collapseMore">More</a>
+                  <div class="collapse" id="collapseMore">
+                    <ul class="list-unstyled buttonlist">
+                      <li><a href="./impressum.html">Impressum</a></li>
+                      <li><a href="./agb.html">AGBs</a></li>
+                      <li><a href="">Data Protection</a></li>
+                    </ul>
+                  </div>
+    
+                </li>
+              </div>  
+            </ul>
+          </div> <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
+    
+          <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
+    
+          <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
+          <div class="d-flex flex-row justify-content-center">
+            <ul class="list-unstyled socials">
+              <li><i class="fa-brands fa-discord"></i></li>
+              <li><i class="fa-brands fa-instagram"></i></li>
+              <li><i class="fa-brands fa-facebook"></i></li>
+              <li><i class="fa-brands fa-tiktok"></i></li>
+              <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+          </div>
+          <div class="container-fluid text-center bg-footer">
+            <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
+          </div>
+        </footer>
+      </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
+
+    
