@@ -44,7 +44,7 @@ public class AuthenticationService {
 
         Optional<User> checkUser = userRepository.findByUsername(username);
         if (checkUser.isPresent()) {
-            throw new BadCredentialsException("");
+            throw new BadCredentialsException("User with the given name already exists!");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
@@ -61,6 +61,7 @@ public class AuthenticationService {
             return tokenService.generateJwt(authentication);
 
         } catch (AuthenticationException ex) {
+            ex.printStackTrace();
             throw ex;
         }
     }
