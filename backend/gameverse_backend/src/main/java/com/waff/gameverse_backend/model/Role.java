@@ -1,6 +1,6 @@
 package com.waff.gameverse_backend.model;
 
-import com.waff.gameverse_backend.Utils.DataTransferObject;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.dto.RoleDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,19 +28,24 @@ public class Role implements DataTransferObject<RoleDto> {
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "privileges_in_role", joinColumns = {@JoinColumn(name = "role_id")},
         inverseJoinColumns = {@JoinColumn(name = "privilege_id")})
     private Set<Privilege> privileges;
 
+
+    @OneToMany(mappedBy="role")
+    private Set<User> users;
+
     public Role(RoleDto roleDto) {
         this.name       = roleDto.getName();
-        this.privileges = new HashSet<>(roleDto.getPrivileges().stream().map(privilege -> new Privilege(privilege)).toList());
+        this.privileges = new HashSet<>(roleDto.getPrivileges().stream().map(Privilege::new).toList());
+        this.users = Set.of();
 
     }
 
     @Override
     public RoleDto convertToDto() {
-        return new RoleDto(this.name, this.privileges.stream().map(Privilege::convertToDto).toList());
+        return new RoleDto(this.id, this.name, this.privileges.stream().map(Privilege::convertToDto).toList());
     }
 }

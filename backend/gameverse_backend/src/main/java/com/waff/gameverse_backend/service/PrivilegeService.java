@@ -2,7 +2,9 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.PrivilegeDto;
 import com.waff.gameverse_backend.model.Privilege;
+import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.repository.PrivilegeRepository;
+import com.waff.gameverse_backend.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -12,11 +14,13 @@ import java.util.Set;
 @Service
 public class PrivilegeService {
 
-    private final
-    PrivilegeRepository privilegeRepository;
+    private final PrivilegeRepository privilegeRepository;
 
-    public PrivilegeService(PrivilegeRepository privilegeRepository) {
+    private final RoleRepository roleRepository;
+
+    public PrivilegeService(PrivilegeRepository privilegeRepository, RoleRepository roleRepository) {
         this.privilegeRepository = privilegeRepository;
+        this.roleRepository      = roleRepository;
     }
 
 
@@ -68,6 +72,17 @@ public class PrivilegeService {
 
         var toDelete = this.privilegeRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Privilege mit der gegebenen Id existiert nicht!"));
+
+        var roles = this.roleRepository.findAllByPrivileges(toDelete);
+        for(Role role : roles) {
+            var tempPrivileges = role.getPrivileges();
+            tempPrivileges.remove(toDelete);
+            role.setPrivileges(tempPrivileges);
+            this.roleRepository.save(role);
+        }
+
+        toDelete.setRoles(new HashSet<>());
+        this.privilegeRepository.save(toDelete);
 
         this.privilegeRepository.delete(toDelete);
         return toDelete;

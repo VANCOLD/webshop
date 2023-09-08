@@ -1,6 +1,6 @@
 package com.waff.gameverse_backend.model;
 
-import com.waff.gameverse_backend.Utils.DataTransferObject;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,8 +32,8 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
     @Column(name = "password")
     private String password;
 
-    @OneToOne
-    @JoinColumn(name = "role_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="role_id")
     private Role role;
 
     public User(String username, String password, Role role) {

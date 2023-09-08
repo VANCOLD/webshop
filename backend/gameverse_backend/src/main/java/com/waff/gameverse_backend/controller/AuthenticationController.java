@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.controller;
 import com.waff.gameverse_backend.dto.RegistrationDto;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.service.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,8 +22,11 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
+
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> registerUser(@RequestBody RegistrationDto registrationDto) {

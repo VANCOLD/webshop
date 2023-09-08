@@ -1,4 +1,4 @@
-package com.waff.gameverse_backend.Utils;
+package com.waff.gameverse_backend.utils;
 
 import lombok.Getter;
 import lombok.Setter;
