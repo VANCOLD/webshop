@@ -48,7 +48,7 @@ public class AuthenticationServiceTest {
 
         String postfix  = "abcdefg";
 
-        // Wenn wir einen String zurück bekommen hat es geklappt, ansonsetn würden wir eie Exception bekommen!
+        // Wenn wir einen String zurückbekommen haben es geklappt, ansonsten würden wir eie Exception bekommen!
         assertThat(authenticationService.loginUser(username,password)).isNotEmpty();
 
         assertThrows(BadCredentialsException.class, () -> authenticationService.loginUser(username + postfix,password));
