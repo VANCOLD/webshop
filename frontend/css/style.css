@@ -109,7 +109,6 @@ Navigationsbar Style
   padding-left:   4px;
 }
 
-
 .icon-button input {
   outline: none;
   background-color: #1e1e1e;
@@ -150,6 +149,27 @@ Navigationsbar Style
   clear: both;
 }
 
+/* 
+---------------------------------------------
+cards Style
+--------------------------------------------- 
+*/
+
+.btn-buy-now  {
+  background-color: #ec6090;
+  border-color: #ec6090;
+  color: #1e1e1e;
+}
+
+.btn-buy-now:hover {
+  background-color: #622a3d;
+  border-color: #622a3d;
+  color: #1e1e1e;
+}
+ .card {
+  background-color: dimgrey;
+  color: #27292a;
+}
 
 /* 
 ---------------------------------------------
