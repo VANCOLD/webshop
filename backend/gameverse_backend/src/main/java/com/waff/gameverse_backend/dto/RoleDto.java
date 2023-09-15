@@ -29,14 +29,19 @@ public class RoleDto implements Serializable {
     private List<PrivilegeDto> privileges;
 
     public RoleDto() {
-        this("", List.of());
+        this(0L,"", List.of());
     }
 
     public RoleDto(String name) {
-        this(name, List.of());
+        this(0L,name, List.of());
     }
 
     public RoleDto(String name, List<PrivilegeDto> privileges) {
+        this(0L, name, privileges);
+    }
+
+    public RoleDto(Long id, String name, List<PrivilegeDto> privileges) {
+        this.id = id;
         this.name = name;
         this.privileges = privileges;
     }

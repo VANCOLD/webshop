@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
         var toUpdate = this.userRepository.findById(userDto.getId())
             .orElseThrow(() -> new NoSuchElementException("User mit der gegebenen Id existiert nicht!"));
 
-        if(userDto.getUsername().isEmpty()) { throw new IllegalArgumentException("Der Name des Users darf nicht leer sein!"); }
+        if(userDto.getUsername().isBlank() || userDto.getUsername() == null) { throw new IllegalArgumentException("Der Name des Users darf nicht leer sein!"); }
 
         toUpdate.setUsername(userDto.getUsername());
         toUpdate.setPassword(userDto.getPassword());

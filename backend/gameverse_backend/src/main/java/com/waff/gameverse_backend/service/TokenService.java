@@ -1,8 +1,6 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.model.User;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -14,21 +12,22 @@ import java.time.Instant;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service("tokenService")
 public class TokenService {
 
-    @Autowired
-    private JwtDecoder jwtDecoder;
 
-    @Autowired
-    private JwtEncoder jwtEncoder;
+    private final JwtEncoder jwtEncoder;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private PrivilegeService privilegeService;
+    private final PrivilegeService privilegeService;
+
+    public TokenService(JwtEncoder jwtEncoder, UserService userService, PrivilegeService privilegeService) {
+        this.jwtEncoder         = jwtEncoder;
+        this.userService        = userService;
+        this.privilegeService   = privilegeService;
+    }
+
 
     public String generateJwt(Authentication authentication) {
 

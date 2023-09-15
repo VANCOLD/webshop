@@ -4,7 +4,6 @@ import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.RoleRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,26 +19,32 @@ import java.util.Optional;
 @Transactional
 public class AuthenticationService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TokenService tokenService;
+    private final TokenService tokenService;
+
+    public AuthenticationService(UserRepository userRepository, RoleRepository roleRepository,
+                                 PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
+                                 TokenService tokenService) {
+        this.userRepository         = userRepository;
+        this.roleRepository         = roleRepository;
+        this.passwordEncoder        = passwordEncoder;
+        this.authenticationManager  = authenticationManager;
+        this.tokenService           = tokenService;
+    }
+
 
     public User registerUser(String username, String password) {
 
         Optional<User> checkUser = userRepository.findByUsername(username);
         if (checkUser.isPresent()) {
-            throw new BadCredentialsException("");
+            throw new BadCredentialsException("User with the given name already exists!");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
@@ -53,11 +58,10 @@ public class AuthenticationService {
         try {
 
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            String token = tokenService.generateJwt(authentication);
-
-            return token;
+            return tokenService.generateJwt(authentication);
 
         } catch (AuthenticationException ex) {
+            ex.printStackTrace();
             throw ex;
         }
     }

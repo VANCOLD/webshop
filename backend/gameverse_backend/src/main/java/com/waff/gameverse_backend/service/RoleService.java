@@ -2,7 +2,9 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.model.Role;
+import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.RoleRepository;
+import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -15,8 +17,11 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
 
-    public RoleService(RoleRepository roleRepository) {
+    private final UserRepository userRepository;
+
+    public RoleService(RoleRepository roleRepository,UserRepository userRepository) {
         this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -45,6 +50,8 @@ public class RoleService {
 
             Role toSave = new Role();
             toSave.setName(name);
+            toSave.setPrivileges(new HashSet<>());
+            toSave.setUsers(new HashSet<>());
             return this.roleRepository.save(toSave);
 
         } else {
@@ -68,6 +75,16 @@ public class RoleService {
 
         var toDelete = this.roleRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Role mit der gegebenen Id existiert nicht!"));
+
+        var users = toDelete.getUsers();
+        for(User user : users) {
+            user.setRole(null);
+            this.userRepository.save(user);
+        }
+
+        toDelete.setUsers(new HashSet<>());
+        toDelete.setPrivileges(new HashSet<>());
+        this.roleRepository.save(toDelete);
 
         this.roleRepository.delete(toDelete);
         return toDelete;

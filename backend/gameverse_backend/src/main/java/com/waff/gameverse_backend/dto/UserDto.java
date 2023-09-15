@@ -28,18 +28,23 @@ public class UserDto implements Serializable {
 
 
     public UserDto() {
-        this("", "", new RoleDto());
+        this(0L, "", "", new RoleDto());
     }
 
     public UserDto(String username) {
-        this(username, "", new RoleDto());
+        this(0L, username, "", new RoleDto());
     }
 
     public UserDto(String username, String password) {
-        this(username, password, new RoleDto());
+        this(0L, username, password, new RoleDto());
     }
 
     public UserDto(String username, String password, RoleDto role) {
+        this(0L, username,password,role);
+    }
+
+    public UserDto(Long id, String username, String password, RoleDto role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;

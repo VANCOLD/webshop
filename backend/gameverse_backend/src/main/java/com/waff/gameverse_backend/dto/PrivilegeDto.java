@@ -20,10 +20,15 @@ public class PrivilegeDto implements Serializable {
     private String name;
 
     public PrivilegeDto() {
-        this("");
+        this(0L,"");
     }
 
     public PrivilegeDto(String name) {
+        this(0L, name);
+    }
+
+    public PrivilegeDto(Long id, String name) {
+        this.id   = id;
         this.name = name;
     }
 }
