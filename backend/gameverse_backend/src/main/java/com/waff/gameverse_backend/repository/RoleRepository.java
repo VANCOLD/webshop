@@ -12,7 +12,7 @@ import java.util.Optional;
  * The {@code uRoleRepository} interface is a Spring Data JPA repository
  * responsible for managing database operations related to the {@link Role} entity.
  * It provides methods for common CRUD (Create, Read, Update, Delete) operations on roles,
- * as well as a custom query method to find a role by its name.
+ * as well as a custom query method to find a roles by its name.
  *
  * <p>This repository is annotated with {@link org.springframework.stereotype.Repository}
  * to indicate that it is a Spring component and should be managed by the Spring framework.

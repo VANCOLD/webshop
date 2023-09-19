@@ -55,6 +55,10 @@ public class Product {
     @JoinColumn(name = "console_generation_id", referencedColumnName = "id")
     private ConsoleGeneration consoleGeneration;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
+
     @ManyToOne
     @JoinColumn(name="producer_id", nullable=false)
     private Producer producer;
