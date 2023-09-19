@@ -26,10 +26,13 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * The SecurityConfiguration class provides configuration for Spring Security and JWT (JSON Web Token) authentication.
+ * It defines authentication providers, password encoding, JWT encoding/decoding, CORS settings, and security filter chains.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-
 
     private final RsaKeyProperties keys;
 
@@ -37,11 +40,22 @@ public class SecurityConfiguration {
         this.keys = keys;
     }
 
+    /**
+     * Configures the password encoder for securely storing and verifying passwords.
+     *
+     * @return The configured PasswordEncoder bean.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Configures the AuthenticationManager, which handles user authentication.
+     *
+     * @param userDetailsService The user details service.
+     * @return The configured AuthenticationManager bean.
+     */
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
@@ -50,6 +64,13 @@ public class SecurityConfiguration {
         return new ProviderManager(daoAuthenticationProvider);
     }
 
+    /**
+     * Configures the security filter chain for HTTP requests.
+     *
+     * @param httpSecurity The HttpSecurity object to configure security settings.
+     * @return The configured SecurityFilterChain bean.
+     * @throws Exception If configuration fails.
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -70,11 +91,21 @@ public class SecurityConfiguration {
         return httpSecurity.build();
     }
 
+    /**
+     * Configures the JWT decoder for verifying JWT tokens.
+     *
+     * @return The configured JwtDecoder bean.
+     */
     @Bean
     public JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(keys.getRsaPublicKey()).build();
     }
 
+    /**
+     * Configures the JWT encoder for creating JWT tokens.
+     *
+     * @return The configured JwtEncoder bean.
+     */
     @Bean
     public JwtEncoder jwtEncoder() {
         JWK jwk = new RSAKey.Builder(keys.getRsaPublicKey()).privateKey(keys.getRsaPrivateKey()).build();
@@ -82,6 +113,11 @@ public class SecurityConfiguration {
         return new NimbusJwtEncoder(jwks);
     }
 
+    /**
+     * Configures the JWT authentication converter to extract authorities from JWT claims.
+     *
+     * @return The configured JwtAuthenticationConverter bean.
+     */
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
@@ -91,5 +127,4 @@ public class SecurityConfiguration {
         jwtConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return jwtConverter;
     }
-
 }

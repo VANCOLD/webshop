@@ -9,13 +9,14 @@ TRUNCATE TABLE users;
 
 
 INSERT INTO privileges (name)
-VALUES ("view_profile"),  -- 1
-       ("view_cart"),     -- 2
-       ("view_users"),    -- 3
-       ("edit_profile"),  -- 4
-       ("edit_cart"),     -- 5
-       ("edit_users"),    -- 6
-       ("edit_products"); -- 7
+VALUES ("view_profile"),        -- 1
+       ("view_cart"),           -- 2
+       ("view_users"),          -- 3
+       ("edit_profile"),        -- 4
+       ("edit_cart"),           -- 5
+       ("edit_users"),          -- 6
+       ("edit_products"),       -- 7
+       ("edit_own_profile");    -- 8
 
 
 INSERT INTO roles (name)
@@ -27,20 +28,22 @@ VALUES ("user"),    -- 1
 INSERT INTO privileges_in_role (role_id, privilege_id)
 VALUES (1, 1), -- 1
        (1, 2), -- 2
-       (1, 4), -- 3
+       (1, 8), -- 3
        (2, 1), -- 4
        (2, 2), -- 5
        (2, 3), -- 6
        (2, 4), -- 7
        (2, 5), -- 8
        (2, 7), -- 9
-       (3, 1), -- 10
-       (3, 2), -- 11
-       (3, 3), -- 12
-       (3, 4), -- 13
-       (3, 5), -- 14
-       (3, 6), -- 15
-       (3, 7); -- 16
+       (2, 8), -- 10
+       (3, 1), -- 11
+       (3, 2), -- 12
+       (3, 3), -- 13
+       (3, 4), -- 14
+       (3, 5), -- 15
+       (3, 6), -- 16
+       (3, 7), -- 17
+       (3, 8); -- 18
 
 
 /* password is always the word password for each user */
