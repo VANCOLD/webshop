@@ -9,8 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The RoleRepository interface provides CRUD (Create, Read, Update, Delete) operations for Role entities.
- * It extends the JpaRepository interface to work with Role entities and allows querying the database for roles.
+ * The {@code uRoleRepository} interface is a Spring Data JPA repository
+ * responsible for managing database operations related to the {@link Role} entity.
+ * It provides methods for common CRUD (Create, Read, Update, Delete) operations on roles,
+ * as well as a custom query method to find a role by its name.
+ *
+ * <p>This repository is annotated with {@link org.springframework.stereotype.Repository}
+ * to indicate that it is a Spring component and should be managed by the Spring framework.
+ *
+ * @see org.springframework.data.jpa.repository.JpaRepository
+ * @see Role
  */
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
@@ -19,7 +27,8 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
      * Find a role by its name.
      *
      * @param name The name of the role to find.
-     * @return An Optional containing the found Role, or an empty Optional if not found.
+     * @return An {@link java.util.Optional} containing the found role,
+     *         or an empty {@code Optional} if no matching role is found.
      */
     Optional<Role> findByName(String name);
 
