@@ -1,31 +1,63 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.security.JwtIssuer;
-import com.waff.gameverse_backend.datamodel.LoginResponse;
-import com.waff.gameverse_backend.dto.LoginDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import com.waff.gameverse_backend.dto.RegistrationDto;
+import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.service.AuthenticationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
+/**
+ * The AuthenticationController class handles user registration and authentication.
+ */
 @RestController
-@RequestMapping("/authenticate")
-@RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final JwtIssuer jwtIssuer;
+    private final AuthenticationService authenticationService;
 
-    @PostMapping
-    public LoginResponse login(@RequestBody @Validated LoginDTO loginDTO) {
+    /**
+     * Constructs a new AuthenticationController with the provided AuthenticationService.
+     *
+     * @param authenticationService The AuthenticationService to use for user registration and authentication.
+     */
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
-        var token = jwtIssuer.issue(loginDTO.getUsername(), loginDTO.getPassword(), List.of());
+    /**
+     * Registers a new user with the provided registration information.
+     *
+     * @param registrationDto The RegistrationDto containing user registration information.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the registered user's information.
+     * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if a user with the same username already exists.
+     */
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody RegistrationDto registrationDto) {
+        try {
+            return ResponseEntity.ok(this.authenticationService.registerUser(registrationDto.getUsername(), registrationDto.getPassword()).convertToDto());
+        } catch (BadCredentialsException ex) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists!", ex);
+        }
+    }
 
-        return LoginResponse.builder()
-                .accessToken(token)
-                .build();
+    /**
+     * Authenticates a user with the provided username and password.
+     *
+     * @param registrationDto The RegistrationDto containing user authentication information.
+     * @return ResponseEntity<String> A ResponseEntity containing an authentication token.
+     * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if the user doesn't exist or authentication fails.
+     */
+    @PostMapping("/authenticate")
+    public ResponseEntity<String> loginUser(@RequestBody RegistrationDto registrationDto) {
+        try {
+            return ResponseEntity.ok(authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword()));
+        } catch (AuthenticationException ex) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exist or authentication failed!", ex);
+        }
     }
 }

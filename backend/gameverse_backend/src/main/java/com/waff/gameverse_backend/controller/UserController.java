@@ -1,99 +1,124 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.datamodel.User;
+import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
-@RestController
+/**
+ * The UserController class handles operations related to user management.
+ */
+@PreAuthorize("@tokenService.hasPrivilege('edit_users')")
 @RequestMapping("/api/users")
-public class UserController
-{
+@RestController
+public class UserController {
 
     private final UserService userService;
 
+    /**
+     * Constructs a new UserController with the provided UserService.
+     *
+     * @param userService The UserService to use for managing users.
+     */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
-    public ResponseEntity<?> findAllUser()
-    {
-        List<User> response = this.userService.findAllUsers();
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
+    @GetMapping("/all")
+    public ResponseEntity<List<UserDto>> findAll() {
+        var users = userService.findAll();
 
-        if (response.isEmpty() )
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user-list is empty!");
-        else
-            return ResponseEntity.ok(response);
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+        }
     }
 
-    @GetMapping("/{uid}")
-    public ResponseEntity<?> findUserById(@PathVariable Long uid)
-    {
-        Optional<User> returnValue = userService.findUserById(uid);
-
-        if( returnValue.isPresent()  )
-            return ResponseEntity.ok(returnValue.get());
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No user found with the id " + uid);
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id).convertToDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.noContent().build();
+        }
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteUser(@RequestBody Long uid)
-    {
-
-        if(uid < 0)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
-
-        Optional<User> returnValue = this.userService.deleteUser(uid);
-
-        if( returnValue.isPresent() )
-            return ResponseEntity.ok(returnValue.get());
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user with the id " + uid + " doesn't exist!");
-    }
-
-
+    /**
+     * Creates a new user.
+     *
+     * @param userDto The UserDto containing the user information to be created.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the newly created UserDto.
+     * @throws IllegalArgumentException if there is a conflict or error while creating the user.
+     * @see UserDto
+     */
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody User user)
-    {
-        if(user.getUid() < 0)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
-
-        User returnValue = this.userService.saveUser(user);
-
-        if( returnValue != null )
-            return ResponseEntity.ok(returnValue);
-        else
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with the id " + user.getUid() + " already exists!");
+    public ResponseEntity<UserDto> save(@RequestBody UserDto userDto) {
+        try {
+            return ResponseEntity.ok(userService.save(userDto).convertToDto());
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 
-
+    /**
+     * Updates an existing user.
+     *
+     * @param userDto The UserDto containing the updated user information.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the updated UserDto.
+     * @throws IllegalArgumentException if there is a conflict or error while updating the user.
+     * @throws NoSuchElementException if the user to update does not exist.
+     * @see UserDto
+     */
     @PutMapping
-    public ResponseEntity<?> updateUser(@RequestBody User user)
-    {
-        Long uid = user.getUid();
-        if(uid < 0)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("A user with an id smaller than 0 can not exist!");
+    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto) {
+        try {
+            return ResponseEntity.ok(userService.update(userDto).convertToDto());
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 
-
-        Optional<User> findValue = this.userService.findUserById(uid);
-        User returnValue;
-
-        if(findValue.isPresent())
-            returnValue = findValue.get();
-        else
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("The user with the id " + uid + " you are trying to update doesn't exist!");
-
-        returnValue.setUid(uid);
-        returnValue.setUsername(user.getUsername());
-        returnValue.setPassword(user.getPassword());
-        returnValue.setRoles(user.getRoles());
-
-        return ResponseEntity.ok(this.userService.saveUser(returnValue));
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param id The ID of the user to delete.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the deleted UserDto.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserDto> delete(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.delete(id).convertToDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
     }
 }
