@@ -68,10 +68,14 @@ body .page-content {
 
 .row {
   margin: 0;
+  min-width: auto;
+  max-width: auto;
+  min-height: auto;
+  max-height: auto;
 }
 
 main {
-  flex:1;
+    flex:1;
 }
 
 /* Trick um den Footer ans Ende der Seite zu schieben */
@@ -88,24 +92,31 @@ Navigationsbar Style
 */
 
 .icon-button {
-  text-align:center; 
+  text-align:center;
 }
 
 .icon-button i {
-  font-size:32px;
+  font-size:24px;
   color:#ec6090;
   width:64px;
   height:auto;
 }
 
 .icon-button p {
-  font-size: 16px;
+  font-size: 12px;
   color:white;
 }
 
+.input-group {
+  margin-bottom: px;
+  min-width: 0em;
+}
+
+.search-form {
+  font-size: 14px;
+}
 .search-icon {
   border-bottom:  1px solid #ec6090;
-  padding-bottom: 4px;
   padding-left:   4px;
 }
 
@@ -300,7 +311,7 @@ Responsive Style
 */
 
 
-@media (min-width: 1200px) 
+/* @media (min-width: 1200px) 
 {
 
   .socials li i {
@@ -314,9 +325,9 @@ Responsive Style
     min-height:100%;
   }
 
-}
+} */
 
-@media (max-width: 1200px) 
+/* @media (max-width: 1200px) 
 {
 
   .socials li i {
@@ -329,8 +340,8 @@ Responsive Style
     min-width:100%;
     min-height:100%;
   }
-}
-
+} */
+/* 
 @media (max-width: 767px) 
 {
 
@@ -361,4 +372,94 @@ Responsive Style
     min-height:100%;
   }
 
+} */
+
+
+
+@media (min-width: 1200px) {
+
+  .socials li i {
+    font-size:32px;
+    margin-left:16px;
+    margin-right:16px;
+  }
+
+  footer{
+    min-width:100%;
+    min-height:100%;
+  }
+
 }
+
+@media (min-width: 993px) {
+
+  .socials li i {
+    font-size:24px;
+    margin-left:12px;
+    margin-right:12px;
+  }
+
+  footer{
+    min-width:100%;
+    min-height:100%;
+  }
+}
+
+/* Styles for devices with a minimum width of 769px and a maximum of 992px (e.g., tablets) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .socials li i {
+    font-size:18px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+  footer{   
+    min-width:100%;
+    min-height:100%;
+  }
+}
+
+/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
+/* @media (min-width: 767px) 
+{
+
+  .socials li i {
+    font-size:18px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+
+  footer{   
+    min-width:100%;
+    min-height:100%;
+  }
+} */
+
+/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
+@media (max-width: 768px) {
+  /* Add your responsive styles here */
+  /* For example, you can adjust font sizes or margins */
+  body {
+      font-size: 16px;
+  }
+
+  .socials li i {
+    font-size:18px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+  header{
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+  main {
+    min-width: 100px;
+    min-height: 100px;
+  }
+  footer{   
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+}
+
