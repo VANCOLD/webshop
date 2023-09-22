@@ -1,7 +1,6 @@
 package com.waff.gameverse_backend.repository;
 
 import com.waff.gameverse_backend.model.Category;
-import com.waff.gameverse_backend.model.ConsoleGeneration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +28,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
      * @return An {@link java.util.Optional} containing the found category,
      *         or an empty {@code Optional} if no matching category is found.
      */
-    Optional<ConsoleGeneration> findByName(String name);
+    Optional<Category> findByName(String name);
 }

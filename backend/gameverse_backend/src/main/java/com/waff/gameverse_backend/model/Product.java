@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.enums.EsrbRating;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,12 +48,12 @@ public class Product {
     @Column(name = "available")
     private LocalDateTime available;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "esrb_rating")
-    private String esrbRating;
+    private EsrbRating esrbRating;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "console_generation_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "console_generation_id", nullable=false)
     private ConsoleGeneration consoleGeneration;
 
     @OneToOne(cascade = CascadeType.ALL)
