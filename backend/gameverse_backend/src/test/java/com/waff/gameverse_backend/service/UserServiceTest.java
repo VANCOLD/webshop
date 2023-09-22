@@ -46,31 +46,6 @@ public class UserServiceTest {
     }
 
     @Test
-    void findAllByIdsTest() {
-
-        // Eine Liste mit gültigen Ids
-        List<Long> userIds1 = List.of(1L,2L,3L);
-
-        // Eine Liste mit 2 gültigen Ids und einer ungültigen
-        List<Long> userIds2 = List.of(1L, 2L, 10000L);
-
-        // Eine leere Liste
-        List<Long> userIds3 = List.of();
-
-        // Es gibt drei Einträge, diese sollten auch gefunden werdenn
-        var testCase1 = this.userService.findAllByIds(userIds1);
-        assertThat(testCase1.size()).isEqualTo(3);
-
-        // Zwei Einträge existieren, daher sollte hier nur 2 rauskommen
-        var testCase2 = this.userService.findAllByIds(userIds2);
-        assertThat(testCase2.size()).isEqualTo(2);
-
-        // Bei einer leeren Liste bekommen wir auch eine leere Liste zurück!
-        var testCase3 = this.userService.findAllByIds(userIds3);
-        assertThat(testCase3.isEmpty()).isTrue();
-    }
-
-    @Test
     void findAllTest() {
         var testCase1 = this.userService.findAll();
         assertThat(testCase1.size()).isEqualTo(3);

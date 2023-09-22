@@ -13,21 +13,29 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
- * AuthenticationController, welcher JWT Tokens nutzt.
- * Es gibt 2 Routen, register & authenticate
- * register erstellt einen neuen Nutzer (falls der username nicht vergeben ist)
- * und authenticate generiert einen JWT Token.
- * Beide Routes sind freizugänglich
+ * The AuthenticationController class handles user registration and authentication.
  */
 @RestController
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
+    /**
+     * Constructs a new AuthenticationController with the provided AuthenticationService.
+     *
+     * @param authenticationService The AuthenticationService to use for user registration and authentication.
+     */
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
+    /**
+     * Registers a new user with the provided registration information.
+     *
+     * @param registrationDto The RegistrationDto containing user registration information.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the registered user's information.
+     * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if a user with the same username already exists.
+     */
     @PostMapping("/register")
     public ResponseEntity<UserDto> registerUser(@RequestBody RegistrationDto registrationDto) {
         try {
@@ -37,16 +45,19 @@ public class AuthenticationController {
         }
     }
 
-
+    /**
+     * Authenticates a user with the provided username and password.
+     *
+     * @param registrationDto The RegistrationDto containing user authentication information.
+     * @return ResponseEntity<String> A ResponseEntity containing an authentication token.
+     * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if the user doesn't exist or authentication fails.
+     */
     @PostMapping("/authenticate")
     public ResponseEntity<String> loginUser(@RequestBody RegistrationDto registrationDto) {
-
         try {
             return ResponseEntity.ok(authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword()));
-
         } catch (AuthenticationException ex) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exists!", ex);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exist or authentication failed!", ex);
         }
     }
-
 }

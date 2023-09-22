@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
+/**
+ * The UserController class handles operations related to user management.
+ */
 @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
 @RequestMapping("/api/users")
 @RestController
@@ -20,45 +21,58 @@ public class UserController {
 
     private final UserService userService;
 
+    /**
+     * Constructs a new UserController with the provided UserService.
+     *
+     * @param userService The UserService to use for managing users.
+     */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
     @GetMapping("/all")
-    public ResponseEntity<Set<UserDto>> findAll() {
-
+    public ResponseEntity<List<UserDto>> findAll() {
         var users = userService.findAll();
 
-        if(users.isEmpty()) {
+        if (users.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.ok(new HashSet<>(users.stream().map(User::convertToDto).toList()));
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
         }
     }
 
-    @GetMapping("/allByIds")
-    public ResponseEntity<Set<UserDto>> findAllByIds(@RequestBody List<Long> ids) {
-        var users = userService.findAllByIds(ids);
-
-        if(users.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(new HashSet<>(users.stream().map(User::convertToDto).toList()));
-        }
-    }
-
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> findById(@PathVariable Long id) {
-
         try {
             return ResponseEntity.ok(userService.findById(id).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.noContent().build();
         }
-
     }
 
+    /**
+     * Creates a new user.
+     *
+     * @param userDto The UserDto containing the user information to be created.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the newly created UserDto.
+     * @throws IllegalArgumentException if there is a conflict or error while creating the user.
+     * @see UserDto
+     */
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody UserDto userDto) {
         try {
@@ -69,6 +83,15 @@ public class UserController {
         }
     }
 
+    /**
+     * Updates an existing user.
+     *
+     * @param userDto The UserDto containing the updated user information.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the updated UserDto.
+     * @throws IllegalArgumentException if there is a conflict or error while updating the user.
+     * @throws NoSuchElementException if the user to update does not exist.
+     * @see UserDto
+     */
     @PutMapping
     public ResponseEntity<UserDto> update(@RequestBody UserDto userDto) {
         try {
@@ -76,9 +99,19 @@ public class UserController {
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param id The ID of the user to delete.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the deleted UserDto.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDto> delete(@PathVariable Long id) {
         try {
@@ -88,5 +121,4 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }
