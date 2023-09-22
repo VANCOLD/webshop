@@ -12,12 +12,15 @@ html, body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  /* font-size: 16px; */
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #1f2122;
   background-color: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -78,11 +81,43 @@ main {
     flex:1;
 }
 
-/* Trick um den Footer ans Ende der Seite zu schieben */
-.orderbox {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* 
+---------------------------------------------
+Contact form Style
+--------------------------------------------- 
+*/
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #ec6090;
+  color: white;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #ec6090;
+}
+
+label {
+  color: #fff;
+  font-size: auto;
 }
 
 /* 
@@ -90,7 +125,9 @@ main {
 Navigationsbar Style
 --------------------------------------------- 
 */
-
+.navbar{
+  max-width: fit-content;
+}
 .icon-button {
   text-align:center;
 }
@@ -107,7 +144,8 @@ Navigationsbar Style
   color:white;
 }
 
-.input-group {
+.search-bar {
+  display: flex;
   margin-bottom: px;
   min-width: 0em;
 }
@@ -123,7 +161,7 @@ Navigationsbar Style
 .icon-button input {
   outline: none;
   background-color: #1e1e1e;
-  color: white;
+  
   border-left: 0px;
   border-right: 0px;
   border-top: 0px;
@@ -310,73 +348,87 @@ Responsive Style
 --------------------------------------------- 
 */
 
-
-/* @media (min-width: 1200px) 
-{
-
-  .socials li i {
-    font-size:32px;
-    margin-left:16px;
-    margin-right:16px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-
-} */
-
-/* @media (max-width: 1200px) 
-{
-
-  .socials li i {
-    font-size:24px;
-    margin-left:12px;
-    margin-right:12px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-/* 
-@media (max-width: 767px) 
-{
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-
-}
-
-@media (min-width: 767px) 
-{
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-
-} */
-
-
-
+/* Desktop breakpoint */
 @media (min-width: 1200px) {
+  body {
+    font-size: 32px;
+  }
+  .socials li i {
+    font-size:32px;
+    margin-left:16px;
+    margin-right:16px;
+  }
+  header {
+    min-width:100%;
+    min-height:100%
+  }
+  
+  main {
+    min-width:100%;
+    min-height:100%
+  }
+
+  footer{
+    min-width:100%;
+    min-height:100%
+    
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 767px) {
+  body {
+    font-size: 18px;
+  }
+  .socials li i {
+    font-size:18px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+
+  header {
+    min-width:100%;
+    min-height:100%
+  }
+  main {
+    min-width:100%;
+    min-height:100%
+  }
+
+  footer{   
+    min-width:100%;
+    min-height:100%;
+  }
+
+}
+
+/* Mobile breakpoint */
+@media (min-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+  .socials li i {
+    font-size:18px;
+    margin-left:8px;
+    margin-right:8px;
+  }
+  header {
+    min-width:100%;
+    min-height:100%
+  }
+
+  main {
+    min-width:100%;
+    min-height:100%
+  }
+
+  footer{   
+    min-width:100%;
+    min-height:100%;
+  }
+}
+
+/* @media (min-width: 1200px) {
 
   .socials li i {
     font-size:32px;
@@ -389,9 +441,9 @@ Responsive Style
     min-height:100%;
   }
 
-}
+} */
 
-@media (min-width: 993px) {
+/* @media (min-width: 993px) {
 
   .socials li i {
     font-size:24px;
@@ -403,10 +455,10 @@ Responsive Style
     min-width:100%;
     min-height:100%;
   }
-}
+} */
 
 /* Styles for devices with a minimum width of 769px and a maximum of 992px (e.g., tablets) */
-@media (min-width: 769px) and (max-width: 992px) {
+/* @media (min-width: 769px) and (max-width: 992px) {
   .socials li i {
     font-size:18px;
     margin-left:8px;
@@ -416,7 +468,7 @@ Responsive Style
     min-width:100%;
     min-height:100%;
   }
-}
+} */
 
 /* Styles for devices with a maximum width of 768px (e.g., smartphones) */
 /* @media (min-width: 767px) 
@@ -435,9 +487,8 @@ Responsive Style
 } */
 
 /* Styles for devices with a maximum width of 768px (e.g., smartphones) */
-@media (max-width: 768px) {
-  /* Add your responsive styles here */
-  /* For example, you can adjust font sizes or margins */
+/* @media (max-width: 768px) {
+  
   body {
       font-size: 16px;
   }
@@ -460,6 +511,6 @@ Responsive Style
     min-width: 100px;
     min-height: 100px;
   }
+} */
 
-}
 
