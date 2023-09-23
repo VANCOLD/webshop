@@ -24,7 +24,7 @@ jobs:
 
     - name: Build
       run: |
-        mvn clean compile -B
+        mvn clean compile
 
   test:
     needs: build
@@ -42,7 +42,7 @@ jobs:
 
     - name: Test
       run: |
-        mvn test -B
+        mvn test
 
   deploy:
     needs: build
@@ -60,5 +60,5 @@ jobs:
 
     - name: Build and Deploy
       run: |
-        mvn clean install -B
+        mvn package
         # Add your deployment steps here, such as uploading artifacts or publishing to a repository
