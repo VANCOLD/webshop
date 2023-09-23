@@ -105,16 +105,15 @@ public class ProductService {
         var toDelete = this.productRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Product with the given ID does not exist"));
 
-        toDelete.getConsoleGeneration().setProduct(null);
         toDelete.getProducer();
 
         toDelete.setGenreList(new ArrayList<>());
         toDelete.getCategory().setProduct(null);
         toDelete.setCategory(null);
         toDelete.setProducer(null);
-        toDelete.getProducer().getProductList().remove(toDelete);
         toDelete.setConsoleGeneration(null);
-        toDelete.getConsoleGeneration().setProductList.remove(toDelete);
+        toDelete.getProducer().getProductList().remove(toDelete);
+        toDelete.getConsoleGeneration().getProductList().remove(toDelete);
 
         this.productRepository.save(toDelete);
         this.productRepository.delete(toDelete);

@@ -10,6 +10,13 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * The {@code Product} class represents a product in a game store, which can be a video game, console, or related item.
+ * It contains various attributes and associations to categorize and manage products.
+ *
+ * <p>This class is an entity that can be persisted to a database using JPA (Java Persistence API).
+ * It is also annotated with Lombok annotations to generate getters, setters, and constructors automatically.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,52 +25,94 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
 
+    /**
+     * The unique identifier for this product.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    /**
+     * The name of the product.
+     */
     @Column(name="name")
     private String name;
 
+    /**
+     * A description of the product.
+     */
     @Column(name="description")
     private String description;
 
+    /**
+     * The price of the product.
+     */
     @Column(name = "price")
     private Double price;
 
-    // Placeholder for now
+    /**
+     * A placeholder for the product's image (file path or URL).
+     */
     @Column(name = "image")
     private String image;
 
+    /**
+     * The tax rate applicable to the product.
+     */
     @Column(name = "tax")
     private Byte tax;
 
+    /**
+     * The quantity of the product in stock.
+     */
     @Column(name = "stock")
     private Integer stock;
 
+    /**
+     * The Global Trade Item Number (GTIN) of the product.
+     */
     @Column(name = "gtin")
     private String gtin;
 
+    /**
+     * The date and time when the product is available for purchase.
+     */
     @Column(name = "available")
     private LocalDateTime available;
 
+    /**
+     * The Entertainment Software Rating Board (ESRB) rating of the product.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "esrb_rating")
     private EsrbRating esrbRating;
 
+    /**
+     * The console generation associated with this product.
+     */
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "console_generation_id", nullable=false)
     private ConsoleGeneration consoleGeneration;
 
+    /**
+     * The category to which this product belongs.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
+    /**
+     * The producer or manufacturer of the product.
+     */
     @ManyToOne
     @JoinColumn(name="producer_id", nullable=false)
     private Producer producer;
 
+    /**
+     * The list of genres associated with this product.
+     * Each genre in the list categorizes this product.
+     */
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "product_to_genre",
@@ -71,5 +120,4 @@ public class Product {
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
     private List<Genre> genreList;
-
 }
