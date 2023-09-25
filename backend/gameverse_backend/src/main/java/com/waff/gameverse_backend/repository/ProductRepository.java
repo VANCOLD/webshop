@@ -60,5 +60,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @param genre The genre to search for.
      * @return A list of products containing the specified genre.
      */
-    List<Product> findAllByGenre(Genre genre);
+    List<Product> findAllByGenres(Genre genre);
 }

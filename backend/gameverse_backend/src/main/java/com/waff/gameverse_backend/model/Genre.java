@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "genre")
+@Table(name = "genres")
 public class Genre {
 
     /**
@@ -47,5 +47,5 @@ public class Genre {
         joinColumns = { @JoinColumn(name = "genre_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    private List<Product> productList;
+    private List<Product> products;
 }

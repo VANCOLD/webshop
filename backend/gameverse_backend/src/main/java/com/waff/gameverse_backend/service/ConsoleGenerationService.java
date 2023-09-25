@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.repository.ConsoleGenerationRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -105,7 +106,7 @@ public class ConsoleGenerationService {
             product.setConsoleGeneration(null);
             this.productRepository.save(product);
         }
-        toDelete.setProduct(null);
+        toDelete.setProductList(new ArrayList());
         this.consoleGenerationRepository.save(toDelete);
         this.consoleGenerationRepository.delete(toDelete);
         return toDelete;

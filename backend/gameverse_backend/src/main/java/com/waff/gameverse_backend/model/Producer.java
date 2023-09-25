@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "producer")
+@Table(name = "producers")
 public class Producer {
 
     /**
@@ -42,5 +42,5 @@ public class Producer {
      * Each product in the list is produced or manufactured by this specific producer.
      */
     @OneToMany(mappedBy="producer")
-    private List<Product> productList;
+    private List<Product> products;
 }

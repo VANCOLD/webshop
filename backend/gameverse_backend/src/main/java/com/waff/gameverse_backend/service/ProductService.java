@@ -13,15 +13,9 @@ import java.util.NoSuchElementException;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    private final GenreService genreService;
 
-    private final ProducerService producerService;
-
-
-    public ProductService(ProductRepository productRepository,GenreService genreService, ProducerService producerService) {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.genreService      = genreService;
-        this.producerService   = producerService;
     }
 
     /**
@@ -105,14 +99,12 @@ public class ProductService {
         var toDelete = this.productRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Product with the given ID does not exist"));
 
-        toDelete.getProducer();
-
-        toDelete.setGenreList(new ArrayList<>());
+        toDelete.setGenres(new ArrayList<>());
         toDelete.getCategory().setProduct(null);
         toDelete.setCategory(null);
         toDelete.setProducer(null);
         toDelete.setConsoleGeneration(null);
-        toDelete.getProducer().getProductList().remove(toDelete);
+        toDelete.getProducer().getProducts().remove(toDelete);
         toDelete.getConsoleGeneration().getProductList().remove(toDelete);
 
         this.productRepository.save(toDelete);

@@ -7,11 +7,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
-
-import javax.naming.AuthenticationException;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @DirtiesContext
 @Import(AuthenticationService.class)
+@ActiveProfiles("test")
 public class AuthenticationServiceTest {
 
     @Autowired

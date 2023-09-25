@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "console_generation")
+@Table(name = "console_generations")
 public class ConsoleGeneration {
 
     /**

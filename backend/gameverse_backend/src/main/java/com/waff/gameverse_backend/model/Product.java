@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     /**
@@ -119,5 +119,5 @@ public class Product {
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
-    private List<Genre> genreList;
+    private List<Genre> genres;
 }
