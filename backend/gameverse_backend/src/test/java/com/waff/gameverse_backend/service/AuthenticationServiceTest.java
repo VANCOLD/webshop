@@ -37,7 +37,6 @@ public class AuthenticationServiceTest {
         assertThrows(BadCredentialsException.class, () -> authenticationService.registerUser(username,password));
     }
 
-
     @Test
     void loginUserTest() {
 
