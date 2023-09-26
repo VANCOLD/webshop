@@ -22,4 +22,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build
-      run: mvn clean compile
+      run: | 
+        cd backend/gameverse_backend
+        mvn clean compile
