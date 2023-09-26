@@ -18,7 +18,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file ./backend/gameverse_backend/pom.xml
+      run: |
+        cd backend/gameverse_backend
+        mvn -B package --file ./pom.xml
 
     - uses: actions/upload-artifact@v3
       with:
