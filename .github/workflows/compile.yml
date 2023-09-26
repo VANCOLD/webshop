@@ -1,4 +1,4 @@
-name: Java Build, Test, and Deploy
+name: compile
 
 on:
   push:
