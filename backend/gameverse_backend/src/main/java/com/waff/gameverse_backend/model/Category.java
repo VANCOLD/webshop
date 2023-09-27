@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * The {@code Category} class represents a category for products in a game store.
  * It is used to group similar products together.
@@ -38,6 +40,6 @@ public class Category {
     /**
      * The product associated with this category.
      */
-    @OneToOne(mappedBy = "category")
-    private Product product;
+    @OneToMany(mappedBy="category")
+    private List<Product> products;
 }

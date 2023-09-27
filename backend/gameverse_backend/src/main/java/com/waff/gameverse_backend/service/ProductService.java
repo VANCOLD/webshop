@@ -100,7 +100,7 @@ public class ProductService {
             .orElseThrow(() -> new NoSuchElementException("Product with the given ID does not exist"));
 
         toDelete.setGenres(new ArrayList<>());
-        toDelete.getCategory().setProduct(null);
+        toDelete.getCategory().setProducts(null);
         toDelete.setCategory(null);
         toDelete.setProducer(null);
         toDelete.setConsoleGeneration(null);

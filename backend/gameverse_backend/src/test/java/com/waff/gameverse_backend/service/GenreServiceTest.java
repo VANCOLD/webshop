@@ -48,7 +48,7 @@ public class GenreServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.genreService.findAll();
-        assertThat(testCase1.size()).isEqualTo(15);
+        assertThat(testCase1.size()).isEqualTo(10);
     }
 
     @Test

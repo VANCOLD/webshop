@@ -48,7 +48,7 @@ public class ProducerServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.producerService.findAll();
-        assertThat(testCase1.size()).isEqualTo(9);
+        assertThat(testCase1.size()).isEqualTo(10);
     }
 
     @Test

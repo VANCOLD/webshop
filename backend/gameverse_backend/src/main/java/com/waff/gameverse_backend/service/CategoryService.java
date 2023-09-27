@@ -110,7 +110,7 @@ public class CategoryService {
             this.productRepository.save(product);
         }
 
-        toDelete.setProduct(null);
+        toDelete.setProducts(null);
         this.categoryRepository.save(toDelete);
         this.categoryRepository.delete(toDelete);
         return toDelete;
