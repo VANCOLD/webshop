@@ -5,18 +5,28 @@ import com.waff.gameverse_backend.dto.RegistrationDto;
 import jakarta.ws.rs.core.MediaType;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 public class AuthenticationControllerTest {
 
@@ -28,6 +38,7 @@ public class AuthenticationControllerTest {
 
 
     @Test
+    @DirtiesContext
     void registerUserTest() throws Exception {
 
         // Should create a new user since the username isn't taken
@@ -36,10 +47,10 @@ public class AuthenticationControllerTest {
 
         // Testing if we canc reate a new user => sho
         mockMvc.perform(post("/register")
-            .contentType(MediaType.APPLICATION_JSON)
-            .characterEncoding("utf-8")
-            .content(mapper.writeValueAsString(testCase1))
-            .accept(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8")
+                .content(mapper.writeValueAsString(testCase1))
+                .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.username", Matchers.is("test")));
 
