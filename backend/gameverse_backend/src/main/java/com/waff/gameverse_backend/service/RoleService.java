@@ -96,9 +96,7 @@ public class RoleService {
     public Role update(RoleDto roleDto) {
         var toUpdate = this.roleRepository.findById(roleDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Role with the given ID does not exist"));
-        if (roleDto.getName().isEmpty()) {
-            throw new IllegalArgumentException("The name of the role cannot be empty");
-        }
+
         toUpdate.setName(roleDto.getName());
         return this.roleRepository.save(toUpdate);
     }

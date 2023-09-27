@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.PrivilegeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -73,7 +74,7 @@ public class PrivilegeController {
      * @see PrivilegeDto
      */
     @PostMapping
-    public ResponseEntity<PrivilegeDto> save(@RequestBody PrivilegeDto privilegeDto) {
+    public ResponseEntity<PrivilegeDto> save(@Validated @RequestBody PrivilegeDto privilegeDto) {
         try {
             return ResponseEntity.ok(privilegeService.save(privilegeDto.getName()).convertToDto());
         } catch (IllegalArgumentException ex) {
@@ -87,17 +88,13 @@ public class PrivilegeController {
      *
      * @param privilegeDto The PrivilegeDto containing the updated privilege information.
      * @return ResponseEntity<PrivilegeDto> A ResponseEntity containing the updated PrivilegeDto.
-     * @throws IllegalArgumentException if there is a conflict or error while updating the privilege.
      * @throws NoSuchElementException if the privilege to update does not exist.
      * @see PrivilegeDto
      */
     @PutMapping
-    public ResponseEntity<PrivilegeDto> update(@RequestBody PrivilegeDto privilegeDto) {
+    public ResponseEntity<PrivilegeDto> update(@Validated @RequestBody PrivilegeDto privilegeDto) {
         try {
             return ResponseEntity.ok(privilegeService.update(privilegeDto).convertToDto());
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

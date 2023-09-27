@@ -20,7 +20,6 @@ public class RoleDto implements Serializable {
     /**
      * The unique identifier for the role.
      */
-    @Positive
     private Long id;
 
     /**

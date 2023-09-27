@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.dto.PrivilegeDto;
 import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.UserDto;
-import com.waff.gameverse_backend.repository.RoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,13 +26,10 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
     @Test
     void findByIdTest() {
 
-        // Der erste Eintrag in data.sql ist die user Rolle
+        // Der erste Eintrag in data.sql ist der user "user"
         Long userId1 = 1L;
 
         // Dieser Eintrag existiert nicht und sollte einen Fehler werfen
@@ -60,7 +56,7 @@ public class UserServiceTest {
         // Die Rolle emperor hingegen nicht!
         String user2 = "emperor";
 
-        // Hier erwarten wir das wir die Rolle zurück bekommen die wir suchen
+        // Hier erwarten wir das wir den User zurückbekommen den wir suchen
         var testCase1 = this.userService.findByUsername(user1);
         assertThat(testCase1.getUsername()).isEqualTo(user1);
 
@@ -89,20 +85,16 @@ public class UserServiceTest {
         user.setId(1L);
         var updatedUser = this.userService.update(user);
         assertThat(updatedUser.getUsername()).isEqualTo(user.getUsername());
-
-        user.setUsername("");
-        assertThrows(IllegalArgumentException.class, () -> this.userService.update(user));
-
     }
 
     @Test
     void deleteTest() {
 
 
-        // Rolle user
+        // User user
         Long user1 = 1L;
 
-        // Nicht existierende Rolle
+        // Nicht existierender user
         Long user2 = 1000L;
 
 
@@ -113,7 +105,7 @@ public class UserServiceTest {
         // Da wir den Eintrag gelöscht haben sollten wir diesen auch nicht mehr finden!
         assertThrows(NoSuchElementException.class, () -> this.userService.findById(user1));
 
-        // Dieser Aufruf sollte einen Fehler werfen da es keine Rolle mit der Id 1000 gibt!
+        // Dieser Aufruf sollte einen Fehler werfen da es keine User mit der Id 1000 gibt!
         assertThrows(NoSuchElementException.class, () -> this.userService.delete(user2));
     }
 }

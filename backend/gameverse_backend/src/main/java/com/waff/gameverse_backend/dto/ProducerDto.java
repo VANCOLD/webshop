@@ -17,7 +17,6 @@ public class ProducerDto {
     /**
      * The unique identifier for the producer.
      */
-    @Positive
     private Long id;
 
     /**

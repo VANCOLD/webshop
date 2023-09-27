@@ -19,7 +19,6 @@ public class PrivilegeDto implements Serializable {
     /**
      * The unique identifier for the privilege.
      */
-    @Positive
     private Long id;
 
     /**

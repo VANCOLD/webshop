@@ -17,7 +17,6 @@ public class CategoryDto {
     /**
      * The unique identifier for the category.
      */
-    @Positive
     private Long id;
 
     /**

@@ -46,7 +46,12 @@ public enum EsrbRating {
     /**
      * Rating Pending, indicating that the game has not yet received an ESRB rating.
      */
-    RATING_PENDING("Rating Pending");
+    RATING_PENDING("Rating Pending"),
+
+    /**
+     * Used for products that don't get a rating (consoles, merchandise, giftcards etc)
+     */
+    NONE("No Rating");
 
     private final String name;
 

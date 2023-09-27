@@ -198,15 +198,6 @@ public class RoleControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
-        // Should be not found because the id is invalid!
-        mockMvc
-            .perform(put("/api/roles")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("utf-8")
-                .content(mapper.writeValueAsString(testCase3))
-                .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isConflict());
     }
 
     @Test

@@ -92,7 +92,7 @@ public class Product {
      * The console generation associated with this product.
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "console_generation_id", nullable=false)
+    @JoinColumn(name = "console_generation_id")
     private ConsoleGeneration consoleGeneration;
 
     /**
@@ -106,7 +106,7 @@ public class Product {
      * The producer or manufacturer of the product.
      */
     @ManyToOne
-    @JoinColumn(name="producer_id", nullable=false)
+    @JoinColumn(name="producer_id")
     private Producer producer;
 
     /**

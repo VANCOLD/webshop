@@ -19,7 +19,6 @@ public class UserDto implements Serializable {
     /**
      * The unique identifier for the user.
      */
-    @Positive
     private Long id;
 
     /**

@@ -93,10 +93,6 @@ public class RoleServiceTest {
         role.setId(1L);
         var updatedRole = this.roleService.update(role);
         assertThat(updatedRole.getName()).isEqualTo(role.getName());
-
-        role.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.roleService.update(role));
-
     }
 
     @Test

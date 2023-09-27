@@ -17,7 +17,6 @@ public class ConsoleGenerationDto {
     /**
      * The unique identifier for the console generation.
      */
-    @Positive
     private Long id;
 
     /**

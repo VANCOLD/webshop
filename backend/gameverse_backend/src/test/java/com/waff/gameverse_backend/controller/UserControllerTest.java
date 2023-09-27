@@ -140,7 +140,7 @@ public class UserControllerTest {
         String token = this.getToken("user","password");
 
         // New user, doesn't exist in db
-        RoleDto testCase = new RoleDto("superpower");
+        UserDto testCase = new UserDto("superpower", "test");
 
         // Should return forbidden since the user doesn't have to correct user
         mockMvc
@@ -191,15 +191,6 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
-        // Should be not found because the id is invalid!
-        mockMvc
-            .perform(put("/api/users")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("utf-8")
-                .content(mapper.writeValueAsString(testCase3))
-                .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isConflict());
     }
 
     @Test
@@ -208,7 +199,7 @@ public class UserControllerTest {
         String token = this.getToken("user","password");
 
         // Existing user in the db
-        RoleDto testCase = new RoleDto( 1L, "superpower");
+        UserDto testCase = new UserDto( "superpower", "test");
 
         // Should return forbidden since the user doesn't have to correct user
         mockMvc

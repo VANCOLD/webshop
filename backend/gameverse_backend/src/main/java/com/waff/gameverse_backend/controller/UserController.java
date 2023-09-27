@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -74,7 +75,7 @@ public class UserController {
      * @see UserDto
      */
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> save(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToDto());
         } catch (IllegalArgumentException ex) {
@@ -88,17 +89,13 @@ public class UserController {
      *
      * @param userDto The UserDto containing the updated user information.
      * @return ResponseEntity<UserDto> A ResponseEntity containing the updated UserDto.
-     * @throws IllegalArgumentException if there is a conflict or error while updating the user.
      * @throws NoSuchElementException if the user to update does not exist.
      * @see UserDto
      */
     @PutMapping
-    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> update(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.update(userDto).convertToDto());
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

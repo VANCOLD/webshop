@@ -17,7 +17,6 @@ public class GenreDto {
     /**
      * The unique identifier for the genre.
      */
-    @Positive
     private Long id;
 
     /**

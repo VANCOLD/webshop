@@ -93,9 +93,6 @@ public class PrivilegeServiceTest {
         var updatedRole = this.privilegeService.update(privilege);
         assertThat(updatedRole.getName()).isEqualTo(privilege.getName());
 
-        privilege.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.privilegeService.update(privilege));
-
     }
 
     @Test
