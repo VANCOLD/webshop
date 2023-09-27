@@ -1,8 +1,8 @@
 package com.waff.gameverse_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.waff.gameverse_backend.dto.RoleDto;
-import com.waff.gameverse_backend.service.RoleService;
+import com.waff.gameverse_backend.dto.ConsoleGenerationDto;
+import com.waff.gameverse_backend.service.ConsoleGenerationService;
 import com.waff.gameverse_backend.service.TokenService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
-public class RoleControllerTest {
+public class ConsoleGenerationControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -48,7 +48,7 @@ public class RoleControllerTest {
     private TokenService tokenService;
 
     @Autowired
-    private RoleService roleService;
+    private ConsoleGenerationService consoleGenerationService;
 
     String getToken(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -61,9 +61,9 @@ public class RoleControllerTest {
         String token = this.getToken("admin","password");
 
         // Testing if we can call all (should return a list with 3 elements)
-        mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
+        mockMvc.perform(get("/api/console_generations/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()", Matchers.is(3)));
+            .andExpect(jsonPath("$.size()", Matchers.is(5)));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class RoleControllerTest {
         // User with no privileges shouldn't be able to call the route
         String token = this.getToken("user","password");
 
-        mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
+        mockMvc.perform(get("/api/console_generations/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
 
@@ -83,14 +83,14 @@ public class RoleControllerTest {
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
-        String roleName   = "user";
+        String conGenName = "XBox Series X";
 
-        // Testing if we get a role with a legit id for admin
-        mockMvc.perform(get("/api/roles/{id}",testCase1).header("Authorization", "Bearer " + token))
+        // Testing if we get a consoleGeneration with a legit id for admin
+        mockMvc.perform(get("/api/console_generations/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name",Matchers.is(roleName)));
+            .andExpect(jsonPath("$.name",Matchers.is(conGenName)));
 
-        mockMvc.perform(get("/api/roles/{id}",testCase2).header("Authorization", "Bearer " + token))
+        mockMvc.perform(get("/api/console_generations/{id}",testCase2).header("Authorization", "Bearer " + token))
             .andExpect(status().isNoContent());
     }
 
@@ -101,7 +101,7 @@ public class RoleControllerTest {
         // User with no privileges shouldn't be able to call the route
         String token = this.getToken("user","password");
 
-        mockMvc.perform(get("/api/roles/{id}",testCase1).header("Authorization", "Bearer " + token))
+        mockMvc.perform(get("/api/console_generations/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
 
@@ -111,18 +111,18 @@ public class RoleControllerTest {
 
         String token = this.getToken("admin","password");
 
-        // New role, doesn't exist in db
-        RoleDto testCase1 = new RoleDto("superpower");
+        // New consoleGeneration, doesn't exist in db
+        ConsoleGenerationDto testCase1 = new ConsoleGenerationDto("Anime");
 
-        // Already existing role, should return conflict!
-        RoleDto testCase2 = new RoleDto("user");
+        // Already existing consoleGeneration, should return conflict!
+        ConsoleGenerationDto testCase2 = new ConsoleGenerationDto("XBox Series X");
 
-        // Current amount of privileges, will be used to see if the new priv has count + 1 as id
-        int currentCount = roleService.findAll().size();
+        // Current amount of console_generations, will be used to see if the new cat has count + 1 as id
+        int currentCount = consoleGenerationService.findAll().size();
 
-        // Should be ok and return the newly created role
+        // Should be ok and return the newly created consoleGeneration
         mockMvc
-            .perform(post("/api/roles")
+            .perform(post("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -134,7 +134,7 @@ public class RoleControllerTest {
 
         // Should return conflict because the id doesn't exist
         mockMvc
-            .perform(post("/api/roles")
+            .perform(post("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -148,12 +148,12 @@ public class RoleControllerTest {
 
         String token = this.getToken("user","password");
 
-        // New role, doesn't exist in db
-        RoleDto testCase = new RoleDto("superpower");
+        // New consoleGeneration, doesn't exist in db
+        ConsoleGenerationDto testCase = new ConsoleGenerationDto("Anime");
 
-        // Should return forbidden since the user doesn't have to correct role
+        // Should return forbidden since the user doesn't have to correct consoleGeneration
         mockMvc
-            .perform(post("/api/roles")
+            .perform(post("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -170,18 +170,15 @@ public class RoleControllerTest {
         String token = this.getToken("admin","password");
 
 
-        // Already existing role, should return conflict!
-        RoleDto testCase1 = new RoleDto(1L, "user");
+        // should work
+        ConsoleGenerationDto testCase1 = new ConsoleGenerationDto(1L,  "XBox Series X");
 
-        // New role, doesn't exist in db => NotFound
-        RoleDto testCase2 = new RoleDto(1000L, "superpower");
+        // New consoleGeneration, doesn't exist in db => NotFound
+        ConsoleGenerationDto testCase2 = new ConsoleGenerationDto(1000L,  "Anime");
 
-        // role id exists but name is empty => Conflict
-        RoleDto testCase3 = new RoleDto(1L, "");
-
-        // Should be ok and return the updated role
+        // Should be ok and return the updated consoleGeneration
         mockMvc
-            .perform(put("/api/roles")
+            .perform(put("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -192,7 +189,7 @@ public class RoleControllerTest {
 
         // Should be not found because the id is invalid!
         mockMvc
-            .perform(put("/api/roles")
+            .perform(put("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -207,12 +204,12 @@ public class RoleControllerTest {
 
         String token = this.getToken("user","password");
 
-        // Existing role in the db
-        RoleDto testCase = new RoleDto( 1L, "superpower");
+        // Existing consoleGeneration in the db
+        ConsoleGenerationDto testCase = new ConsoleGenerationDto( "XBox Series X");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc
-            .perform(put("/api/roles")
+            .perform(put("/api/console_generations")
                 .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -228,32 +225,30 @@ public class RoleControllerTest {
 
         String token = this.getToken("admin","password");
 
-        // First role in data.sql
-        String privName = "user";
+        // First consoleGeneration in data.sql
+        String catName = "XBox Series X";
 
-        // role exist, should delete without a problem
+        // consoleGeneration exist, should delete without a problem
         Long testCase1 = 1L;
 
-        // Should be deleted, name doesn't matter, deletions work with ids => NotFound
-        Long testCase2 = 1L;
 
         // bogus ids don't work either => NotFound
         Long testCase3 = 1000L;
 
-        // Should be ok and return the updated role
+        // Should be ok and return the updated consoleGeneration
         mockMvc
-            .perform(delete("/api/roles/{id}", testCase1).header("Authorization", "Bearer " + token))
+            .perform(delete("/api/console_generations/{id}", testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name", Matchers.is(privName)));
+            .andExpect(jsonPath("$.name", Matchers.is(catName)));
 
-        // Should be not found because the role was deleted in the last mock call!
+        // Should be not found because the consoleGeneration was deleted in the last mock call!
         mockMvc
-            .perform(delete("/api/roles/{id}", testCase2).header("Authorization", "Bearer " + token))
+            .perform(delete("/api/console_generations/{id}", testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isNotFound());
 
         // Should be not found because the id is invalid!
         mockMvc
-            .perform(delete("/api/roles/{id}", testCase3).header("Authorization", "Bearer " + token))
+            .perform(delete("/api/console_generations/{id}", testCase3).header("Authorization", "Bearer " + token))
             .andExpect(status().isNotFound());
 
     }
@@ -263,12 +258,12 @@ public class RoleControllerTest {
 
         String token = this.getToken("user","password");
 
-        // Already existing role in data.sql
+        // Already existing consoleGeneration in data.sql
         Long testCase = 1L;
 
-        // Should return forbidden since the user doesn't have to correct role
+        // Should return forbidden since the user doesn't have to correct consoleGeneration
         mockMvc
-            .perform(delete("/api/roles/{id}",testCase)
+            .perform(delete("/api/console_generations/{id}",testCase)
                 .header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }

@@ -1,6 +1,9 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
+import com.waff.gameverse_backend.utils.DataTransferObject;
+import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements DataTransferObject<ProductDto>, SimpleDataTransferObject<SimpleProductDto> {
 
     /**
      * The unique identifier for this product.
@@ -120,4 +123,43 @@ public class Product {
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
     private List<Genre> genres;
+
+    @Override
+    public ProductDto convertToDto() {
+
+        ProductDto productDto = new ProductDto();
+
+        productDto.setId(id);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setPrice(price);
+        productDto.setImage(image);
+        productDto.setTax(tax);
+        productDto.setStock(stock);
+        productDto.setGtin(gtin);
+        productDto.setAvailable(available);
+        productDto.setEsrbRating(esrbRating.getName());
+        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
+        productDto.setCategory(category == null ? new CategoryDto() : category.convertToDto());
+        productDto.setProducer(producer == null ? new ProducerDto() : producer.convertToDto());
+        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
+
+        return productDto;
+    }
+
+    @Override
+    public SimpleProductDto convertToSimpleDto() {
+
+        SimpleProductDto simpleProductDto = new SimpleProductDto();
+
+        simpleProductDto.setName(name);
+        simpleProductDto.setDescription(description);
+        simpleProductDto.setPrice(price);
+        simpleProductDto.setImage(image);
+        simpleProductDto.setTax(tax);
+        simpleProductDto.setStock(stock);
+        simpleProductDto.setGtin(gtin);
+
+        return simpleProductDto;
+    }
 }

@@ -116,7 +116,6 @@ public class PrivilegeService {
             this.roleRepository.save(role);
         }
         toDelete.setRoles(new ArrayList<>());
-        this.privilegeRepository.save(toDelete);
         this.privilegeRepository.delete(toDelete);
         return toDelete;
     }

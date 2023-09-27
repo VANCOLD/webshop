@@ -107,7 +107,6 @@ public class ProducerService {
             this.productRepository.save(product);
         }
         toDelete.setProducts(new ArrayList<>());
-        this.producerRepository.save(toDelete);
         this.producerRepository.delete(toDelete);
         return toDelete;
     }

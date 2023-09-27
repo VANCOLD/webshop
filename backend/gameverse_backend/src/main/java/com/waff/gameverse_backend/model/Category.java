@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.CategoryDto;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "categories")
-public class Category {
+public class Category implements DataTransferObject<CategoryDto> {
 
     /**
      * The unique identifier for this category.
@@ -42,4 +44,9 @@ public class Category {
      */
     @OneToMany(mappedBy="category")
     private List<Product> products;
+
+    @Override
+    public CategoryDto convertToDto() {
+        return new CategoryDto(id, name);
+    }
 }

@@ -80,10 +80,12 @@ public class UserControllerTest {
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
+        String username   = "user";
+
         // Testing if we get a user with a legit id for admin
         mockMvc.perform(get("/api/users/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.username",Matchers.is("user")));
+            .andExpect(jsonPath("$.username",Matchers.is(username)));
 
         mockMvc.perform(get("/api/users/{id}",testCase2).header("Authorization", "Bearer " + token))
             .andExpect(status().isNoContent());
@@ -201,7 +203,7 @@ public class UserControllerTest {
         // Existing user in the db
         UserDto testCase = new UserDto( "superpower", "test");
 
-        // Should return forbidden since the user doesn't have to correct user
+        // Should return forbidden since the user doesn't have to correct privilege
         mockMvc
             .perform(put("/api/users")
                 .header("Authorization", "Bearer " + token)
@@ -263,5 +265,4 @@ public class UserControllerTest {
                 .header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
-
 }

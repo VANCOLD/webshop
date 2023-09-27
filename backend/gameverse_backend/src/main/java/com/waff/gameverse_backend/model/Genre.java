@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.GenreDto;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "genres")
-public class Genre {
+public class Genre implements DataTransferObject<GenreDto> {
 
     /**
      * The unique identifier for this genre.
@@ -48,4 +50,9 @@ public class Genre {
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
     private List<Product> products;
+
+    @Override
+    public GenreDto convertToDto() {
+        return new GenreDto(id, name);
+    }
 }

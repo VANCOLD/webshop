@@ -111,7 +111,6 @@ public class CategoryService {
         }
 
         toDelete.setProducts(null);
-        this.categoryRepository.save(toDelete);
         this.categoryRepository.delete(toDelete);
         return toDelete;
     }

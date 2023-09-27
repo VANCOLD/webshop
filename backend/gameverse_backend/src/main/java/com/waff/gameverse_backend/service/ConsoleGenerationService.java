@@ -107,7 +107,6 @@ public class ConsoleGenerationService {
             this.productRepository.save(product);
         }
         toDelete.setProductList(new ArrayList());
-        this.consoleGenerationRepository.save(toDelete);
         this.consoleGenerationRepository.delete(toDelete);
         return toDelete;
     }

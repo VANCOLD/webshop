@@ -118,7 +118,6 @@ public class RoleService {
         }
         toDelete.setUsers(new ArrayList<>());
         toDelete.setPrivileges(new ArrayList<>());
-        this.roleRepository.save(toDelete);
         this.roleRepository.delete(toDelete);
         return toDelete;
     }

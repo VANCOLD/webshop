@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.ConsoleGenerationDto;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "console_generations")
-public class ConsoleGeneration {
+public class ConsoleGeneration implements DataTransferObject<ConsoleGenerationDto> {
 
     /**
      * The unique identifier for this console generation.
@@ -43,4 +45,9 @@ public class ConsoleGeneration {
      */
     @OneToMany(mappedBy = "consoleGeneration")
     private List<Product> productList;
+
+    @Override
+    public ConsoleGenerationDto convertToDto() {
+        return new ConsoleGenerationDto(id, name);
+    }
 }

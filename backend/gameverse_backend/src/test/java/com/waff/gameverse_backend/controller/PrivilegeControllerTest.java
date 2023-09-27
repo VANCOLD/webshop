@@ -83,10 +83,12 @@ public class PrivilegeControllerTest {
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
+        String privName   = "view_profile";
+
         // Testing if we get a privilege with a legit id for admin
         mockMvc.perform(get("/api/privileges/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name",Matchers.is("view_profile")));
+            .andExpect(jsonPath("$.name",Matchers.is(privName)));
 
         mockMvc.perform(get("/api/privileges/{id}",testCase2).header("Authorization", "Bearer " + token))
             .andExpect(status().isNoContent());
@@ -168,14 +170,11 @@ public class PrivilegeControllerTest {
         String token = this.getToken("admin","password");
 
 
-        // Already existing privilege, should return conflict!
+        // should work
         PrivilegeDto testCase1 = new PrivilegeDto(1L, "view_profiles");
 
         // New privilege, doesn't exist in db => NotFound
         PrivilegeDto testCase2 = new PrivilegeDto(1000L, "superpower");
-
-        // Privilege id exists but name is empty => Conflict
-        PrivilegeDto testCase3 = new PrivilegeDto(1L, "");
 
         // Should be ok and return the updated privilege
         mockMvc
@@ -206,7 +205,7 @@ public class PrivilegeControllerTest {
         String token = this.getToken("user","password");
 
         // Existing privilege in the db
-        PrivilegeDto testCase = new PrivilegeDto(1L, "superpower");
+        PrivilegeDto testCase = new PrivilegeDto("superpower");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc
@@ -231,9 +230,6 @@ public class PrivilegeControllerTest {
         // Privilege exist, should delete without a problem
         Long testCase1 = 1L;
 
-        // Should be deleted, name doesn't matter, deletions work with ids => NotFound
-        Long testCase2 = 1L;
-
         // bogus ids don't work either => NotFound
         Long testCase3 = 1000L;
 
@@ -245,7 +241,7 @@ public class PrivilegeControllerTest {
 
         // Should be not found because the privilege was deleted in the last mock call!
         mockMvc
-            .perform(delete("/api/privileges/{id}", testCase2).header("Authorization", "Bearer " + token))
+            .perform(delete("/api/privileges/{id}", testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isNotFound());
 
         // Should be not found because the id is invalid!
@@ -269,5 +265,4 @@ public class PrivilegeControllerTest {
                 .header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
-
 }

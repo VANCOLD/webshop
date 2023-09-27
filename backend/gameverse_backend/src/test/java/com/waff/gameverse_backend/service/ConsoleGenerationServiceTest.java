@@ -1,7 +1,6 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.ConsoleGenerationDto;
-import com.waff.gameverse_backend.repository.RoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -28,10 +27,6 @@ public class ConsoleGenerationServiceTest {
 
     @Autowired
     private ConsoleGenerationService consoleGenerationService;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
 
     @Test
     void findByIdTest() {

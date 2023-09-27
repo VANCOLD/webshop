@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.ProducerDto;
+import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "producers")
-public class Producer {
+public class Producer implements DataTransferObject<ProducerDto> {
 
     /**
      * The unique identifier for this producer.
@@ -43,4 +45,9 @@ public class Producer {
      */
     @OneToMany(mappedBy="producer")
     private List<Product> products;
+
+    @Override
+    public ProducerDto convertToDto() {
+        return new ProducerDto(id, name);
+    }
 }

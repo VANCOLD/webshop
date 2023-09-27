@@ -107,7 +107,6 @@ public class GenreService {
             this.productRepository.save(product);
         }
         toDelete.setProducts(new ArrayList<>());
-        this.genreRepository.save(toDelete);
         this.genreRepository.delete(toDelete);
         return toDelete;
     }

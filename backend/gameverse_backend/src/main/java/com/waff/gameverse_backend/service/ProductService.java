@@ -105,7 +105,6 @@ public class ProductService {
         toDelete.setProducer(null);
         toDelete.setConsoleGeneration(null);
 
-        this.productRepository.save(toDelete);
         this.productRepository.delete(toDelete);
         return toDelete;
     }
