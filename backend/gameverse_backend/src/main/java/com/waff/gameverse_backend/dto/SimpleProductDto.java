@@ -19,6 +19,8 @@ import lombok.Setter;
  **/
 public class SimpleProductDto implements SimpleDto {
 
+    private Long id;
+
     /** The name of the product. */
     @NotNull
     @NotEmpty

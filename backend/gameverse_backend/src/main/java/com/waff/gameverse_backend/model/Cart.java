@@ -3,9 +3,17 @@ package com.waff.gameverse_backend.model;
 import com.waff.gameverse_backend.dto.CartDto;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "carts")
 public class Cart implements DataTransferObject<CartDto> {

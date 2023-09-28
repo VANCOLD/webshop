@@ -132,6 +132,14 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     )
     private List<Cart> carts;
 
+    public Product(SimpleProductDto productDto) {
+        this.id = productDto.getId();
+        this.name = productDto.getName();
+        this.description = productDto.getDescription();
+        this.image = productDto.getImage();
+        this.tax   = productDto.getTax();
+    }
+
     @Override
     public ProductDto convertToDto() {
 
