@@ -14,9 +14,9 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-/**
+ /**
  * A DTO class that holds some information about a product, used for creation (simplified).
- */
+ **/
 public class SimpleProductDto implements SimpleDto {
 
     /** The name of the product. */
@@ -40,7 +40,7 @@ public class SimpleProductDto implements SimpleDto {
 
     /** The tax rate applicable to the product. */
     @Positive
-    private Byte tax;
+    private Integer tax;
 
     /** The available stock quantity of the product. */
     @PositiveOrZero

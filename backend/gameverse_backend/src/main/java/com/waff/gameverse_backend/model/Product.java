@@ -64,7 +64,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
      * The tax rate applicable to the product.
      */
     @Column(name = "tax")
-    private Byte tax;
+    private Integer tax;
 
     /**
      * The quantity of the product in stock.
@@ -118,11 +118,19 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
      */
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "product_to_genre",
+        name = "products_to_genres",
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
     private List<Genre> genres;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "products_to_carts",
+        joinColumns = { @JoinColumn(name = "product_id") },
+        inverseJoinColumns = { @JoinColumn(name = "cart_id") }
+    )
+    private List<Cart> carts;
 
     @Override
     public ProductDto convertToDto() {

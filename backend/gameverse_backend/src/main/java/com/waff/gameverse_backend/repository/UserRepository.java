@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.repository;
 
-import com.waff.gameverse_backend.model.Privilege;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

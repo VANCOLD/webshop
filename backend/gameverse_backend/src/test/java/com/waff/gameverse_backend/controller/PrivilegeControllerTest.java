@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class PrivilegeControllerTest {
 
     @Autowired
@@ -50,15 +50,15 @@ public class PrivilegeControllerTest {
     @Autowired
     private PrivilegeService privilegeService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 8 elements)
         mockMvc.perform(get("/api/privileges/all").header("Authorization", "Bearer " + token))
@@ -70,7 +70,7 @@ public class PrivilegeControllerTest {
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/privileges/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -79,7 +79,7 @@ public class PrivilegeControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
@@ -99,7 +99,7 @@ public class PrivilegeControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/privileges/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -109,7 +109,7 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New privilege, doesn't exist in db
         PrivilegeDto testCase1 = new PrivilegeDto("superpower");
@@ -146,7 +146,7 @@ public class PrivilegeControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New privilege, doesn't exist in db
         PrivilegeDto testCase = new PrivilegeDto("superpower");
@@ -167,8 +167,7 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
-
+        String token = this.getToken("admin");
 
         // should work
         PrivilegeDto testCase1 = new PrivilegeDto(1L, "view_profiles");
@@ -202,7 +201,7 @@ public class PrivilegeControllerTest {
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing privilege in the db
         PrivilegeDto testCase = new PrivilegeDto("superpower");
@@ -223,7 +222,7 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First privilege in data.sql
         String privName = "view_profile";
@@ -254,7 +253,7 @@ public class PrivilegeControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing privilege in data.sql
         Long testCase = 1L;

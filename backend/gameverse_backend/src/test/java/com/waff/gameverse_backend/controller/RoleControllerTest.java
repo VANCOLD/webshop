@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class RoleControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -50,27 +50,27 @@ public class RoleControllerTest {
     @Autowired
     private RoleService roleService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 3 elements)
         mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()", Matchers.is(3)));
+            .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
 
     @Test
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -79,7 +79,7 @@ public class RoleControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
@@ -99,7 +99,7 @@ public class RoleControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/roles/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -109,7 +109,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New role, doesn't exist in db
         RoleDto testCase1 = new RoleDto("superpower");
@@ -146,7 +146,7 @@ public class RoleControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New role, doesn't exist in db
         RoleDto testCase = new RoleDto("superpower");
@@ -167,8 +167,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
-
+        String token = this.getToken("admin");
 
         // Already existing role, should return conflict!
         RoleDto testCase1 = new RoleDto(1L, "user");
@@ -205,7 +204,7 @@ public class RoleControllerTest {
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing role in the db
         RoleDto testCase = new RoleDto( 1L, "superpower");
@@ -226,7 +225,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First role in data.sql
         String privName = "user";
@@ -261,7 +260,7 @@ public class RoleControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing role in data.sql
         Long testCase = 1L;

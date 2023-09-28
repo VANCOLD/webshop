@@ -2,12 +2,11 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The CategoryDto class represents a Data Transfer Object (DTO) for categories in products {@Link Product}.
+ * The CategoryDto class represents a Data Transfer Object (DTO) for categories in products {@See Product}.
  * It is used to transfer category-related information between different layers of the application.
  */
 @Setter

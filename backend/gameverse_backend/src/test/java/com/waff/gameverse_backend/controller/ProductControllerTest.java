@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
-import com.waff.gameverse_backend.service.ProductService;
 import com.waff.gameverse_backend.service.TokenService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -16,14 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -52,18 +50,16 @@ public class ProductControllerTest {
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private ProductService productService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 3 elements)
         mockMvc.perform(get("/api/products/all").header("Authorization", "Bearer " + token))
@@ -75,7 +71,7 @@ public class ProductControllerTest {
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn"t be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/products/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -84,7 +80,7 @@ public class ProductControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
@@ -104,7 +100,7 @@ public class ProductControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn"t be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/products/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -114,15 +110,15 @@ public class ProductControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New product, doesn"t exist in db
         SimpleProductDto testCase1 = new SimpleProductDto(
-        "Froggyo","froggo", 120.00, "Cool frogs", (byte) 20, 2, "asdasd");
+        "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
 
         // Already existing product, should return conflict!
         SimpleProductDto testCase2 = new SimpleProductDto(
-            "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image", (byte) 20, 200, "1234");
+            "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234");
 
         // Should be ok and return the newly created product
         mockMvc
@@ -149,11 +145,11 @@ public class ProductControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New product, doesn"t exist in db
         SimpleProductDto testCase = new SimpleProductDto(
-            "Froggyo","froggo", 120.00, "Cool frogs", (byte) 20, 2, "asdasd");
+            "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
 
         // Should return forbidden since the user doesn"t have to correct product
         mockMvc
@@ -171,17 +167,17 @@ public class ProductControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Already existing product, should return conflict!
         ProductDto testCase1 = new ProductDto(
-            1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image", (byte) 20, 200, "1234",
+            1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
             new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
             List.of(new GenreDto("Adventure")));
 
         ProductDto testCase2 = new ProductDto(
-            1000L, "Froggyo","froggo", 120.00, "Cool frogs", (byte) 20, 2, "asdasd",
+            1000L, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd",
             LocalDateTime.of(2024,1,1,12,0), EsrbRating.EVERYONE.getName(),
             new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"), new ProducerDto(2L, "Sony"),
             List.of(new GenreDto(9L, "Survival & Horror")));
@@ -213,11 +209,11 @@ public class ProductControllerTest {
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing product in the db
         ProductDto testCase = new ProductDto(
-            1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image", (byte) 20, 200, "1234",
+            1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
             new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
             List.of(new GenreDto("Adventure")));
@@ -238,7 +234,7 @@ public class ProductControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First product in data.sql
         String productName = "The Legend Of Zelda: Breath Of The Wild";
@@ -270,7 +266,7 @@ public class ProductControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing product in data.sql
         Long testCase = 1L;

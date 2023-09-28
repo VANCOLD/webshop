@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class CategoryControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -50,15 +50,15 @@ public class CategoryControllerTest {
     @Autowired
     private CategoryService categoryService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 3 elements)
         mockMvc.perform(get("/api/categories/all").header("Authorization", "Bearer " + token))
@@ -70,7 +70,7 @@ public class CategoryControllerTest {
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/categories/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -79,7 +79,7 @@ public class CategoryControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
 
@@ -99,7 +99,7 @@ public class CategoryControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/categories/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -109,7 +109,7 @@ public class CategoryControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New category, doesn't exist in db
         CategoryDto testCase1 = new CategoryDto("Anime");
@@ -146,7 +146,7 @@ public class CategoryControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New category, doesn't exist in db
         CategoryDto testCase = new CategoryDto("Anime");
@@ -167,8 +167,7 @@ public class CategoryControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
-
+        String token = this.getToken("admin");
 
         // should work
         CategoryDto testCase1 = new CategoryDto(1L, "user");
@@ -202,7 +201,7 @@ public class CategoryControllerTest {
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing category in the db
         CategoryDto testCase = new CategoryDto( "Anime");
@@ -223,7 +222,7 @@ public class CategoryControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First category in data.sql
         String catName = "Games";
@@ -256,7 +255,7 @@ public class CategoryControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing category in data.sql
         Long testCase = 1L;

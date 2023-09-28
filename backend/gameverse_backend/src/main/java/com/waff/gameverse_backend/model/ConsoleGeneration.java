@@ -44,7 +44,8 @@ public class ConsoleGeneration implements DataTransferObject<ConsoleGenerationDt
      * Each product in the list belongs to this specific console generation.
      */
     @OneToMany(mappedBy = "consoleGeneration")
-    private List<Product> productList;
+
+    private List<Product> products;
 
     @Override
     public ConsoleGenerationDto convertToDto() {

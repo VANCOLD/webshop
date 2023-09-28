@@ -6,11 +6,15 @@ TRUNCATE TABLE console_generations;
 TRUNCATE TABLE genres;
 TRUNCATE TABLE producers;
 TRUNCATE TABLE products;
-TRUNCATE TABLE product_to_genre;
+TRUNCATE TABLE products_to_genres;
 TRUNCATE TABLE privileges;
 TRUNCATE TABLE roles;
 TRUNCATE TABLE privileges_in_role;
 TRUNCATE TABLE users;
+TRUNCATE TABLE orders;
+TRUNCATE TABLE ordered_products;
+TRUNCATE TABLE carts;
+TRUNCATE TABLE products_to_carts;
 
 
 INSERT INTO privileges (name) VALUES
@@ -26,8 +30,7 @@ INSERT INTO privileges (name) VALUES
 
 INSERT INTO roles (name) VALUES
 ('user'),    -- 1
-('support'), -- 2
-('admin');   -- 3
+('admin');   -- 2
 
 
 INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
@@ -39,23 +42,15 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 (2, 3), -- 6
 (2, 4), -- 7
 (2, 5), -- 8
-(2, 7), -- 9
-(2, 8), -- 10
-(3, 1), -- 11
-(3, 2), -- 12
-(3, 3), -- 13
-(3, 4), -- 14
-(3, 5), -- 15
-(3, 6), -- 16
-(3, 7), -- 17
-(3, 8); -- 18
+(2, 6), -- 9
+(2, 7), -- 10
+(2, 8); -- 11
 
 
 /* password is always the word password for each user */
 INSERT INTO users (username, password, role_id) VALUES
 ('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1),      -- 1
-('moderator', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2), -- 2
-('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 3);     -- 3
+('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2);     -- 2
 
 
 INSERT INTO console_generations (name) VALUES
@@ -113,7 +108,7 @@ VALUES
 ('Gameverse', 'Buy us, we are on sale', 3000000.01, 'company.bmp', 30, 1, 'wow', '2012-01-01', 'NONE', NULL, 6, 10);                    -- 7
 
 
-INSERT INTO product_to_genre (product_id, genre_id) VALUES
+INSERT INTO products_to_genres (product_id, genre_id) VALUES
 (1, 2),     -- 1
 (1, 3),     -- 2
 (2, 2),     -- 3

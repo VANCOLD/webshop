@@ -45,7 +45,7 @@ public class Genre implements DataTransferObject<GenreDto> {
      */
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "product_to_genre",
+        name = "products_to_genres",
         joinColumns = { @JoinColumn(name = "genre_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )

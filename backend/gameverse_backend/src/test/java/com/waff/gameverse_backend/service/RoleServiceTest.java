@@ -53,7 +53,7 @@ public class RoleServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.roleService.findAll();
-        assertThat(testCase1.size()).isEqualTo(3);
+        assertThat(testCase1.size()).isEqualTo(2);
     }
 
     @Test

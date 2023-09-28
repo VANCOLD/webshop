@@ -2,11 +2,11 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * The UserDto class represents a Data Transfer Object (DTO) for user information.
@@ -40,6 +40,12 @@ public class UserDto implements Serializable {
      */
     @NotNull
     private RoleDto role;
+
+    @NotNull
+    private List<OrderDto> orders;
+
+    @NotNull
+    private CartDto cart;
 
     /**
      * Constructs an empty UserDto with default values (id=0, username="", password="", role=empty RoleDto).
@@ -99,9 +105,15 @@ public class UserDto implements Serializable {
      * @param role     The role associated with the user.
      */
     public UserDto(Long id, String username, String password, RoleDto role) {
+        this(id, username, password, role, List.of(), new CartDto());
+    }
+
+    public UserDto(Long id, String username, String password, RoleDto role, List<OrderDto> orders, CartDto cart ) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.orders = orders;
+        this.cart   = cart;
     }
 }

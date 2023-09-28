@@ -7,7 +7,6 @@ import com.waff.gameverse_backend.repository.CategoryRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 

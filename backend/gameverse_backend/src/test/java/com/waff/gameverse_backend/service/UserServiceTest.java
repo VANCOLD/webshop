@@ -2,7 +2,7 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.PrivilegeDto;
 import com.waff.gameverse_backend.dto.RoleDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.SimpleUserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -45,7 +45,7 @@ public class UserServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.userService.findAll();
-        assertThat(testCase1.size()).isEqualTo(3);
+        assertThat(testCase1.size()).isEqualTo(2);
     }
 
     @Test
@@ -67,9 +67,15 @@ public class UserServiceTest {
     @Test
     void saveTest() {
 
-        UserDto user1 = new UserDto("guest","hallo", new RoleDto("test", List.of(new PrivilegeDto("edit_uses"))));
+        SimpleUserDto user1 = new SimpleUserDto();
+        user1.setUsername("guest");
+        user1.setPassword("hallo");
+        user1.setRole( new RoleDto("test", List.of(new PrivilegeDto("edit_uses"))));
 
-        UserDto user2 = new UserDto("user", "hallo", new RoleDto("test", List.of(new PrivilegeDto("edit_uses"))));
+        SimpleUserDto user2 = new SimpleUserDto();
+        user2.setUsername("user");
+        user2.setPassword("password");
+        user2.setRole( new RoleDto("test", List.of(new PrivilegeDto("edit_uses"))));
 
         var testCase1 = this.userService.save(user1);
         assertThat(testCase1.getUsername()).isEqualTo(user1.getUsername());
@@ -79,7 +85,12 @@ public class UserServiceTest {
 
     @Test
     void updateTest() {
-        UserDto user = new UserDto("test","test", new RoleDto("test",List.of(new PrivilegeDto("edit_users"))));
+
+        SimpleUserDto user = new SimpleUserDto();
+        user.setId(1000L);
+        user.setUsername("guest");
+        user.setPassword("hallo");
+        user.setRole( new RoleDto("test", List.of(new PrivilegeDto("edit_uses"))));
         assertThrows(NoSuchElementException.class,() -> this.userService.update(user));
 
         user.setId(1L);

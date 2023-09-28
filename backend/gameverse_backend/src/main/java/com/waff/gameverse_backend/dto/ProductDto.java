@@ -42,7 +42,7 @@ public class ProductDto {
 
     /** The tax rate applicable to the product. */
     @Positive
-    private Byte tax;
+    private Integer tax;
 
     /** The available stock quantity of the product. */
     @PositiveOrZero
