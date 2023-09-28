@@ -1,0 +1,25 @@
+name: compile
+
+on:
+  push:
+    branches:
+      - "[0-9]+-*"
+  pull_request:
+    branches: [ "dev", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '19' 
+        distribution: 'temurin'
+        cache: maven
+    - name: Build
+      run: mvn clean compile --file ./backend/gameverse_backend/pom.xml
