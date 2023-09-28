@@ -1,10 +1,5 @@
 name: testing
 
-permissions:
-    contents: read
-    checks: write
-    id-token: write
-
 on:
   pull_request:
     branches: [ "dev", "master" ]
