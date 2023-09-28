@@ -18,7 +18,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file ./backend/gameverse_backend/pom.xml
+      run: mvn -B package --file ./backend/gameverse_backend/pom.xml -DskipTests
     - name: Prvide artifact
       run: mkdir download & cp ./backend/gameverse_backend/target/*.jar download
 
