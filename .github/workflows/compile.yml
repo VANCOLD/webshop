@@ -22,6 +22,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build
-      run: | 
-        cd backend/gameverse_backend
-        mvn clean compile
+      run: mvn clean compile --file ./backend/gameverse_backend/pom.xml
