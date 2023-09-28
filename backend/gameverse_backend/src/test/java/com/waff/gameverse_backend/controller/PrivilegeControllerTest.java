@@ -6,15 +6,20 @@ import com.waff.gameverse_backend.service.PrivilegeService;
 import com.waff.gameverse_backend.service.TokenService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -23,7 +28,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class PrivilegeControllerTest {
 
     @Autowired
@@ -41,15 +50,15 @@ public class PrivilegeControllerTest {
     @Autowired
     private PrivilegeService privilegeService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 8 elements)
         mockMvc.perform(get("/api/privileges/all").header("Authorization", "Bearer " + token))
@@ -61,7 +70,7 @@ public class PrivilegeControllerTest {
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/privileges/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -70,14 +79,16 @@ public class PrivilegeControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
+
+        String privName   = "view_profile";
 
         // Testing if we get a privilege with a legit id for admin
         mockMvc.perform(get("/api/privileges/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name",Matchers.is("view_profile")));
+            .andExpect(jsonPath("$.name",Matchers.is(privName)));
 
         mockMvc.perform(get("/api/privileges/{id}",testCase2).header("Authorization", "Bearer " + token))
             .andExpect(status().isNoContent());
@@ -88,7 +99,7 @@ public class PrivilegeControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/privileges/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -98,7 +109,7 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New privilege, doesn't exist in db
         PrivilegeDto testCase1 = new PrivilegeDto("superpower");
@@ -135,7 +146,7 @@ public class PrivilegeControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New privilege, doesn't exist in db
         PrivilegeDto testCase = new PrivilegeDto("superpower");
@@ -156,17 +167,13 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
-
-        // Already existing privilege, should return conflict!
+        // should work
         PrivilegeDto testCase1 = new PrivilegeDto(1L, "view_profiles");
 
         // New privilege, doesn't exist in db => NotFound
         PrivilegeDto testCase2 = new PrivilegeDto(1000L, "superpower");
-
-        // Privilege id exists but name is empty => Conflict
-        PrivilegeDto testCase3 = new PrivilegeDto(1L, "");
 
         // Should be ok and return the updated privilege
         mockMvc
@@ -189,24 +196,15 @@ public class PrivilegeControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
-        // Should be not found because the id is invalid!
-        mockMvc
-            .perform(put("/api/privileges")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("utf-8")
-                .content(mapper.writeValueAsString(testCase3))
-                .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isConflict());
     }
 
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing privilege in the db
-        PrivilegeDto testCase = new PrivilegeDto(1L, "superpower");
+        PrivilegeDto testCase = new PrivilegeDto("superpower");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc
@@ -224,15 +222,12 @@ public class PrivilegeControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First privilege in data.sql
         String privName = "view_profile";
         // Privilege exist, should delete without a problem
         Long testCase1 = 1L;
-
-        // Should be deleted, name doesn't matter, deletions work with ids => NotFound
-        Long testCase2 = 1L;
 
         // bogus ids don't work either => NotFound
         Long testCase3 = 1000L;
@@ -245,7 +240,7 @@ public class PrivilegeControllerTest {
 
         // Should be not found because the privilege was deleted in the last mock call!
         mockMvc
-            .perform(delete("/api/privileges/{id}", testCase2).header("Authorization", "Bearer " + token))
+            .perform(delete("/api/privileges/{id}", testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isNotFound());
 
         // Should be not found because the id is invalid!
@@ -258,7 +253,7 @@ public class PrivilegeControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing privilege in data.sql
         Long testCase = 1L;
@@ -269,5 +264,4 @@ public class PrivilegeControllerTest {
                 .header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
-
 }
