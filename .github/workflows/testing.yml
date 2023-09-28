@@ -16,7 +16,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - run: cd backend/gameverse_backend
     - name: Build with Maven
-      run: mvn test       
+      run: mvn test --file ./backend/gameverse_backend/pom.xml
        
