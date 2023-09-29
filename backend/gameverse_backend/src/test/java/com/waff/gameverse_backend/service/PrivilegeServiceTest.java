@@ -8,8 +8,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DataJpaTest
 @DirtiesContext
 @Import(PrivilegeService.class)
+@ActiveProfiles("test")
 public class PrivilegeServiceTest {
     
     @Autowired
@@ -91,9 +92,6 @@ public class PrivilegeServiceTest {
         privilege.setId(1L);
         var updatedRole = this.privilegeService.update(privilege);
         assertThat(updatedRole.getName()).isEqualTo(privilege.getName());
-
-        privilege.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.privilegeService.update(privilege));
 
     }
 

@@ -89,14 +89,11 @@ public class PrivilegeService {
      * @param privilegeDto The PrivilegeDto containing updated privilege information.
      * @return The updated privilege.
      * @throws NoSuchElementException  If the privilege with the given ID does not exist.
-     * @throws IllegalArgumentException If the privilege name is empty.
      */
     public Privilege update(PrivilegeDto privilegeDto) {
         var toUpdate = this.privilegeRepository.findById(privilegeDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Privilege with the given ID does not exist"));
-        if (privilegeDto.getName().isEmpty()) {
-            throw new IllegalArgumentException("The name of the privilege cannot be empty");
-        }
+
         toUpdate.setName(privilegeDto.getName());
         return this.privilegeRepository.save(toUpdate);
     }
@@ -119,7 +116,6 @@ public class PrivilegeService {
             this.roleRepository.save(role);
         }
         toDelete.setRoles(new ArrayList<>());
-        this.privilegeRepository.save(toDelete);
         this.privilegeRepository.delete(toDelete);
         return toDelete;
     }

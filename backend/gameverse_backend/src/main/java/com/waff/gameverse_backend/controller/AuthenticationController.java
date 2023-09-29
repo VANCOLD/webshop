@@ -1,7 +1,7 @@
 package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.RegistrationDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +37,9 @@ public class AuthenticationController {
      * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if a user with the same username already exists.
      */
     @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@RequestBody RegistrationDto registrationDto) {
+    public ResponseEntity<SimpleUserDto> registerUser(@RequestBody RegistrationDto registrationDto) {
         try {
-            return ResponseEntity.ok(this.authenticationService.registerUser(registrationDto.getUsername(), registrationDto.getPassword()).convertToDto());
+            return ResponseEntity.ok(this.authenticationService.registerUser(registrationDto.getUsername(), registrationDto.getPassword()).convertToSimpleDto());
         } catch (BadCredentialsException ex) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists!", ex);
         }

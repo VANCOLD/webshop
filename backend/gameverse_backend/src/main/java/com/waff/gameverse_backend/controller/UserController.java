@@ -1,11 +1,13 @@
 package com.waff.gameverse_backend.controller;
 
+import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,13 +39,13 @@ public class UserController {
      * @see UserDto
      */
     @GetMapping("/all")
-    public ResponseEntity<List<UserDto>> findAll() {
+    public ResponseEntity<List<SimpleUserDto>> findAll() {
         var users = userService.findAll();
 
         if (users.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+            return ResponseEntity.ok(users.stream().map(User::convertToSimpleDto).toList());
         }
     }
 
@@ -56,9 +58,9 @@ public class UserController {
      * @see UserDto
      */
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> findById(@PathVariable Long id) {
+    public ResponseEntity<SimpleUserDto> findById(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.findById(id).convertToDto());
+            return ResponseEntity.ok(userService.findById(id).convertToSimpleDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.noContent().build();
@@ -68,15 +70,15 @@ public class UserController {
     /**
      * Creates a new user.
      *
-     * @param userDto The UserDto containing the user information to be created.
+     * @param userDto The SimpleUserDto containing the user information to be created.
      * @return ResponseEntity<UserDto> A ResponseEntity containing the newly created UserDto.
      * @throws IllegalArgumentException if there is a conflict or error while creating the user.
-     * @see UserDto
+     * @see SimpleUserDto
      */
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody UserDto userDto) {
+    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.save(userDto).convertToDto());
+            return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -88,17 +90,13 @@ public class UserController {
      *
      * @param userDto The UserDto containing the updated user information.
      * @return ResponseEntity<UserDto> A ResponseEntity containing the updated UserDto.
-     * @throws IllegalArgumentException if there is a conflict or error while updating the user.
      * @throws NoSuchElementException if the user to update does not exist.
      * @see UserDto
      */
     @PutMapping
-    public ResponseEntity<UserDto> update(@RequestBody UserDto userDto) {
+    public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.update(userDto).convertToDto());
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -113,9 +111,9 @@ public class UserController {
      * @throws NoSuchElementException if the user with the given ID does not exist.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserDto> delete(@PathVariable Long id) {
+    public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.delete(id).convertToDto());
+            return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
