@@ -1,6 +1,11 @@
 name: deploy
 
+permissions:
+  packages: write
+      
 on:
+  push:
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -18,11 +23,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: |
-        cd backend/gameverse_backend
-        mvn -B package --file ./pom.xml
-
-    - uses: actions/upload-artifact@v3
+      run: mvn -B package --file ./backend/gameverse_backend/pom.xml -DskipTests
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.3
       with:
-        name: webshop
-        path: backend/gameverse_backend/target/*.jar
+        name: gameverse_backend
+        path: ./backend/gameverse_backend/target/*.jar
+

@@ -9,8 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The UserRepository interface provides CRUD (Create, Read, Update, Delete) operations for User entities.
- * It extends the JpaRepository interface to work with User entities and allows querying the database for users.
+ * The {@code UserRepository} interface is a Spring Data JPA repository
+ * responsible for managing database operations related to the {@link User} entity.
+ * It provides methods for common CRUD (Create, Read, Update, Delete) operations on users,
+ * as well as a custom query method to find a users by its name.
+ *
+ * <p>This repository is annotated with {@link org.springframework.stereotype.Repository}
+ * to indicate that it is a Spring component and should be managed by the Spring framework.
+ *
+ * @see org.springframework.data.jpa.repository.JpaRepository
+ * @see User
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -19,7 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * Find a user by their username.
      *
      * @param username The username of the user to find.
-     * @return An Optional containing the found User, or an empty Optional if not found.
+     * @return An {@link java.util.Optional} containing the found user,
+     *         or an empty {@code Optional} if no matching user is found.
      */
     Optional<User> findByUsername(String username);
 

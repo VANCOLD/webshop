@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -24,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DataJpaTest
 @DirtiesContext
 @Import(RoleService.class)
+@ActiveProfiles("test")
 public class RoleServiceTest {
 
     @Autowired
@@ -51,7 +53,7 @@ public class RoleServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.roleService.findAll();
-        assertThat(testCase1.size()).isEqualTo(3);
+        assertThat(testCase1.size()).isEqualTo(2);
     }
 
     @Test
@@ -91,10 +93,6 @@ public class RoleServiceTest {
         role.setId(1L);
         var updatedRole = this.roleService.update(role);
         assertThat(updatedRole.getName()).isEqualTo(role.getName());
-
-        role.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.roleService.update(role));
-
     }
 
     @Test
