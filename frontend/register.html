@@ -1,211 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    
-        <title>Bootstrap Skeleton</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-      
-        <style>
 
-            body {
-                background-image: url("./images/register-bg.jpg");
-                background-size: auto;
-                background-repeat: no-repeat;
-            }
+<head>
 
-            .login-container {
-                margin-top:20px;
-                background-color:whitesmoke;
-            }
+    <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-            .form-group + .form-group {
-                margin-top: 8px;
-            }
+    <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
-        </style>
-      </head>
+    <title>Sign in / up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fontawesome-->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+    <!-- Gibt uns Icons (Social Media / Navbar)-->
+
+    <!-- jquery script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/login.js"></script>
+
+    <!-- Unser eigenes CSS-->
+    <link href="./css/style.css" rel="stylesheet">
+
+    <style>
+        header {
+            min-height: 5px; /* Adjust this value according to your design */
+            background-color: #1e1e1e; /* Add your desired background color here */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .background {
+            background-image: url("./images/register-bg.png");
+            background-size: cover; /* Updated property */
+            background-repeat: no-repeat; /* Updated property */
+            background-position: center; /* Added property */
+        }
+
+        .login-container {
+            background-color: whitesmoke;
+            border-bottom-left-radius: 50px; /* Adjust this value according to your preference */
+        }
+
+        .form-group + .form-group {
+            margin-top: 8px;
+        }
+
+        .custom-border-radius {
+            border-radius: 50px;
+        }
+
+        .custom-h1-color {
+            color: #e75e8d; /* Replace 'red' with your desired color */
+        }
+
+        .custom-button-color {
+            color: #e75e8d;
+        }
+
+        .custom-button-rounded-color {
+            color: #e75e8d;
+            border-top-right-radius: 50px;
+        }
 
 
-<body>
+        .custom-button-rounded-color:hover {
+            color: #e75e8d;
+            border-top-right-radius: 50px;
+        }
 
-    <div class="fluid-container col-lg-12">
+        .custom-button-rounded-color:focus {
+            color: #e75e8d;
+            border-top-right-radius: 50px;
+        }
 
+        .custom-button-rounded-color:active {
+            color: #e75e8d;
+            border-top-right-radius: 50px;
+        }
 
-        
+        .custom-button-bgcolor {
+            background-color: #e75e8d;
+        }
 
+        .custom-button-bgcolor:hover,
+        .custom-button-color:hover,
+        .custom-button-rounded-color:hover {
+            background-color: #e75e8d;
+            color: #ffffff; /* You can change the text color on hover here, if needed */
+        }
+
+    </style>
+
+</head>
+
+<body class="background">
+
+<!-- ***** Header Area Start ***** -->
+<header>
+
+    <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-2"></div>
-            <div class="container login-container rounded-4 col-lg-6">
+            <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center clearfix">
 
-                <nav>
-                    <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-signup-tab" data-bs-toggle="tab" data-bs-target="#nav-signup" type="button" role="tab" aria-controls="nav-signup" aria-selected="true" style="font-size:19px">Sign Up</button>
-                        <button class="nav-link" id="nav-signin-tab" data-bs-toggle="tab" data-bs-target="#nav-signin" type="button" role="tab" aria-controls="nav-signin" aria-selected="false" style="font-size:19px">Sign In</button>
+                <div class="logo">
+                    <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+
+                    <div class="nav-link" onclick="">
+                        <div class="icon-button">
+                            <div class="input-group">
+                                <input aria-describedby="searc-field" aria-label="Searchfield" class="form-control search-form"
+                                       placeholder="Search" type="text">
+                                <div class="input-group-append">
+                                    <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </nav>
-                
-                <div class="tab-content container" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-signup" role="tabpanel" aria-labelledby="nav-signup-tab">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <form class=".form-inline col-lg-10" action="/action_page.php">
-                    
-                                <div class="form-group nav-justified">
-                                    <div class="col-lg-8">
-                                        <br>
-                                        <h1>Sign Up</h1>
-                                        <p>Please fill in this form to create an account.</p>
-                                    </div>
 
-            
-                                    <div class="form-group">
-                                        <label for="email"><b>Email</b></label>
-                                        <input type="text" class="form-control" placeholder="Enter Email" name="email" required>
-                                    </div>
-            
-                                    <div class="form-group">
-                                        <label for="anrede"><b>Form of adress</b></label>
-                                        <select name="anrede" class="form-select form-control">
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="div">Diverse</option>
-                                        </select>
-                                    </div>
-            
-            
-                                    <div class="form-group">
-                                        <label for="name"><b>Name</b></label>
-                                        <input type="text" class="form-control" placeholder="enter name" name="name" required>
-                                    </div>
-            
-            
-                                    <div class="form-group">
-                                        <label for="surname"><b>Surname</b></label>
-                                        <input type="text" class="form-control" placeholder="enter surname" name="surname" required>
-                                    </div>
-                    
-                                    <div class="form-group">
-                                        <label for="plz"><b>Postal-Code</b></label>
-                                        <input type="text" class="form-control" placeholder="enter postal-code" name="plz" required>
-                                    </div>
-            
-            
-                                    <div class="form-group">
-                                        <label for="ort"><b>City</b></label>
-                                        <input type="text" class="form-control" placeholder="enter city name" name="city" required>
-                                    </div>
-            
-            
-                                    <div class="form-group">
-                                        <label for="street"><b>Street</b></label>
-                                        <input type="text" class="form-control" placeholder="enter street name" name="street" required>
-                                    </div>
-            
-                                    <div class="form-group">
-                                        <label for="door"><b>House Number</b></label>
-                                        <input type="text" class="form-control" placeholder="enter housenumber" name="door" required>
-                                    </div>
-            
-            
-                                    <div class="form-group">
-                                        <label for="psw"><b>Passwort</b></label>
-                                        <input type="password" class="form-control" placeholder="Enter Password" name="psw" required>
-                                    </div>
-            
-                                    <div class="form-group">
-                                        <label for="psw-repeat"><b>Repeat Password</b></label>
-                                        <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat" required>
-                                    </div>
-                                    
+                    <div>
+                        <a class="nav-link" href="./support.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <p>Support</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a class="nav-link" href="./register.html">
+                            <div class="icon-button">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p>Cart</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a class="nav-link" href="./register.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-user"></i>
+                                <p>Sign In</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div> <!-- END d-flex flex-row -->
+            </nav>
+        </div> <!-- END row-->
+    </div> <!-- END container-fluid -->
+</header>
+
+<div class="container-fluid ">
+
+    <div class="row">
+
+        <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5">
+
+
+            <nav>
+                <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
+                    <button , aria-controls="nav-signup" aria-selected="true"
+                            class="nav-link custom-button-color" data-bs-target="#nav-signup" data-bs-toggle="tab" id="nav-signup-tab"
+                            role="tab" style="font-size:19px" type="button">Sign Up
+                    </button>
+                    <button aria-controls="nav-signin" aria-selected="false" class="nav-link custom-button-rounded-color"
+                            data-bs-target="#nav-signin" data-bs-toggle="tab" id="nav-signin-tab" role="tab"
+                            style="font-size:19px" type="button">Sign In
+                    </button>
+                </div>
+            </nav>
+
+            <div class="tab-content container" id="nav-tabContent">
+                <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <form action="/action_page.php" class=".form-inline col-lg-10">
+
+                            <div class="form-group nav-justified">
+                                <div class="col-lg-8">
                                     <br>
-            
+                                    <h1 class="custom-h1-color">Sign Up</h1>
+                                    <p>Please fill in this form to create an account.</p>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-lg-5"></div>
-                                            <button class="btn btn-primary col-lg-2 form-control-sm input-sm" type="submit">Register</button>
-                                            <div class="col-lg-5"></div>
+
+                                <div class="form-group">
+                                    <label for="email"><b>Email</b></label>
+                                    <input class="form-control" name="email" placeholder="Enter Email" required
+                                           type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="anrede"><b>Form of adress</b></label>
+                                    <select class="form-select form-control" name="anrede">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="div">Diverse</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="name"><b>Name</b></label>
+                                    <input class="form-control" name="name" placeholder="enter name" required
+                                           type="text">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="surname"><b>Surname</b></label>
+                                    <input class="form-control" name="surname" placeholder="enter surname" required
+                                           type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="plz"><b>Postal-Code</b></label>
+                                    <input class="form-control" name="plz" placeholder="enter postal-code" required
+                                           type="text">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="ort"><b>City</b></label>
+                                    <input class="form-control" name="city" placeholder="enter city name" required
+                                           type="text">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="street"><b>Street</b></label>
+                                    <input class="form-control" name="street" placeholder="enter street name"
+                                           required type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="door"><b>House Number</b></label>
+                                    <input class="form-control" name="door" placeholder="enter housenumber" required
+                                           type="text">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="psw"><b>Passwort</b></label>
+                                    <input class="form-control" name="psw" placeholder="Enter Password" required
+                                           type="password">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="psw-repeat"><b>Repeat Password</b></label>
+                                    <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
+                                           required type="password">
+                                </div>
+
+                                <br>
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-5"></div>
+                                        <button class="btn btn-primary col-lg-2 form-control-sm input-sm custom-button-bgcolor"
+                                                type="submit">Register
+                                        </button>
+                                        <div class="col-lg-5"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p style="position:relative; text-align:center; font-size:12px; margin-top:4px;">By
+                                        creating an account you agree to our <a href="agb.html" style="color:#e75e8d;">Terms
+                                            & Privacy</a>.</p>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-lg-1"></div>
+                    </div>
+
+                </div>
+                <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <form action="/action_page.php" class=".form-inline col-lg-10">
+
+                            <div class="form-group nav-justified">
+                                <div class="col-lg-9">
+                                    <br>
+                                    <h1>Sign In</h1>
+                                    <p>Please enter your username and password to log in!</p>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="username"><b>Username</b></label>
+                                    <input class="form-control" name="username" placeholder="Enter username" required
+                                           type="text">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="psw"><b>Passwort</b></label>
+                                    <input class="form-control" name="psw" placeholder="Enter Password" required
+                                           type="password">
+                                </div>
+
+                                <br>
+
+                                <div class="row col-lg-12">
+
+                                    <div class="form-group d-inline-flex align-items-center">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-3">
+                                            <button class="btn btn-primary form-control custom-button-bgcolor"
+                                                    type="submit">Login
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-lg-7 d-inline-flex align-items-center">
+                                            <div class="col-lg-2">
+                                                <input checked="unchcked" class="form-control form-check-input"
+                                                       name="remember" type="checkbox">
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <label class="form-check-label w-auto" for="remember"><b>Remember me</b></label>
+                                            </div>
+                                            <div class="col-lg-4"></div>
                                         </div>
                                     </div>
-            
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <p style="position:relative; text-align:center; font-size:12px; margin-top:4px;">By creating an account you agree to our <a href="agb.html">Terms & Privacy</a>.</p>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="col-lg-1"></div>
-                        </div>
 
-                    </div>
-                    <div class="tab-pane fade" id="nav-signin" role="tabpanel" aria-labelledby="nav-signin-tab">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <form class=".form-inline col-lg-10" action="/action_page.php">
-                        
-                                <div class="form-group nav-justified">
-                                    <div class="col-lg-9">
-                                        <br>
-                                        <h1>Sign In</h1>
-                                        <p>Please enter your username and password to log in!</p>
-                                    </div>
-
-            
-                                    <div class="form-group">
-                                        <label for="username"><b>Username</b></label>
-                                        <input type="text" class="form-control" placeholder="Enter username" name="username" required>
-                                    </div>
-            
-            
-            
-                                    <div class="form-group">
-                                        <label for="psw"><b>Passwort</b></label>
-                                        <input type="password" class="form-control" placeholder="Enter Password" name="psw" required>
-                                    </div>
-                                    
+                            </div>
+                            <div class="row">
+                                <div class="container fluid-containner col-lg-12">
                                     <br>
-            
-                                    <div class="row col-lg-12">
-            
-                                        <div class="form-group d-inline-flex align-items-center">
-                                            <div class="col-lg-2"></div>
-                                            <div class="col-lg-3">
-                                                <button class="btn btn-primary form-control" type="submit">Login</button>
-                                            </div>
-                                            <div class="col-lg-1"></div>
-                                            <div class="col-lg-7 d-inline-flex align-items-center">
-                                                <div class="col-lg-2">
-                                                    <input type="checkbox" class="form-control form-check-input" checked="unchcked" name="remember"> 
-                                                </div>
-                                                <div class="col-lg-5">
-                                                    <label for="remember" class="form-check-label w-auto"><b>Remember me</b></label>
-                                                </div>
-                                                <div class="col-lg-4"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
+                                    <p style="text-align:center;">Forgot <a href="#"
+                                                                            style="color:#e75e8d;">password?</a></p>
                                 </div>
-                                <div class="row">
-                                    <div class="container fluid-containner col-lg-12">
-                                        <br>
-                                        <p style="text-align:center;">Forgot <a href="#">password?</a></p>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="col-lg-1"></div>
-                        </div>
+                            </div>
+                        </form>
+                        <div class="col-lg-1"></div>
                     </div>
                 </div>
-                      
             </div>
-            <div class="col-lg-2"></div>
+
         </div>
     </div>
+</div>
 </body>
 </html>

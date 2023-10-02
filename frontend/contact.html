@@ -1,94 +1,288 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <title>Gamerverse - Allgemeine Geschäftsbedingungen</title>
+
+    <!-- Bootstrap core CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fontawesome-->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+
+    <!-- Unser eigenes CSS-->
+    <link href="./css/style.css" rel="stylesheet">
+
+
     <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
-<title>Kontaktformular</title>
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    </style>
 </head>
+
+
 <body>
 
-
-<a href="impressum.html">Impressum</a><br>
-<a href="Support.html">Hilfsseite</a>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
+                <div class="logo">
+                    <a href="./index.html"><img alt="gamerverse logo" class="img-fluid w-25 h-25"
+                                                src="./images/Logo.png"></a>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="nav-link" onclick="navbehave()">
+                        <div class="icon-button">
+                            <div class="input-group">
+                                <input aria-describedby="searc-field" aria-label="Searchfield" class="form-control " placeholder="Search"
+                                       type="text">
+                                <div class="input-group-append">
+                                    <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="nav-link" href="./support.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <p>Support</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="nav-link" href="./register.html">
+                            <div class="icon-button">
+                                <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                                <p>Cart</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="nav-link" href="./register.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-user fa-fw"></i>
+                                <p>Profile</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
 
 <h3>Contact Form</h3>
 
-<div class="container">
-    <form action="/action_page.php">
+<div class="container-fluid">
+    <div class="row">
+        <div class="page-content">
+            <form action="/action_page.php">
 
-        <label for="bestellnr">Bestellnummer</label>
-        <input type="text" id="bestellnr" name="Bestellnummer" placeholder="Deine Bestellnr..">
+                <label for="bestellnr">Bestellnummer</label>
+                <input id="bestellnr" name="Bestellnummer" placeholder="Deine Bestellnr.." type="text">
 
-        <label for="anliegen">W&auml;hle bitte dein Anliegen aus:</label>
-        <select id="anliegen" name="Anliegen">
-            <option value="Bestellschwierigkeiten">Bestellungen</option>
-            <option value="Feedback und Beschwerden">Feedback</option>
-            <option value="Koop">Kooperationsanfragen</option>
-            <option value="Presse">Presseanfragen</option>
-            <option value="Probleme und Bugs mit der Website">Bugs</option>
-        </select>
+                <label for="anliegen">W&auml;hle bitte dein Anliegen aus:</label>
+                <select id="anliegen" name="Anliegen">
+                    <option value="Bestellschwierigkeiten">Bestellungen</option>
+                    <option value="Feedback und Beschwerden">Feedback</option>
+                    <option value="Koop">Kooperationsanfragen</option>
+                    <option value="Presse">Presseanfragen</option>
+                    <option value="Probleme und Bugs mit der Website">Bugs</option>
+                </select>
 
-        <label for="fname">Vorname</label>
-        <input type="text" id="fname" name="firstname" placeholder="Dein Vorname..">
+                <label for="fname">Vorname</label>
+                <input id="fname" name="firstname" placeholder="Dein Vorname.." type="text">
 
-        <label for="lname">Nachname</label>
-        <input type="text" id="lname" name="lastname" placeholder="Dein Nachname..">
+                <label for="lname">Nachname</label>
+                <input id="lname" name="lastname" placeholder="Dein Nachname.." type="text">
 
-        <label for="email">E-Mail</label>
-        <input type="text" id="email" name="email" placeholder="Deine E-Mail..">
+                <label for="email">E-Mail</label>
+                <input id="email" name="email" placeholder="Deine E-Mail.." type="text">
 
-        <label for="telnr">Telefonnummer</label>
-        <input type="text" id="telnr" name="Telefonnummer" placeholder="Deine Telefonnummer..">
+                <label for="telnr">Telefonnummer</label>
+                <input id="telnr" name="Telefonnummer" placeholder="Deine Telefonnummer.." type="text">
 
-        <label for="country">Land</label>
-        <select id="country" name="country">
-            <option value="Austria">&Ouml;sterreich</option>
-            <option value="Germany">Deutschland</option>
-            <option value="Schweiz">Schweiz</option>
-        </select>
+                <label for="country">Land</label>
+                <select id="country" name="country">
+                    <option value="Austria">&Ouml;sterreich</option>
+                    <option value="Germany">Deutschland</option>
+                    <option value="Schweiz">Schweiz</option>
+                </select>
 
-        <label for="adresse">Deine Bestelladresse</label>
-        <input type="text" id="adresse" name="adresse" placeholder="Deine Bestelladresse..">
+                <label for="adresse">Deine Bestelladresse</label>
+                <input id="adresse" name="adresse" placeholder="Deine Bestelladresse.." type="text">
 
-        <label for="subject">Dein Anliegen:</label>
-        <textarea id="subject" name="subject" placeholder="Schreibe uns dein Anliegen.." style="height:200px"></textarea>
+                <label for="subject">Dein Anliegen:</label>
+                <textarea id="subject" name="subject" placeholder="Schreibe uns dein Anliegen.."
+                          style="height:200px"></textarea>
 
-        <input type="submit" value="Submit">
-    </form>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 </div>
+
+<footer class="bg-footer container-fluid w-100 h-100">
+
+    <div class="d-none d-md-block">
+        <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
+
+        <div class="d-flex flex-row justify-content-center mt-2">
+            <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+
+            <div class="mx-3 my-3">
+                <div class="text-center text-wrap">
+                    <h6>Contact</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                        <li><a href="#">Complaints</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-1"></div>
+
+            <div class="mx-3 my-3">
+                <div class="text-center text-wrap">
+                    <h6>Information</h6>
+                    <ul class="list-unstyled"></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Payment methods</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-1"></div>
+
+            <div class="mx-3 my-3">
+                <div class="text-center text-wrap">
+                    <h6>More</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="./impressum.html">Impressum</a></li>
+                        <li><a href="./agb.html">AGBs</a></li>
+                        <li><a href="">Data Protection</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
+
+
+    <div class="d-md-none small-links mt-5 mb-3">
+        <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
+        <ul class="container-fluid justify-content-center">
+            <div class="row">
+                <li class="list-group-item">
+
+                    <a aria-controls="collapseContact" aria-expanded="t" data-bs-toggle="collapse" href="#collapseContact"
+                       role="button">Contact</a>
+                    <div class="collapse" id="collapseContact">
+                        <ul class="list-unstyled buttonlist">
+                            <li><a href="support.html">Support</a></li>
+                            <li><a href="./contact.html">Contact Us</a></li>
+                            <li><a href="#">Complaints</a></li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li class="list-group-item">
+
+                    <a aria-controls="collapseInformation" aria-expanded="t" data-bs-toggle="collapse" href="#collapseInformation"
+                       role="button">Information</a>
+                    <div class="collapse" id="collapseInformation">
+                        <ul class="list-unstyled buttonlist">
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Payment methods</a></li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li class="list-group-item">
+
+                    <a aria-controls="collapseMore" aria-expanded="t" data-bs-toggle="collapse" href="#collapseMore"
+                       role="button">More</a>
+                    <div class="collapse" id="collapseMore">
+                        <ul class="list-unstyled buttonlist">
+                            <li><a href="./impressum.html">Impressum</a></li>
+                            <li><a href="./agb.html">AGBs</a></li>
+                            <li><a href="">Data Protection</a></li>
+                        </ul>
+                    </div>
+
+                </li>
+            </div>
+        </ul>
+    </div> <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
+
+    <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
+
+    <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
+    <div class="d-flex flex-row justify-content-center">
+        <ul class="list-unstyled socials">
+            <li><i class="fa-brands fa-discord"></i></li>
+            <li><i class="fa-brands fa-instagram"></i></li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-tiktok"></i></li>
+            <li><i class="fa-brands fa-twitter"></i></li>
+        </ul>
+    </div>
+
+    <div class="container-fluid text-center bg-footer">
+        <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
+    </div>
+
+</footer>
 
 </body>
 </html>
