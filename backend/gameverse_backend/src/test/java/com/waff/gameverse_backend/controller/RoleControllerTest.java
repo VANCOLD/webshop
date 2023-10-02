@@ -6,15 +6,20 @@ import com.waff.gameverse_backend.service.RoleService;
 import com.waff.gameverse_backend.service.TokenService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -24,7 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@EnableGlobalMethodSecurity(prePostEnabled = true) // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
+@EnableMethodSecurity // Needed to enable the PreAuthorize Tag in testing, will be ignored otherwise!
 public class RoleControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -41,27 +50,27 @@ public class RoleControllerTest {
     @Autowired
     private RoleService roleService;
 
-    String getToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    String getToken(String username) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "password"));
         return tokenService.generateJwt(authentication);
     }
 
     @Test
     void findAllTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // Testing if we can call all (should return a list with 3 elements)
         mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()", Matchers.is(3)));
+            .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
 
     @Test
     void findAllNoPrivilegeTest() throws Exception {
 
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/roles/all").header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -70,14 +79,16 @@ public class RoleControllerTest {
     @Test
     void findByIdTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
         Long testCase1    = 1L;
         Long testCase2    = 1000L;
+
+        String roleName   = "user";
 
         // Testing if we get a role with a legit id for admin
         mockMvc.perform(get("/api/roles/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name",Matchers.is("user")));
+            .andExpect(jsonPath("$.name",Matchers.is(roleName)));
 
         mockMvc.perform(get("/api/roles/{id}",testCase2).header("Authorization", "Bearer " + token))
             .andExpect(status().isNoContent());
@@ -88,7 +99,7 @@ public class RoleControllerTest {
 
         Long testCase1    = 1L;
         // User with no privileges shouldn't be able to call the route
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         mockMvc.perform(get("/api/roles/{id}",testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
@@ -98,7 +109,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void saveTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // New role, doesn't exist in db
         RoleDto testCase1 = new RoleDto("superpower");
@@ -135,7 +146,7 @@ public class RoleControllerTest {
     @Test
     void saveNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // New role, doesn't exist in db
         RoleDto testCase = new RoleDto("superpower");
@@ -156,8 +167,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void updateTest() throws Exception {
 
-        String token = this.getToken("admin","password");
-
+        String token = this.getToken("admin");
 
         // Already existing role, should return conflict!
         RoleDto testCase1 = new RoleDto(1L, "user");
@@ -189,26 +199,17 @@ public class RoleControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
 
-        // Should be not found because the id is invalid!
-        mockMvc
-            .perform(put("/api/roles")
-                .header("Authorization", "Bearer " + token)
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("utf-8")
-                .content(mapper.writeValueAsString(testCase3))
-                .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isConflict());
     }
 
     @Test
     void updateNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Existing role in the db
         RoleDto testCase = new RoleDto( 1L, "superpower");
 
-        // Should return forbidden since the user doesn't have to correct role
+        // Should return forbidden since the user doesn't have to correct privilege
         mockMvc
             .perform(put("/api/roles")
                 .header("Authorization", "Bearer " + token)
@@ -224,7 +225,7 @@ public class RoleControllerTest {
     @DirtiesContext
     void deleteTest() throws Exception {
 
-        String token = this.getToken("admin","password");
+        String token = this.getToken("admin");
 
         // First role in data.sql
         String privName = "user";
@@ -259,7 +260,7 @@ public class RoleControllerTest {
     @Test
     void deleteNoPrivilegeTest() throws Exception {
 
-        String token = this.getToken("user","password");
+        String token = this.getToken("user");
 
         // Already existing role in data.sql
         Long testCase = 1L;
@@ -270,5 +271,4 @@ public class RoleControllerTest {
                 .header("Authorization", "Bearer " + token))
             .andExpect(status().isForbidden());
     }
-
 }

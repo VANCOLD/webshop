@@ -1,7 +1,9 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * The User class represents a user within the application.
@@ -22,7 +25,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails, DataTransferObject<UserDto> {
+public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDataTransferObject<SimpleUserDto> {
 
     /**
      * The unique identifier for the user.
@@ -51,6 +54,15 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+
+    @OneToMany(mappedBy="user")
+    private List<Order> orders;
+
+
     /**
      * Constructs a User entity with the specified username, password, and role.
      *
@@ -69,7 +81,7 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
      *
      * @param userDto The UserDto containing user information.
      */
-    public User(UserDto userDto) {
+    public User(SimpleUserDto userDto) {
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
         this.role = new Role(userDto.getRole());
@@ -152,6 +164,11 @@ public class User implements UserDetails, DataTransferObject<UserDto> {
      */
     @Override
     public UserDto convertToDto() {
-        return new UserDto(this.username, this.password, this.role.convertToDto());
+        return new UserDto(id, this.username, this.password, this.role.convertToDto(), orders.stream().map(Order::convertToDto).toList(), cart.convertToDto());
+    }
+
+    @Override
+    public SimpleUserDto convertToSimpleDto() {
+        return new SimpleUserDto(id, username, password, this.role.convertToDto());
     }
 }

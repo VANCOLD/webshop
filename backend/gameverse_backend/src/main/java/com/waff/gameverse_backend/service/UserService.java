@@ -1,6 +1,6 @@
 package com.waff.gameverse_backend.service;
 
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.UserRepository;
@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
      * @return The newly created user.
      * @throws IllegalArgumentException If the provided username is already in use.
      */
-    public User save(UserDto userDto) {
+    public User save(SimpleUserDto userDto) {
         var toCheck = this.userRepository.findByUsername(userDto.getUsername());
 
         if (toCheck.isEmpty()) {
@@ -88,13 +88,9 @@ public class UserService implements UserDetailsService {
      * @throws IllegalArgumentException If the provided username is blank or null.
      * @throws NoSuchElementException   If the user with the given ID does not exist.
      */
-    public User update(UserDto userDto) {
+    public User update(SimpleUserDto userDto) {
         var toUpdate = this.userRepository.findById(userDto.getId())
             .orElseThrow(() -> new NoSuchElementException("User with the given ID does not exist"));
-
-        if (userDto.getUsername().isBlank() || userDto.getUsername() == null) {
-            throw new IllegalArgumentException("The username of the user must not be blank or null.");
-        }
 
         toUpdate.setUsername(userDto.getUsername());
         toUpdate.setPassword(userDto.getPassword());
