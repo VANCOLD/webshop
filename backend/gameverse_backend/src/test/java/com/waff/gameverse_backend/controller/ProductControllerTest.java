@@ -113,12 +113,24 @@ public class ProductControllerTest {
         String token = this.getToken("admin");
 
         // New product, doesn"t exist in db
-        SimpleProductDto testCase1 = new SimpleProductDto(
-        "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
+        SimpleProductDto testCase1 = new SimpleProductDto();
+        testCase1.setName("Froggyo");
+        testCase1.setDescription("froggo");
+        testCase1.setPrice(120.00);
+        testCase1.setImage("Cool frogs");
+        testCase1.setTax(20);
+        testCase1.setStock(2);
+        testCase1.setGtin("asdasd");
 
         // Already existing product, should return conflict!
-        SimpleProductDto testCase2 = new SimpleProductDto(
-            "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234");
+        SimpleProductDto testCase2 = new SimpleProductDto();
+        testCase2.setName("The Legend Of Zelda: Breath Of The Wild");
+        testCase2.setDescription("Cool zelda");
+        testCase2.setPrice(60.00);
+        testCase2.setImage("Cool Image");
+        testCase2.setTax(20);
+        testCase2.setStock(200);
+        testCase2.setGtin("1234");
 
         // Should be ok and return the newly created product
         mockMvc
@@ -148,8 +160,14 @@ public class ProductControllerTest {
         String token = this.getToken("user");
 
         // New product, doesn"t exist in db
-        SimpleProductDto testCase = new SimpleProductDto(
-            "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
+        SimpleProductDto testCase = new SimpleProductDto();
+        testCase.setName("Froggyo");
+        testCase.setDescription("froggo");
+        testCase.setPrice(120.00);
+        testCase.setImage("Cool frogs");
+        testCase.setTax(20);
+        testCase.setStock(2);
+        testCase.setGtin("asdasd");
 
         // Should return forbidden since the user doesn"t have to correct product
         mockMvc
