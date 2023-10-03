@@ -57,7 +57,7 @@ public class AuthenticationController {
         try {
             return authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword());
         } catch (AuthenticationException ex) {
-            return "User doesn't exist or authentication failed!";
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exists!", ex);
         }
     }
 }

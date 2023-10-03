@@ -30,6 +30,7 @@ $(document).ready(function() {
         },
         error: (err) => {
             console.log(err);
+            alert("Loging in user was unsuccessful!");
             console.error(err, "Login fehlgeschlagen!");
         }
       });
