@@ -5,8 +5,8 @@ $(document).ready(function() {
       event.preventDefault();
   
       // Get the form data
-      var username = $("#username").val();
-      var password = $("#password").val();
+      var username = $("#usernameLogin").val();
+      var password = $("#passwordLogin").val();
   
       // Create an object with the login data
       var loginData = {
@@ -18,27 +18,65 @@ $(document).ready(function() {
   
       // Send an AJAX POST request to your backend
       $.ajax({
-        type: "POST",
         url: "http://localhost:8080/authenticate", 
+        method: 'POST',
         data: JSON.stringify(loginData),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(response) {
-          // Handle the successful login response here
-          console.log("Login successful: ", response);
-          localStorage.setItem("token", response);
+        contentType: 'application/json', 
+        dataType: 'text', 
+        success: (response) => {
+            const accessToken = response;
+            localStorage.setItem('token', accessToken); 
+            window.location.href = "index.html?token=" + accessToken;
         },
-        error: function(error) {
-          // Handle any errors that occurred during the login
-          console.error("Login failed: ", error);
+        error: (err) => {
+            console.log(err);
+            console.error(err, "Login fehlgeschlagen!");
         }
       });
     });
 
 
-    $("#login").click(function(event) {
-        // Prevent the default form submission
-        event.preventDefault();
-        console.log("register");
+    $("#register").click(function(event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+        // Get the form data
+      var username = $("#username").val();
+      var password = $("#password").val();
+  
+      // Create an object with the login data
+      var registerData = {
+        username: username,
+        password: password
+      };
+      
+  
+      $.ajax({
+        url: "http://localhost:8080/register", 
+        method: 'POST',
+        data: JSON.stringify(registerData),
+        contentType: 'application/json', 
+        dataType: 'text', 
+        success: (response) => {
+
+            // Assume 'response' is the JSON response received from the backend
+            var jsonObject = JSON.parse(response);
+            updateUser(jsonObject.id);
+            alert("Registered user successfully!\nPlease log in");
+
+        },
+        error: (err) => {
+            console.error(err, "Login fehlgeschlagen!");
+            alert("Registered user unsuccessful!");
+        }
+      });
+      
     });
+
+    function updateUser(userid) {
+      var updateData = {
+        username: username,
+        password: password
+      };
+    }
   });
