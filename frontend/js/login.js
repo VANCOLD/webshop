@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Event handler for the login form submission
-    $("#loginForm").submit(function(event) {
+    $("#login").click(function(event) {
       // Prevent the default form submission
       event.preventDefault();
   
@@ -19,9 +19,10 @@ $(document).ready(function() {
       // Send an AJAX POST request to your backend
       $.ajax({
         type: "POST",
-        url: "/authenticate", // Replace with the actual URL of your backend endpoint
+        url: "http://localhost:8080/authenticate", 
         data: JSON.stringify(loginData),
         contentType: "application/json",
+        dataType: "json",
         success: function(response) {
           // Handle the successful login response here
           console.log("Login successful: ", response);

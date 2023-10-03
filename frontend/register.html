@@ -189,7 +189,7 @@
                 <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-1"></div>
-                        <form action="/action_page.php" class=".form-inline col-lg-10">
+                        <form class=".form-inline col-lg-10">
 
                             <div class="form-group nav-justified">
                                 <div class="col-lg-8">
@@ -274,7 +274,7 @@
                                     <div class="row">
                                         <div class="col-lg-5"></div>
                                         <button class="btn btn-primary col-lg-2 form-control-sm input-sm custom-button-bgcolor"
-                                                type="submit">Register
+                                                type="click" id="register">Register
                                         </button>
                                         <div class="col-lg-5"></div>
                                     </div>
@@ -296,7 +296,7 @@
                 <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
                     <div class="row">
                         <div class="col-lg-1"></div>
-                        <form action="/action_page.php" class=".form-inline col-lg-10">
+                        <form class="form-inline col-lg-10">
 
                             <div class="form-group nav-justified">
                                 <div class="col-lg-9">
@@ -309,14 +309,14 @@
                                 <div class="form-group">
                                     <label for="username"><b>Username</b></label>
                                     <input class="form-control" name="username" placeholder="Enter username" required
-                                           type="text">
+                                           type="text" id="username">
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="psw"><b>Passwort</b></label>
                                     <input class="form-control" name="psw" placeholder="Enter Password" required
-                                           type="password">
+                                           type="password" id="password">
                                 </div>
 
                                 <br>
@@ -327,7 +327,7 @@
                                         <div class="col-lg-2"></div>
                                         <div class="col-lg-3">
                                             <button class="btn btn-primary form-control custom-button-bgcolor"
-                                                    type="submit">Login
+                                                    type="click" id="login">Login
                                             </button>
                                         </div>
                                         <div class="col-lg-1"></div>
