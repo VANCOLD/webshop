@@ -114,7 +114,7 @@ public class ProductService {
         toDelete.setProducer(null);
         toDelete.getProducer().getProductList().remove(toDelete);
         toDelete.setConsoleGeneration(null);
-        toDelete.getConsoleGeneration().setProductList.remove(toDelete);
+        toDelete.getConsoleGeneration().setProduct(null);
 
         this.productRepository.save(toDelete);
         this.productRepository.delete(toDelete);
