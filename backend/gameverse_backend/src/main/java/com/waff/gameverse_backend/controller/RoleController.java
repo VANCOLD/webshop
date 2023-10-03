@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -74,7 +75,7 @@ public class RoleController {
      * @see RoleDto
      */
     @PostMapping
-    public ResponseEntity<RoleDto> save(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> save(@Validated @RequestBody RoleDto roleDto) {
         try {
             return ResponseEntity.ok(roleService.save(roleDto.getName()).convertToDto());
         } catch (IllegalArgumentException ex) {
@@ -93,12 +94,9 @@ public class RoleController {
      * @see RoleDto
      */
     @PutMapping
-    public ResponseEntity<RoleDto> update(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> update(@Validated @RequestBody RoleDto roleDto) {
         try {
             return ResponseEntity.ok(roleService.update(roleDto).convertToDto());
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

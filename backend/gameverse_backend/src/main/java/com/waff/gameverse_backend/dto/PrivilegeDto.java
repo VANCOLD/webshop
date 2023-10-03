@@ -2,7 +2,6 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,6 @@ public class PrivilegeDto implements Serializable {
     /**
      * The unique identifier for the privilege.
      */
-    @Positive
     private Long id;
 
     /**

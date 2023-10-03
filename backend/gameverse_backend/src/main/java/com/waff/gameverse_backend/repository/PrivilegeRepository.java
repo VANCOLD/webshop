@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.repository;
 
-import com.waff.gameverse_backend.model.ConsoleGeneration;
 import com.waff.gameverse_backend.model.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

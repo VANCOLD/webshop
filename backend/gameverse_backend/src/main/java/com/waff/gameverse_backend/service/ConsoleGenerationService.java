@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.repository.ConsoleGenerationRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -22,11 +23,11 @@ public class ConsoleGenerationService {
     }
 
     /**
-     * Find a consoleGeneratio by its ID.
+     * Find a console generation by its ID.
      *
-     * @param id The ID of the consoleGeneratio to find.
-     * @return The found consoleGeneratio.
-     * @throws NoSuchElementException If no consoleGeneratio with the given ID exists.
+     * @param id The ID of the console generation to find.
+     * @return The found console generation.
+     * @throws NoSuchElementException If no console generation with the given ID exists.
      */
     public ConsoleGeneration findById(Long id) {
         return this.consoleGenerationRepository.findById(id)
@@ -43,11 +44,11 @@ public class ConsoleGenerationService {
     }
 
     /**
-     * Find a consoleGeneratio by its name.
+     * Find a console generation by its name.
      *
-     * @param name The name of the consoleGeneratio to find.
-     * @return The found consoleGeneratio.
-     * @throws NoSuchElementException If no consoleGeneratio with the given name exists.
+     * @param name The name of the console generation to find.
+     * @return The found console generation.
+     * @throws NoSuchElementException If no console generation with the given name exists.
      */
     public ConsoleGeneration findByName(String name) {
         return this.consoleGenerationRepository.findByName(name)
@@ -55,11 +56,11 @@ public class ConsoleGenerationService {
     }
 
     /**
-     * Save a new consoleGeneratio with the given name.
+     * Save a new console generation with the given name.
      *
-     * @param name The name of the new consoleGeneratio to save.
-     * @return The saved consoleGeneratio.
-     * @throws IllegalArgumentException If a consoleGeneratio with the same name already exists.
+     * @param name The name of the new console generation to save.
+     * @return The saved console generation.
+     * @throws IllegalArgumentException If a console generation with the same name already exists.
      */
     public ConsoleGeneration save(String name) {
         var toCheck = this.consoleGenerationRepository.findByName(name);
@@ -68,34 +69,34 @@ public class ConsoleGenerationService {
             toSave.setName(name);
             return this.consoleGenerationRepository.save(toSave);
         } else {
-            throw new IllegalArgumentException("The specified name is already used by a consoleGeneratio");
+            throw new IllegalArgumentException("The specified name is already used by a console generation");
         }
     }
 
     /**
-     * Update a consoleGeneratio with the information from the provided ConsoleGenerationDto.
+     * Update a console generation with the information from the provided ConsoleGenerationDto.
      *
-     * @param consoleGeneratioDto The ConsoleGenerationDto containing updated consoleGeneratio information.
-     * @return The updated consoleGeneratio.
-     * @throws NoSuchElementException  If the consoleGeneratio with the given ID does not exist.
-     * @throws IllegalArgumentException If the consoleGeneratio name is empty.
+     * @param consoleGeneratioDto The ConsoleGenerationDto containing updated console generation information.
+     * @return The updated console generation.
+     * @throws NoSuchElementException  If the console generation with the given ID does not exist.
+     * @throws IllegalArgumentException If the console generation name is empty.
      */
     public ConsoleGeneration update(ConsoleGenerationDto consoleGeneratioDto) {
         var toUpdate = this.consoleGenerationRepository.findById(consoleGeneratioDto.getId())
             .orElseThrow(() -> new NoSuchElementException("ConsoleGeneration with the given ID does not exist"));
         if (consoleGeneratioDto.getName().isEmpty()) {
-            throw new IllegalArgumentException("The name of the consoleGeneratio cannot be empty");
+            throw new IllegalArgumentException("The name of the console generation cannot be empty");
         }
         toUpdate.setName(consoleGeneratioDto.getName());
         return this.consoleGenerationRepository.save(toUpdate);
     }
 
     /**
-     * Delete a consoleGeneratio with the given ID and update associated roles.
+     * Delete a console generation with the given ID and update associated roles.
      *
-     * @param id The ID of the consoleGeneratio to delete.
-     * @return The deleted consoleGeneratio.
-     * @throws NoSuchElementException If the consoleGeneratio with the given ID does not exist.
+     * @param id The ID of the console generation to delete.
+     * @return The deleted console generation.
+     * @throws NoSuchElementException If the console generation with the given ID does not exist.
      */
     public ConsoleGeneration delete(Long id) {
         var toDelete = this.consoleGenerationRepository.findById(id)
@@ -105,8 +106,7 @@ public class ConsoleGenerationService {
             product.setConsoleGeneration(null);
             this.productRepository.save(product);
         }
-        toDelete.setProduct(null);
-        this.consoleGenerationRepository.save(toDelete);
+        toDelete.setProducts(new ArrayList<>());
         this.consoleGenerationRepository.delete(toDelete);
         return toDelete;
     }

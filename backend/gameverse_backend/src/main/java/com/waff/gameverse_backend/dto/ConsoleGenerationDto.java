@@ -2,7 +2,6 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +16,6 @@ public class ConsoleGenerationDto {
     /**
      * The unique identifier for the console generation.
      */
-    @Positive
     private Long id;
 
     /**

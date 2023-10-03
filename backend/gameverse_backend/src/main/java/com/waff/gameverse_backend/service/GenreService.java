@@ -101,13 +101,12 @@ public class GenreService {
     public Genre delete(Long id) {
         var toDelete = this.genreRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Genre with the given ID does not exist"));
-        var products = this.productRepository.findAllByGenre(toDelete);
+        var products = this.productRepository.findAllByGenres(toDelete);
         for (Product product : products) {
-            product.setGenreList(new ArrayList<>());
+            product.setGenres(new ArrayList<>());
             this.productRepository.save(product);
         }
-        toDelete.setProductList(new ArrayList<>());
-        this.genreRepository.save(toDelete);
+        toDelete.setProducts(new ArrayList<>());
         this.genreRepository.delete(toDelete);
         return toDelete;
     }

@@ -3,7 +3,6 @@
  * for video games. ESRB ratings categorize games based on their content and are used
  * to provide guidance to consumers, especially parents, regarding the suitability of a
  * game for different age groups.
- *
  * Each enum constant corresponds to a specific ESRB rating category and includes
  * a human-readable name for that category.
  *
@@ -46,11 +45,16 @@ public enum EsrbRating {
     /**
      * Rating Pending, indicating that the game has not yet received an ESRB rating.
      */
-    RATING_PENDING("Rating Pending");
+    RATING_PENDING("Rating Pending"),
+
+    /**
+     * Used for products that don't get a rating (consoles, merchandise, giftcards etc)
+     */
+    NONE("No Rating");
 
     private final String name;
 
-    private EsrbRating(String name) {
+    EsrbRating(String name) {
         this.name = name;
     }
 
