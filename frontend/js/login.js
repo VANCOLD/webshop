@@ -34,4 +34,11 @@ $(document).ready(function() {
         }
       });
     });
+
+
+    $("#login").click(function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        console.log("register");
+    });
   });
