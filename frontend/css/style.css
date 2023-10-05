@@ -211,7 +211,7 @@ footer > hr {
 
 /* 
 ---------------------------------------------
-Impressum Style
+Register Login Style
 --------------------------------------------- 
 */
 
@@ -225,7 +225,7 @@ Impressum Style
 
   .login-container {
       background-color: whitesmoke;
-      border-bottom-left-radius: 50px; /* Adjust this value according to your preference */
+      border-bottom-left-radius: 50px;
   }
 
   .form-group + .form-group {
@@ -243,7 +243,14 @@ Impressum Style
   .custom-button-rounded-color-left {
     color: #e75e8d;
     background-color: #e75e8d;
+    transition: none;
+    border-top-left-radius: 50px;
   }
+
+  form input:focus + .custom-button-rounded-color-left,
+.custom-button-rounded-color-left:focus {
+    border-top-left-radius: 50px !important;
+}
 
   .custom-button-rounded-color-left:focus {
     color: #e75e8d;
@@ -262,14 +269,16 @@ Impressum Style
   }
 
   .custom-button-rounded-color {
-      color: #e75e8d;
-      border-top-right-radius: 50px;
+    color: #e75e8d;
+    border-top-right-radius: 50px;
   }
 
   .custom-button-rounded-color:hover {
-      color: #e75e8d;
-      border-top-right-radius: 50px;
-  }
+    color: #ffff;
+    background-color: #e75e8d;
+    border-top-right-radius: 50px;
+    transition: none; /* Disable the transition */
+  }  
 
   .custom-button-rounded-color:focus {
       color: #e75e8d;
@@ -282,47 +291,59 @@ Impressum Style
   }
 
   .custom-button-bgcolor {
-      background-color: #e75e8d;
+    background-color: #e75e8d;
+    border: 2px solid #e75e8d;
+
   }
 
   .custom-button-bgcolor:hover,
   .custom-button-color:hover,
   .custom-button-rounded-color:hover {
       background-color: #e75e8d;
-      color: #ffffff; /* You can change the text color on hover here, if needed */
+      color: #ffffff;
+      border: 2px solid #e75e8d; /* Add the same border color on hover if needed */
+      transition: 0,2s ease-in; 
+  }
+
+  .btn-primary{
+    outline: #e75e8d;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color-left {
     background-color: #e75e8d;
     color: #ffffff;
+    border-top-left-radius: 50px;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color-left:focus {
       background-color: #e75e8d;
       color: #ffffff;
+      border-top-left-radius: 50px;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color-left:hover {
       background-color: #e75e8d;
       color: #ffffff;
+      border-top-left-radius: 50px;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color {
     background-color: #e75e8d;
     color: #ffffff;
+    border-top-right-radius: 50px;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color:focus {
     background-color: #e75e8d;
     color: #ffffff;
+    border-top-right-radius: 50px;
   }
 
   .nav-tabs .nav-link.active.custom-button-rounded-color:hover {
     background-color: #e75e8d;
     color: #ffffff;
+    border-top-right-radius: 50px;
   }
-
-
 
 /* 
 ---------------------------------------------
@@ -646,4 +667,11 @@ Responsive Style
         min-height: 100%;
     }
 
+}
+
+/* For responsive button in Register/Login */
+ @media (min-width: 768px) {
+    .custom-button-bgcolor {
+      min-width: auto
+    }
 }
