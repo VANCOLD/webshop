@@ -223,6 +223,106 @@ Impressum Style
 
 }
 
+  .login-container {
+      background-color: whitesmoke;
+      border-bottom-left-radius: 50px; /* Adjust this value according to your preference */
+  }
+
+  .form-group + .form-group {
+      margin-top: 8px;
+  }
+
+  .custom-border-radius {
+      border-radius: 50px;
+  }
+
+  .custom-h1-color {
+      color: #e75e8d;
+  }
+
+  .custom-button-rounded-color-left {
+    color: #e75e8d;
+    background-color: #e75e8d;
+  }
+
+  .custom-button-rounded-color-left:focus {
+    color: #e75e8d;
+    background-color: #e75e8d;
+    border-top-left-radius: 50px;
+  }
+
+  .custom-button-rounded-color-left:hover {
+      color: #ffff;
+      background-color: #e75e8d;
+      border-top-left-radius: 50px;
+  }
+
+  .custom-button-color {
+      color: #e75e8d;
+  }
+
+  .custom-button-rounded-color {
+      color: #e75e8d;
+      border-top-right-radius: 50px;
+  }
+
+  .custom-button-rounded-color:hover {
+      color: #e75e8d;
+      border-top-right-radius: 50px;
+  }
+
+  .custom-button-rounded-color:focus {
+      color: #e75e8d;
+      border-top-right-radius: 50px;
+  }
+
+  .custom-button-rounded-color:active {
+      background-color: #e75e8d;
+      border-top-right-radius: 50px;
+  }
+
+  .custom-button-bgcolor {
+      background-color: #e75e8d;
+  }
+
+  .custom-button-bgcolor:hover,
+  .custom-button-color:hover,
+  .custom-button-rounded-color:hover {
+      background-color: #e75e8d;
+      color: #ffffff; /* You can change the text color on hover here, if needed */
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color-left {
+    background-color: #e75e8d;
+    color: #ffffff;
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color-left:focus {
+      background-color: #e75e8d;
+      color: #ffffff;
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color-left:hover {
+      background-color: #e75e8d;
+      color: #ffffff;
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color {
+    background-color: #e75e8d;
+    color: #ffffff;
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color:focus {
+    background-color: #e75e8d;
+    color: #ffffff;
+  }
+
+  .nav-tabs .nav-link.active.custom-button-rounded-color:hover {
+    background-color: #e75e8d;
+    color: #ffffff;
+  }
+
+
 
 /* 
 ---------------------------------------------
