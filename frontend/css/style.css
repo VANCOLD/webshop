@@ -120,7 +120,6 @@ Navigationsbar Style
   text-align:center;
 }
 
-
 .icon-button i {
   font-size:38px;
   color:#ec6090;
@@ -129,27 +128,18 @@ Navigationsbar Style
 }
 
 .icon-button p {
-  font-size: 18x;
+  font-size: 18px;
   color:white;
 }
 
-
-/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
-
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.ul {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex; /* Use flexbox to create a horizontal layout */
 }
 
-.ul li {
+ul li {
   margin-right: 10px; /* Add spacing between list items if desired */
 }
 
