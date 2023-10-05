@@ -1,12 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=, initial-scale=1.0" name="viewport">
-    <title>Document</title>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/d84ba81ad4.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    <title>Assassin's Creed Mirage </title>
+    <style>
+    body {
+      font-family: sans-serif;
+    }
+    .product-image {
+      width: 200px;
+      height: 200px;
+    }
+    .product-description {
+      margin-left: 20px;
+    }
+    .product-price {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .buy-now-button {
+      background-color: green;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-flex flex-row">
+                <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
+                    <a href="./index.html"><img class="img-fluid w-25 h-25" src="./images/Logo.png"></a>
 
+                        <a class="icon-button nav-link" onclick="">
+                            <div class="search-bar">
+                                <input type="text" class="form-control search-form" placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
+                                <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                            </div>
+                        </a>
+
+                        <a class="nav-link" href="./support.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <p>Support</p>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="./ShoppingCart.html">
+                            <div class="icon-button">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p>Cart</p>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="./register.html">
+                            <div class="icon-button">
+                                <i class="fa-regular fa-user"></i>
+                                <p>Sign In</p>
+                            </div>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Assassin's Creed Mirage</h1>
+        <img class="product-image" src="images\articles\games\PS4\ps4_acmirage.jpg">
+        <div class="product-description">
+        <p style="color: blueviolet;">Assassin's Creed Mirage is the next installment in the popular Assassin's Creed franchise. Set in the bustling city of Baghdad in the 9th century, the game follows the story of Basim Ibn Ishaq, a young street urchin who is destined to become a legendary assassin.</p>
+        </div>
+        <div class="product-price">
+        €59.99
+        </div>
+        <div class="buy-now-button">
+        <a href="#">Buy Now</a>
+        </div>
+    </main>
+
+    <footer class="bg-footer container-fluid w-100 h-100">
+        <div class="d-none d-md-block">
+            <div class="d-flex flex-row justify-content-center mt-2">
+                <div class="mx-3 my-3">
+                    <div class="text-center text-wrap">
+                        <h6>Contact</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="support.html">Support</a></li>
+                            <li><a href="./contact.html">Contact Us</a></li>
+                            <li><a href="#">Complaints</a></li>
+                        </ul>
+                    </div>  
+                </div>
+                <div class="col-1"></div>
+                <div class="mx-3 my-3">
+                    <div class="text-center text-wrap">
+                        <h6>Information</h6>                
+                        <ul class="list-unstyled"></li>              
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Payment methods</a></li>
+                        </ul> 
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="mx-3 my-3">
+                    <div class="text-center text-wrap">
+                        <h6>More</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="./impressum.html">Impressum</a></li>
+                            <li><a href="./agb.html">AGBs</a></li>
+                            <li><a href="">Data Protection</a></li>
+                        </ul>
+                    </div>
+                </div>     
+            </div>   
+        </div>
+
+        <div class="d-md-none small-links mb-3 w-100 h-100">
+            <ul class="container-fluid justify-content-center"> 
+                <div class="row">
+                    <li class="list-group-item">  
+                        <a data-bs-toggle="collapse" href="#collapseContact" role="button" aria-expanded="t" aria-controls="collapseContact">Contact</a>
+                        <div class="collapse" id="collapseContact">
+                            <ul class="list-unstyled buttonlist">
+                                <li><a href="support.html">Support</a></li>
+                                <li><a href="./contact.html">Contact Us</a></li>
+                                <li><a href="#">Complaints</a></li>
+                            </ul>  
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a data-bs-toggle="collapse" href="#collapseInformation" role="button" aria-expanded="t" aria-controls="collapseInformation">Information</a>
+                        <div class="collapse" id="collapseInformation">
+                            <ul class="list-unstyled buttonlist">              
+                                <li><a href="#">Jobs</a></li>
+                                <li><a href="#">Press</a></li>
+                                <li><a href="#">Payment methods</a></li>
+                            </ul> 
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a data-bs-toggle="collapse" href="#collapseMore" role="button" aria-expanded="t" aria-controls="collapseMore">More</a>
+                        <div class="collapse" id="collapseMore">
+                            <ul class="list-unstyled buttonlist">
+                                <li><a href="./impressum.html">Impressum</a></li>
+                                <li><a href="./agb.html">AGBs</a></li>
+                                <li><a href="">Data Protection</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </div>  
+            </ul>
+        </div>
+
+        <hr class="mb-4 w-50 d-none d-lg-block">
+        
+        <div class="d-flex flex-row justify-content-center">
+            <ul class="list-unstyled socials">
+                <li><i class="fa-brands fa-discord"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-tiktok"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+        </div>
+
+        <div class="container-fluid text-center bg-footer">
+            <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
+        </div>
+    </footer>
 </body>
 </html>
