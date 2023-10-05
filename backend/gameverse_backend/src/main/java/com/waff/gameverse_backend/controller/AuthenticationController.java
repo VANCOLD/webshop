@@ -53,11 +53,11 @@ public class AuthenticationController {
      * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if the user doesn't exist or authentication fails.
      */
     @PostMapping("/authenticate")
-    public ResponseEntity<String> loginUser(@RequestBody RegistrationDto registrationDto) {
+    public String loginUser(@RequestBody RegistrationDto registrationDto) {
         try {
-            return ResponseEntity.ok(authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword()));
+            return authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword());
         } catch (AuthenticationException ex) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exist or authentication failed!", ex);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exists!", ex);
         }
     }
 }

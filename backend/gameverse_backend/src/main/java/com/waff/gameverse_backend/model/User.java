@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.model;
 
 import com.waff.gameverse_backend.dto.SimpleUserDto;
+import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
@@ -46,7 +47,7 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
      */
     @Column(name = "password")
     private String password;
-
+    
     /**
      * The role associated with this user.
      */

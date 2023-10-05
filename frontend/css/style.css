@@ -42,14 +42,12 @@ ul {
   margin-bottom: 0px;
 }
 
-
 body .page-content {
   background-color: #27292a;
   border-radius: 23px;
   width:85%;
   margin: 0 auto;
 }
-
 
 .page-content {
   margin: 15%;
@@ -87,14 +85,6 @@ Contact form Style
 --------------------------------------------- 
 */
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -125,77 +115,32 @@ label {
 Navigationsbar Style
 --------------------------------------------- 
 */
-.navbar{
-  max-width: fit-content;
-}
+
 .icon-button {
   text-align:center;
 }
 
 .icon-button i {
-  font-size:24px;
+  font-size:38px;
   color:#ec6090;
   width:64px;
   height:auto;
 }
 
 .icon-button p {
-  font-size: 12px;
+  font-size: 18px;
   color:white;
 }
 
-.search-bar {
-  display: flex;
-  margin-bottom: px;
-  min-width: 0em;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flexbox to create a horizontal layout */
 }
 
-.search-form {
-  font-size: 14px;
-}
-.search-icon {
-  border-bottom:  1px solid #ec6090;
-  padding-left:   4px;
-}
-
-.icon-button input {
-  outline: none;
-  background-color: #1e1e1e;
-  
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
-
-  /* Entfernt den Rand (Border) des Inputs; */
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
-  
-
-.icon-button input:focus {
-  outline: none;
-  background-color: #1f2122;
-  color: white;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
-
-  /* Entfernt den Fokus (blaue Umrandung) */
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0; 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
-} 
-
-/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
-
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+ul li {
+  margin-right: 10px; /* Add spacing between list items if desired */
 }
 
 /* 
@@ -438,90 +383,3 @@ Responsive Style
     min-height:100%;
   }
 }
-
-/* @media (min-width: 1200px) {
-
-  .socials li i {
-    font-size:32px;
-    margin-left:16px;
-    margin-right:16px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-
-} */
-
-/* @media (min-width: 993px) {
-
-  .socials li i {
-    font-size:24px;
-    margin-left:12px;
-    margin-right:12px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a minimum width of 769px and a maximum of 992px (e.g., tablets) */
-/* @media (min-width: 769px) and (max-width: 992px) {
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
-/* @media (min-width: 767px) 
-{
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
-/* @media (max-width: 768px) {
-  
-  body {
-      font-size: 16px;
-  }
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-  header{
-    min-width: 100px;
-    min-height: 100px;
-  }
-
-  main {
-    min-width: 100px;
-    min-height: 100px;
-  }
-  footer{   
-    min-width: 100px;
-    min-height: 100px;
-  }
-} */
-
-
