@@ -42,14 +42,12 @@ ul {
   margin-bottom: 0px;
 }
 
-
 body .page-content {
   background-color: #27292a;
   border-radius: 23px;
   width:85%;
   margin: 0 auto;
 }
-
 
 .page-content {
   margin: 15%;
@@ -87,14 +85,6 @@ Contact form Style
 --------------------------------------------- 
 */
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -125,34 +115,47 @@ label {
 Navigationsbar Style
 --------------------------------------------- 
 */
-.navbar{
-  max-width: fit-content;
+.navbar {
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  max-height: 12.5%;
+  min-height: 12.5%;
+  height: 12.5%; 
+  background-color:#1e1e1e !important;
 }
+
 .icon-button {
   text-align:center;
 }
 
+.logo {
+  max-width: 200px;
+  max-height: 200px;
+}
+
 .icon-button i {
-  font-size:24px;
+  font-size:48px;
   color:#ec6090;
   width:64px;
   height:auto;
 }
 
 .icon-button p {
-  font-size: 12px;
+  font-size: 20px;
   color:white;
 }
 
 .search-bar {
   display: flex;
-  margin-bottom: px;
+  margin-bottom: 0px;
   min-width: 0em;
 }
 
 .search-form {
-  font-size: 14px;
+  font-size: 20px;
 }
+
 .search-icon {
   border-bottom:  1px solid #ec6090;
   padding-left:   4px;
@@ -196,6 +199,17 @@ Navigationsbar Style
   content: "";
   display: table;
   clear: both;
+}
+
+.ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Use flexbox to create a horizontal layout */
+}
+
+.ul li {
+  margin-right: 10px; /* Add spacing between list items if desired */
 }
 
 /* 
