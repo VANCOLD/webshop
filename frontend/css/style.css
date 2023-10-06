@@ -132,15 +132,29 @@ Navigationsbar Style
   color:white;
 }
 
-ul {
+.navbar-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex; /* Use flexbox to create a horizontal layout */
 }
 
-ul li {
+.navbar-list li {
   margin-right: 10px; /* Add spacing between list items if desired */
+}
+
+#search-field input {
+  background-color:#1e1e1e;
+  color: white;
+  font-size:20px;
+  border-color: #ec6090;
+  border-top:  0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#search-field input:focus {
+  outline-color: #ec6090;
 }
 
 /* 
