@@ -114,11 +114,11 @@ public class ProductControllerTest {
 
         // New product, doesn"t exist in db
         SimpleProductDto testCase1 = new SimpleProductDto(
-        "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
+        null, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
 
         // Already existing product, should return conflict!
         SimpleProductDto testCase2 = new SimpleProductDto(
-            "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234");
+            null, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234");
 
         // Should be ok and return the newly created product
         mockMvc
@@ -149,7 +149,7 @@ public class ProductControllerTest {
 
         // New product, doesn"t exist in db
         SimpleProductDto testCase = new SimpleProductDto(
-            "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
+            null, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd");
 
         // Should return forbidden since the user doesn"t have to correct product
         mockMvc

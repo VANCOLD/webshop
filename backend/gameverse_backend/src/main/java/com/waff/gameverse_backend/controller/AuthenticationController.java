@@ -1,6 +1,6 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.dto.RegistrationDto;
+import com.waff.gameverse_backend.dto.LoginDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.service.AuthenticationService;
@@ -51,14 +51,14 @@ public class AuthenticationController {
     /**
      * Authenticates a user with the provided username and password.
      *
-     * @param registrationDto The RegistrationDto containing user authentication information.
+     * @param loginDto The RegistrationDto containing user authentication information.
      * @return ResponseEntity<String> A ResponseEntity containing an authentication token.
      * @throws ResponseStatusException with HTTP status 409 (CONFLICT) if the user doesn't exist or authentication fails.
      */
     @PostMapping("/authenticate")
-    public String loginUser(@RequestBody RegistrationDto registrationDto) {
+    public String loginUser(@RequestBody LoginDto loginDto) {
         try {
-            return authenticationService.loginUser(registrationDto.getUsername(), registrationDto.getPassword());
+            return authenticationService.loginUser(loginDto.getUsername(), loginDto.getPassword());
         } catch (AuthenticationException ex) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User doesn't exists!", ex);
         }
