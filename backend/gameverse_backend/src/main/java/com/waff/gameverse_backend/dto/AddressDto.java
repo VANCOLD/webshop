@@ -1,28 +1,27 @@
 package com.waff.gameverse_backend.dto;
 
-import com.waff.gameverse_backend.utils.SimpleDto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-public class SimpleUserDto implements SimpleDto {
+public class AddressDto {
 
     private Long id;
 
     @NotNull
     @NotEmpty
-    private String username;
+    private String street;
 
     @NotNull
     @NotEmpty
-    private String password;
+    private String postalCode;
 
     @NotNull
-    private RoleDto role;
+    @NotEmpty
+    private String city;
 }

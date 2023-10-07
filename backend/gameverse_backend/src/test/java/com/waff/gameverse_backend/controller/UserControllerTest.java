@@ -1,8 +1,10 @@
 package com.waff.gameverse_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.waff.gameverse_backend.dto.AddressDto;
 import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.service.TokenService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -109,10 +113,26 @@ public class UserControllerTest {
         String token = this.getToken("admin");
 
         // New user, doesn't exist in db
-        UserDto testCase1 = new UserDto("superpower", "password", new RoleDto("user"));
+        UserDto testCase1 = new UserDto();
+        testCase1.setUsername("test");
+        testCase1.setPassword("test");
+        testCase1.setFirstname("test");
+        testCase1.setLastname("test");
+        testCase1.setGender(Gender.MALE.name());
+        testCase1.setEmail("test@test.com");
+        testCase1.setAddress(new AddressDto(null, "test","test","test"));
+        testCase1.setRole(new RoleDto(null, "test", List.of()));
 
         // Already existing user, should return conflict!
-        UserDto testCase2 = new UserDto("user", "password", new RoleDto("user"));
+        UserDto testCase2 = new UserDto();
+        testCase2.setUsername("user");
+        testCase2.setPassword("test");
+        testCase2.setFirstname("test");
+        testCase2.setLastname("test");
+        testCase2.setGender(Gender.MALE.name());
+        testCase2.setEmail("test@test.com");
+        testCase2.setAddress(new AddressDto(null, "test","test","test"));
+        testCase2.setRole(new RoleDto(null, "test", List.of()));
 
         // Should be ok and return the newly created user
         mockMvc
@@ -142,7 +162,15 @@ public class UserControllerTest {
         String token = this.getToken("user");
 
         // New user, doesn't exist in db
-        UserDto testCase = new UserDto("superpower", "test");
+        UserDto testCase = new UserDto();
+        testCase.setUsername("test");
+        testCase.setPassword("test");
+        testCase.setFirstname("test");
+        testCase.setLastname("test");
+        testCase.setGender(Gender.MALE.name());
+        testCase.setEmail("test@test.com");
+        testCase.setAddress(new AddressDto(null, "test","test","test"));
+        testCase.setRole(new RoleDto(null, "test", List.of()));
 
         // Should return forbidden since the user doesn't have to correct user
         mockMvc
@@ -163,10 +191,28 @@ public class UserControllerTest {
         String token = this.getToken("admin");
 
         // Already existing user, should be ok
-        UserDto testCase1 = new UserDto(1L, "test", "password");
+        UserDto testCase1 = new UserDto();
+        testCase1.setId(1L);
+        testCase1.setUsername("test");
+        testCase1.setPassword("test");
+        testCase1.setFirstname("test");
+        testCase1.setLastname("test");
+        testCase1.setGender(Gender.MALE.name());
+        testCase1.setEmail("test@test.com");
+        testCase1.setAddress(new AddressDto(null, "test","test","test"));
+        testCase1.setRole(new RoleDto(null, "test", List.of()));
 
         // New user, doesn't exist in db => NotFound
-        UserDto testCase2 = new UserDto(1000L, "superpower", "password");
+        UserDto testCase2 = new UserDto();
+        testCase2.setId(1000L);
+        testCase2.setUsername("test");
+        testCase2.setPassword("test");
+        testCase2.setFirstname("test");
+        testCase2.setLastname("test");
+        testCase2.setGender(Gender.MALE.name());
+        testCase2.setEmail("test@test.com");
+        testCase2.setAddress(new AddressDto(null, "test","test","test"));
+        testCase2.setRole(new RoleDto(null, "test", List.of()));
 
         // Should be ok and return the updated user
         mockMvc
@@ -197,7 +243,16 @@ public class UserControllerTest {
         String token = this.getToken("user");
 
         // Existing user in the db
-        UserDto testCase = new UserDto( "superpower", "test");
+        UserDto testCase = new UserDto();
+        testCase.setId(1L);
+        testCase.setUsername("test");
+        testCase.setPassword("test");
+        testCase.setFirstname("test");
+        testCase.setLastname("test");
+        testCase.setGender(Gender.MALE.name());
+        testCase.setEmail("test@test.com");
+        testCase.setAddress(new AddressDto(null, "test","test","test"));
+        testCase.setRole(new RoleDto(null, "test", List.of()));
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

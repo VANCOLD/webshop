@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.model;
 
 import com.waff.gameverse_backend.dto.SimpleUserDto;
+import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
@@ -47,6 +48,24 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
     @Column(name = "password")
     private String password;
 
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "gender")
+    private Gender gender;
+
+    @Column(name = "firstname")
+    private String firstname;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "email")
+    private String email;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+    
     /**
      * The role associated with this user.
      */
@@ -64,27 +83,25 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
 
 
     /**
-     * Constructs a User entity with the specified username, password, and role.
+     * Constructs a User entity from a SimpleUserDto.
      *
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @param role     The role associated with the user.
+     * @param simpleUserDto The SimpleUserDto containing user information.
      */
-    public User(String username, String password, Role role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    public User(SimpleUserDto simpleUserDto) {
+        this.username = simpleUserDto.getUsername();
+        this.password = simpleUserDto.getPassword();
+        this.role = new Role(simpleUserDto.getRole());
     }
 
-    /**
-     * Constructs a User entity from a UserDto.
-     *
-     * @param userDto The UserDto containing user information.
-     */
-    public User(SimpleUserDto userDto) {
+    public User(UserDto userDto) {
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
         this.role = new Role(userDto.getRole());
+        this.firstname = userDto.getFirstname();
+        this.lastname = userDto.getLastname();
+        this.gender = Gender.valueOf(userDto.getGender().toUpperCase());
+        this.email  = userDto.getEmail();
+        this.address = new Address(userDto.getAddress());
     }
 
     /**
@@ -164,11 +181,11 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
      */
     @Override
     public UserDto convertToDto() {
-        return new UserDto(id, this.username, this.password, this.role.convertToDto(), orders.stream().map(Order::convertToDto).toList(), cart.convertToDto());
+        return new UserDto(id, this.username, this.password, this.gender.getGender(),this.firstname, this.lastname, this.email, this.address.convertToDto(), this.role.convertToDto());
     }
 
     @Override
     public SimpleUserDto convertToSimpleDto() {
-        return new SimpleUserDto(id, username, password, this.role.convertToDto());
+        return new SimpleUserDto(id, username, password, role.convertToDto());
     }
 }
