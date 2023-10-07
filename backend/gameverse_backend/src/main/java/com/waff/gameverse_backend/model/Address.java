@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,6 +31,15 @@ public class Address implements DataTransferObject<AddressDto> {
 
     @Column(name="city")
     private String city;
+
+    @OneToMany(mappedBy="address")
+    private List<User> users;
+
+    public Address(AddressDto addressDto) {
+        this.city = addressDto.getCity();
+        this.postalCode = addressDto.getPostalCode();
+        this.street = this.getStreet();
+    }
 
     @Override
     public AddressDto convertToDto() {

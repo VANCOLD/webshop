@@ -215,135 +215,81 @@ Register Login Style
 --------------------------------------------- 
 */
 
-.justified {
-    text-align: center;
-    text-justify: inter-word;
-    text-align-last: center;
-    color: darkgray;
+    .register-background {
+        background-image: url("./../images/register-bg.png");
+        background-size: cover; /* Updated property */
+        background-repeat: no-repeat; /* Updated property */
+        background-position: center; /* Added property */
+        height: 120vh;
+    }
 
-}
+    .justified {
+        text-align: center;
+        text-justify: inter-word;
+        text-align-last: center;
+        color: darkgray;
+    }
 
-  .login-container {
-      background-color: whitesmoke;
-      border-bottom-left-radius: 50px;
-  }
+    .login-container {
+        background-color: whitesmoke;
+        border-bottom-left-radius: 50px;
+    }
 
-  .form-group + .form-group {
-      margin-top: 8px;
-  }
+    .form-group + .form-group {
+        margin-top: 8px;
+    }
 
-  .custom-border-radius {
-      border-radius: 50px;
-  }
+    .custom-border-radius {
+        border-radius: 50px;
+    }
 
-  .custom-h1-color {
-      color: #e75e8d;
-  }
+    .text-color {
+        color: #e75e8d;
+    }
 
-  .custom-button-rounded-color-left {
-    color: #e75e8d;
-    background-color: #e75e8d;
-    transition: none;
-    border-top-left-radius: 50px;
-  }
+    .disclaimer-text {
+        position:relative; 
+        text-align:center; 
+        font-size:12px; 
+    }
 
-  form input:focus + .custom-button-rounded-color-left,
-.custom-button-rounded-color-left:focus {
-    border-top-left-radius: 50px !important;
-}
+    .custom-button-rounded-color-left:focus, .custom-button-rounded-color-left:hover, .custom-button-rounded-color-left:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
 
-  .custom-button-rounded-color-left:focus {
-    color: #e75e8d;
-    background-color: #e75e8d;
-    border-top-left-radius: 50px;
-  }
+    .custom-button-rounded-color-left {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
 
-  .custom-button-rounded-color-left:hover {
-      color: #ffff;
-      background-color: #e75e8d;
-      border-top-left-radius: 50px;
-  }
+    .custom-button-rounded-color {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
 
-  .custom-button-color {
-      color: #e75e8d;
-  }
+    .custom-button-rounded-color:focus, .custom-button-rounded-color:hover, .custom-button-rounded-color:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
 
-  .custom-button-rounded-color {
-    color: #e75e8d;
-    border-top-right-radius: 50px;
-  }
-
-  .custom-button-rounded-color:hover {
-    color: #ffff;
-    background-color: #e75e8d;
-    border-top-right-radius: 50px;
-    transition: none; /* Disable the transition */
-  }  
-
-  .custom-button-rounded-color:focus {
-      color: #e75e8d;
-      border-top-right-radius: 50px;
-  }
-
-  .custom-button-rounded-color:active {
-      background-color: #e75e8d;
-      border-top-right-radius: 50px;
-  }
-
-  .custom-button-bgcolor {
-    background-color: #e75e8d;
-    border: 2px solid #e75e8d;
-
-  }
-
-  .custom-button-bgcolor:hover,
-  .custom-button-color:hover,
-  .custom-button-rounded-color:hover {
-      background-color: #e75e8d;
-      color: #ffffff;
-      border: 2px solid #e75e8d; /* Add the same border color on hover if needed */
-      transition: 0,2s ease-in; 
-  }
-
-  .btn-primary{
-    outline: #e75e8d;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color-left {
-    background-color: #e75e8d;
-    color: #ffffff;
-    border-top-left-radius: 50px;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color-left:focus {
-      background-color: #e75e8d;
-      color: #ffffff;
-      border-top-left-radius: 50px;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color-left:hover {
-      background-color: #e75e8d;
-      color: #ffffff;
-      border-top-left-radius: 50px;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color {
-    background-color: #e75e8d;
-    color: #ffffff;
-    border-top-right-radius: 50px;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color:focus {
-    background-color: #e75e8d;
-    color: #ffffff;
-    border-top-right-radius: 50px;
-  }
-
-  .nav-tabs .nav-link.active.custom-button-rounded-color:hover {
-    background-color: #e75e8d;
-    color: #ffffff;
-    border-top-right-radius: 50px;
-  }
+    .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover{
+        background-color: #e75e8d;
+        outline-color: white;
+        border-color: white;
+    }
 
 /* 
 ---------------------------------------------

@@ -31,375 +31,185 @@
 
     <!-- jquery script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/login.js"></script>
 
     <!-- Unser eigenes CSS-->
     <link href="./css/style.css" rel="stylesheet">
-
-    <style>
-        header {
-            min-height: 5px; /* Adjust this value according to your design */
-            background-color: #1e1e1e; /* Add your desired background color here */
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-
-        .background {
-            background-image: url("./images/register-bg.png");
-            background-size: cover; /* Updated property */
-            background-repeat: no-repeat; /* Updated property */
-            background-position: center; /* Added property */
-        }
-    </style>
 </head>
 
-<body class="background">
+<body class="register-background">
 
-<!-- ***** Header Area Start ***** -->
-<header>
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
+
         <div class="row">
 
-            <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center clearfix">
+            <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5" style="padding: 0">
 
-                <div class="logo">
-                    <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
+                <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
+                    <button aria-controls="nav-signup" aria-selected="true"
+                            class="nav-link custom-button-rounded-color-left flex-fill" data-bs-target="#nav-signup" 
+                            data-bs-toggle="tab" id="nav-signup-tab" role="tab" style="" type="button">Sign Up
+                    </button>
+                    <button class="nav-link custom-button-rounded-color flex-fill" id="nav-signin-tab" role="tab"
+                            aria-controls="nav-signin" aria-selected="false" data-bs-target="#nav-signin" data-bs-toggle="tab" 
+                            style="font-size:19px;" type="button">Sign In
+                    </button>
                 </div>
 
-                <div class="d-flex flex-row">
-                    <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
+                <div class="tab-content container" id="nav-tabContent">
+                    <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <form class="form-inline col-lg-10 register-validation">
+                                <div class="form-group nav-justified">
+                                    <div class="col-lg-10 pt-4">
+                                        <h1 class="text-color">Begin Your Quest</h1>
+                                        <p>Enter the gaming realm by creating an account.</p>
+                                    </div>
 
-                    <div class="nav-link" onclick="">
-                        <div class="icon-button">
-                            <div class="input-group">
-                                <input aria-describedby="searc-field" aria-label="Searchfield" class="form-control search-form"
-                                       placeholder="Search" type="text">
-                                <div class="input-group-append">
-                                    <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
+                                    <div class="form-group">
+                                        <label for="username"><b>Username</b></label>
+                                        <input class="form-control" name="username" placeholder="Username"
+                                            type="text" id="username" data-toggle="tooltip" data-placement="bottom">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email"><b>Email</b></label>
+                                        <input class="form-control" name="email" placeholder="Email"
+                                            type="text" id="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="anrede"><b>Gender</b></label>
+                                        <select class="form-select form-control" placeholder="Gender" name="gender" id="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Diverse">Diverse</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name"><b>Name</b></label>
+                                        <input class="form-control" name="firstname" placeholder="First name"
+                                            type="text" id="firstname">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="surname"><b>Surname</b></label>
+                                        <input class="form-control" name="surname" placeholder="Surname"
+                                            type="text" id="surname">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="plz"><b>Postal-Code</b></label>
+                                        <input class="form-control" name="plz" placeholder="Postal-code"
+                                            type="text" id="postalcode">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="ort"><b>City</b></label>
+                                        <input class="form-control" name="city" placeholder="City"
+                                            type="text" id="city">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="street"><b>Address</b></label>
+                                        <input class="form-control" name="address" placeholder="Street, House Number, Abbreviation"
+                                            type="text" id="address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="psw"><b>Password</b></label>
+                                        <input class="form-control" name="psw" placeholder="Password"
+                                            type="password" id="password">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="psw-repeat"><b>Repeat Password</b></label>
+                                        <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
+                                            type="password" id="passwordRepeat">
+                                    </div><br>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="row col-lg-12 mt-4 mb-2">
+                                                <div class="form-group d-inline-flex align-items-center">
+                                                    <button class="btn btn-primary form-control" type="click" id="register">
+                                                        Register
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="disclaimer-text mt-3">
+                                            By creating an account you are consenting to our 
+                                            <a href="agb.html" class="text-color mb-4">
+                                                <br>
+                                                Terms & Privacy.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
 
-                    <div>
-                        <a class="nav-link" href="./support.html">
-                            <div class="icon-button">
-                                <i class="fa-regular fa-circle-question"></i>
-                                <p>Support</p>
-                            </div>
-                        </a>
-                    </div>
+                    <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <form class="form-inline col-lg-10 login-validation">
 
-                    <div>
-                        <a class="nav-link" href="./register.html">
-                            <div class="icon-button">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <p>Cart</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a class="nav-link" href="./register.html">
-                            <div class="icon-button">
-                                <i class="fa-regular fa-user"></i>
-                                <p>Sign In</p>
-                            </div>
-                        </a>
-                    </div>
-
-                </div> <!-- END d-flex flex-row -->
-            </nav>
-        </div> <!-- END row-->
-    </div> <!-- END container-fluid -->
-</header>
-
-<div class="container-fluid ">
-
-    <div class="row">
-
-        <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5" style="padding: 0";>
-
-            <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
-                <button aria-controls="nav-signup" aria-selected="true"
-                        class="nav-link custom-button-rounded-color-left flex-fill" data-bs-target="#nav-signup" 
-                        data-bs-toggle="tab" id="nav-signup-tab" role="tab" style="font-size:19px" type="button">Sign Up
-                </button>
-                <button class="nav-link custom-button-rounded-color flex-fill" id="nav-signin-tab" role="tab"
-                        aria-controls="nav-signin" aria-selected="false" data-bs-target="#nav-signin" data-bs-toggle="tab" 
-                        style="font-size:19px;" type="button">Sign In
-                </button>
-            </div>
-
-            <div class="tab-content container" id="nav-tabContent">
-                <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <form class="form-inline col-lg-10">
-
-                            <div class="form-group nav-justified">
-                                <div class="col-lg-8">
-                                    <br>
-                                    <h1 class="custom-h1-color">Begin Your Quest</h1>
-                                    <p>Enter the gaming realm by creating an account.</p>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username"><b>Username</b></label>
-                                    <input class="form-control" name="username" placeholder="Username" required
-                                           pattern="^[A-Za-z0-9]+$" type="text" id="username"
-                                           data-toggle="tooltip" data-placement="bottom" title="Username is required and can only contain letters and numbers">
-                                </div>
-                                  
-                                <div class="form-group">
-                                    <label for="email"><b>Email</b></label>
-                                    <input class="form-control" name="email" placeholder="Email" required
-                                           type="text" id="email">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="anrede"><b>Gender</b></label>
-                                    <select class="form-select form-control" placeholder="Gender" name="gender" id="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="div">Other</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="name"><b>Name</b></label>
-                                    <input class="form-control" name="firstname" placeholder="First name" required
-                                           type="text" id="name">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="surname"><b>Surname</b></label>
-                                    <input class="form-control" name="surname" placeholder="Surname" required
-                                           type="text" id="surname">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="plz"><b>Postal-Code</b></label>
-                                    <input class="form-control" name="plz" placeholder="Postal-code" required
-                                           type="text" id="plz">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="ort"><b>City</b></label>
-                                    <input class="form-control" name="city" placeholder="City" required
-                                           type="text" id="ort">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="street"><b>Address</b></label>
-                                    <input class="form-control" name="address" placeholder="Street, House Number, Abbreviation"
-                                           required type="text" id="address">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="psw"><b>Password</b></label>
-                                    <input class="form-control" name="psw" placeholder="Password" required
-                                           type="password" id="password">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="psw-repeat"><b>Repeat Password</b></label>
-                                    <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
-                                           required type="password" id="passwordRepeat">
-                                </div><br>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-5"></div>
-                                        <button class="btn btn-primary col-lg-2 form-control-sm input-sm custom-button-bgcolor" 
-                                                type="click" style="" id="register">Register
-                                        </button>
-                                        <div class="col-lg-5"></div>
+                                <div class="form-group nav-justified">
+                                    <div class="col-lg-10 pt-4">
+                                        <h1 class="text-color">Return To Questing</h1>
+                                        <p>Continue your epic adventure by logging in!</p>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p style="position:relative; text-align:center; font-size:12px; margin-top:4px;">By
-                                        creating an account you are consenting to our <a href="agb.html" style="color:#e75e8d;">
-                                            <br>Terms & Privacy.</a></p>
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="username"><b>Username</b></label>
+                                        <input class="form-control" name="usernameLogin" placeholder="Username"
+                                            type="text" id="usernameLogin">
+                                    </div>
 
-                        </form>
-                    </div>
-                </div>
+                                    <div class="form-group">
+                                        <label for="psw"><b>Passwort</b></label>
+                                        <input class="form-control" name="psw" placeholder="Password"
+                                            type="password" id="passwordLogin">
+                                    </div><br>
 
-                <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <form class="form-inline col-lg-10">
-
-                            <div class="form-group nav-justified">
-                                <div class="col-lg-9">
-                                    <br>
-                                    <h1 style= color:#e75e8d;>Return To Questing</h1>
-                                    <p>Continue your epic adventure by logging in!</p>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username"><b>Username</b></label>
-                                    <input class="form-control" name="usernameLogin" placeholder="Username" required
-                                           type="text" id="usernameLogin">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="psw"><b>Passwort</b></label>
-                                    <input class="form-control" name="psw" placeholder="Password" required
-                                           type="password" id="passwordLogin">
-                                </div><br>
-
-                                <div class="row col-lg-12">
-                                    <div class="form-group d-inline-flex align-items-center">
-                                        <div class="col-lg-2"></div>
-                                        <div class="col-lg-3">
-                                            <button class="btn btn-primary form-control custom-button-bgcolor"
-                                                    type="click" id="login">Login
+                                    <div class="row col-lg-12">
+                                        <div class="form-group d-inline-flex align-items-center">
+                                            <button class="btn btn-primary form-control mt-2" type="click" id="login">
+                                                    Login
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="container fluid-containner col-lg-12">
-                                    <br>
-                                    <p style="text-align:center;">Forgot your<a href="#"
-                                        style="color:#e75e8d;">password?</a></p>
+                                <div class="row">
+                                    <div class="container fluid-containner col-lg-12 mt-4 mb-2">
+                                        <p class="text-center">Forgot your
+                                            <a href="#" class="text-color mb-4">password?</a>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<footer class="bg-footer container-fluid w-100 h-100">
 
-    <div class="d-none d-md-block">
-        <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
+    <script src="./js/login.js"></script>
 
-        <div class="d-flex flex-row justify-content-center mt-2">
-            <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
-
-            <div class="mx-3 my-3">
-                <div class="text-center text-wrap">
-                    <h6>Contact</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="support.html">Support</a></li>
-                        <li><a href="./contact.html">Contact Us</a></li>
-                        <li><a href="#">Complaints</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-1"></div>
-
-            <div class="mx-3 my-3">
-                <div class="text-center text-wrap">
-                    <h6>Information</h6>
-                    <ul class="list-unstyled"></li>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Payment methods</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-1"></div>
-
-            <div class="mx-3 my-3">
-                <div class="text-center text-wrap">
-                    <h6>More</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="./impressum.html">Impressum</a></li>
-                        <li><a href="./agb.html">AGBs</a></li>
-                        <li><a href="">Data Protection</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
-
-
-    <div class="d-md-none small-links mt-5 mb-3">
-        <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
-        <ul class="container-fluid justify-content-center">
-            <div class="row">
-                <li class="list-group-item">
-
-                    <a aria-controls="collapseContact" aria-expanded="t" data-bs-toggle="collapse" href="#collapseContact"
-                    role="button">Contact</a>
-                    <div class="collapse" id="collapseContact">
-                        <ul class="list-unstyled buttonlist">
-                            <li><a href="support.html">Support</a></li>
-                            <li><a href="./contact.html">Contact Us</a></li>
-                            <li><a href="#">Complaints</a></li>
-                        </ul>
-                    </div>
-
-                </li>
-
-                <li class="list-group-item">
-
-                    <a aria-controls="collapseInformation" aria-expanded="t" data-bs-toggle="collapse" href="#collapseInformation"
-                    role="button">Information</a>
-                    <div class="collapse" id="collapseInformation">
-                        <ul class="list-unstyled buttonlist">
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Payment methods</a></li>
-                        </ul>
-                    </div>
-
-                </li>
-
-                <li class="list-group-item">
-
-                    <a aria-controls="collapseMore" aria-expanded="t" data-bs-toggle="collapse" href="#collapseMore"
-                    role="button">More</a>
-                    <div class="collapse" id="collapseMore">
-                        <ul class="list-unstyled buttonlist">
-                            <li><a href="./impressum.html">Impressum</a></li>
-                            <li><a href="./agb.html">AGBs</a></li>
-                            <li><a href="">Data Protection</a></li>
-                        </ul>
-                    </div>
-
-                </li>
-            </div>
-        </ul>
-    </div> <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
-
-    <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
-
-    <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
-    <div class="d-flex flex-row justify-content-center">
-        <ul class="list-unstyled socials">
-            <li><i class="fa-brands fa-discord"></i></li>
-            <li><i class="fa-brands fa-instagram"></i></li>
-            <li><i class="fa-brands fa-facebook"></i></li>
-            <li><i class="fa-brands fa-tiktok"></i></li>
-            <li><i class="fa-brands fa-twitter"></i></li>
-        </ul>
-    </div>
-
-    <div class="container-fluid text-center bg-footer">
-        <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
-    </div>
-
-</footer>
 </body>
 </html>
