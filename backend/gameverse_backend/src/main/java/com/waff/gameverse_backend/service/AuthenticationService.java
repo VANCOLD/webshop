@@ -1,5 +1,7 @@
 package com.waff.gameverse_backend.service;
 
+import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.RoleRepository;
@@ -51,21 +53,22 @@ public class AuthenticationService {
     /**
      * Register a new user with the given username and password.
      *
-     * @param username The username of the new user.
-     * @param password The password of the new user.
+     * @param userDto userDto that contains all the user data for registration
      * @return The registered user.
      * @throws BadCredentialsException If a user with the same username already exists.
      */
-    public User registerUser(String username, String password) {
-        Optional<User> checkUser = userRepository.findByUsername(username);
+    public User registerUser(UserDto userDto) {
+        Optional<User> checkUser = userRepository.findByUsername(userDto.getUsername());
         if (checkUser.isPresent()) {
             throw new BadCredentialsException("User with the given name already exists!");
         }
 
-        String encodedPassword = passwordEncoder.encode(password);
+        String encodedPassword = passwordEncoder.encode(userDto.getPassword());
         Role userRole = roleRepository.findByName("user").orElseThrow(); // Assumes "user" role exists.
-
-        return userRepository.save(new User(username, encodedPassword, userRole));
+        userDto.setRole(userRole.convertToDto());
+        userDto.setPassword(encodedPassword);
+        System.out.println(userDto.toString());
+        return userRepository.save(new User(userDto));
     }
 
     /**
