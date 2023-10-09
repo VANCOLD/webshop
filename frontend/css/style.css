@@ -79,13 +79,6 @@ Global Styles
       flex:1;
   }
   
-
-/* 
----------------------------------------------
-Navigationsbar Style
---------------------------------------------- 
-*/
-
 /* 
 ---------------------------------------------
 Navigationsbar Style
@@ -127,12 +120,14 @@ Navigationsbar Style
     border-top:  0px;
     border-left: 0px;
     border-right: 0px;
+    min-width: 80%;
+    min-height: auto;
   }
   
   #search-field input:focus {
     outline-color: #ec6090;
   }
-  
+
 
 /* 
 ---------------------------------------------
@@ -140,13 +135,7 @@ Footer Style
 --------------------------------------------- 
 */
 
-/* 
----------------------------------------------
-Footer Style
---------------------------------------------- 
-*/
-
-    footer a {
+  footer a {
     font-size: 14 px;  
   }
   
@@ -546,6 +535,30 @@ Responsive Style
 
 /* Desktop breakpoint */
 @media (min-width: 1200px) {
+    
+    #navbar-normal {
+        display: block;
+    }
+
+    #navbar-small {
+         display: none;
+    }
+
+    #search-field input {
+        min-width: 100%;
+    }
+    .icon-button i {
+        font-size:38px;
+        color:#ec6090;
+        width:64px;
+        height:auto;
+      }
+      
+      .icon-button p {
+        font-size: 18px;
+        color:white;
+      }
+
     body {
       font-size: 32px;
     }
@@ -572,7 +585,32 @@ Responsive Style
   }
   
   /* Tablet breakpoint */
-  @media (min-width: 767px) {
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+    #navbar-normal {
+        display: block;
+    }
+
+    #navbar-small {
+        display: none;
+    }
+
+    #search-field input { 
+        min-width: 50%;
+    }
+
+    .icon-button i {
+        font-size:19px;
+        color:#ec6090;
+        width:32px;
+        height:auto;
+      }
+      
+    .icon-button p {
+        font-size: 9px;
+        color:white;
+    }
+
     body {
       font-size: 18px;
     }
@@ -599,7 +637,16 @@ Responsive Style
   }
   
   /* Mobile breakpoint */
-  @media (min-width: 320px) {
+  @media (min-width: 320px) and (max-width: 766px) {
+      
+    #navbar-normal {
+        display: none;
+    }
+
+    #navbar-small {
+        display: block; 
+    }
+
     body {
       font-size: 14px;
     }

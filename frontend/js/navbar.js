@@ -2,13 +2,19 @@ const profile   = document.getElementById('profile-button');
 const login     = document.getElementById('register-button');
 const cart      = document.getElementById('cart-button');
 const logout    = document.getElementById('logout-button');
+const admin     = document.getElementById('admin-button');
 
-const viewProfile = 'view_profile';   
-const viewCart = 'view_cart';           
+const viewProfile   = 'view_profile';   
+const viewCart      = 'view_cart';           
+const editCart      = 'edit_cart';
+const editUsers     = 'edit_users';
+const editProducts  = 'edit_products';
   
+
 document.getElementById('logout-button').addEventListener('click', function (e) {
     localStorage.setItem('token','');
 });
+
 
 $(document).ready(function() {
 
@@ -17,9 +23,15 @@ $(document).ready(function() {
     console.log(token)
 
     if(token == '') {
+
+        if(window.location.href.includes('/register.html')) {
+            login.style.display = 'none';
+        }
+
         profile.style.display = 'none';
         cart.style.display = 'none';
         logout.style.display = 'none';
+        admin.style.display  = 'none';
 
     } else {
         const jwtParser = new JWTParser(token);
@@ -27,15 +39,21 @@ $(document).ready(function() {
         try {
             const payload = jwtParser.parse();
             const privs   = payload.authority.split(' ');
+            console.log(privs);
 
             if (privs.includes(viewProfile)) {
                 profile.style.display = 'visible';
             }
 
             if(privs.includes(viewCart)) {
-                profile.style.display = 'visible';
+                cart.style.display = 'visible';
             }
 
+            if(privs.includes(editCart) || privs.includes(editUsers) || privs.includes(editProducts)) {
+                admin.style.display = 'visible';
+            } else {
+                admin.style.display = 'none'
+            }
 
             login.style.display = 'none';
 
@@ -66,4 +84,3 @@ class JWTParser {
         }
     }
 }
-  

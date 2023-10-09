@@ -25,7 +25,7 @@ INSERT INTO privileges (name) VALUES
 ('edit_cart'),           -- 5
 ('edit_users'),          -- 6
 ('edit_products'),       -- 7
-('edit_own_profile');    -- 8
+('view_orders');         -- 8
 
 
 INSERT INTO roles (name) VALUES
@@ -114,6 +114,5 @@ INSERT INTO products_to_genres (product_id, genre_id) VALUES
 (2, 2),     -- 3
 (2, 3),     -- 4
 (2, 9);     -- 5
-
 
 SET REFERENTIAL_INTEGRITY TRUE;
