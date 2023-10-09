@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "address")
+@Table(name = "addresses")
 public class Address implements DataTransferObject<AddressDto> {
 
     @Id
@@ -26,7 +26,7 @@ public class Address implements DataTransferObject<AddressDto> {
     @Column(name="street")
     private String street;
 
-    @Column(name="plz")
+    @Column(name="postalcode")
     private String postalCode;
 
     @Column(name="city")

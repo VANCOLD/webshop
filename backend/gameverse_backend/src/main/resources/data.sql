@@ -15,6 +15,7 @@ TRUNCATE TABLE orders;
 TRUNCATE TABLE ordered_products;
 TRUNCATE TABLE carts;
 TRUNCATE TABLE products_to_carts;
+TRUNCATE TABLE addresses;
 
 
 INSERT INTO privileges (name) VALUES
@@ -26,6 +27,10 @@ INSERT INTO privileges (name) VALUES
 ('edit_users'),          -- 6
 ('edit_products'),       -- 7
 ('view_orders');         -- 8
+
+INSERT INTO addresses (street, postalcode, city, country) VALUES
+('Johnstraße 12', '1150','Vienna','Austria'),
+('11-1 Hokotate-cho','601-8501','Kyoto','Japan');
 
 
 INSERT INTO roles (name) VALUES
@@ -48,9 +53,9 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 
 
 /* password is always the word password for each user */
-INSERT INTO users (username, password, role_id) VALUES
-('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1),      -- 1
-('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2);     -- 2
+INSERT INTO users (username, password, role_id, address_id) VALUES
+('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1),      -- 1
+('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1);     -- 2
 
 
 INSERT INTO console_generations (name) VALUES
@@ -61,17 +66,17 @@ INSERT INTO console_generations (name) VALUES
 ('Playstation 4');      -- 5
 
 
-INSERT INTO producers (name) VALUES
-('Nintendo'),           -- 1
-('Sony'),               -- 2
-('Microsoft'),          -- 3
-('Sega'),               -- 4
-('From Soft'),          -- 5
-('Naughty Dog'),        -- 6
-('Square Enix'),        -- 7
-('Game Freak'),         -- 8
-('HAL Laboratories'),   -- 9
-('Gameverse');          -- 10
+INSERT INTO producers (name, address_id) VALUES
+('Nintendo', 1),              -- 1
+('Sony', null),               -- 2
+('Microsoft', null),          -- 3
+('Sega', null),               -- 4
+('From Soft', null),          -- 5
+('Naughty Dog', null),        -- 6
+('Square Enix', null),        -- 7
+('Game Freak', null),         -- 8
+('HAL Laboratories', null),   -- 9
+('Gameverse', null);          -- 10
 
 
 INSERT INTO genres (name) VALUES

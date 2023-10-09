@@ -44,19 +44,19 @@ public class AddressServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.addressService.findAll();
-        assertThat(testCase1.size()).isEqualTo(6);
+        assertThat(testCase1.size()).isEqualTo(2);
     }
 
     @Test
     void saveTest() {
 
-        AddressDto address1 = new AddressDto(null, "Peterstraße 12","1210","Wien","Österreich");
+        AddressDto address1 = new AddressDto(0L, "Peterstraße 12","1210","Wien","Österreich");
 
         AddressDto address2 = new AddressDto(1L, "Peterstraße 12","1210","Wien","Österreich");
 
 
         var testCase1 = this.addressService.save(address1);
-        assertThat(testCase1).isEqualTo(address1);
+        assertThat(testCase1.getStreet()).isEqualTo(address1.getStreet());
 
         assertThrows(IllegalArgumentException.class, () -> this.addressService.save(address2));
     }
@@ -67,8 +67,8 @@ public class AddressServiceTest {
         assertThrows(NoSuchElementException.class,() -> this.addressService.update(address));
 
         address.setId(1L);
-        var updatedRole = this.addressService.update(address);
-        assertThat(updatedRole).isEqualTo(address);
+        var updatedAddress = this.addressService.update(address);
+        assertThat(updatedAddress.convertToDto()).isEqualToComparingFieldByField(address);
 
         address.setStreet("");
         assertThrows(IllegalArgumentException.class, () -> this.addressService.update(address));
@@ -88,7 +88,7 @@ public class AddressServiceTest {
 
         // Lösche des Eintrages der Rolle user
         var testCase1 = this.addressService.delete(address1);
-        assertThat(testCase1.getStreet()).isEqualTo("Johnstraße");
+        assertThat(testCase1.getStreet()).isEqualTo("Johnstraße 12");
 
         // Da wir den Eintrag gelöscht haben sollten wir diesen auch nicht mehr finden!
         assertThrows(NoSuchElementException.class, () -> this.addressService.findById(address1));

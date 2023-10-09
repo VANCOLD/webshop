@@ -204,7 +204,7 @@ public class ProducerControllerTest {
         String token = this.getToken("user");
 
         // Existing producer in the db
-        ProducerDto testCase = new ProducerDto( "Nintendo");
+        ProducerDto testCase = new ProducerDto(1L,  "Nintendo");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

@@ -43,6 +43,7 @@ public class ProducerDto {
      * @param name The name of the producer.
      */
     public ProducerDto(String name) {
+
         this(0L, name);
     }
 
@@ -53,7 +54,12 @@ public class ProducerDto {
      * @param name The name of the producer.
      */
     public ProducerDto(Long id, String name) {
+        this(id,name, new AddressDto());
+    }
+
+    public ProducerDto(Long id, String name, AddressDto addressDto) {
         this.id = id;
         this.name = name;
+        this.addressDto = addressDto;
     }
 }

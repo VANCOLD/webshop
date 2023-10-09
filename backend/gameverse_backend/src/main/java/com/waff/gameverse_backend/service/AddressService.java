@@ -75,14 +75,19 @@ public class AddressService {
      */
     public Address update(AddressDto addressDto) {
 
-        var toUCheck = this.addressRepository.findById(addressDto.getId())
+        var toUpdate = this.addressRepository.findById(addressDto.getId())
                 .orElseThrow(() -> new NoSuchElementException("Address with the given ID does not exist"));
 
         if (addressDto.getStreet().isEmpty()) {
             throw new IllegalArgumentException("The name of the address cannot be empty");
         }
 
-        return this.addressRepository.save(new Address(addressDto));
+        toUpdate.setStreet(addressDto.getStreet());
+        toUpdate.setCity(addressDto.getCity());
+        toUpdate.setPostalCode(addressDto.getPostalCode());
+        toUpdate.setCountry(addressDto.getCountry());
+
+        return this.addressRepository.save(toUpdate);
     }
 
     /**
