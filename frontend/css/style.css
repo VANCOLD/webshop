@@ -559,9 +559,6 @@ Responsive Style
         color:white;
       }
 
-    body {
-      font-size: 32px;
-    }
     .socials li i {
       font-size:32px;
       margin-left:16px;
@@ -611,9 +608,6 @@ Responsive Style
         color:white;
     }
 
-    body {
-      font-size: 18px;
-    }
     .socials li i {
       font-size:18px;
       margin-left:8px;
@@ -647,9 +641,6 @@ Responsive Style
         display: block; 
     }
 
-    body {
-      font-size: 14px;
-    }
     .socials li i {
       font-size:18px;
       margin-left:8px;
