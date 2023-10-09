@@ -25,6 +25,9 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
     @Column(name = "name")
     private String name;
 
+    @Column(name="description")
+    private String description;
+
     @Column(name = "price")
     private Double price;
 
@@ -40,6 +43,6 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
 
     @Override
     public OrderedProductDto convertToDto() {
-        return new OrderedProductDto(id, name, price, tax, amount);
+        return new OrderedProductDto(id, name, description, price, tax, amount, order.convertToDto());
     }
 }

@@ -32,18 +32,25 @@ public class Address implements DataTransferObject<AddressDto> {
     @Column(name="city")
     private String city;
 
+    @Column(name="country")
+    private String country;
+
     @OneToMany(mappedBy="address")
     private List<User> users;
+
+    @OneToMany(mappedBy="address")
+    private List<Producer> producers;
 
     public Address(AddressDto addressDto) {
         this.city = addressDto.getCity();
         this.postalCode = addressDto.getPostalCode();
-        this.street = this.getStreet();
+        this.street = addressDto.getStreet();
+        this.country = addressDto.getCountry();
     }
 
     @Override
     public AddressDto convertToDto() {
-        return new AddressDto(id, street, postalCode, city);
+        return new AddressDto(id, street, postalCode, city, country);
     }
 
 }

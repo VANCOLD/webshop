@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * The ProducerDto class represents a Data Transfer Object (DTO) for a producer in products {@Link Product}.
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@ToString
 public class ProducerDto {
 
     /**
@@ -24,6 +26,9 @@ public class ProducerDto {
     @NotNull
     @NotEmpty
     private String name;
+
+    @NotNull
+    private AddressDto addressDto;
 
     /**
      * Constructs an empty ProducerDto with default values (id=0, name="").

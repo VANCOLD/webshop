@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * The GenreDto class represents a Data Transfer Object (DTO) for a genre in products {@Link Product}.
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@ToString
 public class GenreDto {
 
     /**

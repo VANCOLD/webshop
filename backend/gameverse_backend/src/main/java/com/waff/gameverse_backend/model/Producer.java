@@ -46,6 +46,12 @@ public class Producer implements DataTransferObject<ProducerDto> {
     @OneToMany(mappedBy="producer")
     private List<Product> products;
 
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+
     @Override
     public ProducerDto convertToDto() {
         return new ProducerDto(id, name);

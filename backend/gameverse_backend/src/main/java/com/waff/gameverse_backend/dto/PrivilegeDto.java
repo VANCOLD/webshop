@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
+@ToString
 public class PrivilegeDto implements Serializable {
 
     /**

@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * The CategoryDto class represents a Data Transfer Object (DTO) for categories in products {@See Product}.
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@ToString
 public class CategoryDto {
 
     /**

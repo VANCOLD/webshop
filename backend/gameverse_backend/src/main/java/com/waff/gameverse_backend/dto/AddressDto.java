@@ -24,4 +24,8 @@ public class AddressDto {
     @NotNull
     @NotEmpty
     private String city;
+
+    @NotNull
+    @NotEmpty
+    private String country;
 }
