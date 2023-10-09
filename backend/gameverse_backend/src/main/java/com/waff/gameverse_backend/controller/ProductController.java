@@ -77,7 +77,7 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody SimpleProductDto productDto) {
         try {
-            return ResponseEntity.ok(productService.save(productDto.getName()).convertToSimpleDto());
+            return ResponseEntity.ok(productService.save(productDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();

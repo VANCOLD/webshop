@@ -41,6 +41,16 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
     @JoinColumn(name="order_id")
     private Order order;
 
+    public OrderedProduct(OrderedProductDto orderedProducts) {
+        this.id = orderedProducts.getId();
+        this.amount = orderedProducts.getAmount();
+        this.description = orderedProducts.getDescription();
+        this.tax = orderedProducts.getTax();
+        this.name = orderedProducts.getName();
+        this.price = orderedProducts.getPrice();
+        this.order = new Order(orderedProducts.getOrder());
+    }
+
     @Override
     public OrderedProductDto convertToDto() {
         return new OrderedProductDto(id, name, description, price, tax, amount, order.convertToDto());

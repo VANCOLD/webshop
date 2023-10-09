@@ -33,10 +33,17 @@ public class Cart implements DataTransferObject<CartDto> {
         joinColumns = { @JoinColumn(name = "cart_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    private List<Product> products;
+    private List<CartItem> products;
+
+
+    public Cart(CartDto cart) {
+       this.id   = cart.getId();
+       this.user = new User(cart.getUser());
+       this.products = cart.getProducts().stream().map(CartItem::new).toList();
+    }
 
     @Override
     public CartDto convertToDto() {
-        return new CartDto(id, user.convertToDto(), products.stream().map(Product::convertToDto).toList());
+        return new CartDto(id, user.convertToDto(), products.stream().map(CartItem::convertToDto).toList());
     }
 }

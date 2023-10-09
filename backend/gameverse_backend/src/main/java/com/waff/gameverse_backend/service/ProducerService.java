@@ -19,7 +19,7 @@ public class ProducerService {
 
     public ProducerService(ProducerRepository producerRepository, ProductRepository productRepository) {
         this.producerRepository = producerRepository;
-        this.productRepository           = productRepository;
+        this.productRepository  = productRepository;
     }
 
     /**

@@ -130,7 +130,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "cart_id") }
     )
-    private List<Cart> carts;
+    private List<CartItem> carts;
 
     public Product(SimpleProductDto productDto) {
         this.id = productDto.getId();
@@ -138,6 +138,19 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         this.description = productDto.getDescription();
         this.image = productDto.getImage();
         this.tax   = productDto.getTax();
+    }
+
+    public Product(ProductDto productDto) {
+        this.id = productDto.getId();
+        this.name = productDto.getName();
+        this.description = productDto.getDescription();
+        this.image = productDto.getImage();
+        this.tax   = productDto.getTax();
+        this.category = new Category(productDto.getCategory());
+        this.genres   = productDto.getGenres().stream().map(Genre::new).toList();
+        this.producer = new Producer(productDto.getProducer());
+        this.consoleGeneration = new ConsoleGeneration(productDto.getConsoleGeneration());
+        this.carts = productDto.getCarts().stream().map(CartItem::new).toList();
     }
 
     @Override

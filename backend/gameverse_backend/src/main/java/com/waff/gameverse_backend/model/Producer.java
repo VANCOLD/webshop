@@ -52,8 +52,16 @@ public class Producer implements DataTransferObject<ProducerDto> {
     private Address address;
 
 
+    public Producer(ProducerDto producer) {
+        this.id = producer.getId();
+        this.name = producer.getName();
+        this.products = producer.getProducts().stream().map(Product::new).toList();
+        this.address = new Address(producer.getAddress());
+    }
+
+
     @Override
     public ProducerDto convertToDto() {
-        return new ProducerDto(id, name);
+        return new ProducerDto(id, name, address.convertToDto(), products.stream().map(Product::convertToDto).toList());
     }
 }

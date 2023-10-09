@@ -51,8 +51,14 @@ public class Genre implements DataTransferObject<GenreDto> {
     )
     private List<Product> products;
 
+    public Genre(GenreDto genre) {
+        this.id = genre.getId();
+        this.name = genre.getName();
+        this.products = genre.getProducts().stream().map(Product::new).toList();
+    }
+
     @Override
     public GenreDto convertToDto() {
-        return new GenreDto(id, name);
+        return new GenreDto(id, name, products.stream().map(Product::convertToDto).toList());
     }
 }

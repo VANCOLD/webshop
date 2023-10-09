@@ -3,6 +3,7 @@ package com.waff.gameverse_backend.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.waff.gameverse_backend.model.CartItem;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -69,7 +70,7 @@ public class ProductDto {
     private ProducerDto producer;
 
     /** The list of genres associated with the product. */
-    @NotNull
-    @NotEmpty
     private List<GenreDto> genres;
+
+    private List<CartItemDto> carts;
 }

@@ -19,6 +19,9 @@ public class OrderDto {
     private UserDto user;
 
     @NotNull
+    private String orderStatus;
+
+    @NotNull
     @NotEmpty
     private List<OrderedProductDto> orderedProducts;
 

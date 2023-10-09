@@ -22,9 +22,9 @@ public class AddressService {
 
     public AddressService(AddressRepository addressRepository,
                           ProducerRepository producerRepository, UserRepository userRepository) {
-        this.addressRepository = addressRepository;
+        this.addressRepository  = addressRepository;
         this.producerRepository = producerRepository;
-        this.userRepository = userRepository;
+        this.userRepository     = userRepository;
     }
 
     /**

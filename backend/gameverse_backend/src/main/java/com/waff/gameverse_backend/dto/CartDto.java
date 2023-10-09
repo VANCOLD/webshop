@@ -19,6 +19,6 @@ public class CartDto {
     private UserDto user;
 
     @NotNull
-    private List<ProductDto> products;
+    private List<CartItemDto> products;
 
 }
