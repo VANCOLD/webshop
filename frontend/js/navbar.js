@@ -22,7 +22,7 @@ $(document).ready(function() {
     var token = localStorage.getItem("token");
     console.log(token)
 
-    if(token == '') {
+    if(token == '' || token == null) {
 
         if(window.location.href.includes('/register.html')) {
             login.style.display = 'none';
