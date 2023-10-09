@@ -6,82 +6,79 @@ Global Styles
 
 * {
     box-sizing: border-box;
-}
-
-html, body {
+  }
+  
+  html, body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    /* font-size: 16px; */
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #1f2122;
     background-color: #1e1e1e;
-}
-
-a {
-    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  a {
+      color: white;
     text-decoration: none !important;
-}
-
-a:hover {
-    color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
+  }
+  a:hover {
+      color: white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
     margin-top: 0px;
     margin-bottom: 0px;
     color: #fff;
     font-weight: 700;
-}
-
-ul {
+  }
+  
+  ul {
     margin-bottom: 0px;
-}
-
-
-body .page-content {
+  }
+  
+  body .page-content {
     background-color: #27292a;
     border-radius: 23px;
-    width: 85%;
+    width:85%;
     margin: 0 auto;
-}
-
-
-.page-content {
+  }
+  
+  .page-content {
     margin: 15%;
-}
-
-::selection {
+  }
+  
+  ::selection {
     background: #e75e8d;
     color: #fff;
-}
-
-::-moz-selection {
+  }
+  
+  ::-moz-selection {
     background: #e75e8d;
     color: white;
-}
-
-.container-fluid {
+  }
+  
+  .container-fluid{
     padding: 0 !important;
-}
-
-.row {
+  }
+  
+  .row {
     margin: 0;
-}
-
-main {
-    flex: 1;
-}
-
-/* Trick um den Footer ans Ende der Seite zu schieben */
-.orderbox {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
+    min-width: auto;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  
+  main {
+      flex:1;
+  }
+  
 /* 
 ---------------------------------------------
 Navigationsbar Style
@@ -89,67 +86,47 @@ Navigationsbar Style
 */
 
 .icon-button {
-    text-align: center;
-}
-
-.icon-button i {
-    font-size: 32px;
-    color: #ec6090;
-    width: 64px;
-    height: auto;
-}
-
-.icon-button p {
-    font-size: 16px;
+    text-align:center;
+  }
+  
+  .icon-button i {
+    font-size:38px;
+    color:#ec6090;
+    width:64px;
+    height:auto;
+  }
+  
+  .icon-button p {
+    font-size: 18px;
+    color:white;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox to create a horizontal layout */
+  }
+  
+  .navbar-list li {
+    margin-right: 10px; /* Add spacing between list items if desired */
+  }
+  
+  #search-field input {
+    background-color:#1e1e1e;
     color: white;
-}
-
-.search-icon {
-    border-bottom: 1px solid #ec6090;
-    padding-bottom: 4px;
-    padding-left: 4px;
-}
-
-
-.icon-button input {
-    outline: none;
-    background-color: #1e1e1e;
-    color: white;
+    font-size:20px;
+    border-color: #ec6090;
+    border-top:  0px;
     border-left: 0px;
     border-right: 0px;
-    border-top: 0px;
-    border-bottom: 1px solid #ec6090;
-
-    /* Entfernt den Rand (Border) des Inputs; */
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-}
-
-
-.icon-button input:focus {
-    outline: none;
-    background-color: #1f2122;
-    color: white;
-    border-left: 0px;
-    border-right: 0px;
-    border-top: 0px;
-    border-bottom: 1px solid #ec6090;
-
-    /* Entfernt den Fokus (blaue Umrandung) */
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
-
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+    min-width: 80%;
+    min-height: auto;
+  }
+  
+  #search-field input:focus {
+    outline-color: #ec6090;
+  }
 
 
 /* 
@@ -158,55 +135,55 @@ Footer Style
 --------------------------------------------- 
 */
 
-footer a {
-    font-size: 14px;
-}
-
-footer p {
+  footer a {
+    font-size: 14 px;  
+  }
+  
+  footer p {
     text-align: center;
     color: #fff;
-    font-weight: 300;
-    font-size: 12px;
-}
-
-footer {
-    position: relative;
-    bottom: 0px;
-}
-
-.bg-footer {
+    font-weight: 300; 
+    font-size: 12px ;
+  }
+  
+  footer {
+    position:relative;
+    bottom:0px;
+  }
+  
+  .bg-footer {
     background-color: #ec6090;
-}
-
-.socials {
+  }
+  
+  .socials {
     color: white;
-}
-
-.socials li {
-    display: inline;
-    margin-top: 16px;
-}
-
-footer > hr {
-    color: white;
-    height: 1px;
+  }
+  
+  .socials li {
+    display:inline;
+    margin-top:16px;
+  }
+  
+  footer > hr {
+    color:white; 
+    height: 1px; 
     margin: 0 auto;
-}
-
-
-.small-links li {
+  }
+  
+  
+  .small-links li{
     background-color: #ec6090;
     text-align: center;
-    color: white;
-    border-color: white;
+    color:white;
+    border-color:white;
     border-left: none;
-    border-right: none;
-}
-
-.buttonlist {
-    font-style: none;
+    border-right:none; 
+  }
+  
+  .buttonlist {
+    font-style:none;
     font-size: 12px;;
-}
+  }
 
 
 /* 
@@ -556,64 +533,134 @@ Responsive Style
 */
 
 
+/* Desktop breakpoint */
 @media (min-width: 1200px) {
-
-    .socials li i {
-        font-size: 32px;
-        margin-left: 16px;
-        margin-right: 16px;
+    
+    #navbar-normal {
+        display: block;
     }
 
-    footer {
+    #navbar-small {
+         display: none;
+    }
+
+    #search-field input {
         min-width: 100%;
-        min-height: 100%;
     }
-
-}
-
-@media (max-width: 1200px) {
-
-    .socials li i {
-        font-size: 24px;
-        margin-left: 12px;
-        margin-right: 12px;
-    }
-
-    footer {
-        min-width: 100%;
-        min-height: 100%;
-    }
-}
-
-@media (max-width: 767px) {
-
-    .socials li i {
+    .icon-button i {
+        font-size:38px;
+        color:#ec6090;
+        width:64px;
+        height:auto;
+      }
+      
+      .icon-button p {
         font-size: 18px;
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-
-    footer {
-        min-width: 100%;
-        min-height: 100%;
-    }
-
-}
-
-@media (min-width: 767px) {
+        color:white;
+      }
 
     .socials li i {
-        font-size: 18px;
-        margin-left: 8px;
-        margin-right: 8px;
+      font-size:32px;
+      margin-left:16px;
+      margin-right:16px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{
+      min-width:100%;
+      min-height:100%
+      
+    }
+  }
+  
+  /* Tablet breakpoint */
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+    #navbar-normal {
+        display: block;
     }
 
-    footer {
-        min-width: 100%;
-        min-height: 100%;
+    #navbar-small {
+        display: none;
     }
 
-}
+    #search-field input { 
+        min-width: 50%;
+    }
+
+    .icon-button i {
+        font-size:19px;
+        color:#ec6090;
+        width:32px;
+        height:auto;
+      }
+      
+    .icon-button p {
+        font-size: 9px;
+        color:white;
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+  
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
+  
+  }
+  
+  /* Mobile breakpoint */
+  @media (min-width: 320px) and (max-width: 766px) {
+      
+    #navbar-normal {
+        display: none;
+    }
+
+    #navbar-small {
+        display: block; 
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
+  }
 
 /* For responsive button in Register/Login */
  @media (min-width: 768px) {
