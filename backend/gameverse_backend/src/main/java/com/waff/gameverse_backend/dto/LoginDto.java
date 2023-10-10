@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistrationDto implements Serializable {
+public class LoginDto implements Serializable {
 
     /**
      * The username for user registration.

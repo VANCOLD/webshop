@@ -1,241 +1,96 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 
-        <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-        <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet">
+    <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
-        <title>Gamerverse - Allgemeine Geschäftsbedingungen</title>
+    <title>Gamerverse - Allgemeine Geschäftsbedingungen</title>
 
-        <!-- Bootstrap core CSS -->
-        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
-        <script crossorigin="anonymous"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Fontawesome-->
-        <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+    <!-- Fontawesome-->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
 
-        <!-- Unser eigenes CSS-->
-        <link href="./css/style.css" rel="stylesheet">
+    <!-- Unser eigenes CSS-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="./css/style.css" rel="stylesheet">
 
-    </head>
-    <body>
 
-        <header>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="d-flex flex-row">
-                    <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
-                        <a href="./index.html"><img class="img-fluid w-25 h-25" src="./images/Logo.png"></a>
+</head>
 
-                            <a class="icon-button nav-link" onclick="">
-                                <div class="search-bar">
-                                    <input type="text" class="form-control search-form" placeholder="Search" aria-label="Searchfield" aria-describedby="searc-field">
-                                    <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
-                                </div>
-                            </a>
 
-                            <a class="nav-link" href="./support.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                    <p>Support</p>
-                                </div>
-                            </a>
-                            <a class="nav-link" href="./ShoppingCart.html">
-                                <div class="icon-button">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <p>Cart</p>
-                                </div>
-                            </a>
-                            <a class="nav-link" href="./register.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-user"></i>
-                                    <p>Sign In</p>
-                                </div>
-                            </a>
-                        </div>
-                    </nav>
-                </div>
+<body>
+
+    <div id="navbar-bind"></div>
+
+    
+    <div class="container-fluid pb-4 mb-4">
+        <div class="row">
+            <div class="page-content pb-4 mb-4">
+                <h3 class="mx-auto mb-3 mt-3 text-center">Contact Form</h3>
+                <form>
+
+                    <label for="bestellnr">Bestellnummer</label>
+                    <input class="contact-input" id="bestellnr" name="Bestellnummer" placeholder="Deine Bestellnr.." type="text">
+
+                    <label for="anliegen">W&auml;hle bitte dein Anliegen aus:</label>
+                    <select class="contact-input" id="anliegen" name="Anliegen">
+                        <option value="Bestellschwierigkeiten">Bestellungen</option>
+                        <option value="Feedback und Beschwerden">Feedback</option>
+                        <option value="Koop">Kooperationsanfragen</option>
+                        <option value="Presse">Presseanfragen</option>
+                        <option value="Probleme und Bugs mit der Website">Bugs</option>
+                    </select>
+
+                    <label for="fname">Vorname</label>
+                    <input class="contact-input" id="fname" name="firstname" placeholder="Dein Vorname.." type="text">
+
+                    <label for="lname">Nachname</label>
+                    <input class="contact-input" id="lname" name="lastname" placeholder="Dein Nachname.." type="text">
+
+                    <label for="email">E-Mail</label>
+                    <input class="contact-input" id="email" name="email" placeholder="Deine E-Mail.." type="text">
+
+                    <label for="telnr">Telefonnummer</label>
+                    <input class="contact-input" id="telnr" name="Telefonnummer" placeholder="Deine Telefonnummer.." type="text">
+
+                    <label for="country">Land</label>
+                    <select class="contact-input" id="country" name="country">
+                        <option value="Austria">&Ouml;sterreich</option>
+                        <option value="Germany">Deutschland</option>
+                        <option value="Schweiz">Schweiz</option>
+                    </select>
+
+                    <label for="adresse">Deine Bestelladresse</label>
+                    <input class="contact-input" id="adresse" name="adresse" placeholder="Deine Bestelladresse.." type="text">
+
+                    <label for="subject">Dein Anliegen:</label>
+                    <textarea class="contact-input" id="subject" name="subject" placeholder="Schreibe uns dein Anliegen.."
+                            style="height:200px"></textarea>
+
+                    <div class="text-center mt-4 mb-2">
+                        <button class="w-50 btn btn-primary form-control" type="submit" value="Submit">
+                            Submit
+                        </button>
+                    </div>
+                </form>
             </div>
-        </header>
+        </div>
+    </div>
 
-        <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="page-content">
-                        <h3 class="text-center pt-3 mb-1">Contact Form</h3>
-                        <form action="/action_page.php">
+    <div id="footer-bind"></div>
+    <script src="./js/loader.js"></script>
 
-                            <label for="bestellnr">Bestellnummer</label>
-                            <input id="bestellnr" name="Bestellnummer" placeholder="Deine Bestellnr.." type="text">
-
-                            <label for="anliegen">W&auml;hle bitte dein Anliegen aus:</label>
-                            <select id="anliegen" name="Anliegen">
-                                <option value="Bestellschwierigkeiten">Bestellungen</option>
-                                <option value="Feedback und Beschwerden">Feedback</option>
-                                <option value="Koop">Kooperationsanfragen</option>
-                                <option value="Presse">Presseanfragen</option>
-                                <option value="Probleme und Bugs mit der Website">Bugs</option>
-                            </select>
-
-                            <label for="fname">Vorname</label>
-                            <input id="fname" name="firstname" placeholder="Dein Vorname.." type="text">
-
-                            <label for="lname">Nachname</label>
-                            <input id="lname" name="lastname" placeholder="Dein Nachname.." type="text">
-
-                            <label for="email">E-Mail</label>
-                            <input id="email" name="email" placeholder="Deine E-Mail.." type="text">
-
-                            <label for="telnr">Telefonnummer</label>
-                            <input id="telnr" name="Telefonnummer" placeholder="Deine Telefonnummer.." type="text">
-
-                            <label for="country">Land</label>
-                            <select id="country" name="country">
-                                <option value="Austria">&Ouml;sterreich</option>
-                                <option value="Germany">Deutschland</option>
-                                <option value="Schweiz">Schweiz</option>
-                            </select>
-
-                            <label for="adresse">Deine Bestelladresse</label>
-                            <input id="adresse" name="adresse" placeholder="Deine Bestelladresse.." type="text">
-
-                            <label for="subject">Dein Anliegen:</label>
-                            <textarea id="subject" name="subject" placeholder="Schreibe uns dein Anliegen.."
-                                    style="height:200px"></textarea>
-
-                            <input type="submit" value="Submit">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <br>
-        <br>
-        <footer class="bg-footer container-fluid w-100 h-100">
-
-            <div class="d-none d-md-block">
-                <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
-
-                <div class="d-flex flex-row justify-content-center mt-2">
-                    <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
-
-                    <div class="mx-3 my-3">
-                        <div class="text-center text-wrap">
-                            <h6>Contact</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="support.html">Support</a></li>
-                                <li><a href="./contact.html">Contact Us</a></li>
-                                <li><a href="#">Complaints</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-1"></div>
-
-                    <div class="mx-3 my-3">
-                        <div class="text-center text-wrap">
-                            <h6>Information</h6>
-                            <ul class="list-unstyled"></li>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Payment methods</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-1"></div>
-
-                    <div class="mx-3 my-3">
-                        <div class="text-center text-wrap">
-                            <h6>More</h6>
-                            <ul class="list-unstyled">
-                                <li><a href="./impressum.html">Impressum</a></li>
-                                <li><a href="./agb.html">AGBs</a></li>
-                                <li><a href="">Data Protection</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
-
-
-            <div class="d-md-none small-links mt-5 mb-3">
-                <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
-                <ul class="container-fluid justify-content-center">
-                    <div class="row">
-                        <li class="list-group-item">
-
-                            <a aria-controls="collapseContact" aria-expanded="t" data-bs-toggle="collapse" href="#collapseContact"
-                            role="button">Contact</a>
-                            <div class="collapse" id="collapseContact">
-                                <ul class="list-unstyled buttonlist">
-                                    <li><a href="support.html">Support</a></li>
-                                    <li><a href="./contact.html">Contact Us</a></li>
-                                    <li><a href="#">Complaints</a></li>
-                                </ul>
-                            </div>
-
-                        </li>
-
-                        <li class="list-group-item">
-
-                            <a aria-controls="collapseInformation" aria-expanded="t" data-bs-toggle="collapse" href="#collapseInformation"
-                            role="button">Information</a>
-                            <div class="collapse" id="collapseInformation">
-                                <ul class="list-unstyled buttonlist">
-                                    <li><a href="#">Jobs</a></li>
-                                    <li><a href="#">Press</a></li>
-                                    <li><a href="#">Payment methods</a></li>
-                                </ul>
-                            </div>
-
-                        </li>
-
-                        <li class="list-group-item">
-
-                            <a aria-controls="collapseMore" aria-expanded="t" data-bs-toggle="collapse" href="#collapseMore"
-                            role="button">More</a>
-                            <div class="collapse" id="collapseMore">
-                                <ul class="list-unstyled buttonlist">
-                                    <li><a href="./impressum.html">Impressum</a></li>
-                                    <li><a href="./agb.html">AGBs</a></li>
-                                    <li><a href="">Data Protection</a></li>
-                                </ul>
-                            </div>
-
-                        </li>
-                    </div>
-                </ul>
-            </div> <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
-
-            <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
-
-            <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
-            <div class="d-flex flex-row justify-content-center">
-                <ul class="list-unstyled socials">
-                    <li><i class="fa-brands fa-discord"></i></li>
-                    <li><i class="fa-brands fa-instagram"></i></li>
-                    <li><i class="fa-brands fa-facebook"></i></li>
-                    <li><i class="fa-brands fa-tiktok"></i></li>
-                    <li><i class="fa-brands fa-twitter"></i></li>
-                </ul>
-            </div>
-
-            <div class="container-fluid text-center bg-footer">
-                <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
-            </div>
-
-        </footer>
-
-    </body>
+</body>
 </html>
