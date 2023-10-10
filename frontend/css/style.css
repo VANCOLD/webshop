@@ -11,8 +11,6 @@ Global Styles
 html, body {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
-  /* font-size: 16px; */
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -200,11 +198,43 @@ Navigationsbar Style
 
 /* 
 ---------------------------------------------
+product Style
+--------------------------------------------- 
+*/
+.products-body {
+  font-family: sans-serif;
+}
+
+.product-description {
+  margin-left: 20px;
+  color: #e75e8d;
+}
+.product-price {
+  margin: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-category {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-stock {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+/* 
+---------------------------------------------
 cards Style
 --------------------------------------------- 
 */
 
 .btn-buy-now  {
+  margin-left: 20px;
   background-color: #ec6090;
   border-color: #ec6090;
   color: #1e1e1e;
@@ -308,10 +338,6 @@ Register Style
 Support Page Styles
 --------------------------------------------- 
 */
-
-.faq {
-  text-align: center;
-}
 
 .accordion-button {
 background-color: #e75e8d;
@@ -439,89 +465,5 @@ Responsive Style
   }
 }
 
-/* @media (min-width: 1200px) {
-
-  .socials li i {
-    font-size:32px;
-    margin-left:16px;
-    margin-right:16px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-
-} */
-
-/* @media (min-width: 993px) {
-
-  .socials li i {
-    font-size:24px;
-    margin-left:12px;
-    margin-right:12px;
-  }
-
-  footer{
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a minimum width of 769px and a maximum of 992px (e.g., tablets) */
-/* @media (min-width: 769px) and (max-width: 992px) {
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
-/* @media (min-width: 767px) 
-{
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-} */
-
-/* Styles for devices with a maximum width of 768px (e.g., smartphones) */
-/* @media (max-width: 768px) {
-  
-  body {
-      font-size: 16px;
-  }
-
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-  header{
-    min-width: 100px;
-    min-height: 100px;
-  }
-
-  main {
-    min-width: 100px;
-    min-height: 100px;
-  }
-  footer{   
-    min-width: 100px;
-    min-height: 100px;
-  }
-} */
 
 
