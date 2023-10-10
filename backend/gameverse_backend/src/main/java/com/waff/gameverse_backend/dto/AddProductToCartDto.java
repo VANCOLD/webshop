@@ -10,14 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CartDto {
+public class AddProductToCartDto {
 
-    private Long id;
 
-    @NotNull
-    private UserDto user;
+    private Long productid;
 
-    @NotNull
-    private List<CartItemDto> products;
 
+    private Long userid;
 }

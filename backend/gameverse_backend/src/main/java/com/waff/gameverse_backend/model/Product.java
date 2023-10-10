@@ -153,29 +153,6 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     }
 
     @Override
-    public ProductDto convertToDto() {
-
-        ProductDto productDto = new ProductDto();
-
-        productDto.setId(id);
-        productDto.setName(name);
-        productDto.setDescription(description);
-        productDto.setPrice(price);
-        productDto.setImage(image);
-        productDto.setTax(tax);
-        productDto.setStock(stock);
-        productDto.setGtin(gtin);
-        productDto.setAvailable(available);
-        productDto.setEsrbRating(esrbRating.getName());
-        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
-        productDto.setCategory(category == null ? new CategoryDto() : category.convertToDto());
-        productDto.setProducer(producer == null ? new ProducerDto() : producer.convertToDto());
-        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
-
-        return productDto;
-    }
-
-    @Override
     public SimpleProductDto convertToSimpleDto() {
 
         SimpleProductDto simpleProductDto = new SimpleProductDto();
@@ -189,5 +166,10 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         simpleProductDto.setGtin(gtin);
 
         return simpleProductDto;
+    }
+
+    @Override
+    public ProductDto convertToDto() {
+        return null;
     }
 }
