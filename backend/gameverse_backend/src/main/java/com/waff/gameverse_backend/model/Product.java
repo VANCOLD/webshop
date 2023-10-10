@@ -5,10 +5,7 @@ import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -116,6 +113,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
      * The list of genres associated with this product.
      * Each genre in the list categorizes this product.
      */
+    @ToString.Exclude
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_genres",
@@ -124,6 +122,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     )
     private List<Genre> genres;
 
+    @ToString.Exclude
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_carts",

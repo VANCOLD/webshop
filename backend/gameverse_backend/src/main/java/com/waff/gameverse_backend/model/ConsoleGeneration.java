@@ -50,11 +50,10 @@ public class ConsoleGeneration implements DataTransferObject<ConsoleGenerationDt
     public ConsoleGeneration(ConsoleGenerationDto consoleGeneration) {
         this.id = consoleGeneration.getId();
         this.name = consoleGeneration.getName();
-        this.products = consoleGeneration.getProoducts().stream().map(Product::new).toList();
     }
 
     @Override
     public ConsoleGenerationDto convertToDto() {
-        return new ConsoleGenerationDto(id, name, products.stream().map(Product::convertToDto).toList());
+        return new ConsoleGenerationDto(id, name);
     }
 }

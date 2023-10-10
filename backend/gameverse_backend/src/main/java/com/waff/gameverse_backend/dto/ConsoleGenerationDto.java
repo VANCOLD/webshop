@@ -30,6 +30,4 @@ public class ConsoleGenerationDto {
     @NotNull
     @NotEmpty
     private String name;
-
-    private List<ProductDto> prooducts;
 }

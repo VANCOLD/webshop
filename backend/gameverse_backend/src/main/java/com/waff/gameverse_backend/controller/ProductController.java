@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
 /**
  * The ProductController class handles operations related to products and permissions.
  */
+@EnableMethodSecurity
 @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
 @RequestMapping("/api/products")
 @RestController

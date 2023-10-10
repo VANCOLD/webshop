@@ -29,7 +29,4 @@ public class CategoryDto {
     @NotEmpty
     private String name;
 
-    private List<ProductDto> products;
-
-
 }

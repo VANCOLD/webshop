@@ -49,11 +49,10 @@ public class Category implements DataTransferObject<CategoryDto> {
     public Category(CategoryDto category) {
         this.id = category.getId();
         this.name = category.getName();
-        this.products = category.getProducts().isEmpty() ? new ArrayList<Product>() : category.getProducts().stream().map(Product::new).toList();
     }
 
     @Override
     public CategoryDto convertToDto() {
-        return new CategoryDto(id, name, products.stream().map(Product::convertToDto).toList());
+        return new CategoryDto(id, name);
     }
 }

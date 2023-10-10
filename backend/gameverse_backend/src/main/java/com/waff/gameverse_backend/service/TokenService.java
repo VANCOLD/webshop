@@ -78,6 +78,7 @@ public class TokenService {
      * @return True if the user has the privilege, false otherwise.
      */
     public boolean hasPrivilege(String privilegeName) {
+        System.out.println("LOLOLOLOLOLOLOL");
         var user = decodeJwt(SecurityContextHolder.getContext());
 
         try {
