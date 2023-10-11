@@ -30,8 +30,8 @@ function updateCartTotal(total) {
 
 // Event listener for the "Add to Cart" button
 document.getElementById('add-to-cart-button').addEventListener('click', () => {
-    const userId = getUserId(); // Implement your logic to get the user ID here
-    const productId = getProductId(); // Implement your logic to get the product ID here
+    const userId = getUserId();
+    const productId = getProductId();
 
     // Call the backend to add the product to the cart
     fetch(`/api/cart/add?userId=${userId}&productId=${productId}`, {
