@@ -5,196 +5,319 @@ Global Styles
 */
 
 * {
-  box-sizing: border-box;
-}
-
-html, body {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #1f2122;
-  background-color: #1e1e1e;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-a {
-	color: white;
-  text-decoration: none !important;
-}
-a:hover {
-	color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  color: #fff;
-  font-weight: 700;
-}
-
-ul {
-  margin-bottom: 0px;
-}
-
-
-body .page-content {
-  background-color: #27292a;
-  border-radius: 23px;
-  width:85%;
-  margin: 0 auto;
-}
-
-
-.page-content {
-  margin: 15%;
-}
-
-::selection {
-  background: #e75e8d;
-  color: #fff;
-}
-
-::-moz-selection {
-  background: #e75e8d;
-  color: white;
-}
-
-.container-fluid{
-  padding: 0 !important;
-}
-
-.row {
-  margin: 0;
-  min-width: auto;
-  max-width: auto;
-  min-height: auto;
-  max-height: auto;
-}
-
-main {
-    flex:1;
-}
-
-/* 
----------------------------------------------
-Contact form Style
---------------------------------------------- 
-*/
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  resize: vertical;
-}
-
-input[type=submit] {
-  background-color: #ec6090;
-  color: white;
-  padding: 12px 20px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #ec6090;
-}
-
-label {
-  color: #fff;
-  font-size: auto;
-}
-
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    /* font-size: 16px; */
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #1f2122;
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  a {
+      color: white;
+    text-decoration: none !important;
+  }
+  a:hover {
+      color: white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #fff;
+    font-weight: 700;
+  }
+  
+  ul {
+    margin-bottom: 0px;
+  }
+  
+  body .page-content {
+    background-color: #27292a;
+    border-radius: 23px;
+    width:85%;
+    margin: 0 auto;
+  }
+  
+  .page-content {
+    margin: 15%;
+  }
+  
+  ::selection {
+    background: #e75e8d;
+    color: #fff;
+  }
+  
+  ::-moz-selection {
+    background: #e75e8d;
+    color: white;
+  }
+  
+  .container-fluid{
+    padding: 0 !important;
+  }
+  
+  .row {
+    margin: 0;
+    min-width: auto;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  
+  main {
+      flex:1;
+  }
+  
 /* 
 ---------------------------------------------
 Navigationsbar Style
 --------------------------------------------- 
 */
-.navbar{
-  max-width: fit-content;
-}
+
 .icon-button {
-  text-align:center;
-}
-
-.icon-button i {
-  font-size:24px;
-  color:#ec6090;
-  width:64px;
-  height:auto;
-}
-
-.icon-button p {
-  font-size: 12px;
-  color:white;
-}
-
-.search-bar {
-  display: flex;
-  margin-bottom: px;
-  min-width: 0em;
-}
-
-.search-form {
-  font-size: 14px;
-}
-.search-icon {
-  border-bottom:  1px solid #ec6090;
-  padding-left:   4px;
-}
-
-.icon-button input {
-  outline: none;
-  background-color: #1e1e1e;
+    text-align:center;
+  }
   
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
-
-  /* Entfernt den Rand (Border) des Inputs; */
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
+  .icon-button i {
+    font-size:38px;
+    color:#ec6090;
+    width:64px;
+    height:auto;
+  }
   
+  .icon-button p {
+    font-size: 18px;
+    color:white;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox to create a horizontal layout */
+  }
+  
+  .navbar-list li {
+    margin-right: 10px; /* Add spacing between list items if desired */
+  }
+  
+  #search-field input {
+    background-color:#1e1e1e;
+    color: white;
+    font-size:20px;
+    border-color: #ec6090;
+    border-top:  0px;
+    border-left: 0px;
+    border-right: 0px;
+    min-width: 80%;
+    min-height: auto;
+  }
+  
+  #search-field input:focus {
+    outline-color: #ec6090;
+  }
 
-.icon-button input:focus {
-  outline: none;
-  background-color: #1f2122;
-  color: white;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 1px solid #ec6090;
 
-  /* Entfernt den Fokus (blaue Umrandung) */
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0; 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
-} 
+/* 
+---------------------------------------------
+Footer Style
+--------------------------------------------- 
+*/
 
-/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
+  footer a {
+    font-size: 14 px;  
+  }
+  
+  footer p {
+    text-align: center;
+    color: #fff;
+    font-weight: 300; 
+    font-size: 12px ;
+  }
+  
+  footer {
+    position:relative;
+    bottom:0px;
+  }
+  
+  .bg-footer {
+    background-color: #ec6090;
+  }
+  
+  .socials {
+    color: white;
+  }
+  
+  .socials li {
+    display:inline;
+    margin-top:16px;
+  }
+  
+  footer > hr {
+    color:white; 
+    height: 1px; 
+    margin: 0 auto;
+  }
+  
+  
+  .small-links li{
+    background-color: #ec6090;
+    text-align: center;
+    color:white;
+    border-color:white;
+    border-left: none;
+    border-right:none; 
+  }
+  
+  .buttonlist {
+    font-style:none;
+    font-size: 12px;;
+  }
 
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+
+/* 
+---------------------------------------------
+Register Login Style
+--------------------------------------------- 
+*/
+
+    .register-background {
+        background-image: url("./../images/register-bg.png");
+        background-size: cover; /* Updated property */
+        background-repeat: no-repeat; /* Updated property */
+        background-position: center; /* Added property */
+        height: 120vh;
+    }
+
+    .justified {
+        text-align: center;
+        text-justify: inter-word;
+        text-align-last: center;
+        color: darkgray;
+    }
+
+    .login-container {
+        background-color: whitesmoke;
+        border-bottom-left-radius: 50px;
+    }
+
+    .form-group + .form-group {
+        margin-top: 8px;
+    }
+
+    .custom-border-radius {
+        border-radius: 50px;
+    }
+
+    .text-color {
+        color: #e75e8d;
+    }
+
+    .disclaimer-text {
+        position:relative; 
+        text-align:center; 
+        font-size:12px; 
+    }
+
+    .custom-button-rounded-color-left:focus, .custom-button-rounded-color-left:hover, .custom-button-rounded-color-left:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color-left {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color:focus, .custom-button-rounded-color:hover, .custom-button-rounded-color:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover{
+        background-color: #e75e8d;
+        outline-color: white;
+        border-color: white;
+    }
+
+/* 
+---------------------------------------------
+Support Page Styles
+--------------------------------------------- 
+*/
+
+.faq {
+    text-align: center;
 }
+
+.accordion-button {
+    background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #e75e8d;
+}
+
+.accordion-button:not(.collapsed) {
+    color: black;
+}
+
+
+/* Wir entfernen hier den Rand des Buttons wenn wir ihn anklicken */
+.accordion-button:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+
+/*
+Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
+Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
+*/
+button.accordion-button::after {
+    filter: brightness(0%);
+}
+
+/* 
+---------------------------------------------
+Home Page Style
+--------------------------------------------- 
+*/
+
+
+#carouselGames {
+    margin: 0;
+    padding: 0;
+}
+
 
 /* 
 ---------------------------------------------
@@ -233,237 +356,371 @@ cards Style
 --------------------------------------------- 
 */
 
+
 .btn-buy-now  {
   margin-left: 20px;
   background-color: #ec6090;
   border-color: #ec6090;
   color: #1e1e1e;
-}
-
-.btn-buy-now:hover {
-  background-color: #622a3d;
-  border-color: #622a3d;
-  color: #1e1e1e;
-}
- .card {
-  background-color: dimgrey;
-  color: #27292a;
-}
-
-/* 
----------------------------------------------
-Footer Style
---------------------------------------------- 
-*/
-
-footer a {
-  font-size: 14 px;  
-}
-
-footer p {
-  text-align: center;
-  color: #fff;
-  font-weight: 300; 
-  font-size: 12px ;
-}
-
-footer {
-  position:relative;
-  bottom:0px;
-}
-
-.bg-footer {
-  background-color: #ec6090;
-}
-
-.socials {
-  color: white;
-}
-
-.socials li {
-  display:inline;
-  margin-top:16px;
-}
-
-footer > hr {
-  color:white; 
-  height: 1px; 
-  margin: 0 auto;
-}
-
-
-.small-links li{
-  background-color: #ec6090;
-  text-align: center;
-  color:white;
-  border-color:white;
-  border-left: none;
-  border-right:none; 
-}
-
-.buttonlist {
-  font-style:none;
-  font-size: 12px;;
+}.contact-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 }
 
 
 /* 
 ---------------------------------------------
-Impressum Style
+Shopping Cart Style
 --------------------------------------------- 
 */
 
-.justified {
-  text-align: center;
-  text-justify: inter-word;
-  text-align-last: center;
-  color:darkgray;
-  
+/* Shopping Cart Container */
+.cart-container {
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
-/* 
----------------------------------------------
-Register Style
---------------------------------------------- 
-*/
-
-
-.register-custom-font-color {
-  color: #e75e8d;
+/* Shopping Cart Header */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 20px;
 }
 
-
-/* 
----------------------------------------------
-Support Page Styles
---------------------------------------------- 
-*/
-
-.accordion-button {
-background-color: #e75e8d;
+/* Shopping Cart Title */
+.cart-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
 }
 
-.accordion-button:not(.collapsed) {
-background-color: #e75e8d;
+/* Shopping Cart Item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.accordion-button:not(.collapsed) {
-  color: black;
+/* Shopping Cart Item Image */
+.cart-item img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
 }
 
+/* Shopping Cart Item Details */
+.cart-item-details {
+    flex-grow: 1;
+}
 
-/* Wir entfernen hier den Rand des Buttons wenn wir ihn anklicken */
-.accordion-button:focus {
-  box-shadow: none;
-  -webkit-box-shadow: none;
+/* Shopping Cart Item Title */
+.cart-item-details h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Shopping Cart Item Platform */
+.cart-item-details p:nth-child(2) {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Shopping Cart Item Price */
+.cart-item-details p:nth-child(3) {
+    font-size: 16px;
+    color: #e75e8d;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+/* Shopping Cart Item Quantity */
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Shopping Cart Item Quantity Button */
+.btn-quantity {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+/* Shopping Cart Item Quantity Button Hover */
+.btn-quantity:hover {
+    background-color: #e75e8d;
+    color: #fff;
+}
+
+/* Shopping Cart Item Quantity Button Plus */
+.plus::before {
+    content: "+";
+}
+
+/* Shopping Cart Item Quantity Button Minus */
+.minus::before {
+    content: "-";
+}
+
+/* Shopping Cart Item Quantity Value */
+.quantity {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+/* Shopping Cart Item Remove Button */
+.btn-remove {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    left: 10px;
+}
+
+/* Shopping Cart Item Remove Button Icon */
+.btn-remove::after {
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 16px;
+    color: #e75e8d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Shopping Cart Total */
+.cart-total {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.cart-total h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cart-total p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.cart-total button.btn-primary {
+    margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+    .cart-item-details {
+        margin-left: 20px;
+    }
+
+    .cart-item-quantity {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-table {
+        overflow-x: auto;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-item img {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .cart-item-details {
+        text-align: center;
+    }
+
+    .cart-item-quantity {
+        margin-top: 10px;
+    }
+
+    .cart-total {
+        margin-top: 20px;
+    }
 }
 
 
 /*
-Die Anmation des Akkordions wechselt von einem schwarzen Zeiger auf einen blauen Zeiger nach einem Klick. 
-Wir verändert einfach die Brightness um denn blauen Zeiger schwarz auszusehen zu lassen (nach dem Klick). 
-*/
-button.accordion-button::after  {
-  filter:brightness(0%);
-}
-
-/* 
----------------------------------------------
-Home Page Style
---------------------------------------------- 
-*/
-
-
-#carouselGames {
-  margin:0; 
-  padding:0;
-}
-
-/* 
 ---------------------------------------------
 Responsive Style
 --------------------------------------------- 
 */
 
+
 /* Desktop breakpoint */
 @media (min-width: 1200px) {
-  body {
-    font-size: 32px;
-  }
-  .socials li i {
-    font-size:32px;
-    margin-left:16px;
-    margin-right:16px;
-  }
-  header {
-    min-width:100%;
-    min-height:100%
+    
+    #navbar-normal {
+        display: block;
+    }
+
+    #navbar-small {
+         display: none;
+    }
+
+    #search-field input {
+        min-width: 100%;
+    }
+    .icon-button i {
+        font-size:38px;
+        color:#ec6090;
+        width:64px;
+        height:auto;
+      }
+      
+      .icon-button p {
+        font-size: 18px;
+        color:white;
+      }
+
+    .socials li i {
+      font-size:32px;
+      margin-left:16px;
+      margin-right:16px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{
+      min-width:100%;
+      min-height:100%
+      
+    }
   }
   
-  main {
-    min-width:100%;
-    min-height:100%
+  /* Tablet breakpoint */
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+    #navbar-normal {
+        display: block;
+    }
+
+    #navbar-small {
+        display: none;
+    }
+
+    #search-field input { 
+        min-width: 50%;
+    }
+
+    .icon-button i {
+        font-size:19px;
+        color:#ec6090;
+        width:32px;
+        height:auto;
+      }
+      
+    .icon-button p {
+        font-size: 9px;
+        color:white;
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+  
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
+  
+  }
+  
+  /* Mobile breakpoint */
+  @media (min-width: 320px) and (max-width: 766px) {
+      
+    #navbar-normal {
+        display: none;
+    }
+
+    #navbar-small {
+        display: block; 
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
   }
 
-  footer{
-    min-width:100%;
-    min-height:100%
-    
-  }
+/* For responsive button in Register/Login */
+ @media (min-width: 768px) {
+    .custom-button-bgcolor {
+      min-width: auto
+    }
 }
-
-/* Tablet breakpoint */
-@media (min-width: 767px) {
-  body {
-    font-size: 18px;
-  }
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-
-  header {
-    min-width:100%;
-    min-height:100%
-  }
-  main {
-    min-width:100%;
-    min-height:100%
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-
-}
-
-/* Mobile breakpoint */
-@media (min-width: 320px) {
-  body {
-    font-size: 14px;
-  }
-  .socials li i {
-    font-size:18px;
-    margin-left:8px;
-    margin-right:8px;
-  }
-  header {
-    min-width:100%;
-    min-height:100%
-  }
-
-  main {
-    min-width:100%;
-    min-height:100%
-  }
-
-  footer{   
-    min-width:100%;
-    min-height:100%;
-  }
-}
-
-
-
