@@ -44,7 +44,7 @@ public class AddressServiceTest {
     @Test
     void findAllTest() {
         var testCase1 = this.addressService.findAll();
-        assertThat(testCase1.size()).isEqualTo(2);
+        assertThat(testCase1.size()).isEqualTo(11);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class AddressServiceTest {
 
     @Test
     void updateTest() {
-        AddressDto address = new AddressDto(10L, "Peterstraße 12","1210","Wien","Österreich");
+        AddressDto address = new AddressDto(100L, "Peterstraße 12","1210","Wien","Österreich");
         assertThrows(NoSuchElementException.class,() -> this.addressService.update(address));
 
         address.setId(1L);

@@ -17,7 +17,6 @@ TRUNCATE TABLE carts;
 TRUNCATE TABLE products_to_carts;
 TRUNCATE TABLE addresses;
 
-
 INSERT INTO privileges (name) VALUES
 ('view_profile'),        -- 1
 ('view_cart'),           -- 2
@@ -62,10 +61,15 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 
 
 /* password is always the word password for each user */
-INSERT INTO users (username, password, role_id, address_id) VALUES
+INSERT INTO users (username, password, role_id, address_id  ) VALUES
 ('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1),      -- 1
 ('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1);     -- 2
 
+
+
+INSERT INTO carts(id) VALUES
+(1),
+(2);
 
 INSERT INTO console_generations (name) VALUES
 ('XBox Series X'),      -- 1

@@ -76,7 +76,7 @@ public class ProducerServiceTest {
 
 
         var testCase1 = this.producerService.save(producer1);
-        assertThat(testCase1.getName()).isEqualTo(producer1);
+        assertThat(testCase1.getName()).isEqualTo(producer1.getName());
 
         assertThrows(IllegalArgumentException.class, () -> this.producerService.save(producer2));
     }

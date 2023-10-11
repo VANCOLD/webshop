@@ -89,7 +89,7 @@ public class ProductServiceTest {
 
 
         var product1 = this.productService.save(testCase2);
-        assertThat(testCase1.getName()).isEqualTo(product1.getName());
+        assertThat(testCase2.getName()).isEqualTo(product1.getName());
 
         assertThrows(IllegalArgumentException.class, () -> this.productService.save(testCase1));
     }

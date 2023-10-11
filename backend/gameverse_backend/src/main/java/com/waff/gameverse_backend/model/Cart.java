@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -33,7 +34,7 @@ public class Cart implements DataTransferObject<CartDto> {
         joinColumns = { @JoinColumn(name = "cart_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    private List<CartItem> products;
+    private List<CartItem> products = new ArrayList<CartItem>();
 
 
     public Cart(CartDto cart) {
