@@ -4,6 +4,7 @@ import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.model.CartItem;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.model.User;
+import com.waff.gameverse_backend.repository.CartItemRepository;
 import com.waff.gameverse_backend.repository.CartRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
@@ -21,13 +22,16 @@ public class CartService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+
+    private final CartItemRepository cartItemRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
-    @Autowired
-    public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
+    public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository, CartItemRepository cartItemRepository) {
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     public Cart getCartByUserId(Long userId) {
@@ -55,7 +59,7 @@ public class CartService {
                 userCart = new Cart();
                 userCart.setUser(user);
             }
-
+            cartRepository.save(userCart);
             boolean itemExists = false;
 
             for (CartItem existingItem : userCart.getProducts()) {
@@ -71,6 +75,7 @@ public class CartService {
                 newItem.setProduct(product);
                 newItem.setCart(userCart);
                 newItem.setAmount(1);
+                this.cartItemRepository.save(newItem);
                 userCart.getProducts().add(newItem);
             }
 
