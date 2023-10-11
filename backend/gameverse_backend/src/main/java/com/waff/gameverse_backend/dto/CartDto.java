@@ -15,9 +15,9 @@ public class CartDto {
     private Long id;
 
     @NotNull
-    private UserDto user;
+    private SimpleUserDto user;
 
     @NotNull
-    private List<CartItemDto> products;
+    private List<SimpleProductDto> products;
 
 }

@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -120,16 +122,15 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
-    @ToString.Exclude
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_carts",
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "cart_id") }
     )
-    private List<CartItem> carts;
+    private List<Cart> carts = new ArrayList<>();
 
     public Product(SimpleProductDto productDto) {
         this.id = productDto.getId();

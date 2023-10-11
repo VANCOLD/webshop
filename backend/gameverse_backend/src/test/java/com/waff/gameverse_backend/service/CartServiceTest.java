@@ -66,7 +66,7 @@ public class CartServiceTest {
         Cart userCart = new Cart();
         Product product = new Product();
         product.setId(productId);
-        CartItem cartItem = new CartItem();
+        Product cartItem = new Product();
         cartItem.setProduct(product);
         userCart.setProducts(Collections.singletonList(cartItem));
 
@@ -155,7 +155,7 @@ public class CartServiceTest {
     }
 
     @Test
-    void testUpdateCartItemQuantity() {
+    void testUpdateProductQuantity() {
         // Arrange
         Long userId = 7L;
         Long productId = 7L;
@@ -170,7 +170,7 @@ public class CartServiceTest {
 
         // Act
         cartService.addToCart(userId, productId);
-        Cart updatedCart = cartService.updateCartItemQuantity(userId, productId, newQuantity);
+        Cart updatedCart = cartService.updateProductQuantity(userId, productId, newQuantity);
 
         // Assert
         assertNotNull(updatedCart);
@@ -181,7 +181,7 @@ public class CartServiceTest {
     }
 
     @Test
-    void testGetCartItemCount() {
+    void testGetProductCount() {
         // Arrange
         Long userId = 8L;
         Long productId1 = 8L;
@@ -200,14 +200,14 @@ public class CartServiceTest {
         // Act
         cartService.addToCart(userId, productId1);
         cartService.addToCart(userId, productId2);
-        int itemCount = cartService.getCartItemCount(userId);
+        int itemCount = cartService.getProductCount(userId);
 
         // Assert
         assertEquals(2, itemCount);
     }
 
     @Test
-    void testGetCartItems() {
+    void testGetProducts() {
         // Arrange
         Long userId = 9L;
         Long productId1 = 10L;
@@ -226,7 +226,7 @@ public class CartServiceTest {
         // Act
         cartService.addToCart(userId, productId1);
         cartService.addToCart(userId, productId2);
-        List<CartItem> cartItems = cartService.getCartItems(userId);
+        List<Product> cartItems = cartService.getProducts(userId);
 
         // Assert
         assertNotNull(cartItems);

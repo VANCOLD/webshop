@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.util.List;
@@ -13,8 +14,10 @@ import java.util.List;
 public class AddProductToCartDto {
 
 
-    private Long productid;
+    @Positive
+    private Long productId;
 
 
-    private Long userid;
+    @Positive
+    private Long userId;
 }

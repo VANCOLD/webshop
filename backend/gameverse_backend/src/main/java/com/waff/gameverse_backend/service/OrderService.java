@@ -57,46 +57,7 @@ public class OrderService {
      */
     public Order save(UserDto user) {
 
-            Order toSave = new Order();
-            Cart toCopy  = userService.getCart(user.getId());
-
-            if(toCopy.getProducts().isEmpty()) {
-                throw new IllegalStateException("Einkaufswagen ist leer!");
-            }
-
-            var orderedProducts = new ArrayList<OrderedProduct>();
-
-            for(CartItem item : toCopy.getProducts()) {
-                var toCheck = this.productRepository.findById(item.getProduct().getId());
-
-                if(toCheck.isEmpty()) {
-                    throw new NoSuchElementException("Angegebenes Produkt existiert nicht!");
-                }
-                Product product = toCheck.get();
-                if(product.getStock() < item.getAmount()) {
-                    throw new ArithmeticException("Not enough products in stock!");
-                }
-
-                product.setStock( product.getStock() - item.getAmount());
-                this.productRepository.save(product);
-
-                var tempOrderedProd = new OrderedProduct();
-                tempOrderedProd.setPrice(item.getProduct().getPrice());
-                tempOrderedProd.setTax(item.getProduct().getTax());
-                tempOrderedProd.setName(item.getProduct().getName());
-                tempOrderedProd.setDescription(item.getProduct().getDescription());
-                tempOrderedProd.setAmount(item.getAmount());
-                orderedProducts.add(tempOrderedProd);
-
-            }
-
-            Order order = this.orderRepository.save(toSave);
-
-            for(OrderedProduct orderedProd : orderedProducts) {
-                orderedProd.setOrder(order);
-            }
-
-            return this.orderRepository.save(toSave);
+        return null;
     }
 
     /**

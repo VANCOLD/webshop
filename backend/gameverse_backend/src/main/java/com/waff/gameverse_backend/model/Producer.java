@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ public class Producer implements DataTransferObject<ProducerDto> {
      * Each product in the list is produced or manufactured by this specific producer.
      */
     @OneToMany(mappedBy="producer")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();;
 
 
     @ManyToOne(cascade = CascadeType.ALL)

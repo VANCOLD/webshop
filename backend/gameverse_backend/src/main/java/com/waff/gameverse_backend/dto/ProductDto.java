@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.waff.gameverse_backend.model.CartItem;
 import jakarta.validation.constraints.*;
 import lombok.*;
 

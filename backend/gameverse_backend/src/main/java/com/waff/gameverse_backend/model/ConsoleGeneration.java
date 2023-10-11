@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public class ConsoleGeneration implements DataTransferObject<ConsoleGenerationDt
      */
     @OneToMany(mappedBy = "consoleGeneration")
 
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();;
 
     public ConsoleGeneration(ConsoleGenerationDto consoleGeneration) {
         this.id = consoleGeneration.getId();

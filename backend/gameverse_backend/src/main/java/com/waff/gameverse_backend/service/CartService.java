@@ -1,16 +1,15 @@
 package com.waff.gameverse_backend.service;
 
+import com.waff.gameverse_backend.dto.AddProductToCartDto;
 import com.waff.gameverse_backend.model.Cart;
-import com.waff.gameverse_backend.model.CartItem;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.model.User;
-import com.waff.gameverse_backend.repository.CartItemRepository;
 import com.waff.gameverse_backend.repository.CartRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
+import jdk.jshell.spi.ExecutionControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -22,16 +21,13 @@ public class CartService {
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
-
-    private final CartItemRepository cartItemRepository;
-
+    
     private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
-    public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository, CartItemRepository cartItemRepository) {
+    public CartService(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
-        this.cartItemRepository = cartItemRepository;
     }
 
     public Cart getCartByUserId(Long userId) {
@@ -46,11 +42,11 @@ public class CartService {
         }
     }
 
-    public Cart addToCart(Long userId, Long productId) {
+    public Cart addToCart(AddProductToCartDto requestDto) {
         try {
-            User user = userRepository.findById(userId)
+            User user = userRepository.findById(requestDto.getUserId())
                     .orElseThrow(() -> new NoSuchElementException("User not found"));
-            Product product = productRepository.findById(productId)
+            Product product = productRepository.findById(requestDto.getProductId())
                     .orElseThrow(() -> new NoSuchElementException("Product not found"));
 
             Cart userCart = user.getCart();
@@ -58,54 +54,22 @@ public class CartService {
             if (userCart == null) {
                 userCart = new Cart();
                 userCart.setUser(user);
-            }
-            cartRepository.save(userCart);
-            boolean itemExists = false;
-
-            for (CartItem existingItem : userCart.getProducts()) {
-                if (existingItem.getProduct().getId().equals(product.getId())) {
-                    existingItem.setAmount(existingItem.getAmount() + 1);
-                    itemExists = true;
-                    break;
-                }
+                cartRepository.save(userCart);
+                user.setCart(userCart);
+                userRepository.save(user);
             }
 
-            if (!itemExists) {
-                CartItem newItem = new CartItem();
-                newItem.setProduct(product);
-                newItem.setCart(userCart);
-                newItem.setAmount(1);
-                this.cartItemRepository.save(newItem);
-                userCart.getProducts().add(newItem);
-            }
-
-            return cartRepository.save(userCart);
+            userCart.getProducts().add(product);
+            this.userRepository.save(user);
+            return userCart;
         } catch (NoSuchElementException ex) {
             logger.error("Error while adding a product to the cart: " + ex.getMessage());
             throw ex;
         }
     }
 
-    public Cart removeFromCart(Long userId, Long productId) {
-        try {
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new NoSuchElementException("User not found"));
-            Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new NoSuchElementException("Product not found"));
-
-            Cart userCart = user.getCart();
-
-            if (userCart == null) {
-                return null;
-            }
-
-            userCart.getProducts().removeIf(item -> item.getProduct().getId().equals(productId));
-
-            return cartRepository.save(userCart);
-        } catch (NoSuchElementException ex) {
-            logger.error("Error while removing a product from the cart: " + ex.getMessage());
-            throw ex;
-        }
+    public Cart removeFromCart(AddProductToCartDto requestDto) {
+        return null;
     }
 
     public Double calculateCartTotal(Long userId) {
@@ -115,7 +79,7 @@ public class CartService {
             Cart userCart = user.getCart();
 
             double total = userCart.getProducts().stream()
-                    .mapToDouble(item -> item.getProduct().getPrice() * item.getAmount())
+                    .mapToDouble(item -> item.getPrice())
                     .sum();
 
             return total;
@@ -139,38 +103,14 @@ public class CartService {
         }
     }
 
-    public Cart updateCartItemQuantity(Long userId, Long productId, int newQuantity) {
-        try {
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new NoSuchElementException("User not found"));
-            Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new NoSuchElementException("Product not found"));
-
-            Cart userCart = user.getCart();
-            CartItem cartItem = userCart.getProducts().stream()
-                    .filter(item -> item.getProduct().getId().equals(productId))
-                    .findFirst()
-                    .orElse(null);
-
-            if (cartItem != null) {
-                cartItem.setAmount(newQuantity);
-            }
-
-            return cartRepository.save(userCart);
-        } catch (NoSuchElementException ex) {
-            logger.error("Error while updating the cart item quantity: " + ex.getMessage());
-            throw ex;
-        }
-    }
-
-    public int getCartItemCount(Long userId) {
+    public int getProductCount(Long userId) {
         try {
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new NoSuchElementException("User not found"));
             Cart userCart = user.getCart();
 
             return userCart.getProducts().stream()
-                    .mapToInt(CartItem::getAmount)
+                    .mapToInt(Product::getStock)
                     .sum();
         } catch (NoSuchElementException ex) {
             logger.error("Error while getting the cart item count: " + ex.getMessage());
@@ -178,7 +118,7 @@ public class CartService {
         }
     }
 
-    public List<CartItem> getCartItems(Long userId) {
+    public List<Product> getProducts(Long userId) {
         try {
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new NoSuchElementException("User not found"));

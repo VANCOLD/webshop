@@ -1,13 +1,12 @@
 package com.waff.gameverse_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.waff.gameverse_backend.dto.GenreDto;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,13 +42,15 @@ public class Genre implements DataTransferObject<GenreDto> {
      * The list of products associated with this genre.
      * Each product in the list belongs to this specific genre.
      */
+    @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_genres",
         joinColumns = { @JoinColumn(name = "genre_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();;
 
     public Genre(GenreDto genre) {
         this.id = genre.getId();
