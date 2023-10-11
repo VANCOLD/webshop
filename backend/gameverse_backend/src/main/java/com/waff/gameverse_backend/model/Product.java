@@ -149,7 +149,6 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         this.genres   = productDto.getGenres().stream().map(Genre::new).toList();
         this.producer = new Producer(productDto.getProducer());
         this.consoleGeneration = new ConsoleGeneration(productDto.getConsoleGeneration());
-        this.carts = productDto.getCarts().stream().map(CartItem::new).toList();
     }
 
     @Override

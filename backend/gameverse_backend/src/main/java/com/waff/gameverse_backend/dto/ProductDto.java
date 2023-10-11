@@ -72,5 +72,4 @@ public class ProductDto {
     /** The list of genres associated with the product. */
     private List<GenreDto> genres;
 
-    private List<CartItemDto> carts;
 }

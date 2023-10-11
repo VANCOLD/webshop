@@ -81,7 +81,7 @@ public class CategoryServiceTest {
 
     @Test
     void updateTest() {
-        CategoryDto category = new CategoryDto("test");
+        CategoryDto category = new CategoryDto(100L, "test");
         assertThrows(NoSuchElementException.class,() -> this.categoryService.update(category));
 
         category.setId(1L);

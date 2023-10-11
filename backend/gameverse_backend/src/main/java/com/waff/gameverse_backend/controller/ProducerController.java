@@ -78,7 +78,7 @@ public class ProducerController {
     @PostMapping
     public ResponseEntity<ProducerDto> save(@Validated @RequestBody ProducerDto producerDto) {
         try {
-            return ResponseEntity.ok(producerService.save(producerDto.getName()).convertToDto());
+            return ResponseEntity.ok(producerService.save(producerDto).convertToDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();

@@ -32,6 +32,4 @@ public class ProducerDto {
     @NotNull
     private AddressDto address;
 
-    private List<ProductDto> products;
-
 }

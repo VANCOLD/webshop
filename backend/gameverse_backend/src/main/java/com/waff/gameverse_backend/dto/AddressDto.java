@@ -33,8 +33,4 @@ public class AddressDto {
     @NotEmpty
     private String country;
 
-    private List<SimpleUserDto> users;
-
-    private List<ProducerDto> producers;
-
 }
