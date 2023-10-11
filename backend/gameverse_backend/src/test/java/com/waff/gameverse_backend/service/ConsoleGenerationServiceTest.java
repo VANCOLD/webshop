@@ -81,7 +81,7 @@ public class ConsoleGenerationServiceTest {
 
     @Test
     void updateTest() {
-        ConsoleGenerationDto consoleGeneration = new ConsoleGenerationDto("test");
+        ConsoleGenerationDto consoleGeneration = new ConsoleGenerationDto(100L, "test");
         assertThrows(NoSuchElementException.class,() -> this.consoleGenerationService.update(consoleGeneration));
 
         consoleGeneration.setId(1L);

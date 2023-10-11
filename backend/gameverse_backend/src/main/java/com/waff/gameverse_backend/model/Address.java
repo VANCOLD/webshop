@@ -47,15 +47,11 @@ public class Address implements DataTransferObject<AddressDto> {
         this.postalCode  = addressDto.getPostalCode();
         this.street      = addressDto.getStreet();
         this.country     = addressDto.getCountry();
-        this.users       = addressDto.getUsers().isEmpty() ? new ArrayList<User>() : addressDto.getUsers().stream().map(User::new).toList();
-        this.producers   = addressDto.getProducers().isEmpty() ? new ArrayList<Producer>() : addressDto.getProducers().stream().map(Producer::new).toList();
     }
 
     @Override
     public AddressDto convertToDto() {
-        return new AddressDto(id, street, postalCode, city, country,
-            users.stream().map(User::convertToSimpleDto).toList(),
-            producers.stream().map(Producer::convertToDto).toList());
+        return new AddressDto(id, street, postalCode, city, country);
     }
 
 }

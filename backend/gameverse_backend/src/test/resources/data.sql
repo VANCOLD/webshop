@@ -30,7 +30,16 @@ INSERT INTO privileges (name) VALUES
 
 INSERT INTO addresses (street, postalcode, city, country) VALUES
 ('Johnstraße 12', '1150','Vienna','Austria'),
-('11-1 Hokotate-cho','601-8501','Kyoto','Japan');
+('11-1 Hokotate-cho','601-8501','Kyoto','Japan'),
+('1-7-1 Konan','108-0075','Tokyo','Japan'),
+('Microsoft Building 92, NE 36th St','98052','Redmond','Vereinigte Staaten'),
+('1-1-1 Nishi-Shinagawa,','141-0033','Tokyo','Japan'),
+('21-1,Kita-Shinjuku 2-chome,Shinjuku-ku','169-0074','Tokyo','Japan'),
+('2425 Olympic Blvd Ste 3000W','CA 90404','Santa Monica','Vereinigte Staaten'),
+('SHINJUKU EASTSIDE SQUARE 6-27-30 Shinjuku','Tokyo','Japan'),
+('2-2-1 Kandanishiki-cho, Chiyoda','101-0054','Tokyo','Japan'),
+('1-22 Kandasuda-cho Chiyoda-ku','101-0054','Tokyo','Japan'),
+('Pilzgasse 12','1210','Wien','Österreich'),
 
 
 INSERT INTO roles (name) VALUES
@@ -67,16 +76,16 @@ INSERT INTO console_generations (name) VALUES
 
 
 INSERT INTO producers (name, address_id) VALUES
-('Nintendo', 1),              -- 1
-('Sony', null),               -- 2
-('Microsoft', null),          -- 3
-('Sega', null),               -- 4
-('From Soft', null),          -- 5
-('Naughty Dog', null),        -- 6
-('Square Enix', null),        -- 7
-('Game Freak', null),         -- 8
-('HAL Laboratories', null),   -- 9
-('Gameverse', null);          -- 10
+('Nintendo', 2),           -- 1
+('Sony', 3),               -- 2
+('Microsoft', 4),          -- 3
+('Sega', 5),               -- 4
+('From Soft', 6),          -- 5
+('Naughty Dog', 7),        -- 6
+('Square Enix', 8),        -- 7
+('Game Freak', 9),         -- 8
+('HAL Laboratories', 10),  -- 9
+('Gameverse', 11);         -- 10
 
 
 INSERT INTO genres (name) VALUES

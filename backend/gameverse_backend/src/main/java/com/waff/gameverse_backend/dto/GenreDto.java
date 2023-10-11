@@ -29,6 +29,4 @@ public class GenreDto {
     @NotEmpty
     private String name;
 
-
-    private List<ProductDto> products;
 }
