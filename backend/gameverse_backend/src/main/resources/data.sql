@@ -29,17 +29,17 @@ INSERT INTO privileges (name) VALUES
 ('view_orders');         -- 8
 
 INSERT INTO addresses (street, postalcode, city, country) VALUES
-('Johnstraße 12', '1150','Vienna','Austria'),
-('11-1 Hokotate-cho','601-8501','Kyoto','Japan'),
-('1-7-1 Konan','108-0075','Tokyo','Japan'),
-('Microsoft Building 92, NE 36th St','98052','Redmond','Vereinigte Staaten'),
-('1-1-1 Nishi-Shinagawa,','141-0033','Tokyo','Japan'),
-('21-1,Kita-Shinjuku 2-chome,Shinjuku-ku','169-0074','Tokyo','Japan'),
-('2425 Olympic Blvd Ste 3000W','CA 90404','Santa Monica','Vereinigte Staaten'),
-('SHINJUKU EASTSIDE SQUARE 6-27-30 Shinjuku','Tokyo','Japan'),
-('2-2-1 Kandanishiki-cho, Chiyoda','101-0054','Tokyo','Japan'),
-('1-22 Kandasuda-cho Chiyoda-ku','101-0054','Tokyo','Japan'),
-('Pilzgasse 12','1210','Wien','Österreich'),
+('Johnstraße 12', '1150','Vienna','Austria'),                                   -- 1
+('11-1 Hokotate-cho','601-8501','Kyoto','Japan'),                               -- 2
+('1-7-1 Konan','108-0075','Tokyo','Japan'),                                     -- 3
+('Microsoft Building 92, NE 36th St','98052','Redmond','Vereinigte Staaten'),   -- 4
+('1-1-1 Nishi-Shinagawa,','141-0033','Tokyo','Japan'),                          -- 5
+('21-1,Kita-Shinjuku 2-chome,Shinjuku-ku','169-0074','Tokyo','Japan'),          -- 6
+('2425 Olympic Blvd Ste 3000W','CA 90404','Santa Monica','Vereinigte Staaten'), -- 7
+('SHINJUKU EASTSIDE SQUARE 6-27-30 Shinjuku','141-0033','Tokyo','Japan'),       -- 8
+('2-2-1 Kandanishiki-cho, Chiyoda','101-0054','Tokyo','Japan'),                 -- 9
+('1-22 Kandasuda-cho Chiyoda-ku','101-0054','Tokyo','Japan'),                   -- 10
+('Pilzgasse 12','1210','Wien','Österreich');                                    -- 11
 
 
 INSERT INTO roles (name) VALUES
