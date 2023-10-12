@@ -55,8 +55,58 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <button class="btn btn-buy-now"
-                                    type="submit">Add to Cart
-                                </button>
+                                        type="button" onclick="addToCart()">Add to Cart
+                                    </button>
+                                    <script>
+                                        function addToCart() {
+                                          // Get the ID of the product that the user wants to add to their cart.
+                                          var productId = document.getElementById("productId").value;
+                                        
+                                          // Create a new FormData object.
+                                          var formData = new FormData();
+                                        
+                                          // Add the product ID to the FormData object.
+                                          formData.append("productId", productId);
+                                        
+                                          // Send a POST request to the backend.
+                                          fetch("/api/addToCart", {
+                                            method: "POST",
+                                            body: formData
+                                          })
+                                          .then(response => response.json())
+                                          .then(data => {
+                                            // If the response is successful, update the UI to show that the product has been added to the cart.
+                                            if (data.success) {
+                                              // Update the UI here.
+                                            }
+                                          });
+                                        }
+                                        </script>
+                                        <script>
+                                            async function addToCart() {
+                                              // Get the ID of the product that the user wants to add to their cart.
+                                              var productId = document.getElementById("productId").value;
+                                            
+                                              // Send a POST request to the backend.
+                                              const response = await fetch("/api/addToCart", {
+                                                method: "POST",
+                                                body: JSON.stringify({
+                                                  productId: productId
+                                                })
+                                              });
+                                            
+                                              // Check if the response was successful.
+                                              if (response.status === 200) {
+                                                // Update the UI to show that the product has been added to the cart.
+                                                // Update the stock count of the product.
+                                            
+                                                // Reload the page.
+                                                location.reload();
+                                              } else {
+                                                // Handle the error.
+                                              }
+                                            }
+                                            </script>
                                 </div>
                             </div>
                         </div>
