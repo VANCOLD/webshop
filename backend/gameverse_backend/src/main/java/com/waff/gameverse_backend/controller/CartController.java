@@ -71,13 +71,6 @@ public class CartController {
         return ResponseEntity.ok(itemCount);
     }
 
-    @GetMapping("/items/{userId}")
-    public ResponseEntity<List<SimpleProductDto>> getCartItems(@PathVariable Long userId) {
-        // Call the CartService to get the list of cart items in the user's cart
-        List<SimpleProductDto> cartItems = cartService.getProducts(userId).stream().map(Product::convertToSimpleDto).toList();
-        return ResponseEntity.ok(cartItems);
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<CartDto>> getAll() {
         // Call the CartService to get a list of all carts
@@ -85,16 +78,5 @@ public class CartController {
         return ResponseEntity.ok(allCarts.stream().map(Cart::convertToDto).toList());
     }
 
-    @GetMapping("/mycart/{userId}")
-    public ResponseEntity<CartDto> getMyCart(@PathVariable Long userId) {
-        try {
-            // Call the CartService to get the user's cart contents
-            Cart userCart = cartService.getCartByUserId(userId);
-            return ResponseEntity.ok(userCart.convertToDto());
-        } catch (Exception ex) {
-            // Handle exceptions as needed
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 }
 

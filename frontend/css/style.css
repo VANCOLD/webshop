@@ -549,7 +549,7 @@ Shopping Cart Style
         align-items: center;
     }
 
-    .cart-item img {
+    .cart-item img {  
         max-width: 100%;
         margin-bottom: 10px;
     }

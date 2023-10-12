@@ -18,7 +18,7 @@ $(document).ready(function () {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                // Handle the successful response
+                // Handle the successful responses
                 populateCart(data);
             },
             error: function(err) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
                         <img src="${product.image}" alt="${product.name}">
                         <div class="item-details">
                             <h3>${product.name}</h3>
-                            <p>${product.description}</p>
+                            <p>${product.description}</p> 
                             <p>Price: ${priceFormatted}</p>
                         </div>
                     </div>
