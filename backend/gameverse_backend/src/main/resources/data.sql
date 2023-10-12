@@ -119,7 +119,7 @@ INSERT INTO products
 VALUES
 ('The Legend Of Zelda: Breath Of The Wild','Cool zelda', 60.00, 'Cool Image', 20, 200, '1234', '2022-01-01', 'EVERYONE', 3, 1, 1),      -- 1
 ('Elden Ring','Dodges', 59.00, 'Hellish Image', 20, 2000, '4321', '2023-01-01', 'MATURE17', 2, 1, 5),                                   -- 2
-('Playstation 5', 'Even contains a controller', 359.00, 'wow', 20, 1000000, 'abcdSony', '2020-05-05', 'NONE', 2, 2, 2),          -- 3
+('Playstation 5', 'Even contains a controller', 359.00, 'wow', 20, 1000000, 'abcdSony', '2020-05-05', 'NONE', 2, 2, 2),          		-- 3
 ('Sonic Shirt', 'Cool shirt with sonic print', 12.99, 'Gotta go fast.png', 15, 5, 'dafgjnkig', '1990-1-1', 'NONE', NULL, 3, 4),         -- 4
 ('20€ Giftcard', 'Not worth buying', 30.00, 'lololol', 10, 1, '1337', '2020-01-20', 'NONE', NULL, 5, 10),                               -- 5
 ('Xbox Headset', 'Headset Xbox', 49.99, 'headset.jpeg', 25, 100, 'a', '2023-01-01', 'NONE', 1, 4, 3),                                   -- 6

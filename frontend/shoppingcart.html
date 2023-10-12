@@ -2,7 +2,6 @@
 <html lang="de">
 
 <head>
-
     <!-- Standard settings; Meta viewport for responsive design on mobile phones -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,16 +14,57 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
 
     <!-- Your custom CSS -->
     <link href="./css/style.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            // Replace with the actual user ID or retrieve it through authentication
+            const userId = 2;
+
+            $.ajax({
+                type: 'GET',
+                url: `http://localhost:8080/api/cart`,
+                success: function (data) {
+                    populateCart(data);
+                },
+                error: function (err) {
+                    console.error('Error getting user cart: ', err);
+                }
+            });
+
+            function populateCart(cartData) {
+                const cartContainer = $('.cart-container');
+
+                if (cartData.products.length === 0) {
+                    cartContainer.html('<p>Your cart is empty.</p>');
+                } else {
+                    const cartItemsHTML = cartData.products.map(product => {
+                        return `
+                            <div class="cart-item">
+                                <img src="${product.image}" alt="${product.name}">
+                                <div class="item-details">
+                                    <h3>${product.name}</h3>
+                                    <p>${product.description}</p>
+                                    <p>Price: $${product.price}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    cartContainer.html(cartItemsHTML.join(''));
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
-
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
@@ -37,7 +77,8 @@
                 <div class="nav-link">
                     <div class="icon-button">
                         <div class="input-group">
-                            <input type="text" class="form-control search-form" placeholder="Search" aria-label="Searchfield" aria-describedby="search-field">
+                            <input type="text" class="form-control search-form" placeholder="Search" aria-label="Searchfield"
+                                aria-describedby="search-field">
                             <div class="input-group-append">
                                 <i class="fas fa-search search-icon pb-4"></i>
                             </div>
@@ -74,22 +115,7 @@
 
     <!-- Shopping Cart Content -->
     <div class="cart-container">
-        <div class="cart-item">
-          <img src="webshop/frontend/images/articles/games/PS4/ps4_cuphead.jpg" alt="Game 1">
-          <div class="cart-item-details">
-              <div class="CartGame">Test Game</div>
-              <div class="CartPlatform">Test Platform</div>
-              <div class="CartPrice">Test Price </div>
-              <div class="cart-item-quantity">
-                  <button class="btn-quantity minus"></button>
-                  <span class="quantity"></span>
-                  <button class="btn-quantity plus"></button>
-              </div>
-              <p>Remove</p>
-              <button class="btn-remove"></button>
-          </div>
-      </div>
-        <!-- Add more cart items here with the same structure -->
+        <!-- Cart items will be dynamically added here -->
     </div>
 
     <!-- Footer -->
@@ -111,56 +137,3 @@
                     <div class="text-center text-wrap">
                         <h6>Information</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Payment methods</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>More</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="./impressum.html">Impressum</a></li>
-                            <li><a href="./agb.html">AGBs</a></li>
-                            <li><a href="#">Data Protection</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="d-md-none small-links mb-3 w-100 h-100">
-                <ul class="container-fluid justify-content-center">
-                    <div class="row">
-                        <li class="list-group-item">
-                            <a data-bs-toggle="collapse" href="#collapseContact" role="button" aria-expanded="t"
-                                aria-controls="collapseContact">Contact</a>
-                            <div class="collapse" id="collapseContact">
-                                <ul class="list-unstyled buttonlist">
-                                    <li><a href="support.html">Support</a></li>
-                                    <li><a href="./contact.html">Contact Us</a></li>
-                                    <li><a href="#">Complaints</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- Add more collapsed sections for smaller screens here -->
-                    </div>
-                </ul>
-            </div>
-            <hr class="mb-4 w-50 d-none d-lg-block">
-            <div class="d-flex flex-row justify-content-center">
-                <ul class="list-unstyled socials">
-                    <li><i class="fab fa-discord"></i></li>
-                    <li><i class="fab fa-instagram"></i></li>
-                    <li><i class="fab fa-facebook"></i></li>
-                    <li><i class="fab fa-tiktok"></i></li>
-                    <li><i class="fab fa-twitter"></i></li>
-                </ul>
-            </div>
-            <div class="container-fluid text-center bg-footer">
-                <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
-            </div>
-        </div>
-    </footer>
-
-</body

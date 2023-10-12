@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.service.CartService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -83,4 +84,17 @@ public class CartController {
         List<Cart> allCarts = cartService.getAll();
         return ResponseEntity.ok(allCarts.stream().map(Cart::convertToDto).toList());
     }
+
+    @GetMapping("/mycart/{userId}")
+    public ResponseEntity<CartDto> getMyCart(@PathVariable Long userId) {
+        try {
+            // Call the CartService to get the user's cart contents
+            Cart userCart = cartService.getCartByUserId(userId);
+            return ResponseEntity.ok(userCart.convertToDto());
+        } catch (Exception ex) {
+            // Handle exceptions as needed
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
+
