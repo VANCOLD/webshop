@@ -125,7 +125,9 @@ VALUES
 ('Xbox Headset', 'Headset Xbox', 49.99, 'headset.jpeg', 25, 100, 'a', '2023-01-01', 'NONE', 1, 4, 3),                                   -- 6
 ('Gameverse', 'Buy us, we are on sale', 3000000.01, 'company.bmp', 30, 1, 'wow', '2012-01-01', 'NONE', NULL, 6, 10);                    -- 7
 
-INSERT INTO products_to_carts (id, product_id, cart_id) VALUES (1, 2, 1), (2, 3, 1);
+INSERT INTO products_to_carts (product_id, cart_id) VALUES
+(2, 1), -- 1
+(3, 1); -- 2
 
 
 INSERT INTO products_to_genres (product_id, genre_id) VALUES
