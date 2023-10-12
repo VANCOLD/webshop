@@ -1,12 +1,13 @@
 $(document).ready(function () {
+
     // Replace with the actual user ID or retrieve it through authentication
     const userId = 1;
 
     // Retrieve the access token from local storage
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('token');
 
     // Construct the URL based on the userId
-    const apiUrl = accessToken ? `/api/cart/${userId}` : `http://localhost:8080/api/cart/${userId}`;
+    const apiUrl = 'http://localhost:8080/api/cart/' + userId;
 
     // Check if the access token exists in local storage
     if (accessToken) {
@@ -43,23 +44,29 @@ $(document).ready(function () {
 
     function populateCart(cartData) {
         const cartContainer = $('.cart-container');
-
+    
         if (cartData.products.length === 0) {
             cartContainer.html('<p>Your cart is empty.</p>');
         } else {
             const cartItemsHTML = cartData.products.map(product => {
+                // Format the price as a currency string
+                const priceFormatted = new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                }).format(product.price);
+    
                 return `
                     <div class="cart-item">
                         <img src="${product.image}" alt="${product.name}">
                         <div class="item-details">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
-                            <p>Price: $${product.price}</p>
+                            <p>Price: ${priceFormatted}</p>
                         </div>
                     </div>
                 `;
             });
-
+    
             cartContainer.html(cartItemsHTML.join(''));
         }
     }

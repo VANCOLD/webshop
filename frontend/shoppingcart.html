@@ -22,96 +22,12 @@
     <!-- Your custom CSS -->
     <link href="./css/style.css" rel="stylesheet">
 
-    <script>
-        $(document).ready(function () {
-            // Replace with the actual user ID or retrieve it through authentication
-            const userId = 2;
-
-            $.ajax({
-                type: 'GET',
-                url: `http://localhost:8080/api/cart`,
-                success: function (data) {
-                    populateCart(data);
-                },
-                error: function (err) {
-                    console.error('Error getting user cart: ', err);
-                }
-            });
-
-            function populateCart(cartData) {
-                const cartContainer = $('.cart-container');
-
-                if (cartData.products.length === 0) {
-                    cartContainer.html('<p>Your cart is empty.</p>');
-                } else {
-                    const cartItemsHTML = cartData.products.map(product => {
-                        return `
-                            <div class="cart-item">
-                                <img src="${product.image}" alt="${product.name}">
-                                <div class="item-details">
-                                    <h3>${product.name}</h3>
-                                    <p>${product.description}</p>
-                                    <p>Price: $${product.price}</p>
-                                </div>
-                            </div>
-                        `;
-                    });
-
-                    cartContainer.html(cartItemsHTML.join(''));
-                }
-            }
-        });
-    </script>
+    
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
-            <div class="logo">
-                <a href="./index.html">
-                    <img class="img-fluid w-25 h-25" src="./images/Logo.png" alt="Logo">
-                </a>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="nav-link">
-                    <div class="icon-button">
-                        <div class="input-group">
-                            <input type="text" class="form-control search-form" placeholder="Search" aria-label="Searchfield"
-                                aria-describedby="search-field">
-                            <div class="input-group-append">
-                                <i class="fas fa-search search-icon pb-4"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a class="nav-link" href="./support.html">
-                        <div class="icon-button">
-                            <i class="far fa-question-circle"></i>
-                            <p>Support</p>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a class="nav-link" href="./shoppingcart.html">
-                        <div class="icon-button">
-                            <i class="fas fa-shopping-cart"></i>
-                            <p>Cart</p>
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <a class="nav-link" href="./register.html">
-                        <div class="icon-button">
-                            <i class="far fa-user"></i>
-                            <p>Sign In</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div id="navbar-bind"></div>
+    
 
     <!-- Shopping Cart Content -->
     <div class="cart-container">
@@ -120,7 +36,7 @@
 
     <!-- Footer -->
     <div id="footer-bind"></div>
+    <script src="./js/loader.js"></script>
+    <script src="./js/shopping-cart.js"></script>
 </body>
-        <script src="./js/loader.js"></script>
-        <script src="./js/shopping-cart.js"></script>
-
+</html>
