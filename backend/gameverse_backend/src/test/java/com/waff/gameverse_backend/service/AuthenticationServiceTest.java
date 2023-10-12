@@ -39,7 +39,7 @@ public class AuthenticationServiceTest {
         testUser.setLastname("test");
         testUser.setGender(Gender.MALE.name());
         testUser.setEmail("test@test.com");
-        testUser.setAddress(new AddressDto(null, "test","test","test"));
+        testUser.setAddress(new AddressDto(null, "test","test","test","test"));
         testUser.setRole(new RoleDto(null, "test", List.of()));
 
         // Neuer User, sollte erstellt werden können da er noch nicht existiert!

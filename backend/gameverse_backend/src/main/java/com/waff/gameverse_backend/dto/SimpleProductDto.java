@@ -5,15 +5,13 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
  /**
  * A DTO class that holds some information about a product, used for creation (simplified).
  **/

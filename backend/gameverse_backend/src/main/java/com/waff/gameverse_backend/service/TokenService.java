@@ -32,9 +32,9 @@ public class TokenService {
      * @param privilegeService The PrivilegeService for managing privileges.
      */
     public TokenService(JwtEncoder jwtEncoder, UserService userService, PrivilegeService privilegeService) {
-        this.jwtEncoder = jwtEncoder;
-        this.userService = userService;
-        this.privilegeService = privilegeService;
+        this.jwtEncoder         = jwtEncoder;
+        this.userService        = userService;
+        this.privilegeService   = privilegeService;
     }
 
     /**

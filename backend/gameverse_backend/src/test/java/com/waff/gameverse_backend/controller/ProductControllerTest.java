@@ -173,13 +173,15 @@ public class ProductControllerTest {
         ProductDto testCase1 = new ProductDto(
             1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
-            List.of(new GenreDto("Adventure")));
+            new ConsoleGenerationDto(null, "Nintendo Switch"), new CategoryDto(null, "Games"),
+                new ProducerDto(null, "Nitendo",  new AddressDto(null, "test", "test", "test", "test")),
+            List.of(new GenreDto(null, "Adventure")));
 
         ProductDto testCase2 = new ProductDto(
             1000L, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd",
             LocalDateTime.of(2024,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"), new ProducerDto(2L, "Sony"),
+            new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"),
+                new ProducerDto(2L, "Sony",  new AddressDto(null, "test", "test", "test", "test")),
             List.of(new GenreDto(9L, "Survival & Horror")));
 
 
@@ -215,8 +217,8 @@ public class ProductControllerTest {
         ProductDto testCase = new ProductDto(
             1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
-            List.of(new GenreDto("Adventure")));
+            new ConsoleGenerationDto(null, "Nintendo Switch"), new CategoryDto(null, "Games"), new ProducerDto(null, "Nitendo",  new AddressDto(null, "test", "test", "test", "test")),
+            List.of(new GenreDto(null, "Adventure")));
 
         // Should return forbidden since the user doesn"t have to correct privilege
         mockMvc

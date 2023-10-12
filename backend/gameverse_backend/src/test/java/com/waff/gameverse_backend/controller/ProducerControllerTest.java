@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.waff.gameverse_backend.dto.AddressDto;
 import com.waff.gameverse_backend.dto.ProducerDto;
 import com.waff.gameverse_backend.service.ProducerService;
 import com.waff.gameverse_backend.service.TokenService;
@@ -112,10 +113,10 @@ public class ProducerControllerTest {
         String token = this.getToken("admin");
 
         // New producer, doesn't exist in db
-        ProducerDto testCase1 = new ProducerDto("Froggyo");
+        ProducerDto testCase1 = new ProducerDto(null, "Froggyo", new AddressDto(1L, "test", "test", "test", "test"));
 
         // Already existing producer, should return conflict!
-        ProducerDto testCase2 = new ProducerDto("Nintendo");
+        ProducerDto testCase2 = new ProducerDto(null, "Nintendo",  new AddressDto(1L, "test", "test", "test", "test"));
 
         // Current amount of producers, will be used to see if the new cat has count + 1 as id
         int currentCount = producerService.findAll().size();
@@ -149,7 +150,7 @@ public class ProducerControllerTest {
         String token = this.getToken("user");
 
         // New producer, doesn't exist in db
-        ProducerDto testCase = new ProducerDto("Froggyo");
+        ProducerDto testCase = new ProducerDto(null, "Froggyo", new AddressDto(null, "test", "test", "test", "test"));
 
         // Should return forbidden since the user doesn't have to correct producer
         mockMvc
@@ -170,10 +171,10 @@ public class ProducerControllerTest {
         String token = this.getToken("admin");
 
         // should work
-        ProducerDto testCase1 = new ProducerDto(1L,  "Nintendo");
+        ProducerDto testCase1 = new ProducerDto(1L,  "Nintendo",  new AddressDto(null, "test", "test", "test", "test"));
 
         // New producer, doesn't exist in db => NotFound
-        ProducerDto testCase2 = new ProducerDto(1000L,  "Froggyo");
+        ProducerDto testCase2 = new ProducerDto(1000L,  "Froggyo", new AddressDto(null, "test", "test", "test", "test"));
 
         // Should be ok and return the updated producer
         mockMvc
@@ -204,7 +205,7 @@ public class ProducerControllerTest {
         String token = this.getToken("user");
 
         // Existing producer in the db
-        ProducerDto testCase = new ProducerDto( "Nintendo");
+        ProducerDto testCase = new ProducerDto(1L, "Nintendo", new AddressDto(null, "test", "test", "test", "test"));
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

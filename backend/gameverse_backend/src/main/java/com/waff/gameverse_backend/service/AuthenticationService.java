@@ -1,7 +1,6 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.UserDto;
-import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.RoleRepository;
@@ -67,7 +66,6 @@ public class AuthenticationService {
         Role userRole = roleRepository.findByName("user").orElseThrow(); // Assumes "user" role exists.
         userDto.setRole(userRole.convertToDto());
         userDto.setPassword(encodedPassword);
-        System.out.println(userDto.toString());
         return userRepository.save(new User(userDto));
     }
 

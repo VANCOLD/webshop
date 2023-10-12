@@ -42,9 +42,16 @@ public class Order implements DataTransferObject<OrderDto> {
     @OneToMany(mappedBy="order")
     private List<OrderedProduct> orderedProducts;
 
+    public Order(OrderDto order) {
+        this.id = order.getId();
+        this.user = new User(order.getUser());
+        this.orderedProducts = order.getOrderedProducts().stream().map(OrderedProduct::new).toList();
+        this.orderStatus = OrderStatus.valueOf(order.getOrderStatus().toUpperCase());
+    }
+
 
     @Override
     public OrderDto convertToDto() {
-        return new OrderDto(id, user.convertToDto(), orderedProducts.stream().map(OrderedProduct::convertToDto).toList());
+        return new OrderDto(id, user.convertToDto(), orderStatus.getName(), orderedProducts.stream().map(OrderedProduct::convertToDto).toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.util.List;
@@ -10,14 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CartDto {
+public class AddProductToCartDto {
 
-    private Long id;
 
-    @NotNull
-    private SimpleUserDto user;
+    @Positive
+    private Long productId;
 
-    @NotNull
-    private List<SimpleProductDto> products;
 
+    @Positive
+    private Long userId;
 }

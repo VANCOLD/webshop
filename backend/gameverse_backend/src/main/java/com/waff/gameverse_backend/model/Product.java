@@ -1,16 +1,15 @@
 package com.waff.gameverse_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -116,13 +115,14 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
      * The list of genres associated with this product.
      * Each genre in the list categorizes this product.
      */
+    @ToString.Exclude
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_genres",
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -130,7 +130,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "cart_id") }
     )
-    private List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
 
     public Product(SimpleProductDto productDto) {
         this.id = productDto.getId();
@@ -140,27 +140,16 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         this.tax   = productDto.getTax();
     }
 
-    @Override
-    public ProductDto convertToDto() {
-
-        ProductDto productDto = new ProductDto();
-
-        productDto.setId(id);
-        productDto.setName(name);
-        productDto.setDescription(description);
-        productDto.setPrice(price);
-        productDto.setImage(image);
-        productDto.setTax(tax);
-        productDto.setStock(stock);
-        productDto.setGtin(gtin);
-        productDto.setAvailable(available);
-        productDto.setEsrbRating(esrbRating.getName());
-        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
-        productDto.setCategory(category == null ? new CategoryDto() : category.convertToDto());
-        productDto.setProducer(producer == null ? new ProducerDto() : producer.convertToDto());
-        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
-
-        return productDto;
+    public Product(ProductDto productDto) {
+        this.id = productDto.getId();
+        this.name = productDto.getName();
+        this.description = productDto.getDescription();
+        this.image = productDto.getImage();
+        this.tax   = productDto.getTax();
+        this.category = new Category(productDto.getCategory());
+        this.genres   = productDto.getGenres().stream().map(Genre::new).toList();
+        this.producer = new Producer(productDto.getProducer());
+        this.consoleGeneration = new ConsoleGeneration(productDto.getConsoleGeneration());
     }
 
     @Override
@@ -177,5 +166,10 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         simpleProductDto.setGtin(gtin);
 
         return simpleProductDto;
+    }
+
+    @Override
+    public ProductDto convertToDto() {
+        return null;
     }
 }

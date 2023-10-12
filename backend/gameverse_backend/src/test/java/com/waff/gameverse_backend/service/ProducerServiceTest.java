@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.service;
 
+import com.waff.gameverse_backend.dto.AddressDto;
 import com.waff.gameverse_backend.dto.ProducerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,20 +69,21 @@ public class ProducerServiceTest {
 
     @Test
     void saveTest() {
-        String producer1 = "Bethesda";
 
-        String producer2 = "Nintendo";
+        ProducerDto producer1 = new ProducerDto(null, "Bethesda", new AddressDto(null, "test", "test", "test", "test"));
+
+        ProducerDto producer2 = new ProducerDto(null, "Bethesda", new AddressDto(null, "test", "test", "test", "test"));
 
 
         var testCase1 = this.producerService.save(producer1);
-        assertThat(testCase1.getName()).isEqualTo(producer1);
+        assertThat(testCase1.getName()).isEqualTo(producer1.getName());
 
         assertThrows(IllegalArgumentException.class, () -> this.producerService.save(producer2));
     }
 
     @Test
     void updateTest() {
-        ProducerDto producer = new ProducerDto("test");
+        ProducerDto producer = new ProducerDto(100L, "test", new AddressDto(null, "test", "test", "test", "test"));
         assertThrows(NoSuchElementException.class,() -> this.producerService.update(producer));
 
         producer.setId(1L);

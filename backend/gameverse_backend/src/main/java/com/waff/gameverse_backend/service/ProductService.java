@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.ProductDto;
+import com.waff.gameverse_backend.dto.SimpleProductDto;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -54,15 +55,31 @@ public class ProductService {
     /**
      * Save a new product with the given name.
      *
-     * @param name The name of the new product to save.
+     * @param product The new product to save (simple form).
      * @return The saved product.
      * @throws IllegalArgumentException If a product with the same name already exists.
      */
-    public Product save(String name) {
-        var toCheck = this.productRepository.findByName(name);
+    public Product save(SimpleProductDto product) {
+        var toCheck = this.productRepository.findByName(product.getName());
         if (toCheck.isEmpty()) {
-            Product toSave = new Product();
-            toSave.setName(name);
+            Product toSave = new Product(product);
+            return this.productRepository.save(toSave);
+        } else {
+            throw new IllegalArgumentException("The specified name is already used by a product");
+        }
+    }
+
+    /**
+     * Save a new product with the given name.
+     *
+     * @param product The new product to save (simple form).
+     * @return The saved product.
+     * @throws IllegalArgumentException If a product with the same name already exists.
+     */
+    public Product save(ProductDto product) {
+        var toCheck = this.productRepository.findByName(product.getName());
+        if (toCheck.isEmpty()) {
+            Product toSave = new Product(product);
             return this.productRepository.save(toSave);
         } else {
             throw new IllegalArgumentException("The specified name is already used by a product");

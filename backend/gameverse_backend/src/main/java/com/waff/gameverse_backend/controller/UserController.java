@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.NoSuchElementException;
 /**
  * The UserController class handles operations related to user management.
  */
+@EnableMethodSecurity
 @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
 @RequestMapping("/api/users")
 @RestController

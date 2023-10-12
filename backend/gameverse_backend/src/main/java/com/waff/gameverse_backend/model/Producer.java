@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,10 +45,23 @@ public class Producer implements DataTransferObject<ProducerDto> {
      * Each product in the list is produced or manufactured by this specific producer.
      */
     @OneToMany(mappedBy="producer")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();;
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+
+    public Producer(ProducerDto producer) {
+        this.id = producer.getId();
+        this.name = producer.getName();
+        this.address = new Address(producer.getAddress());
+    }
+
 
     @Override
     public ProducerDto convertToDto() {
-        return new ProducerDto(id, name);
+        return new ProducerDto(id, name, address.convertToDto());
     }
 }

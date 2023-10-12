@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.repository;
 
+import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,4 +40,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return A list of users with the specified role.
      */
     List<User> findAllByRole(Role role);
+
+    List<User> findAllByAddress(Address address);
 }
