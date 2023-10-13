@@ -356,7 +356,6 @@ Shopping Cart Style
   margin-bottom: 60px;
   margin-left: 100px;
   margin-right: 100px;
-  min-height: 500px;
   position: relative; /* Required for absolute positioning of the button */
 }
 
@@ -364,7 +363,7 @@ Shopping Cart Style
 .cart-container {
   background-color: #fff;
   padding: 30px;
-  min-height: 500px;
+  min-height: 300px;
 }
 
 /* Shopping Cart Items Container */
