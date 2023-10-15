@@ -90,4 +90,8 @@ public class TokenService {
             return false;
         }
     }
+
+    public User getUser(Jwt token) {
+        return userService.findByUsername(token.getSubject());
+    }
 }

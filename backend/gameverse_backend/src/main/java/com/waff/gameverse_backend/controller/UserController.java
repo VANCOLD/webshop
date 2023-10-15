@@ -1,13 +1,21 @@
 package com.waff.gameverse_backend.controller;
 
+import com.waff.gameverse_backend.dto.AddProductToCartDto;
+import com.waff.gameverse_backend.dto.CartDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.model.User;
+import com.waff.gameverse_backend.service.CartService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +26,22 @@ import java.util.NoSuchElementException;
  * The UserController class handles operations related to user management.
  */
 @EnableMethodSecurity
-@PreAuthorize("@tokenService.hasPrivilege('edit_users')")
 @RequestMapping("/api/users")
 @RestController
 public class UserController {
 
     private final UserService userService;
 
+    private final CartService cartService;
+
     /**
      * Constructs a new UserController with the provided UserService.
      *
      * @param userService The UserService to use for managing users.
      */
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CartService cartService) {
         this.userService = userService;
+        this.cartService = cartService;
     }
 
     /**
@@ -41,6 +51,7 @@ public class UserController {
      * @see UserDto
      */
     @GetMapping("/all")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<List<SimpleUserDto>> findAll() {
         var users = userService.findAll();
 
@@ -60,6 +71,7 @@ public class UserController {
      * @see UserDto
      */
     @GetMapping("/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<SimpleUserDto> findById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.findById(id).convertToSimpleDto());
@@ -78,6 +90,7 @@ public class UserController {
      * @see SimpleUserDto
      */
     @PostMapping
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
@@ -96,6 +109,7 @@ public class UserController {
      * @see UserDto
      */
     @PutMapping
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
         try {
             return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
@@ -113,6 +127,7 @@ public class UserController {
      * @throws NoSuchElementException if the user with the given ID does not exist.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
@@ -120,5 +135,34 @@ public class UserController {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
         }
+    }
+
+
+    @PutMapping("/addToCart/{productId}")
+    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    public ResponseEntity<CartDto> addToCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
+
+        Long userId  = userService.findByUsername(jwt.getSubject()).getId();
+        // Call the CartService to add the product to the user's cart
+        Cart updatedCart = cartService.addToCart(new AddProductToCartDto(productId, userId));
+
+        return ResponseEntity.ok(updatedCart.convertToDto());
+    }
+
+    @GetMapping("/cart")
+    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    public ResponseEntity<CartDto> getCart(@AuthenticationPrincipal Jwt jwt) {
+        Cart cart = userService.findByUsername(jwt.getSubject()).getCart();
+        return ResponseEntity.ok(cart == null ? null : cart.convertToDto());
+
+    }
+
+    @PutMapping("/removeFromCart/{productId}")
+    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    public ResponseEntity<CartDto> removeFromCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
+
+        Long userId  = userService.findByUsername(jwt.getSubject()).getId();
+        Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
+        return ResponseEntity.ok(updatedCart.convertToDto());
     }
 }
