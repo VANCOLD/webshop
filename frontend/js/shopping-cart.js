@@ -2,10 +2,35 @@
     const apiCartGetUrl         = 'http://localhost:8080/api/users/cart';
     const apiCartReduceUrl      = 'http://localhost:8080/api/users/removeFromCart/';
     const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
+    const apiOpenOrderUrl       = 'http://localhost:8080/api/users/openOrder';
 
 $(document).ready(function () {
+    checkOrders();
     loadData();
 });
+
+function checkOrders() {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: apiOpenOrderUrl,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                window.location.href = "order.html";
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
+        });
+    }
+}
 
 
 function loadData() {

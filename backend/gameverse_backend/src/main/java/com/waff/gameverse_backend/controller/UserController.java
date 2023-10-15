@@ -139,7 +139,7 @@ public class UserController {
 
 
     @PutMapping("/addToCart/{productId}")
-    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
     public ResponseEntity<CartDto> addToCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
 
         Long userId  = userService.findByUsername(jwt.getSubject()).getId();
@@ -150,7 +150,7 @@ public class UserController {
     }
 
     @GetMapping("/cart")
-    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
     public ResponseEntity<CartDto> getCart(@AuthenticationPrincipal Jwt jwt) {
         Cart cart = userService.findByUsername(jwt.getSubject()).getCart();
         return ResponseEntity.ok(cart == null ? null : cart.convertToDto());
@@ -158,7 +158,7 @@ public class UserController {
     }
 
     @PutMapping("/removeFromCart/{productId}")
-    @PreAuthorize("@tokenService.hasPrivilege('view_cart')")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
     public ResponseEntity<CartDto> removeFromCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
 
         Long userId  = userService.findByUsername(jwt.getSubject()).getId();

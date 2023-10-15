@@ -19,10 +19,10 @@ TRUNCATE TABLE addresses;
 
 INSERT INTO privileges (name) VALUES
 ('view_profile'),        -- 1
-('view_cart'),           -- 2
+('view_carts'),           -- 2
 ('view_users'),          -- 3
 ('edit_profile'),        -- 4
-('edit_cart'),           -- 5
+('edit_carts'),           -- 5
 ('edit_users'),          -- 6
 ('edit_products'),       -- 7
 ('view_orders');         -- 8
