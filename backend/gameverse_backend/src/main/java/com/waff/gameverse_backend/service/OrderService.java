@@ -134,7 +134,7 @@ public class OrderService {
         }
 
         toUpdate.setOrderStatus(OrderStatus.COMPLETED);
-        toUpdate.getUser().getCart().setProducts(new ArrayList<Product>());
+        toUpdate.getUser().getCart().setProducts(new ArrayList<>());
         return this.orderRepository.save(toUpdate);
     }
 

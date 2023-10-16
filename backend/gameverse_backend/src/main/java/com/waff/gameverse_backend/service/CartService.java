@@ -101,11 +101,9 @@ public class CartService {
                     .orElseThrow(() -> new NoSuchElementException("User not found"));
             Cart userCart = user.getCart();
 
-            double total = userCart.getProducts().stream()
-                    .mapToDouble(Product::getPrice)
-                    .sum();
-
-            return total;
+            return userCart.getProducts().stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
         } catch (NoSuchElementException ex) {
             logger.error("Error while calculating the cart total: " + ex.getMessage());
             throw ex;
