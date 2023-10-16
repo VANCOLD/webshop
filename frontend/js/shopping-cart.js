@@ -1,133 +1,215 @@
-// shopping-cart.js
+    // Construct the URL based on the userId
+    const apiCartGetUrl         = 'http://localhost:8080/api/users/cart';
+    const apiCartReduceUrl      = 'http://localhost:8080/api/users/removeFromCart/';
+    const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
+    const apiOpenOrderUrl       = 'http://localhost:8080/api/users/openOrder';
 
-// Function to fetch cart data from the backend
-function fetchCartData(userId) {
-    return fetch(`/api/cart/get?userId=${userId}`)
-        .then(response => response.json());
-}
-
-// Function to update cart item quantity
-function updateCartItemQuantity(userId, productId, newQuantity) {
-    return fetch(`/api/cart/update?userId=${userId}&productId=${productId}&quantity=${newQuantity}`, {
-        method: 'PUT'
-    })
-    .then(response => response.json());
-}
-
-// Function to remove item from the cart
-function removeCartItem(userId, productId) {
-    return fetch(`/api/cart/remove?userId=${userId}&productId=${productId}`, {
-        method: 'DELETE'
-    })
-    .then(response => response.json());
-}
-
-// Function to update the cart total on the page
-function updateCartTotal(total) {
-    const totalElement = document.getElementById('cart-total');
-    totalElement.innerText = `$${total.toFixed(2)}`;
-}
-
-// Event listener for the "Add to Cart" button
-document.getElementById('add-to-cart-button').addEventListener('click', () => {
-    const userId = getUserId();
-    const productId = getProductId();
-
-    // Call the backend to add the product to the cart
-    fetch(`/api/cart/add?userId=${userId}&productId=${productId}`, {
-        method: 'POST'
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Update the cart view with the new data
-        updateCartView(userId);
-    });
+$(document).ready(function () {
+    checkOrders();
+    loadData();
 });
 
-// Event listener for quantity input buttons
-document.querySelectorAll('.btn-quantity').forEach(button => {
-    button.addEventListener('click', () => {
-        const userId = getUserId(); // Implement your logic to get the user ID here
-        const productId = getProductId(); // Implement your logic to get the product ID here
-        const quantityElement = document.querySelector('.quantity');
+function checkOrders() {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
 
-        let newQuantity = parseInt(quantityElement.textContent, 10);
-
-        if (button.classList.contains('minus')) {
-            newQuantity = Math.max(1, newQuantity - 1);
-        } else if (button.classList.contains('plus')) {
-            newQuantity += 1;
-        }
-
-        // Call the backend to update the cart item quantity
-        updateCartItemQuantity(userId, productId, newQuantity)
-            .then(() => {
-                quantityElement.textContent = newQuantity;
-                updateCartView(userId);
-            });
-    });
-});
-
-// Event listener for "Remove Item" button
-document.querySelectorAll('.btn-remove').forEach(button => {
-    button.addEventListener('click', () => {
-        const userId = getUserId(); // Implement your logic to get the user ID here
-        const productId = getProductId(); // Implement your logic to get the product ID here
-
-        // Call the backend to remove the item from the cart
-        removeCartItem(userId, productId)
-            .then(() => {
-                updateCartView(userId);
-            });
-    });
-});
-
-// Function to update the cart view (items, total, etc.)
-function updateCartView(userId) {
-    fetchCartData(userId)
-        .then(cartData => {
-            // Implement your logic to update the HTML with cart data here
-            // For example, you can loop through cartData and generate the HTML for each item.
-            
-            // Calculate the cart total
-            const total = cartData.total;
-            updateCartTotal(total);
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: apiOpenOrderUrl,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                window.location.href = "order.html";
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
         });
-}
-
-// Implement a function to get the user ID (e.g., from a session or authentication)
-function getUserId() {
-    // Implement your logic to get the user ID here
-}
-
-// Implement a function to get the product ID
-function getProductId() {
-    // Implement your logic to get the product ID here
-}
-
-// Call the initial update of the cart view when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const userId = getUserId(); // Implement your logic to get the user ID here
-    updateCartView(userId);
-});
-
-// Example: Fetch product data from your back-end (replace with actual API call)
-async function fetchProducts() {
-    try {
-        const response = await fetch('/api/products');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching products:', error);
     }
 }
 
-// Call this function to initialize your products
-async function initializeProducts() {
-    const products = await fetchProducts();
-    // Process and display products
+
+function loadData() {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: apiCartGetUrl,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                // Handle the successful responses
+                populateCart(data);
+
+                // Calculate the total amount
+                const totalAmount = calculateTotalAmount(data);
+
+                // Update the total amount displayed in the cart
+                $('#total-amount').text(`Total: ${totalAmount} EUR`);
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
+        });
+    } 
 }
 
-// Call the initializeProducts function to load products when the page loads
-initializeProducts();
 
+function populateCart(cartData) {
+    const cartContainer = $('.cart-container');
+
+    if (cartData.products.length === 0) {
+        cartContainer.html('<p>Your cart is empty.</p>');
+    } else {
+        // Sort the products by ID
+        cartData.products.sort((a, b) => a.id - b.id);
+
+        const productQuantities = new Map();
+
+        // Iterate through the products and update quantities
+        cartData.products.forEach(product => {
+            const productId = product.id;
+
+            if (productQuantities.has(productId)) {
+                // Product already exists in the cart, increase the quantity
+                productQuantities.set(productId, productQuantities.get(productId) + 1);
+            } else {
+                // Product is not in the cart, add it with quantity 1
+                productQuantities.set(productId, 1);
+            }
+        });
+
+        // Clear the cart container before adding items
+        cartContainer.empty();
+
+        // Iterate through productQuantities and display each product once with its quantity and buttons
+        productQuantities.forEach((quantity, productId) => {
+            const product = cartData.products.find(p => p.id === productId);
+
+            if (product) {
+                const priceFormatted = new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                }).format(product.price);
+
+                const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
+
+                const cartItemHTML = `
+                    <div class="cart-items-container">
+                        <div class="cart-item">
+                            <img src="${imageSrc}" alt="${product.name}" style="width: 125px; height: 125px;">
+                            <div class="cart-item-details">
+                                <h2>${product.name}</h2>
+                                <p>${product.description}</p>
+                                <p>Price: ${priceFormatted}</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus" data-product-id="${productId}">-</button>
+                                <span class="quantity">${quantity}</span>
+                                <button class="quantity-btn plus" data-product-id="${productId}">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                cartContainer.append(cartItemHTML);
+            }
+        });
+
+        // Attach event listeners to the Add and Remove buttons using class selectors
+        $('.quantity-btn.minus').on('click', function() {
+            const productId = $(this).data('product-id');
+            reduceProduct(productId);
+        });
+
+        $('.quantity-btn.plus').on('click', function() {
+            const productId = $(this).data('product-id');
+            increaseProduct(productId);
+        });
+    }
+}
+
+
+
+
+function reduceProduct(productId) {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+    // The access token doesn't exist in local storage, so you can use the URL without the token.
+        $.ajax({
+            type: 'PUT',
+            url: apiCartReduceUrl + productId,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                loadData();
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
+        }); 
+    }
+}
+
+
+function increaseProduct(productId) {
+
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        // The access token doesn't exist in local storage, so you can use the URL without the token.
+        $.ajax({
+            type: 'PUT',
+            url: apiCartIncreaseUrl + productId,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                loadData();
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
+        }); 
+    }
+}
+
+
+// Function to check if a URL is valid
+function isValidURL(str) {
+    // We use a regular expression to check if the string is a valid URL
+    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(str);
+}
+
+
+// Function to calculate the total amount
+function calculateTotalAmount(cartData) {
+    let total = 0;
+    for (const product of cartData.products) {
+        total += product.price;
+    }
+    return total;
+} 

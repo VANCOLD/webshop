@@ -157,6 +157,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
 
         SimpleProductDto simpleProductDto = new SimpleProductDto();
 
+        simpleProductDto.setId(id);
         simpleProductDto.setName(name);
         simpleProductDto.setDescription(description);
         simpleProductDto.setPrice(price);

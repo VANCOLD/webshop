@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class TokenService {
             .issuer("self")
             .issuedAt(now)
             .subject(authentication.getName())
+            .claim("id",""+((User) authentication.getPrincipal()).getId())
             .claim("authority", scope)
             .build();
 
@@ -87,5 +89,9 @@ public class TokenService {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public User getUser(Jwt token) {
+        return userService.findByUsername(token.getSubject());
     }
 }

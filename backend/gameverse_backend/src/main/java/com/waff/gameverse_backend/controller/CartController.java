@@ -1,13 +1,14 @@
 package com.waff.gameverse_backend.controller;
+
 import com.waff.gameverse_backend.dto.AddProductToCartDto;
 import com.waff.gameverse_backend.dto.CartDto;
-import com.waff.gameverse_backend.dto.SimpleProductDto;
 import com.waff.gameverse_backend.model.Cart;
-import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.service.CartService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,9 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/cart")
+@EnableMethodSecurity
+@PreAuthorize("@tokenService.hasPrivilege('edit_carts')")
+@RequestMapping("/api/carts")
 public class CartController {
     private final CartService cartService;
     private final UserService userService;
@@ -70,17 +73,12 @@ public class CartController {
         return ResponseEntity.ok(itemCount);
     }
 
-    @GetMapping("/items/{userId}")
-    public ResponseEntity<List<SimpleProductDto>> getCartItems(@PathVariable Long userId) {
-        // Call the CartService to get the list of cart items in the user's cart
-        List<SimpleProductDto> cartItems = cartService.getProducts(userId).stream().map(Product::convertToSimpleDto).toList();
-        return ResponseEntity.ok(cartItems);
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<CartDto>> getAll() {
         // Call the CartService to get a list of all carts
         List<Cart> allCarts = cartService.getAll();
         return ResponseEntity.ok(allCarts.stream().map(Cart::convertToDto).toList());
     }
+
 }
+

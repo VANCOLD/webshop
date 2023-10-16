@@ -10,11 +10,13 @@ import com.waff.gameverse_backend.repository.UserRepository;
 import jdk.jshell.spi.ExecutionControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+
 
 @Service
 public class CartService {
@@ -69,7 +71,30 @@ public class CartService {
     }
 
     public Cart removeFromCart(AddProductToCartDto requestDto) {
-        return null;
+        try {
+            User user = userRepository.findById(requestDto.getUserId())
+                .orElseThrow(() -> new NoSuchElementException("User not found"));
+            Product product = productRepository.findById(requestDto.getProductId())
+                .orElseThrow(() -> new NoSuchElementException("Product not found"));
+
+            Cart userCart = user.getCart();
+
+            if (userCart == null) {
+                userCart = new Cart();
+                userCart.setUser(user);
+                cartRepository.save(userCart);
+                user.setCart(userCart);
+                userRepository.save(user);
+                return userCart;
+            }
+
+            userCart.getProducts().remove(product);
+            this.userRepository.save(user);
+            return userCart;
+        } catch (NoSuchElementException ex) {
+            logger.error("Error while adding a product to the cart: " + ex.getMessage());
+            throw ex;
+        }
     }
 
     public Double calculateCartTotal(Long userId) {

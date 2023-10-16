@@ -39,7 +39,6 @@ $(document).ready(function() {
         try {
             const payload = jwtParser.parse();
             const privs   = payload.authority.split(' ');
-            console.log(privs);
 
             if (privs.includes(viewProfile)) {
                 profile.style.display = 'visible';
