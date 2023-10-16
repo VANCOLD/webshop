@@ -25,8 +25,6 @@ function checkOrders() {
                 window.location.href = "order.html";
             },
             error: function(err) {
-                // Handle errors
-                console.error('Error getting user cart: ', err);
             }
         });
     }
