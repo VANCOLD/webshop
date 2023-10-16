@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.AddressDto;
 import com.waff.gameverse_backend.dto.ProducerDto;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
@@ -62,6 +63,6 @@ public class Producer implements DataTransferObject<ProducerDto> {
 
     @Override
     public ProducerDto convertToDto() {
-        return new ProducerDto(id, name, address.convertToDto());
+        return new ProducerDto(id, name, address == null ? new AddressDto() : address.convertToDto());
     }
 }

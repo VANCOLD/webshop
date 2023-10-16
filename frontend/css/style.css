@@ -350,6 +350,12 @@ product Style
   font-weight: bold;
   color: #e75e8d;
 }
+
+.product-image {
+  width:350px;
+  height:420px;
+}
+
 /* 
 ---------------------------------------------
 cards Style

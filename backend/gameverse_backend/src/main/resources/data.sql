@@ -137,113 +137,113 @@ VALUES
 
         -- XBox Series X        id = 1
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', '17+', 1, 1, 12),                                                                   -- 8
+, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', 'MATURE17', 1, 1, 12),                                                                   -- 8
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
-, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', '12+', 1, 1, 13),                                                                   -- 9
+, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', 'EVERYONE_10', 1, 1, 13),                                                                   -- 9
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', '17+', 1, 1, 14),                                                                   -- 10
+, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', 'MATURE17', 1, 1, 14),                                                                   -- 10
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
-, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', '12+', 1, 1, 1),                                                                     -- 11
+, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', 'EVERYONE_10', 1, 1, 1),                                                                     -- 11
 ('Evil West', 'In Red Dead Redemption: Undead Nightmare musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
-, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', '18+', 1, 1, 15),                                                                   -- 12
+, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', 'ADULTS_ONLY', 1, 1, 15),                                                                   -- 12
 ('Final Fantasy 7', 'In Final Fantasy VII kämpfst du als ehemaliger SOLDAT gegen die Shinra Electric Power Company, die den Planeten ausbeutet.'
-, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', '16+', 1, 1, 16),                                                                   -- 13
+, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', 'TEEN', 1, 1, 16),                                                                   -- 13
 ('Fifa23', 'FIFA 23: Realistischer Fußball mit Frauen-Vereinsmannschaften und Cross-Play'
 , 34.99, 'PHOTO', 9.99, 10, '126356', '2022-09-30', 'EVERYONE', 1, 1, 17),                                                              -- 14
 ('NBA2K23', 'In NBA 2K23 kannst du dich gegen die besten Spieler der Welt beweisen und dein Talent entfalten. Kombiniere All-Stars mit Legenden in Mein TEAM.'
-, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', '12+', 1, 1, 18),                                                                   -- 15
+, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', 'EVERYONE_10', 1, 1, 18),                                                                   -- 15
 ('Stray', 'Streuner-Katze muss Rätsel lösen, um aus verlassener Stadt zu entkommen.'
-, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', '12+', 1, 1, 19),                                                                   -- 16
+, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', 'EVERYONE_10', 1, 1, 19),                                                                   -- 16
 ('Yomawari: Lost in the Dark', 'Ein junges Mädchen erwacht in einem dunklen Wald. Sie weiß nicht, wie sie dorthin gekommen ist. Sie trifft auf eine mysteriöse Person, die ihr sagt, dass sie verflucht ist.'
-, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', '12+', 1, 1, 20),                                                                   -- 17
+, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', 'EVERYONE_10', 1, 1, 20),                                                                   -- 17
 
         -- PS5 Games        id = 2
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', '17+', 2, 1, 12),                                                                   -- 18
+, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', 'MATURE17', 2, 1, 12),                                                                   -- 18
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
-, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', '12+', 2, 1, 13),                                                                   -- 19
+, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', 'EVERYONE_10', 2, 1, 13),                                                                   -- 19
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', '17+', 2, 1, 14),                                                                   -- 20
+, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', 'MATURE17', 2, 1, 14),                                                                   -- 20
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
-, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', '12+', 2, 1, 1),                                                                     -- 21
+, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', 'EVERYONE_10', 2, 1, 1),                                                                     -- 21
 ('Evil West', 'In Red Dead Redemption: Undead Nightmare musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
-, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', '18+', 2, 1, 15),                                                                   -- 22
+, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', 'ADULTS_ONLY', 2, 1, 15),                                                                   -- 22
 ('Final Fantasy 7', 'In Final Fantasy VII kämpfst du als ehemaliger SOLDAT gegen die Shinra Electric Power Company, die den Planeten ausbeutet.'
-, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', '16+', 2, 1, 16),                                                                   -- 23
+, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', 'TEEN', 2, 1, 16),                                                                   -- 23
 ('Fifa23', 'FIFA 23: Realistischer Fußball mit Frauen-Vereinsmannschaften und Cross-Play'
 , 34.99, 'PHOTO', 9.99, 10, '126356', '2022-09-30', 'EVERYONE', 2, 1, 17),                                                              -- 24
 ('NBA2K23', 'In NBA 2K23 kannst du dich gegen die besten Spieler der Welt beweisen und dein Talent entfalten. Kombiniere All-Stars mit Legenden in Mein TEAM.'
-, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', '12+', 2, 1, 18),                                                                   -- 25
+, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', 'EVERYONE_10', 2, 1, 18),                                                                   -- 25
 ('Stray', 'Streuner-Katze muss Rätsel lösen, um aus verlassener Stadt zu entkommen.'
-, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', '12+', 2, 1, 19),                                                                   -- 26
+, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', 'EVERYONE_10', 2, 1, 19),                                                                   -- 26
 ('Yomawari: Lost in the Dark', 'Ein junges Mädchen erwacht in einem dunklen Wald. Sie weiß nicht, wie sie dorthin gekommen ist. Sie trifft auf eine mysteriöse Person, die ihr sagt, dass sie verflucht ist.'
-, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', '12+', 2, 1, 20),                                                                   -- 27
+, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', 'EVERYONE_10', 2, 1, 20),                                                                   -- 27
 
         -- Nintendo Switch      id = 3
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', '17+', 3, 1, 12),                                                                   -- 28
+, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', 'MATURE17', 3, 1, 12),                                                                   -- 28
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
-, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', '12+', 3, 1, 13),                                                                   -- 29
+, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', 'EVERYONE_10', 3, 1, 13),                                                                   -- 29
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', '17+', 3, 1, 14),                                                                   -- 30
+, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', 'MATURE17', 3, 1, 14),                                                                   -- 30
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
-, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', '12+', 3, 1, 1),                                                                     -- 31
+, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', 'EVERYONE_10', 3, 1, 1),                                                                     -- 31
 ('Evil West', 'In Red Dead Redemption: Undead Nightmare musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
-, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', '18+', 3, 1, 15),                                                                   -- 32
+, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', 'ADULTS_ONLY', 3, 1, 15),                                                                   -- 32
 ('Final Fantasy 7', 'In Final Fantasy VII kämpfst du als ehemaliger SOLDAT gegen die Shinra Electric Power Company, die den Planeten ausbeutet.'
-, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', '16+', 3, 1, 16),                                                                   -- 33
+, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', 'TEEN', 3, 1, 16),                                                                   -- 33
 ('Fifa23', 'FIFA 23: Realistischer Fußball mit Frauen-Vereinsmannschaften und Cross-Play'
 , 34.99, 'PHOTO', 9.99, 10, '126356', '2022-09-30', 'EVERYONE', 3, 1, 17),                                                              -- 34
 ('NBA2K23', 'In NBA 2K23 kannst du dich gegen die besten Spieler der Welt beweisen und dein Talent entfalten. Kombiniere All-Stars mit Legenden in Mein TEAM.'
-, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', '12+', 3, 1, 18),                                                                   -- 35
+, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', 'EVERYONE_10', 3, 1, 18),                                                                   -- 35
 ('Stray', 'Streuner-Katze muss Rätsel lösen, um aus verlassener Stadt zu entkommen.'
-, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', '12+', 3, 1, 19),                                                                   -- 36
+, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', 'EVERYONE_10', 3, 1, 19),                                                                   -- 36
 ('Yomawari: Lost in the Dark', 'Ein junges Mädchen erwacht in einem dunklen Wald. Sie weiß nicht, wie sie dorthin gekommen ist. Sie trifft auf eine mysteriöse Person, die ihr sagt, dass sie verflucht ist.'
-, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', '12+', 3, 1, 20),                                                                   -- 37
+, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', 'EVERYONE_10', 3, 1, 20),                                                                   -- 37
 
         -- Xbox One     id = 4
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', '17+', 4, 1, 12),                                                                   -- 38
+, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', 'MATURE17', 4, 1, 12),                                                                   -- 38
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
-, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', '12+', 4, 1, 13),                                                                   -- 39
+, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', 'EVERYONE_10', 4, 1, 13),                                                                   -- 39
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', '17+', 4, 1, 14),                                                                   -- 40
+, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', 'MATURE17', 4, 1, 14),                                                                   -- 40
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
-, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', '12+', 4, 1, 1),                                                                     -- 41
+, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', 'EVERYONE_10', 4, 1, 1),                                                                     -- 41
 ('Evil West', 'In Red Dead Redemption: Undead Nightmare musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
-, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', '18+', 4, 1, 15),                                                                   -- 42
+, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', 'ADULTS_ONLY', 4, 1, 15),                                                                   -- 42
 ('Final Fantasy 7', 'In Final Fantasy VII kämpfst du als ehemaliger SOLDAT gegen die Shinra Electric Power Company, die den Planeten ausbeutet.'
-, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', '16+', 4, 1, 16),                                                                   -- 43
+, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', 'TEEN', 4, 1, 16),                                                                   -- 43
 ('Fifa23', 'FIFA 23: Realistischer Fußball mit Frauen-Vereinsmannschaften und Cross-Play'
 , 34.99, 'PHOTO', 9.99, 10, '126356', '2022-09-30', 'EVERYONE', 4, 1, 17),                                                              -- 44
 ('NBA2K23', 'In NBA 2K23 kannst du dich gegen die besten Spieler der Welt beweisen und dein Talent entfalten. Kombiniere All-Stars mit Legenden in Mein TEAM.'
-, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', '12+', 4, 1, 18),                                                                   -- 45
+, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', 'EVERYONE_10', 4, 1, 18),                                                                   -- 45
 ('Stray', 'Streuner-Katze muss Rätsel lösen, um aus verlassener Stadt zu entkommen.'
-, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', '12+', 4, 1, 19),                                                                   -- 46
+, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', 'EVERYONE_10', 4, 1, 19),                                                                   -- 46
 ('Yomawari: Lost in the Dark', 'Ein junges Mädchen erwacht in einem dunklen Wald. Sie weiß nicht, wie sie dorthin gekommen ist. Sie trifft auf eine mysteriöse Person, die ihr sagt, dass sie verflucht ist.'
-, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', '12+', 4, 1, 20),                                                                   -- 47
+, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', 'EVERYONE_10', 4, 1, 20),                                                                   -- 47
 
         -- PS4 Games        id = 5
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', '17+', 5, 1, 12),                                                                   -- 48
+, 49.99, 'PHOTO', 9.99, 10, '123456', '2023-10-05', 'MATURE17', 5, 1, 12),                                                                   -- 48
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
-, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', '12+', 5, 1, 13),                                                                   -- 49
+, 39.99, 'PHOTO', 9.99, 10, '123457', '2022-11-04', 'EVERYONE_10', 5, 1, 13),                                                                   -- 49
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', '17+', 5, 1, 14),                                                                   -- 50
+, 59.99, 'PHOTO', 9.99, 10, '123458', '2023-11-17', 'MATURE17', 5, 1, 14),                                                                   -- 50
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
-, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', '12+', 5, 1, 1),                                                                     -- 51
+, 39.99, 'PHOTO', 9.99, 0, '125456', '2022-12-06', 'EVERYONE_10', 5, 1, 1),                                                                     -- 51
 ('Evil West', 'In Red Dead Redemption: Undead Nightmare musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
-, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', '18+', 5, 1, 15),                                                                   -- 52
+, 59.99, 'PHOTO', 9.99, 10, '123966', '2022-11-22', 'ADULTS_ONLY', 5, 1, 15),                                                                   -- 52
 ('Final Fantasy 7', 'In Final Fantasy VII kämpfst du als ehemaliger SOLDAT gegen die Shinra Electric Power Company, die den Planeten ausbeutet.'
-, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', '16+', 5, 1, 16),                                                                   -- 53
+, 17.99, 'PHOTO', 9.99, 10, '123456', '2020-04-10', 'TEEN', 5, 1, 16),                                                                   -- 53
 ('Fifa23', 'FIFA 23: Realistischer Fußball mit Frauen-Vereinsmannschaften und Cross-Play'
 , 34.99, 'PHOTO', 9.99, 10, '126356', '2022-09-30', 'EVERYONE', 5, 1, 17),                                                              -- 54
 ('NBA2K23', 'In NBA 2K23 kannst du dich gegen die besten Spieler der Welt beweisen und dein Talent entfalten. Kombiniere All-Stars mit Legenden in Mein TEAM.'
-, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', '12+', 5, 1, 18),                                                                   -- 55
+, 29.99, 'PHOTO', 9.99, 10, '168456', '2022-09-09', 'EVERYONE_10', 5, 1, 18),                                                                   -- 55
 ('Stray', 'Streuner-Katze muss Rätsel lösen, um aus verlassener Stadt zu entkommen.'
-, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', '12+', 5, 1, 19),                                                                   -- 56
+, 39.99, 'PHOTO', 9.99, 10, '123996', '2022-11-08', 'EVERYONE_10', 5, 1, 19),                                                                   -- 56
 ('Yomawari: Lost in the Dark', 'Ein junges Mädchen erwacht in einem dunklen Wald. Sie weiß nicht, wie sie dorthin gekommen ist. Sie trifft auf eine mysteriöse Person, die ihr sagt, dass sie verflucht ist.'
-, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', '12+', 5, 1, 20);                                                                   -- 57
+, 15.00, 'PHOTO', 9.99, 10, '126566', '2022-10-28', 'EVERYONE_10', 5, 1, 20);                                                                   -- 57
 
 INSERT INTO products_to_carts (product_id, cart_id) VALUES
 (2, 1), -- 1
