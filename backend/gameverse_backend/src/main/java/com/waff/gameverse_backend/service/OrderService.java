@@ -89,6 +89,7 @@ public class OrderService {
             orderedProduct.setName(toConvert.getName());
             orderedProduct.setPrice(toConvert.getPrice() * orderAmount);
             orderedProduct.setDescription(toConvert.getDescription());
+            orderedProduct.setProduct(toConvert);
 
             orderedItems.add(orderedProduct);
 
@@ -127,12 +128,17 @@ public class OrderService {
         return this.orderRepository.save(toUpdate);
     }
 
-    public Order cancle(OrderDto orderDto) {
+    public Order cancel(OrderDto orderDto) {
         var toUpdate = this.orderRepository.findById(orderDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
         if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
             throw new IllegalArgumentException("Bestellung ist fertig, kann nicht abgebrochen werden!");
+        }
+
+        for(OrderedProduct orderedProduct : toUpdate.getOrderedProducts()) {
+            var product = orderedProduct.getProduct();
+            product.setStock(product.getStock() + orderedProduct.getAmount());
         }
 
         toUpdate.setOrderStatus(OrderStatus.CANCLED);
