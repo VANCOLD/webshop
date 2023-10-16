@@ -62,8 +62,8 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 
 /* password is always the word password for each user */
 INSERT INTO users (username, password, role_id, address_id, cart_id  ) VALUES
-   ('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1, 1),      -- 1
-   ('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1, 2);     -- 2
+('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1, 1),      -- 1
+('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1, 2);     -- 2
 
 
 

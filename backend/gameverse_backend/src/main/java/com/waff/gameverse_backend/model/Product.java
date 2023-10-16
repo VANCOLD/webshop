@@ -111,6 +111,9 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     @JoinColumn(name="producer_id")
     private Producer producer;
 
+    @OneToOne(mappedBy="product")
+    private OrderedProduct orderedProduct;
+
     /**
      * The list of genres associated with this product.
      * Each genre in the list categorizes this product.

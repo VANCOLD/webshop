@@ -52,8 +52,13 @@ function loadData() {
                 // Calculate the total amount
                 const totalAmount = calculateTotalAmount(data);
 
+                const totalFormatted = new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                }).format(totalAmount);
+
                 // Update the total amount displayed in the cart
-                $('#total-amount').text(`Total: ${totalAmount} EUR`);
+                $('#total-amount').text(`Total: ${totalFormatted}`);
             },
             error: function(err) {
                 // Handle errors
@@ -101,7 +106,7 @@ function populateCart(cartData) {
                     currency: 'EUR',
                 }).format(product.price);
 
-                const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
+                const imageSrc = (product.image) ? product.image : './images/articles/games/placeholder_game.png';
 
                 const cartItemHTML = `
                     <div class="cart-items-container">
