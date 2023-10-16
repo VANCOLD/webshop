@@ -54,7 +54,7 @@ public class AuthenticationControllerTest {
         testCase1.setLastname("test");
         testCase1.setGender(Gender.MALE.name());
         testCase1.setEmail("test@test.com");
-        testCase1.setAddress(new AddressDto(null, "test","test","test"));
+        testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase1.setRole(new RoleDto(null, "test", List.of()));
 
         UserDto testCase2 = new UserDto();
@@ -64,7 +64,7 @@ public class AuthenticationControllerTest {
         testCase2.setLastname("test");
         testCase2.setGender(Gender.MALE.name());
         testCase2.setEmail("test@test.com");
-        testCase2.setAddress(new AddressDto(null, "test","test","test"));
+        testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase2.setRole(new RoleDto(null, "test", List.of()));
 
         // Testing if we can create a new user => should work

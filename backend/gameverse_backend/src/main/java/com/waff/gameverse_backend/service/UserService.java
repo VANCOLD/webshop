@@ -1,6 +1,8 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.SimpleUserDto;
+import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.UserRepository;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * The UserService class provides methods for managing user-related operations,
@@ -81,6 +84,24 @@ public class UserService implements UserDetailsService {
     }
 
     /**
+     * Creates a new user based on the provided UserDto.
+     *
+     * @param userDto The UserDto containing user information.
+     * @return The newly created user.
+     * @throws IllegalArgumentException If the provided username is already in use.
+     */
+    public User save(UserDto userDto) {
+        var toCheck = this.userRepository.findByUsername(userDto.getUsername());
+
+        if (toCheck.isEmpty()) {
+            User toSave = new User(userDto);
+            return this.userRepository.save(toSave);
+        } else {
+            throw new IllegalArgumentException("The provided username is already in use by another user.");
+        }
+    }
+
+    /**
      * Updates an existing user's information based on the provided UserDto.
      *
      * @param userDto The UserDto containing updated user information.
@@ -126,5 +147,21 @@ public class UserService implements UserDetailsService {
         return userRepository
             .findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User with the given username does not exist"));
+    }
+
+
+    public Cart getCart(Long userId) {
+
+        User user = this.findById(userId);
+        Cart cart = user.getCart();
+
+        if (cart == null) {
+
+            cart.setUser(user);
+            return this.save(user.convertToDto()).getCart();
+
+        } else {
+            return cart;
+        }
     }
 }

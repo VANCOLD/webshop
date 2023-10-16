@@ -2,8 +2,9 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * The ProducerDto class represents a Data Transfer Object (DTO) for a producer in products {@Link Product}.
@@ -11,6 +12,9 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ProducerDto {
 
     /**
@@ -25,30 +29,7 @@ public class ProducerDto {
     @NotEmpty
     private String name;
 
-    /**
-     * Constructs an empty ProducerDto with default values (id=0, name="").
-     */
-    public ProducerDto() {
-        this(0L, "");
-    }
+    @NotNull
+    private AddressDto address;
 
-    /**
-     * Constructs a ProducerDto with the specified name and default id (0).
-     *
-     * @param name The name of the producer.
-     */
-    public ProducerDto(String name) {
-        this(0L, name);
-    }
-
-    /**
-     * Constructs a ProducerDto with the specified id and name.
-     *
-     * @param id   The unique identifier for the producer.
-     * @param name The name of the producer.
-     */
-    public ProducerDto(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

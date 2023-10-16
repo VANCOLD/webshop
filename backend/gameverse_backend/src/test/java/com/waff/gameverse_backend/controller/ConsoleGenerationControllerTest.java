@@ -112,10 +112,10 @@ public class ConsoleGenerationControllerTest {
         String token = this.getToken("admin");
 
         // New consoleGeneration, doesn't exist in db
-        ConsoleGenerationDto testCase1 = new ConsoleGenerationDto("Anime");
+        ConsoleGenerationDto testCase1 = new ConsoleGenerationDto(null, "Anime");
 
         // Already existing consoleGeneration, should return conflict!
-        ConsoleGenerationDto testCase2 = new ConsoleGenerationDto("XBox Series X");
+        ConsoleGenerationDto testCase2 = new ConsoleGenerationDto(null, "XBox Series X");
 
         // Current amount of console_generations, will be used to see if the new cat has count + 1 as id
         int currentCount = consoleGenerationService.findAll().size();
@@ -149,7 +149,7 @@ public class ConsoleGenerationControllerTest {
         String token = this.getToken("user");
 
         // New consoleGeneration, doesn't exist in db
-        ConsoleGenerationDto testCase = new ConsoleGenerationDto("Anime");
+        ConsoleGenerationDto testCase = new ConsoleGenerationDto(null, "Anime");
 
         // Should return forbidden since the user doesn't have to correct consoleGeneration
         mockMvc
@@ -204,7 +204,7 @@ public class ConsoleGenerationControllerTest {
         String token = this.getToken("user");
 
         // Existing consoleGeneration in the db
-        ConsoleGenerationDto testCase = new ConsoleGenerationDto( "XBox Series X");
+        ConsoleGenerationDto testCase = new ConsoleGenerationDto(null, "XBox Series X");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

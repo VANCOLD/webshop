@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.ProducerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.NoSuchElementException;
 /**
  * The ProducerController class handles operations related to producers and permissions.
  */
+@EnableMethodSecurity
 @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
 @RequestMapping("/api/producers")
 @RestController
@@ -76,7 +78,7 @@ public class ProducerController {
     @PostMapping
     public ResponseEntity<ProducerDto> save(@Validated @RequestBody ProducerDto producerDto) {
         try {
-            return ResponseEntity.ok(producerService.save(producerDto.getName()).convertToDto());
+            return ResponseEntity.ok(producerService.save(producerDto).convertToDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();

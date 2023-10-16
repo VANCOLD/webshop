@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * A DTO class that holds information about a product.
@@ -16,6 +13,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ProductDto {
 
     /** The unique identifier of the product. */
@@ -71,7 +69,6 @@ public class ProductDto {
     private ProducerDto producer;
 
     /** The list of genres associated with the product. */
-    @NotNull
-    @NotEmpty
     private List<GenreDto> genres;
+
 }

@@ -2,10 +2,7 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,12 +10,16 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class OrderDto {
 
     private Long id;
 
     @NotNull
     private UserDto user;
+
+    @NotNull
+    private String orderStatus;
 
     @NotNull
     @NotEmpty
