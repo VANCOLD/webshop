@@ -80,7 +80,7 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
 
 
     @OneToMany(mappedBy="user")
-    private List<Order> orders = new ArrayList<>();;
+    private List<Order> orders = new ArrayList<>();
 
 
     /**

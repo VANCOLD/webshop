@@ -62,7 +62,7 @@ public class OrderService {
     public Order save(UserDto user) {
         User toOrder = userService.findById(user.getId());
 
-        if(toOrder.getOrders().stream().filter(order -> order.getOrderStatus() == OrderStatus.IN_PROGRESS).count() > 0) {
+        if(toOrder.getOrders().stream().anyMatch(order -> order.getOrderStatus() == OrderStatus.IN_PROGRESS)) {
             throw new IllegalStateException("Es gibt schon eine Bestellung in Bearbeitung! Bitte diese vorher abschließen");
         }
 

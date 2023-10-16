@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
-
 /**
  * The ProducerDto class represents a Data Transfer Object (DTO) for a producer in products {@Link Product}.
  * It is used to transfer privilege-related information between different layers of the application.

@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waff.gameverse_backend.controller.CartController;
 import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.CartDto;
 import com.waff.gameverse_backend.dto.SimpleProductDto;
 import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.service.CartService;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,10 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -105,7 +100,7 @@ public class CartControllerTest {
     @Test
     void clearCart() throws Exception {
         // Arrange
-        Long userId = 1L;
+        long userId = 1L;
         CartService cartService = mock(CartService.class);
 
         CartController cartController = new CartController(cartService, null);

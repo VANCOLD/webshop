@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<OrderDto> findById(Long orderId) {
+    public ResponseEntity<OrderDto> findById(@PathVariable Long orderId) {
         try {
             Order order = this.orderService.findById(orderId);
             return ResponseEntity.ok(order.convertToDto());

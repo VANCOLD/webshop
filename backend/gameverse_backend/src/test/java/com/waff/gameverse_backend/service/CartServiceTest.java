@@ -1,11 +1,8 @@
 package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.CartDto;
 import com.waff.gameverse_backend.model.*;
-import com.waff.gameverse_backend.repository.CartRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +16,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
@@ -123,29 +119,6 @@ public class CartServiceTest {
         // Assert
         assertNull(cart);
     }
-
-    /*
-    @Test
-    void testUpdateProductQuantity() {
-        // Arrange
-        Long userId = 7L;
-        Long productId = 7L;
-        int newQuantity = 3;
-        AddProductToCartDto requestDto = new AddProductToCartDto();
-        requestDto.setUserId(userId);
-        requestDto.setProductId(productId);
-
-        // Act
-        cartService.addToCart(requestDto);
-        Cart updatedCart = cartService.updateProductQuantity(requestDto);
-
-        // Assert
-        assertNotNull(updatedCart);
-        assertTrue(
-                updatedCart.getProducts().stream()
-                        .anyMatch(item -> item.getId().equals(productId) && item.getAmount() == newQuantity)
-        );
-    }*/
 
     @Test
     void testGetProductCount() {

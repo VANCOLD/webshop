@@ -50,7 +50,7 @@ public class Genre implements DataTransferObject<GenreDto> {
         joinColumns = { @JoinColumn(name = "genre_id") },
         inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    private List<Product> products = new ArrayList<>();;
+    private List<Product> products = new ArrayList<>();
 
     public Genre(GenreDto genre) {
         this.id = genre.getId();

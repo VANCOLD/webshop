@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.List;
-
 /**
  * The CategoryDto class represents a Data Transfer Object (DTO) for categories in products {@See Product}.
  * It is used to transfer category-related information between different layers of the application.

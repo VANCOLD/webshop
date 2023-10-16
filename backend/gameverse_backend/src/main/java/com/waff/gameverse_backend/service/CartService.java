@@ -7,10 +7,8 @@ import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.CartRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
-import jdk.jshell.spi.ExecutionControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -104,7 +102,7 @@ public class CartService {
             Cart userCart = user.getCart();
 
             double total = userCart.getProducts().stream()
-                    .mapToDouble(item -> item.getPrice())
+                    .mapToDouble(Product::getPrice)
                     .sum();
 
             return total;
