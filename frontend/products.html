@@ -37,11 +37,12 @@
             <div class="row">
                 <div class="page-content">
                     <div class="container h-auto pb-5">
+                        <input type="hidden" id="productId" value="123">
                         <h2 class="text-center pt-3 mb-1" style="margin: 20px;">Assassin's Creed Mirage</h2>
                         <div class="product-container d-flex align-items-center" style="margin-top: 20px;">
                             <img class="col-lg-5" src="images\articles\games\PS4\ps4_acmirage.jpg">
                             <div>
-                                <p class=" col-lg-12 product-description">
+                                <p class="product-description">
                                     Assassin's Creed Mirage is the next installment in the popular Assassin's Creed franchise. Set in the bustling city of Baghdad in the 9th century, the game follows the story of Basim Ibn Ishaq, a young street urchin who is destined to become a legendary assassin.
                                 </p>
                                 <div class="product-price">
@@ -53,7 +54,7 @@
                                 <div class="product-stock">
                                     Stock: **
                                 </div>
-                                <div class="col-lg-3">
+                                <div>
                                     <button class="btn btn-buy-now"
                                         type="button" onclick="addToCart()">Add to Cart
                                     </button>
@@ -61,16 +62,20 @@
                                         function addToCart() {
                                           // Get the ID of the product that the user wants to add to their cart.
                                           var productId = document.getElementById("productId").value;
+
+                                          // Get the ID of the logged user.
+                                          var userId = document.getElementById("userId").value;
                                         
                                           // Create a new FormData object.
                                           var formData = new FormData();
                                         
                                           // Add the product ID to the FormData object.
                                           formData.append("productId", productId);
+                                          formData.append("userId", userId);
                                         
                                           // Send a POST request to the backend.
-                                          fetch("/api/addToCart", {
-                                            method: "POST",
+                                          fetch("/api/cart/add", {
+                                            method: "PUT",
                                             body: formData
                                           })
                                           .then(response => response.json())
@@ -81,32 +86,7 @@
                                             }
                                           });
                                         }
-                                        </script>
-                                        <script>
-                                            async function addToCart() {
-                                              // Get the ID of the product that the user wants to add to their cart.
-                                              var productId = document.getElementById("productId").value;
-                                            
-                                              // Send a POST request to the backend.
-                                              const response = await fetch("/api/addToCart", {
-                                                method: "POST",
-                                                body: JSON.stringify({
-                                                  productId: productId
-                                                })
-                                              });
-                                            
-                                              // Check if the response was successful.
-                                              if (response.status === 200) {
-                                                // Update the UI to show that the product has been added to the cart.
-                                                // Update the stock count of the product.
-                                            
-                                                // Reload the page.
-                                                location.reload();
-                                              } else {
-                                                // Handle the error.
-                                              }
-                                            }
-                                            </script>
+                                    </script>
                                 </div>
                             </div>
                         </div>
