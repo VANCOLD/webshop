@@ -1,10 +1,9 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.CartDto;
-import com.waff.gameverse_backend.dto.SimpleUserDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.Cart;
+import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.service.CartService;
 import com.waff.gameverse_backend.service.UserService;
@@ -164,5 +163,38 @@ public class UserController {
         Long userId  = userService.findByUsername(jwt.getSubject()).getId();
         Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
         return ResponseEntity.ok(updatedCart.convertToDto());
+    }
+
+    @GetMapping("/orders")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<List<OrderDto>> getOrders(@AuthenticationPrincipal Jwt jwt) {
+        List<Order> orders = userService.findByUsername(jwt.getSubject()).getOrders();
+
+        if(orders.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(orders.stream().map(Order::convertToDto).toList());
+        }
+    }
+
+    @GetMapping("/openOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> getOpenOrders(@AuthenticationPrincipal Jwt jwt) {
+        List<Order> orders = userService.findByUsername(jwt.getSubject()).getOrders();
+
+        if(orders.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            var toCheck = orders.stream().
+                    filter(order -> order.getOrderStatus().equals(OrderStatus.IN_PROGRESS))
+                    .toList();
+            System.out.println(toCheck.toString());
+            System.out.println("lolololol");
+            if (toCheck.size() > 0) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            } else {
+                return ResponseEntity.ok(toCheck.get(0).convertToDto());
+            }
+        }
     }
 }
