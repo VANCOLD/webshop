@@ -34,7 +34,7 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long id;
 
     /**

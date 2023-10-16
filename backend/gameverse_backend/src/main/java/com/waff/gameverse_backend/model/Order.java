@@ -32,15 +32,14 @@ public class Order implements DataTransferObject<OrderDto> {
     private OrderStatus orderStatus;
 
 
-    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotEmpty
-    @NotNull
+
     @OneToMany(mappedBy="order")
     private List<OrderedProduct> orderedProducts;
+
 
     public Order(OrderDto order) {
         this.id = order.getId();

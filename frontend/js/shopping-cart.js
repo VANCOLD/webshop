@@ -1,8 +1,9 @@
-    // Construct the URL based on the userId
-    const apiCartGetUrl         = 'http://localhost:8080/api/users/cart';
-    const apiCartReduceUrl      = 'http://localhost:8080/api/users/removeFromCart/';
-    const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
-    const apiOpenOrderUrl       = 'http://localhost:8080/api/users/openOrder';
+// Construct the URL based on the userId
+const apiCartGetUrl         = 'http://localhost:8080/api/users/cart';
+const apiCartReduceUrl      = 'http://localhost:8080/api/users/removeFromCart/';
+const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
+const apiOpenOrderUrl       = 'http://localhost:8080/api/users/openOrder';
+const apiSaveOrderUrl       = 'http://localhost:8080/api/users/saveOrder';
 
 $(document).ready(function () {
     checkOrders();
@@ -25,6 +26,7 @@ function checkOrders() {
                 window.location.href = "order.html";
             },
             error: function(err) {
+                console.log(data);
             }
         });
     }
@@ -104,7 +106,7 @@ function populateCart(cartData) {
                     currency: 'EUR',
                 }).format(product.price);
 
-                const imageSrc = (product.image) ? product.image : './images/articles/games/placeholder_game.png';
+                const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
 
                 const cartItemHTML = `
                     <div class="cart-items-container">
@@ -138,6 +140,33 @@ function populateCart(cartData) {
             const productId = $(this).data('product-id');
             increaseProduct(productId);
         });
+
+        $('.checkout-button').on('click', function() {
+            checkout();
+        });
+    }
+}
+
+function checkout() {
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        // The access token doesn't exist in local storage, so you can use the URL without the token.
+        $.ajax({
+            type: 'POST',
+            url: apiSaveOrderUrl,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                window.location.href = "order.html";
+            },
+            error: function(err) {
+                // Handle errors
+                console.error('Error getting user cart: ', err);
+            }
+        }); 
     }
 }
 

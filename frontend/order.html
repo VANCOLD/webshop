@@ -15,21 +15,23 @@
         <div id="navbar-bind"></div>
 
         <main>
-            <div class="order-container">
+            <div class="cart-container-wrapper">
+                <h1 class="mb-2">Bestellung</h1>
+                <div class="cart-container">
 
-                <div id="user-data">
-
+                    <div class="user-bind"></div>
+                    <br>
+                    <div class="order-bind"></div>
+                    <br>
+                    <div class="payment mt-4 mb-4">
+                        <h2>Zahlungsarten</h2>
+                    </div>
+                    <br>
+                    <div class="buttons">
+                        <button class="checkout-button" onclick="confirmOrder()">Order</button>
+                        <button class="cancel-button" onclick="cancelOrder()">Cancel</button>
+                    </div>
                 </div>
-
-                <div id="order-data">
-
-                </div>
-
-                <div class="buttons">
-                    <button>Cancle</button>
-                    <button>Order</button>
-                </div>
-                
             </div>
         </main>
 

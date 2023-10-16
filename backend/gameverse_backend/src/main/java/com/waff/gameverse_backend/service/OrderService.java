@@ -5,6 +5,7 @@ import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.*;
 import com.waff.gameverse_backend.repository.OrderRepository;
+import com.waff.gameverse_backend.repository.OrderedProductRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,13 @@ public class OrderService {
 
     private final ProductRepository productRepository;
 
-    public OrderService(OrderRepository orderRepository, UserService userService, ProductRepository productRepository) {
+    private final OrderedProductRepository orderedProductRepository;
+
+    public OrderService(OrderRepository orderRepository, UserService userService, ProductRepository productRepository, OrderedProductRepository orderedProductRepository) {
         this.orderRepository = orderRepository;
         this.userService     = userService;
         this.productRepository  = productRepository;
+        this.orderedProductRepository = orderedProductRepository;
     }
 
     /**
@@ -74,6 +78,8 @@ public class OrderService {
 
         var orderedItems = new ArrayList<OrderedProduct>();
 
+        order.setOrderedProducts(orderedItems);
+
         for(Product toConvert : userCart.getProducts()) {
 
             int productAmount = toConvert.getStock();
@@ -90,7 +96,9 @@ public class OrderService {
             orderedProduct.setPrice(toConvert.getPrice() * orderAmount);
             orderedProduct.setDescription(toConvert.getDescription());
             orderedProduct.setProduct(toConvert);
+            orderedProduct.setOrder(order);
 
+            this.orderedProductRepository.save(orderedProduct);
             orderedItems.add(orderedProduct);
 
         }
@@ -105,7 +113,8 @@ public class OrderService {
         }
 
         order.setOrderedProducts(orderedItems);
-        return orderRepository.save(order);
+        orderRepository.save(order);
+        return order;
 
     }
 
@@ -120,11 +129,12 @@ public class OrderService {
         var toUpdate = this.orderRepository.findById(orderDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
-        if(toUpdate.getOrderStatus() == OrderStatus.CANCLED) {
-            throw new IllegalArgumentException("Bestellung ist abgebrochen, kann nicht bestätigt werden!");
+        if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
+            throw new IllegalArgumentException("Bestellung ist bestätigt, kann nicht nochmal bestätigt werden!");
         }
 
         toUpdate.setOrderStatus(OrderStatus.COMPLETED);
+        toUpdate.getUser().getCart().setProducts(new ArrayList<Product>());
         return this.orderRepository.save(toUpdate);
     }
 
@@ -136,13 +146,19 @@ public class OrderService {
             throw new IllegalArgumentException("Bestellung ist fertig, kann nicht abgebrochen werden!");
         }
 
+        toUpdate.setUser(null);
+        this.orderRepository.save(toUpdate);
+
         for(OrderedProduct orderedProduct : toUpdate.getOrderedProducts()) {
             var product = orderedProduct.getProduct();
             product.setStock(product.getStock() + orderedProduct.getAmount());
+            orderedProduct.setOrder(null);
+            orderedProduct.setProduct(null);
+            this.orderedProductRepository.delete(orderedProduct);
         }
 
-        toUpdate.setOrderStatus(OrderStatus.CANCLED);
-        return this.orderRepository.save(toUpdate);
+        this.orderRepository.delete(toUpdate);
+        return toUpdate;
     }
 
     /**
@@ -159,5 +175,9 @@ public class OrderService {
 
         orderRepository.delete(toDelete);
         return toDelete;
+    }
+
+    public Order findByUserAndOrderStatus(User user, OrderStatus orderStatus) {
+        return this.orderRepository.findByUserAndOrderStatusEquals(user, orderStatus).orElseThrow(() -> new NoSuchElementException("Keine offene Bestellung gefunden!"));
     }
 }

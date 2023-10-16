@@ -20,7 +20,6 @@ $(document).ready(function() {
 
     // Get token
     var token = localStorage.getItem("token");
-    console.log(token)
 
     if( token == '' || token == null ) {
 

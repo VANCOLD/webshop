@@ -22,7 +22,6 @@ public class OrderDto {
     private String orderStatus;
 
     @NotNull
-    @NotEmpty
     private List<OrderedProductDto> orderedProducts;
 
 }

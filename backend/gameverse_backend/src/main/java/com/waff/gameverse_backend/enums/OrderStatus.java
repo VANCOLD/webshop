@@ -1,7 +1,7 @@
 package com.waff.gameverse_backend.enums;
 
 public enum OrderStatus {
-    IN_PROGRESS("In Progress"), COMPLETED("Completed"), CANCLED("Cancled"), ERROR("Error");
+    IN_PROGRESS("In Progress"), COMPLETED("Completed"), ERROR("Error");
 
     private final String name;
 
