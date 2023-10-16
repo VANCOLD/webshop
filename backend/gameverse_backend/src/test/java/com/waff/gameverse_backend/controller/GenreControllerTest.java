@@ -112,10 +112,10 @@ public class GenreControllerTest {
         String token = this.getToken("admin");
 
         // New genre, doesn't exist in db
-        GenreDto testCase1 = new GenreDto("MOBA");
+        GenreDto testCase1 = new GenreDto(null, "MOBA");
 
         // Already existing genre, should return conflict!
-        GenreDto testCase2 = new GenreDto("First Person Shooters");
+        GenreDto testCase2 = new GenreDto(null, "First Person Shooters");
 
         // Current amount of genres, will be used to see if the new cat has count + 1 as id
         int currentCount = genreService.findAll().size();
@@ -149,7 +149,7 @@ public class GenreControllerTest {
         String token = this.getToken("user");
 
         // New genre, doesn't exist in db
-        GenreDto testCase = new GenreDto("MOBA");
+        GenreDto testCase = new GenreDto(null, "MOBA");
 
         // Should return forbidden since the user doesn't have to correct genre
         mockMvc
@@ -204,7 +204,7 @@ public class GenreControllerTest {
         String token = this.getToken("user");
 
         // Existing genre in the db
-        GenreDto testCase = new GenreDto( "First Person Shooters");
+        GenreDto testCase = new GenreDto(null, "First Person Shooters");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

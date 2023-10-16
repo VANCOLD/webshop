@@ -120,7 +120,7 @@ public class UserControllerTest {
         testCase1.setLastname("test");
         testCase1.setGender(Gender.MALE.name());
         testCase1.setEmail("test@test.com");
-        testCase1.setAddress(new AddressDto(null, "test","test","test"));
+        testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase1.setRole(new RoleDto(null, "test", List.of()));
 
         // Already existing user, should return conflict!
@@ -131,7 +131,7 @@ public class UserControllerTest {
         testCase2.setLastname("test");
         testCase2.setGender(Gender.MALE.name());
         testCase2.setEmail("test@test.com");
-        testCase2.setAddress(new AddressDto(null, "test","test","test"));
+        testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase2.setRole(new RoleDto(null, "test", List.of()));
 
         // Should be ok and return the newly created user
@@ -169,7 +169,7 @@ public class UserControllerTest {
         testCase.setLastname("test");
         testCase.setGender(Gender.MALE.name());
         testCase.setEmail("test@test.com");
-        testCase.setAddress(new AddressDto(null, "test","test","test"));
+        testCase.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase.setRole(new RoleDto(null, "test", List.of()));
 
         // Should return forbidden since the user doesn't have to correct user
@@ -199,7 +199,7 @@ public class UserControllerTest {
         testCase1.setLastname("test");
         testCase1.setGender(Gender.MALE.name());
         testCase1.setEmail("test@test.com");
-        testCase1.setAddress(new AddressDto(null, "test","test","test"));
+        testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase1.setRole(new RoleDto(null, "test", List.of()));
 
         // New user, doesn't exist in db => NotFound
@@ -211,7 +211,7 @@ public class UserControllerTest {
         testCase2.setLastname("test");
         testCase2.setGender(Gender.MALE.name());
         testCase2.setEmail("test@test.com");
-        testCase2.setAddress(new AddressDto(null, "test","test","test"));
+        testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase2.setRole(new RoleDto(null, "test", List.of()));
 
         // Should be ok and return the updated user
@@ -251,7 +251,7 @@ public class UserControllerTest {
         testCase.setLastname("test");
         testCase.setGender(Gender.MALE.name());
         testCase.setEmail("test@test.com");
-        testCase.setAddress(new AddressDto(null, "test","test","test"));
+        testCase.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase.setRole(new RoleDto(null, "test", List.of()));
 
         // Should return forbidden since the user doesn't have to correct privilege

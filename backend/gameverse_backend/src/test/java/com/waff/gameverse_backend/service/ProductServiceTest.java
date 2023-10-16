@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.service;
 
-import com.waff.gameverse_backend.dto.ProductDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.enums.EsrbRating;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,6 +10,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -69,14 +72,26 @@ public class ProductServiceTest {
     @Test
     void saveTest() {
 
-        String product1 = "Banjo Kazooie";
+        // Already existing product, should return conflict!
+        ProductDto testCase1 = new ProductDto(
+                1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
+                LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
+                new ConsoleGenerationDto(null, "Nintendo Switch"), new CategoryDto(null, "Games"),
+                new ProducerDto(null, "Nitendo",  new AddressDto(null, "test", "test", "test", "test")),
+                List.of(new GenreDto(null, "Adventure")));
 
-        String product2 = "The Legend Of Zelda: Breath Of The Wild";
+        ProductDto testCase2 = new ProductDto(
+                1000L, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd",
+                LocalDateTime.of(2024,1,1,12,0), EsrbRating.EVERYONE.getName(),
+                new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"),
+                new ProducerDto(2L, "Sony",  new AddressDto(null, "test", "test", "test", "test")),
+                List.of(new GenreDto(9L, "Survival & Horror")));
 
-        var testCase1 = this.productService.save(product1);
-        assertThat(testCase1.getName()).isEqualTo(product1);
 
-        assertThrows(IllegalArgumentException.class, () -> this.productService.save(product2));
+        var product1 = this.productService.save(testCase2);
+        assertThat(testCase2.getName()).isEqualTo(product1.getName());
+
+        assertThrows(IllegalArgumentException.class, () -> this.productService.save(testCase1));
     }
 
     @Test

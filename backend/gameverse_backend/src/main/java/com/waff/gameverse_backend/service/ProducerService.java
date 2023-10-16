@@ -1,6 +1,7 @@
 package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.ProducerDto;
+import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Producer;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.repository.ProducerRepository;
@@ -19,7 +20,7 @@ public class ProducerService {
 
     public ProducerService(ProducerRepository producerRepository, ProductRepository productRepository) {
         this.producerRepository = producerRepository;
-        this.productRepository           = productRepository;
+        this.productRepository  = productRepository;
     }
 
     /**
@@ -58,15 +59,14 @@ public class ProducerService {
     /**
      * Save a new producer with the given name.
      *
-     * @param name The name of the new producer to save.
+     * @param producer The new producer to save
      * @return The saved producer.
      * @throws IllegalArgumentException If a producer with the same name already exists.
      */
-    public Producer save(String name) {
-        var toCheck = this.producerRepository.findByName(name);
+    public Producer save(ProducerDto producer) {
+        var toCheck = this.producerRepository.findByName(producer.getName());
         if (toCheck.isEmpty()) {
-            Producer toSave = new Producer();
-            toSave.setName(name);
+            Producer toSave = new Producer(producer);
             return this.producerRepository.save(toSave);
         } else {
             throw new IllegalArgumentException("The specified name is already used by a producer");
@@ -88,6 +88,7 @@ public class ProducerService {
             throw new IllegalArgumentException("The name of the producer cannot be empty");
         }
         toUpdate.setName(producerDto.getName());
+        toUpdate.setAddress( new Address(producerDto.getAddress()));
         return this.producerRepository.save(toUpdate);
     }
 
