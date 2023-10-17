@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.service;
 
+import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.model.Cart;
@@ -25,13 +26,16 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    private final RoleService roleService;
+
     /**
      * Constructs a new UserService instance.
      *
      * @param userRepository The UserRepository for database interactions.
      */
-    UserService(UserRepository userRepository) {
+    UserService(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
+        this.roleService    = roleService;
     }
 
     /**
@@ -77,6 +81,7 @@ public class UserService implements UserDetailsService {
 
         if (toCheck.isEmpty()) {
             User toSave = new User(userDto);
+            toSave.setRole(roleService.findByName("user"));
             return this.userRepository.save(toSave);
         } else {
             throw new IllegalArgumentException("The provided username is already in use by another user.");
@@ -115,7 +120,6 @@ public class UserService implements UserDetailsService {
 
         toUpdate.setUsername(userDto.getUsername());
         toUpdate.setPassword(userDto.getPassword());
-        toUpdate.setRole(new Role(userDto.getRole()));
         return this.userRepository.save(toUpdate);
     }
 
@@ -130,6 +134,10 @@ public class UserService implements UserDetailsService {
         var toDelete = this.userRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("User with the given ID does not exist"));
 
+        toDelete.setRole(null);
+        toDelete.setAddress(null);
+        toDelete.setCart(null);
+        toDelete.setOrders(List.of());
         this.userRepository.delete(toDelete);
         return toDelete;
     }

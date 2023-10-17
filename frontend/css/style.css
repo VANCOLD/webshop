@@ -613,36 +613,17 @@ Shopping Cart Style
   }
 }
 
-/*
----------------------------------------------
-User Management Style
---------------------------------------------- 
-*/
+/* Apply shopping cart style to user management */
 
 /* User Management Container */
 .user-management-container {
-  background-color: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 5px;
+  background-color: #27292a;
+  border-radius: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-/* User Management Header */
-.user-management-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ebebeb;
-  margin-bottom: 20px;
-}
-
-/* User Management Title */
-.user-management-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
+  padding: 30px;
+  margin-bottom: 60px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 /* User Management Item */
@@ -650,6 +631,8 @@ User Management Style
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  border: none;
+  padding: 10px;
 }
 
 /* User Management Item Image */
@@ -657,6 +640,9 @@ User Management Style
   max-width: 100%;
   height: auto;
   margin-right: 20px;
+  background-color: #27292a;
+  padding: 10px;
+  border-radius: 50%;
 }
 
 /* User Management Item Details */
@@ -665,17 +651,17 @@ User Management Style
 }
 
 /* User Management Item Title */
-.user-management-item-details h5 {
+.user-management-item-details h2 {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #000;
+  color: white;
 }
 
 /* User Management Item Role */
 .user-management-item-details p:nth-child(2) {
   font-size: 14px;
-  color: #666;
+  color: white;
   margin: 5px 0;
 }
 
@@ -711,7 +697,7 @@ User Management Style
 /* User Management Item Suspend Button Hover */
 .btn-suspend:hover {
   background-color: #e75e8d;
-  color: #fff;
+  color: white;
 }
 
 /* User Management Item Ban Button */
@@ -725,85 +711,18 @@ User Management Style
   font-size: 16px;
   color: #666;
   cursor: pointer;
-  position: relative;
-  left: 10px;
+  margin: 0 10px;
 }
 
-/* User Management Item Ban Button Icon */
-.btn-ban::after {
-  content: "\f05e"; /* Use Font Awesome icon for ban */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 16px;
-  color: #e75e8d;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Style for the table header row */
+.user-list-table thead th {
+  color: white; /* Set text color to white */
 }
 
-/* User Management Total */
-.user-management-total {
-  margin-top: 30px;
-  text-align: right;
+/* Style for the user information in the table */
+.user-list-table tbody td {
+  color: #e75e8d; /* Set text color to pink */
 }
-
-.user-management-total h5 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.user-management-total p {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.user-management-total button.btn-primary {
-  margin-top: 10px;
-}
-
-@media (max-width: 767px) {
-  .user-management-item-details {
-      margin-left: 20px;
-  }
-
-  .user-management-item-actions {
-      margin-right: 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .user-management-table {
-      overflow-x: auto;
-  }
-
-  .user-management-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .user-management-item img {
-      max-width: 100%;
-      margin-bottom: 10px;
-  }
-
-  .user-management-item-details {
-      text-align: center;
-  }
-
-  .user-management-item-actions {
-      margin-top: 10px;
-  }
-
-  .user-management-total {
-      margin-top: 20px;
-  }
-}
-
-
 
 /*
 ---------------------------------------------

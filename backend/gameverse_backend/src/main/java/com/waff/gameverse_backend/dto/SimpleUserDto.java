@@ -22,6 +22,4 @@ public class SimpleUserDto implements SimpleDto {
     @NotEmpty
     private String password;
 
-    @NotNull
-    private RoleDto role;
 }
