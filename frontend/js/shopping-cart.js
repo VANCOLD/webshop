@@ -160,7 +160,7 @@ function checkout() {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                window.location.href = "order.html?order=" + data.id;
+                window.location.href = "order.html";
             },
             error: function(err) {
                 // Handle errors
