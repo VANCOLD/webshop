@@ -74,19 +74,6 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/cancel")
-    public ResponseEntity<OrderDto> cancel(OrderDto orderDto) {
-        var toCheck = this.orderService.findById(orderDto.getId());
-
-        if(toCheck != null) {
-
-            Order order = this.orderService.cancel(orderDto);
-            return ResponseEntity.ok(order.convertToDto());
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-    }
-
     @DeleteMapping
     public ResponseEntity<OrderDto> delete(Long orderId) {
         var toCheck = this.orderService.findById(orderId);

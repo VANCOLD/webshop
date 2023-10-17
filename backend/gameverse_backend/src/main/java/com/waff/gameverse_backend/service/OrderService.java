@@ -77,8 +77,16 @@ public class OrderService {
         order.setUser(toOrder);
 
         var orderedItems = new ArrayList<OrderedProduct>();
-
         order.setOrderedProducts(orderedItems);
+        orderRepository.save(order);
+        populateOrder(order, userCart);
+        return order;
+
+    }
+
+    private void populateOrder(Order order, Cart userCart) {
+
+        var orderedItems = new ArrayList<OrderedProduct>();
 
         for(Product toConvert : userCart.getProducts()) {
 
@@ -98,7 +106,6 @@ public class OrderService {
             orderedProduct.setProduct(toConvert);
             orderedProduct.setOrder(order);
 
-            this.orderedProductRepository.save(orderedProduct);
             orderedItems.add(orderedProduct);
 
         }
@@ -108,14 +115,12 @@ public class OrderService {
             int orderAmount   = userCart.getProducts().stream().filter(product -> product.equals(toConvert)).toList().size();
 
             toConvert.setStock(toConvert.getStock() - orderAmount);
-            productRepository.save(toConvert);
 
         }
 
         order.setOrderedProducts(orderedItems);
-        orderRepository.save(order);
-        return order;
-
+        for(OrderedProduct item : orderedItems)
+            orderedProductRepository.save(item);
     }
 
     /**
@@ -138,29 +143,6 @@ public class OrderService {
         return this.orderRepository.save(toUpdate);
     }
 
-    public Order cancel(OrderDto orderDto) {
-        var toUpdate = this.orderRepository.findById(orderDto.getId())
-            .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
-
-        if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
-            throw new IllegalArgumentException("Bestellung ist fertig, kann nicht abgebrochen werden!");
-        }
-
-        toUpdate.setUser(null);
-        this.orderRepository.save(toUpdate);
-
-        for(OrderedProduct orderedProduct : toUpdate.getOrderedProducts()) {
-            var product = orderedProduct.getProduct();
-            product.setStock(product.getStock() + orderedProduct.getAmount());
-            orderedProduct.setOrder(null);
-            orderedProduct.setProduct(null);
-            this.orderedProductRepository.delete(orderedProduct);
-        }
-
-        this.orderRepository.delete(toUpdate);
-        return toUpdate;
-    }
-
     /**
      * Delete a order with the given ID and update associated roles.
      *
@@ -173,7 +155,12 @@ public class OrderService {
         var toDelete = this.orderRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
+        toDelete.setUser(null);
+        toDelete.getOrderedProducts().stream().forEach(element -> orderedProductRepository.delete(element));
+        toDelete.setOrderedProducts(null);
+        toDelete.setOrderedProducts(null);
         orderRepository.delete(toDelete);
+
         return toDelete;
     }
 

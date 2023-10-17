@@ -218,14 +218,15 @@ public class UserController {
         return ResponseEntity.ok(order.convertToDto());
     }
 
-    @PutMapping("/cancelOrder")
+    @DeleteMapping("/deleteOrder")
     @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
-    public ResponseEntity<OrderDto> cancel(@AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<?> cancel(@AuthenticationPrincipal Jwt jwt) {
         User user = userService.findByUsername(jwt.getSubject());
         Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+        System.out.println("LOL" + order.getId());
 
-        order = this.orderService.cancel(order.convertToDto());
-        return ResponseEntity.ok(order.convertToDto());
+        order = this.orderService.delete(order.getId());
+        return ResponseEntity.ok("deleted order");
     }
 
 

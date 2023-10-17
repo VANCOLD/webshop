@@ -523,6 +523,12 @@ Shopping Cart Style
   transform: translate(-50%, -50%);
 }
 
+.payment {
+  width:180px;
+  height: 40px;
+  font-size: 20px;
+}
+
 /* Shopping Cart Total */
 .cart-total {
   text-align: right;

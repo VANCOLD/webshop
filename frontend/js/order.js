@@ -1,4 +1,4 @@
-const apiCancelOrderUrl  = 'http://localhost:8080/api/users/cancelOrder';
+const apiCancelOrderUrl  = 'http://localhost:8080/api/users/deleteOrder';
 const apiConfirmOrderUrl = 'http://localhost:8080/api/users/confirmOrder';
 const apiLoggedInUserUrl = 'http://localhost:8080/api/users/me';
 const apiOpenOrderUrl    = 'http://localhost:8080/api/users/openOrder';
@@ -15,7 +15,7 @@ function loadLoggedInUser() {
     const accessToken = localStorage.getItem('token');
 
     // Check if the access token exists in local storage
-    if (accessToken) {
+    if (accessToken) {  
         $.ajax({
             type: 'GET',
             url: apiLoggedInUserUrl,
@@ -112,19 +112,20 @@ function cancelOrder() {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
 
+
     // Check if the access token exists in local storage
     if (accessToken) {
         $.ajax({
-            type: 'PUT',
+            type: 'DELETE',
             url: apiCancelOrderUrl,
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                console.log(data);
+                window.location.href = "shoppingcart.html";
             },
             error: function(err) {
-                window.location.href = "shoppingcart.html";
+                console.log(err);
             }
         });
     }
@@ -144,7 +145,7 @@ function confirmOrder() {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                $('.cart-container').replaceWith('Done');
+                $('.cart-container').replaceWith('<p style="color:white; font-size:20px;" class="mt-4">Deine Bestellung wurde erfolgreich abgeschlossen!</p>');
             },
             error: function(err) {
                 console.log(err);
