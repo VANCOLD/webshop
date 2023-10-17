@@ -62,6 +62,24 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
+    @GetMapping("/all/full")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<List<UserDto>> findAllFullUser() {
+        var users = userService.findAll();
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+        }
+    }
     /**
      * Retrieves a user by their ID.
      *
@@ -80,6 +98,26 @@ public class UserController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
+    @GetMapping("/full/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<UserDto> findFullUserById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id).convertToDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.noContent().build();
+        }
+    }
+
 
     /**
      * Creates a new user.
@@ -164,5 +202,11 @@ public class UserController {
         Long userId  = userService.findByUsername(jwt.getSubject()).getId();
         Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
         return ResponseEntity.ok(updatedCart.convertToDto());
+    }
+
+    @GetMapping("/me")
+    @PreAuthorize("@tokenService.hasPrivilege('view_profile')")
+    public ResponseEntity<UserDto> loggedInUser(@AuthenticationPrincipal Jwt jwt) {
+        return ResponseEntity.ok(userService.findByUsername(jwt.getSubject()).convertToDto());
     }
 }

@@ -613,115 +613,106 @@ Shopping Cart Style
   }
 }
 
-/* Apply shopping cart style to user management */
-
-/* User Management Container */
-.user-management-container {
+.user-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #27292a;
   border-radius: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  margin-bottom: 60px;
-  margin-left: 100px;
-  margin-right: 100px;
-}
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+} 
 
-/* User Management Item */
-.user-management-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border: none;
-  padding: 10px;
-}
-
-/* User Management Item Image */
-.user-management-item img {
-  max-width: 100%;
-  height: auto;
-  margin-right: 20px;
+/* Create User Form */
+.create-user-form {
   background-color: #27292a;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-/* User Management Item Details */
-.user-management-item-details {
-  flex-grow: 1;
-}
-
-/* User Management Item Title */
-.user-management-item-details h2 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-}
-
-/* User Management Item Role */
-.user-management-item-details p:nth-child(2) {
-  font-size: 14px;
-  color: white;
-  margin: 5px 0;
-}
-
-/* User Management Item Status */
-.user-management-item-details p:nth-child(3) {
-  font-size: 16px;
-  color: #e75e8d;
-  font-weight: 600;
-  margin: 5px 0;
-}
-
-/* User Management Item Actions */
-.user-management-item-actions {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 300px; /* Adjust the width as needed */
+}
+
+.create-user-form h2 {
+  color: #e75e8d;
+}
+
+.user-create-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.user-create-form input[type="text"],
+.user-create-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #e75e8d; /* Pink outline */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s; /* Smooth transition for the border */
+}
+
+.create-user-form button {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
   margin-top: 10px;
 }
 
-/* User Management Item Suspend Button */
-.btn-suspend {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #f2f2f2;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  color: #666;
-  cursor: pointer;
-  margin: 0 10px;
+.create-user-form button:hover {
+  background-color: #ff4e84;
 }
 
-/* User Management Item Suspend Button Hover */
-.btn-suspend:hover {
+/* User List Table */
+.user-list-table {
+  background-color: #27292a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  width: 100%;
+}
+
+/* User List Table Header */
+.user-list-table thead {
   background-color: #e75e8d;
   color: white;
 }
 
-/* User Management Item Ban Button */
-.btn-ban {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+/* User List Table Header Cells */
+.user-list-table th {
+  padding: 10px;
+}
+
+/* User List Table Body Rows */
+.user-list-table tbody tr {
   background-color: #f2f2f2;
+  color: #27292a;
+}
+
+/* User List Table Action Buttons */
+.user-list-table .delete-button, .user-list-table .update-button {
+  background-color: #e75e8d;
+  color: white;
   border: none;
-  outline: none;
-  font-size: 16px;
-  color: #666;
+  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
-  margin: 0 10px;
+  margin-right: 5px;
 }
 
-/* Style for the table header row */
-.user-list-table thead th {
-  color: white; /* Set text color to white */
-}
-
-/* Style for the user information in the table */
-.user-list-table tbody td {
-  color: #e75e8d; /* Set text color to pink */
+.user-list-table .delete-button:hover, .user-list-table .update-button:hover {
+  background-color: #ff4e84;
 }
 
 /*

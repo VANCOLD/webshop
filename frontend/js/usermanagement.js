@@ -17,7 +17,7 @@ function loadUsers() {
     if (accessToken) {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/users/all',
+            url: 'http://localhost:8080/api/users/all/full',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
@@ -161,7 +161,7 @@ function handleUpdateUser(userId, newUserData) {
     if (accessToken) {
         $.ajax({
             type: 'PUT',
-            url: `http://localhost:8080/api/users/${userId}`,
+            url: `http://localhost:8080/api/users/full/${userId}`,
             data: JSON.stringify(newUserData),
             contentType: 'application/json',
             headers: {
@@ -169,6 +169,7 @@ function handleUpdateUser(userId, newUserData) {
             },
             success: function (data) {
                 // Handle the successful response, e.g., update the user list
+                console.log(data)
                 loadUsers();
             },
             error: function (err) {
@@ -180,29 +181,31 @@ function handleUpdateUser(userId, newUserData) {
 
 function populateUserList(users) {
     const userTableBody = $('#user-list-tbody');
+    const userModal = $('#userModal');
     userTableBody.empty();
 
     users.forEach(function (user) {
         const userRow = `
             <tr data-user-id="${user.id}">
                 <td>${user.id}</td>
-                <td><input class="editable" name="username" value="${user.username}"></td>
-                <td><input class="editable" name="password" value="${user.password}"></td>
-                <td><input class="editable" name="gender" value="${user.gender}"></td>
-                <td><input class="editable" name="firstname" value="${user.firstname}"></td>
-                <td><input class="editable" name="lastname" value="${user.lastname}"></td>
-                <td><input class="editable" name="email" value="${user.email}"></td>
-                <td><input class="editable" name="address" value="${user.address}"></td>
-                <td><input class="editable" name="role" value="${user.role}"></td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+                <td>${user.gender}</td>
+                <td>${user.firstname}</td>
+                <td>${user.lastname}</td>
+                <td>${user.email}</td>
+                <td>${user.address.street} ${user.address.city} ${user.address.postalCode}</td>
+                <td>${user.role.name}</td>
                 <td>
                     <button class="delete-button" data-user-id="${user.id}">Delete</button>
-                    <button class="update-button" data-user-id="${user.id}">Update</button>
+                    <button class="update-button" data-user-id="${user.id}" data-toggle="modal" data-target="#userModal">Update</button>
                 </td>
             </tr>
         `;
 
         userTableBody.append(userRow);
     });
+}
 
     // Handle user updates
     $('.editable').on('blur', function () {
@@ -222,7 +225,7 @@ function populateUserList(users) {
         const userId = $(this).data('user-id');
         // Implement the logic to update the user data, e.g., show a form
     });
-}
+
 
 function updateUserData(userId, field, newValue) {
     const accessToken = getAccessToken();
