@@ -37,10 +37,10 @@ public class Address implements DataTransferObject<AddressDto> {
     private String country;
 
     @OneToMany(mappedBy="address")
-    private List<User> users = new ArrayList<>();;
+    private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy="address")
-    private List<Producer> producers = new ArrayList<>();;
+    private List<Producer> producers = new ArrayList<>();
 
     public Address(AddressDto addressDto) {
         this.city        = addressDto.getCity();

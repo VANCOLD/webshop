@@ -4,8 +4,6 @@ import com.waff.gameverse_backend.dto.OrderDto;
 import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,15 +30,14 @@ public class Order implements DataTransferObject<OrderDto> {
     private OrderStatus orderStatus;
 
 
-    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotEmpty
-    @NotNull
+
     @OneToMany(mappedBy="order")
     private List<OrderedProduct> orderedProducts;
+
 
     public Order(OrderDto order) {
         this.id = order.getId();

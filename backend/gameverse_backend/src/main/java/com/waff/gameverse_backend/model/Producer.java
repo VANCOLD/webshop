@@ -46,7 +46,7 @@ public class Producer implements DataTransferObject<ProducerDto> {
      * Each product in the list is produced or manufactured by this specific producer.
      */
     @OneToMany(mappedBy="producer")
-    private List<Product> products = new ArrayList<>();;
+    private List<Product> products = new ArrayList<>();
 
 
     @ManyToOne(cascade = CascadeType.ALL)

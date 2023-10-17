@@ -1,17 +1,10 @@
 package com.waff.gameverse_backend.dto;
 
-import com.waff.gameverse_backend.enums.Gender;
-import com.waff.gameverse_backend.model.Address;
-import com.waff.gameverse_backend.model.Cart;
-import com.waff.gameverse_backend.model.Order;
-import com.waff.gameverse_backend.model.Role;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * The UserDto class represents a Data Transfer Object (DTO) for user information.

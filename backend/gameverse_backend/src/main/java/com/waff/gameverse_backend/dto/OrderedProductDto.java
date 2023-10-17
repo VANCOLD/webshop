@@ -31,7 +31,4 @@ public class OrderedProductDto {
     @Positive
     private Integer amount;
 
-    @NotNull
-    private OrderDto order;
-
 }

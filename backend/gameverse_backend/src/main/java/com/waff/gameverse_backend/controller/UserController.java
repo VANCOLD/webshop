@@ -1,20 +1,18 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.CartDto;
-import com.waff.gameverse_backend.dto.SimpleUserDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.Cart;
+import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.service.CartService;
+import com.waff.gameverse_backend.service.OrderService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +32,17 @@ public class UserController {
 
     private final CartService cartService;
 
+    private final OrderService orderService;
+
     /**
      * Constructs a new UserController with the provided UserService.
      *
      * @param userService The UserService to use for managing users.
      */
-    public UserController(UserService userService, CartService cartService) {
-        this.userService = userService;
-        this.cartService = cartService;
+    public UserController(UserService userService, CartService cartService, OrderService orderService) {
+        this.userService    = userService;
+        this.cartService    = cartService;
+        this.orderService   = orderService;
     }
 
     /**
@@ -137,7 +138,6 @@ public class UserController {
         }
     }
 
-
     @PutMapping("/addToCart/{productId}")
     @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
     public ResponseEntity<CartDto> addToCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
@@ -165,4 +165,75 @@ public class UserController {
         Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
         return ResponseEntity.ok(updatedCart.convertToDto());
     }
+
+    @GetMapping("/orders")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<List<OrderDto>> getOrders(@AuthenticationPrincipal Jwt jwt) {
+        List<Order> orders = userService.findByUsername(jwt.getSubject()).getOrders();
+
+        if(orders.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(orders.stream().map(Order::convertToDto).toList());
+        }
+    }
+
+    @GetMapping("/openOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> getOpenOrders(@AuthenticationPrincipal Jwt jwt) {
+
+        User user =  userService.findByUsername(jwt.getSubject());
+
+        try {
+            var toCheck = this.orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+            return ResponseEntity.ok(toCheck.convertToDto());
+
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+    }
+
+
+    @PostMapping("/saveOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> save(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+
+        if(this.userService.findByUsername(user.getUsername()) != null) {
+            return ResponseEntity.ok(this.orderService.save(user.convertToDto()).convertToDto());
+        } else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+    }
+
+    @PutMapping("/confirmOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> confirm(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+
+        order = this.orderService.confirm(order.convertToDto());
+        return ResponseEntity.ok(order.convertToDto());
+    }
+
+    @DeleteMapping("/deleteOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<?> cancel(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+        System.out.println("LOL" + order.getId());
+
+        order = this.orderService.delete(order.getId());
+        return ResponseEntity.ok("deleted order");
+    }
+
+
+    @GetMapping("/me")
+    @PreAuthorize("@tokenService.hasPrivilege('view_profile')")
+    public ResponseEntity<UserDto> loggedInUser(@AuthenticationPrincipal Jwt jwt) {
+        return ResponseEntity.ok(userService.findByUsername(jwt.getSubject()).convertToDto());
+    }
+
 }

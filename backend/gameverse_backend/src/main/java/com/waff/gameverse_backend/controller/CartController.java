@@ -21,12 +21,10 @@ import java.util.List;
 @RequestMapping("/api/carts")
 public class CartController {
     private final CartService cartService;
-    private final UserService userService;
 
     @Autowired
-    public CartController(CartService cartService, UserService userService) {
+    public CartController(CartService cartService) {
         this.cartService = cartService;
-        this.userService = userService;
     }
 
     @PutMapping("/add")
