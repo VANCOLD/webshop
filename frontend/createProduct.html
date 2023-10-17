@@ -28,21 +28,34 @@
         <link href="./css/style.css" rel="stylesheet">
     
     </head>
-    
-    <body class="products-body">
+
+    <body>
         <div id="navbar-bind"></div>
         <main>
-            <div class="text-center">
-                <button class="btn btn-buy-now" style="margin: 15px;"
-                    type="button" onclick="createProduct()">Add New Product
-                </button>
-            </div>  
-                
             <div class="container-fluid">
                 <div class="row">
-                    <div class="page-content">
-                        <div class="product-container">
-                            <!-- Product will be dynamically added here -->
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1" style="margin: 20px;">Create Product</h2>
+                            <div class="d-flex align-items-center" style="margin-top: 20px;">
+                                <div>
+
+                                <form action="/api/products" method="post">
+                                    <input class="contact-input" type="text" name="name" placeholder="Name">
+                                    <input class="contact-input" type="text" name="description" placeholder="Description">
+                                    <input class="contact-input" type="number" name="price" placeholder="Price">
+                                    <input class="contact-input" type="text" name="image" placeholder="Image URL">
+                                    <input class="contact-input" type="number" name="tax" placeholder="Tax">
+                                    <input class="contact-input" type="number" name="stock" placeholder="Stock">
+                                    <input class="contact-input" type="text" name="gtin" placeholder="GTIN">
+                                    <div class="text-center mt-4 mb-2">
+                                        <button class="btn btn-buy-now w-50 form-control"
+                                            type="button" onclick="saveProduct()">Save
+                                        </button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

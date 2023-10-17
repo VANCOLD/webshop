@@ -368,7 +368,9 @@ cards Style
   background-color: #ec6090;
   border-color: #ec6090;
   color: #1e1e1e;
-}.contact-input {
+}
+
+.contact-input {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
