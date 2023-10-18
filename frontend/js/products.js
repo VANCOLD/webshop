@@ -98,36 +98,30 @@ function addToCart() {
   }
 }
 
-const form = document.querySelector('form');
-const formData = {
-    name: form.querySelector('input[name="name"]').value,
-    description: form.querySelector('input[name="description"]').value,
-    price: form.querySelector('input[name="price"]').value,
-    image: form.querySelector('input[name="image"]').value,
-    tax: form.querySelector('input[name="tax"]').value,
-    stock: form.querySelector('input[name="stock"]').value,
-    gtin: form.querySelector('input[name="gtin"]').value,
-};
 
-// Add the Authorization header
-formData['headers'] = {
-  'Authorization': `Bearer ${localStorage.getItem('token')}`
-};
+function saveProduct() {
 
-saveProduct(formData);
-
-
-function saveProduct(name, description, price, image, tax, stock, gtin) {
-    // Create a JSON object with the product data.
-    const productData = {
-    name,
-    description,
-    price,
-    image,
-    tax,
-    stock,
-    gtin
+    const form = document.querySelector('form');
+    const formData = {
+        name: form.querySelector('input[name="name"]').value,
+        description: form.querySelector('input[name="description"]').value,
+        price: Number(form.querySelector('input[name="price"]').value),
+        image: form.querySelector('input[name="image"]').value,
+        tax: Number(form.querySelector('input[name="tax"]').value),
+        stock: Number(form.querySelector('input[name="stock"]').value),
+        gtin: form.querySelector('input[name="gtin"]').value,
     };
+    
+    var productData = {
+        name: formData.name,
+        description: formData.description,
+        price: formData.price,
+        image: formData.image,
+        tax: formData.tax,
+        stock: formData.stock,
+        gtin: formData.gtin
+    };
+    console.log(productData);
 
     const accessToken = localStorage.getItem('token');
 
@@ -140,9 +134,9 @@ function saveProduct(name, description, price, image, tax, stock, gtin) {
     $.ajax({
       type: 'POST',
       url: 'http://localhost:8080/api/products',
-      headers,
-      data: JSON.stringify(productData),
+      headers: headers,
       contentType: 'application/json',
+      data: JSON.stringify(productData),
       success: function() {
         // Display a message to the user that the product has been saved successfully.
         alert('Product saved successfully!');
