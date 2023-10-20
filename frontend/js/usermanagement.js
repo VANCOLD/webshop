@@ -46,7 +46,7 @@ function createUser() {
     
     const genderHook = document.getElementById("select-gender");
     const gender = genderHook.options[genderHook.selectedIndex].text;
-    const address = { city: city, postalCode: postalCode, counry: country, street: street};
+    const address = { city: city, postalCode: postalCode, country: country, street: street};
 
     if (accessToken && username && password) {
         const userData = {
@@ -204,18 +204,19 @@ function populateUserList(users) {
     users.forEach(function (user) {
         const userRow = `
             <tr data-user-id="${user.id}">
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.password}</td>
-                <td>${user.firstname}</td>
-                <td>${user.lastname}</td>
-                <td>${user.email}</td>
-                <td>${user.role.name}</td>
-                <td>
-                    <button class="delete-button" data-user-id="${user.id}">Delete</button>
-                    <button class="update-button" data-user-id="${user.id}" data-toggle="modal" data-target="#userModal">Update</button>
-                </td>
-            </tr>
+            <td>${user.id}</td>
+            <td class="editable" data-field="username">${user.username}</td>
+            <td class="editable" data-field="password">${user.password}</td>
+            <td class="editable" data-field="gender">${user.gender}</td>
+            <td class="editable" data-field="firstname">${user.firstname}</td>
+            <td class="editable" data-field="lastname">${user.lastname}</td>
+            <td class="editable" data-field="email">${user.email}</td>
+            <td>${user.role.name}</td>
+            <td>
+                <button class="delete-button" data-user-id="${user.id}">Delete</button>
+                <button class="update-button" data-user-id="${user.id}">Edit</button>
+            </td>
+        </tr>
         `;
 
         userTableBody.append(userRow);
@@ -231,15 +232,36 @@ function populateUserList(users) {
         updateUserData(userId, field, newValue);
     });
 
+    // Handle user updates
+$('.user-list-table').on('click', '.update-button', function () {
+    const userId = $(this).data('user-id');
+    const row = $(this).closest('tr');
+    const editButton = $(this);
+
+    if (editButton.text() === 'Edit') {
+        // Switch to edit mode
+        editButton.text('Save');
+        row.find('.editable').prop('contenteditable', true).addClass('editing');
+    } else {
+        // Switch to save mode
+        editButton.text('Edit');
+        row.find('.editable').prop('contenteditable', false).removeClass('editing');
+
+        // Collect the updated data and perform the save
+        row.find('.editable.editing').each(function () {
+            const field = $(this).data('field');
+            const newValue = $(this).text().trim();
+            updateUserData(userId, field, newValue);
+        });
+    }
+});
+
+
     $('.delete-button').on('click', function () {
         const userId = $(this).data('user-id');
         deleteUser(userId);
     });
 
-    $('.update-button').on('click', function () {
-        const userId = $(this).data('user-id');
-        // Implement the logic to update the user data, e.g., show a form
-    });
 
 
 function updateUserData(userId, field, newValue) {
