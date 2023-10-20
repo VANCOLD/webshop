@@ -107,9 +107,9 @@ function deleteUser(userId) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (data) {
-                // Handle the successful response (deletion)
-                // Remove the row from the table
-                $(`tr[data-user-id="${userId}"]`).remove();
+                // Handle the successful response, e.g., update the user list
+                // Now call loadUsers() as a callback function
+                loadUsers();
             },
             error: function (err) {
                 console.error('Error deleting user: ', err);
@@ -117,7 +117,6 @@ function deleteUser(userId) {
         });
     }
 }
-
 
 function updateUser(userId, userData) {
     const accessToken = getAccessToken();
@@ -260,14 +259,13 @@ function populateUserList(users) {
     });
 
 
-    // Handle user deletions (using event delegation)
-$('.user-list-table').on('click', '.delete-button', function () {
-    const userId = $(this).data('user-id'); // Get the user ID from the data attribute
-    if (confirm(`Are you sure you want to delete user with ID ${userId}?`)) {
-        // If the user confirms the deletion, call the deleteUser function
-        deleteUser(userId);
-    }
-});
+    $(document).on('click', '.delete-button', function () {
+        const userId = $(this).data('user-id'); // Get the user ID from the data attribute
+        if (confirm(`Are you sure you want to delete user with ID ${userId}?`)) {
+            // If the user confirms the deletion, call the deleteUser function
+            deleteUser(userId);
+        }
+    });
 
 
     function updateUserData(userId, field, newValue, row) {
