@@ -107,7 +107,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     /**
      * The producer or manufacturer of the product.
      */
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="producer_id")
     private Producer producer;
 
@@ -149,10 +149,13 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         this.description = productDto.getDescription();
         this.image = productDto.getImage();
         this.tax   = productDto.getTax();
+        this.gtin  = productDto.getGtin();
+        this.price = productDto.getPrice();
+        this.stock = productDto.getStock();
         this.category = new Category(productDto.getCategory());
-        this.genres   = productDto.getGenres().stream().map(Genre::new).toList();
+        this.genres   = productDto.getGenres() == null ? new ArrayList<>() : productDto.getGenres().stream().map(Genre::new).toList();
         this.producer = new Producer(productDto.getProducer());
-        this.consoleGeneration = new ConsoleGeneration(productDto.getConsoleGeneration());
+        this.consoleGeneration = productDto.getConsoleGeneration() == null ? new ConsoleGeneration() : new ConsoleGeneration(productDto.getConsoleGeneration());
     }
 
     @Override

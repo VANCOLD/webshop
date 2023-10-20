@@ -119,7 +119,9 @@ function saveProduct() {
         image: formData.image,
         tax: formData.tax,
         stock: formData.stock,
-        gtin: formData.gtin
+        gtin: formData.gtin,
+        category: {name: "Games"},
+        producer: {name: "Nintendo", address: { city: "Kyoto", country: "Japan", postalCode: "601-8501", street: "11-1 Hokotate-cho"}}
     };
     console.log(productData);
 

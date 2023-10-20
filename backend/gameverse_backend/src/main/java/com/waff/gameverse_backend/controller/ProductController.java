@@ -77,7 +77,7 @@ public class ProductController {
      */
     @PostMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
-    public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody SimpleProductDto productDto) {
+    public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody ProductDto productDto) {
         try {
             return ResponseEntity.ok(productService.save(productDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
