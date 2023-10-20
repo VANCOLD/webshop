@@ -107,9 +107,7 @@ function deleteUser(userId) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (data) {
-                // Handle the successful response (deletion)
-                // Remove the row from the table
-                $(`tr[data-user-id="${userId}"]`).remove();
+                loadUsers();
             },
             error: function (err) {
                 console.error('Error deleting user: ', err);

@@ -129,7 +129,7 @@ public class UserService implements UserDetailsService {
      * @return The deleted user.
      * @throws NoSuchElementException If the user with the given ID does not exist.
      */
-    public User delete(Long id) {
+    public void delete(Long id) {
         var toDelete = this.userRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("User with the given ID does not exist"));
 
@@ -138,7 +138,6 @@ public class UserService implements UserDetailsService {
         toDelete.setCart(null);
         toDelete.setOrders(List.of());
         this.userRepository.delete(toDelete);
-        return toDelete;
     }
 
     /**

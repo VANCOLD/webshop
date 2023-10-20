@@ -169,9 +169,14 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
+            if (userService.findByUsername(jwt.getSubject()).getId() != id) {
+                this.userService.delete(id);
+                return ResponseEntity.ok("User with id " + id + " deleted");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("User der gelöscht werden soll is eingeloggte User!\nIllegale Aktion");
+            }
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
