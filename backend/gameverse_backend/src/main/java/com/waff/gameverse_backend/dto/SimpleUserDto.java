@@ -22,4 +22,15 @@ public class SimpleUserDto implements SimpleDto {
     @NotEmpty
     private String password;
 
+    @NotNull
+    @NotEmpty
+    private String email;
+
+    @NotNull
+    @NotEmpty
+    private String firstname;
+
+    @NotNull
+    @NotEmpty
+    private String lastname;
 }

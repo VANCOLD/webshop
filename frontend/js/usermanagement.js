@@ -5,7 +5,7 @@ function getAccessToken() {
 
 $(document).ready(function () {
     loadUsers(); // Load users when the page loads
-    $('#user-form').submit(function (e) {
+    $('#user-create-form').submit(function (e) {
         e.preventDefault();
         createUser(); // Handle the form submission to create a new user
     });
@@ -34,15 +34,21 @@ function loadUsers() {
 
 function createUser() {
     const accessToken = getAccessToken();
-    const username = $('#username').val();
-    const password = $('#password').val();
-    // Add other user-related data as needed
+    const username = $('#create-username').val();
+    const password = $('#create-password').val();
+    const firstname = $('#create-firstname').val();
+    const lastname = $('#create-lastname').val();
+    const email = $('#create-email').val();
+    const role = { id: 1, name: 'user' }; // Set the role to 'user'
 
     if (accessToken && username && password) {
         const userData = {
             username: username,
-            password: password, // You should handle password hashing on the server
-            // Add other user-related data as needed
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            role: role,
         };
 
         $.ajax({
@@ -56,9 +62,12 @@ function createUser() {
             success: function (data) {
                 // Handle the successful response, e.g., update the user list
                 loadUsers();
-                // Clear the form fields
-                $('#username').val('');
-                $('#password').val('');
+                // Clears the form fields
+                $('#create-username').val('');
+                $('#create-password').val('');
+                $('#create-firstname').val('');
+                $('#create-lastname').val('');
+                $('#create-email').val('');
             },
             error: function (xhr, status, error) {
                 if (xhr.status === 409) {
@@ -190,11 +199,9 @@ function populateUserList(users) {
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.password}</td>
-                <td>${user.gender}</td>
                 <td>${user.firstname}</td>
                 <td>${user.lastname}</td>
                 <td>${user.email}</td>
-                <td>${user.address.street} ${user.address.city} ${user.address.postalCode}</td>
                 <td>${user.role.name}</td>
                 <td>
                     <button class="delete-button" data-user-id="${user.id}">Delete</button>

@@ -37,15 +37,22 @@
                 <h2>Create User</h2>
                 <form id="user-create-form">
                     <label for="create-username">Username:</label>
-                    <input type="text" id="create-username" required>
-
+                    <input type="text" id="create-username" required placeholder="Enter a username">
+            
                     <label for="create-password">Password:</label>
-                    <input type="password" id="create-password" required>
-
-                    <!-- Add more fields as needed, e.g., role, address, cart -->
-
+                    <input type="password" id="create-password" required placeholder="Enter a password">
+            
+                    <label for="create-firstname">First Name:</label>
+                    <input type="text" id="create-firstname" required placeholder="Enter your first name">
+            
+                    <label for="create-lastname">Last Name:</label>
+                    <input type="text" id="create-lastname" required placeholder="Enter your last name">
+            
+                    <label for="create-email">Email:</label>
+                    <input type="email" id="create-email" required placeholder="Enter your email address">
+            
                     <button type="submit">Create User</button>
-                </form>
+                </form> 
             </div>
             
             <div class="user-list">
@@ -60,7 +67,6 @@
                             <th class="user-firstname">First Name</th>
                             <th class="user-lastname">Last Name</th>
                             <th class="user-email">Email</th>
-                            <th class="user-address">Address</th>
                             <th class="user-role">Role</th>
                             <th class="user-action">Action</th>
                         </tr>

@@ -92,6 +92,9 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
     public User(SimpleUserDto simpleUserDto) {
         this.username = simpleUserDto.getUsername();
         this.password = simpleUserDto.getPassword();
+        this.firstname = simpleUserDto.getFirstname();
+        this.lastname = simpleUserDto.getLastname();
+        this.email = simpleUserDto.getEmail();
     }
 
     public User(UserDto userDto) {
@@ -187,6 +190,6 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
 
     @Override
     public SimpleUserDto convertToSimpleDto() {
-        return new SimpleUserDto(id, username, password);
+        return new SimpleUserDto(id, username, password, email, firstname, lastname);
     }
 }
