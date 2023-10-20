@@ -648,6 +648,7 @@ Shopping Cart Style
 }
 
 .user-create-form input[type="text"],
+.user-create-form input[type="email"],
 .user-create-form input[type="password"] {
   width: 100%;
   padding: 10px;

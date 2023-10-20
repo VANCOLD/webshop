@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.dto;
 
+import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.utils.SimpleDto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -22,15 +23,5 @@ public class SimpleUserDto implements SimpleDto {
     @NotEmpty
     private String password;
 
-    @NotNull
-    @NotEmpty
-    private String email;
-
-    @NotNull
-    @NotEmpty
-    private String firstname;
-
-    @NotNull
-    @NotEmpty
-    private String lastname;
+    private RoleDto role;
 }

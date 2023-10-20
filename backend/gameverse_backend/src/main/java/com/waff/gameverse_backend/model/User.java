@@ -92,20 +92,18 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
     public User(SimpleUserDto simpleUserDto) {
         this.username = simpleUserDto.getUsername();
         this.password = simpleUserDto.getPassword();
-        this.firstname = simpleUserDto.getFirstname();
-        this.lastname = simpleUserDto.getLastname();
-        this.email = simpleUserDto.getEmail();
+        this.role     = simpleUserDto.getRole() == null ? new Role() : new Role(simpleUserDto.getRole());
     }
 
     public User(UserDto userDto) {
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
-        this.role = new Role(userDto.getRole());
+        this.role = userDto.getRole() == null ? new Role() : new Role(userDto.getRole());
         this.firstname = userDto.getFirstname();
         this.lastname = userDto.getLastname();
-        this.gender = Gender.valueOf(userDto.getGender().toUpperCase());
+        this.gender = Gender.valueOf(userDto.getGender());
         this.email  = userDto.getEmail();
-        this.address = new Address(userDto.getAddress());
+        this.address = userDto.getAddress() == null ? new Address() : new Address(userDto.getAddress());
     }
 
     /**
@@ -190,6 +188,6 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
 
     @Override
     public SimpleUserDto convertToSimpleDto() {
-        return new SimpleUserDto(id, username, password, email, firstname, lastname);
+        return new SimpleUserDto(id, username, password, role.convertToDto());
     }
 }

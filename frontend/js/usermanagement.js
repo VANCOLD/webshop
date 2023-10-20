@@ -38,8 +38,15 @@ function createUser() {
     const password = $('#create-password').val();
     const firstname = $('#create-firstname').val();
     const lastname = $('#create-lastname').val();
+    const street   = $('#create-street').val();
+    const city = $('#create-city').val();
+    const postalCode = $('#create-postalCode').val();
+    const country = $('#create-country').val();
     const email = $('#create-email').val();
-    const role = { id: 1, name: 'user' }; // Set the role to 'user'
+    
+    const genderHook = document.getElementById("select-gender");
+    const gender = genderHook.options[genderHook.selectedIndex].text;
+    const address = { city: city, postalCode: postalCode, counry: country, street: street};
 
     if (accessToken && username && password) {
         const userData = {
@@ -48,7 +55,8 @@ function createUser() {
             firstname: firstname,
             lastname: lastname,
             email: email,
-            role: role,
+            gender: gender,
+            address: address
         };
 
         $.ajax({
