@@ -228,6 +228,8 @@ function populateUserList(users) {
     });
 }
 
+
+
     // Handle user updates
     $('.editable').on('blur', function () {
         const userId = $(this).closest('tr').data('user-id');

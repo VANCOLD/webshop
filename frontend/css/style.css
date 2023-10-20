@@ -695,13 +695,30 @@ Shopping Cart Style
   position: relative; /* Required for absolute positioning of the button */
 } 
 
+label {
+  color: #ff4e84;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    padding: 10px; /* Adjust the padding value to your preference */
+}
+
+button[type="submit"] {
+  padding: 10px 20px; /* Adjust the padding values for top/bottom and left/right as needed */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 /* Create User Form */
 .create-user-form {
   background-color: #27292a;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -749,11 +766,13 @@ Shopping Cart Style
 /* User List Table */
 .user-list-table {
   background-color: #27292a;
-  border-radius: 10px; /* Apply border radius to round the table */
+  border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px;
+  max-width: flex;
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 /* User List Table Header */
@@ -787,6 +806,29 @@ Shopping Cart Style
 .user-list-table .delete-button:hover, .user-list-table .update-button:hover {
   background-color: #ff4e84;
 }
+
+
+/* For small screens (e.g., mobile phones) */
+@media (max-width: 576px) {
+  .user-list-table {
+    font-size: 12px; /* Reduce font size for small screens */
+  }
+}
+
+/* For medium-sized screens (e.g., tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+  .user-list-table {
+    font-size: 14px; /* Adjust font size for tablets */
+  }
+}
+
+/* For larger screens (e.g., desktop) */
+@media (min-width: 993px) {
+  .user-list-table {
+    font-size: 16px; /* Adjust font size for desktops */
+  }
+}
+
 /*
 ---------------------------------------------
 Responsive Style
