@@ -132,7 +132,7 @@ public class UserController {
      */
     @PostMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
