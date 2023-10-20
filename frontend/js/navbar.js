@@ -1,8 +1,8 @@
-const profile   = document.getElementById('profile-button');
-const login     = document.getElementById('register-button');
-const cart      = document.getElementById('cart-button');
-const logout    = document.getElementById('logout-button');
-const admin     = document.getElementById('admin-button');
+const profileButton   = document.getElementById('profile-button');
+const loginButton     = document.getElementById('register-button');
+const cartButton      = document.getElementById('cart-button');
+const logoutButton    = document.getElementById('logout-button');
+const adminButton     = document.getElementById('admin-button');
 
 const viewProfile   = 'view_profile';   
 const viewCart      = 'view_cart';           
@@ -20,18 +20,17 @@ $(document).ready(function() {
 
     // Get token
     var token = localStorage.getItem("token");
-    console.log(token)
 
     if( token == '' || token == null ) {
 
         if(window.location.href.includes('/register.html')) {
-            login.style.display = 'none';
+            loginButton.style.display = 'none';
         }
 
-        profile.style.display = 'none';
-        cart.style.display = 'none';
-        logout.style.display = 'none';
-        admin.style.display  = 'none';
+        profileButton.style.display = 'none';
+        cartButton.style.display = 'none';
+        logoutButton.style.display = 'none';
+        adminButton.style.display  = 'none';
 
     } else {
         const jwtParser = new JWTParser(token);
@@ -41,20 +40,20 @@ $(document).ready(function() {
             const privs   = payload.authority.split(' ');
 
             if (privs.includes(viewProfile)) {
-                profile.style.display = 'visible';
+                profileButton.style.display = 'visible';
             }
 
             if(privs.includes(viewCart)) {
-                cart.style.display = 'visible';
+                cartButton.style.display = 'visible';
             }
 
             if(privs.includes(editCart) || privs.includes(editUsers) || privs.includes(editProducts)) {
-                admin.style.display = 'visible';
+                adminButton.style.display = 'visible';
             } else {
-                admin.style.display = 'none'
+                adminButton.style.display = 'none'
             }
 
-            login.style.display = 'none';
+            loginButton.style.display = 'none';
 
         } catch (error) {
             console.log('Error parsing JWT:', error.message);

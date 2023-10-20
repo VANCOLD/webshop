@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.AddressDto;
 import com.waff.gameverse_backend.dto.ProducerDto;
 import com.waff.gameverse_backend.utils.DataTransferObject;
 import jakarta.persistence.*;
@@ -45,7 +46,7 @@ public class Producer implements DataTransferObject<ProducerDto> {
      * Each product in the list is produced or manufactured by this specific producer.
      */
     @OneToMany(mappedBy="producer")
-    private List<Product> products = new ArrayList<>();;
+    private List<Product> products = new ArrayList<>();
 
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -62,6 +63,6 @@ public class Producer implements DataTransferObject<ProducerDto> {
 
     @Override
     public ProducerDto convertToDto() {
-        return new ProducerDto(id, name, address.convertToDto());
+        return new ProducerDto(id, name, address == null ? new AddressDto() : address.convertToDto());
     }
 }

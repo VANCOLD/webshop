@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
@@ -174,6 +173,24 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
 
     @Override
     public ProductDto convertToDto() {
-        return null;
+
+        ProductDto productDto = new ProductDto();
+
+        productDto.setId(id);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setPrice(price);
+        productDto.setImage(image);
+        productDto.setTax(tax);
+        productDto.setStock(stock);
+        productDto.setGtin(gtin);
+        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
+        productDto.setProducer(producer.convertToDto());
+        productDto.setCategory(category.convertToDto());
+        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
+        productDto.setAvailable(available);
+        productDto.setEsrbRating(esrbRating.getName());
+
+        return productDto;
     }
 }

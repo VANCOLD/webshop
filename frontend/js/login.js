@@ -26,7 +26,7 @@
 
 
   // Add an event listener to the login button
-  document.getElementById('login').addEventListener('click', function (e) {
+  document.getElementById('login-button').addEventListener('click', function (e) {
     e.preventDefault(); // Prevent the form from submitting
 
     // Reset any previous error messages

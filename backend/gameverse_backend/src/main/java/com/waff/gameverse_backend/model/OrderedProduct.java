@@ -52,11 +52,10 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
         this.tax = orderedProducts.getTax();
         this.name = orderedProducts.getName();
         this.price = orderedProducts.getPrice();
-        this.order = new Order(orderedProducts.getOrder());
     }
 
     @Override
     public OrderedProductDto convertToDto() {
-        return new OrderedProductDto(id, name, description, price, tax, amount, order.convertToDto());
+        return new OrderedProductDto(id, name, description, price, tax, amount);
     }
 }

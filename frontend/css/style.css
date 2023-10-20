@@ -321,11 +321,54 @@ Home Page Style
 
 /* 
 ---------------------------------------------
-Contact Page Style
+product Style
+--------------------------------------------- 
+*/
+.products-body {
+  font-family: sans-serif;
+}
+
+.product-description {
+  margin-left: 20px;
+  color: #e75e8d;
+}
+.product-price {
+  margin: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-category {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-stock {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+
+.product-image {
+  width:350px;
+  height:420px;
+}
+
+/* 
+---------------------------------------------
+cards Style
 --------------------------------------------- 
 */
 
-.contact-input {
+
+.btn-buy-now  {
+  margin-left: 20px;
+  background-color: #ec6090;
+  border-color: #ec6090;
+  color: #1e1e1e;
+}.contact-input {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -470,6 +513,27 @@ Shopping Cart Style
   transition: background-color 0.3s;
 }
 
+/* Checkout button styling */
+.cancel-button {
+  position: absolute;
+  bottom: 30px;
+  right: 200px;
+  min-width: 140px;
+  background-color: #e75e8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #ff4e84;
+}
+
 .checkout-button:hover {
   background-color: #ff4e84;
 }
@@ -500,6 +564,12 @@ Shopping Cart Style
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.payment {
+  width:180px;
+  height: 40px;
+  font-size: 20px;
 }
 
 /* Shopping Cart Total */

@@ -5,6 +5,7 @@ import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.*;
 import com.waff.gameverse_backend.repository.OrderRepository;
+import com.waff.gameverse_backend.repository.OrderedProductRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,13 @@ public class OrderService {
 
     private final ProductRepository productRepository;
 
-    public OrderService(OrderRepository orderRepository, UserService userService, ProductRepository productRepository) {
+    private final OrderedProductRepository orderedProductRepository;
+
+    public OrderService(OrderRepository orderRepository, UserService userService, ProductRepository productRepository, OrderedProductRepository orderedProductRepository) {
         this.orderRepository = orderRepository;
         this.userService     = userService;
         this.productRepository  = productRepository;
+        this.orderedProductRepository = orderedProductRepository;
     }
 
     /**
@@ -58,7 +62,7 @@ public class OrderService {
     public Order save(UserDto user) {
         User toOrder = userService.findById(user.getId());
 
-        if(toOrder.getOrders().stream().filter(order -> order.getOrderStatus() == OrderStatus.IN_PROGRESS).count() > 0) {
+        if(toOrder.getOrders().stream().anyMatch(order -> order.getOrderStatus() == OrderStatus.IN_PROGRESS)) {
             throw new IllegalStateException("Es gibt schon eine Bestellung in Bearbeitung! Bitte diese vorher abschließen");
         }
 
@@ -71,6 +75,16 @@ public class OrderService {
 
         order.setOrderStatus(OrderStatus.IN_PROGRESS);
         order.setUser(toOrder);
+
+        var orderedItems = new ArrayList<OrderedProduct>();
+        order.setOrderedProducts(orderedItems);
+        orderRepository.save(order);
+        populateOrder(order, userCart);
+        return order;
+
+    }
+
+    private void populateOrder(Order order, Cart userCart) {
 
         var orderedItems = new ArrayList<OrderedProduct>();
 
@@ -90,6 +104,7 @@ public class OrderService {
             orderedProduct.setPrice(toConvert.getPrice() * orderAmount);
             orderedProduct.setDescription(toConvert.getDescription());
             orderedProduct.setProduct(toConvert);
+            orderedProduct.setOrder(order);
 
             orderedItems.add(orderedProduct);
 
@@ -100,13 +115,12 @@ public class OrderService {
             int orderAmount   = userCart.getProducts().stream().filter(product -> product.equals(toConvert)).toList().size();
 
             toConvert.setStock(toConvert.getStock() - orderAmount);
-            productRepository.save(toConvert);
 
         }
 
         order.setOrderedProducts(orderedItems);
-        return orderRepository.save(order);
-
+        for(OrderedProduct item : orderedItems)
+            orderedProductRepository.save(item);
     }
 
     /**
@@ -120,28 +134,12 @@ public class OrderService {
         var toUpdate = this.orderRepository.findById(orderDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
-        if(toUpdate.getOrderStatus() == OrderStatus.CANCLED) {
-            throw new IllegalArgumentException("Bestellung ist abgebrochen, kann nicht bestätigt werden!");
+        if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
+            throw new IllegalArgumentException("Bestellung ist bestätigt, kann nicht nochmal bestätigt werden!");
         }
 
         toUpdate.setOrderStatus(OrderStatus.COMPLETED);
-        return this.orderRepository.save(toUpdate);
-    }
-
-    public Order cancel(OrderDto orderDto) {
-        var toUpdate = this.orderRepository.findById(orderDto.getId())
-            .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
-
-        if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
-            throw new IllegalArgumentException("Bestellung ist fertig, kann nicht abgebrochen werden!");
-        }
-
-        for(OrderedProduct orderedProduct : toUpdate.getOrderedProducts()) {
-            var product = orderedProduct.getProduct();
-            product.setStock(product.getStock() + orderedProduct.getAmount());
-        }
-
-        toUpdate.setOrderStatus(OrderStatus.CANCLED);
+        toUpdate.getUser().getCart().setProducts(new ArrayList<>());
         return this.orderRepository.save(toUpdate);
     }
 
@@ -157,7 +155,16 @@ public class OrderService {
         var toDelete = this.orderRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
+        toDelete.setUser(null);
+        toDelete.getOrderedProducts().stream().forEach(element -> orderedProductRepository.delete(element));
+        toDelete.setOrderedProducts(null);
+        toDelete.setOrderedProducts(null);
         orderRepository.delete(toDelete);
+
         return toDelete;
+    }
+
+    public Order findByUserAndOrderStatus(User user, OrderStatus orderStatus) {
+        return this.orderRepository.findByUserAndOrderStatusEquals(user, orderStatus).orElseThrow(() -> new NoSuchElementException("Keine offene Bestellung gefunden!"));
     }
 }

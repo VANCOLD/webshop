@@ -17,7 +17,6 @@ import java.util.NoSuchElementException;
  * The ProductController class handles operations related to products and permissions.
  */
 @EnableMethodSecurity
-@PreAuthorize("@tokenService.hasPrivilege('edit_products')")
 @RequestMapping("/api/products")
 @RestController
 public class ProductController {
@@ -77,6 +76,7 @@ public class ProductController {
      * @see SimpleProductDto
      */
     @PostMapping
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody SimpleProductDto productDto) {
         try {
             return ResponseEntity.ok(productService.save(productDto).convertToSimpleDto());
@@ -95,6 +95,7 @@ public class ProductController {
      * @see ProductDto
      */
     @PutMapping
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<ProductDto> update(@Validated @RequestBody ProductDto productDto) {
         try {
             return ResponseEntity.ok(productService.update(productDto).convertToDto());
@@ -112,6 +113,7 @@ public class ProductController {
      * @throws NoSuchElementException if the product with the given ID does not exist.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<ProductDto> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(productService.delete(id).convertToDto());
