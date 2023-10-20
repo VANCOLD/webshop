@@ -107,6 +107,8 @@ function deleteUser(userId) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (data) {
+                // Handle the successful response, e.g., update the user list
+                // Now call loadUsers() as a callback function
                 loadUsers();
             },
             error: function (err) {
