@@ -47,6 +47,8 @@ function createUser() {
     const genderHook = document.getElementById("select-gender");
     const gender = genderHook.options[genderHook.selectedIndex].text;
     const address = { city: city, postalCode: postalCode, country: country, street: street};
+    const role = "user"; //automatically assigns user role
+
 
     if (accessToken && username && password) {
         const userData = {
@@ -56,7 +58,8 @@ function createUser() {
             lastname: lastname,
             email: email,
             gender: gender,
-            address: address
+            address: address,
+            role: role
         };
 
         $.ajax({
@@ -104,8 +107,9 @@ function deleteUser(userId) {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function (data) {
-                // Handle the successful response, e.g., update the user list
-                loadUsers();
+                // Handle the successful response (deletion)
+                // Remove the row from the table
+                $(`tr[data-user-id="${userId}"]`).remove();
             },
             error: function (err) {
                 console.error('Error deleting user: ', err);
@@ -113,6 +117,7 @@ function deleteUser(userId) {
         });
     }
 }
+
 
 function updateUser(userId, userData) {
     const accessToken = getAccessToken();
@@ -233,59 +238,64 @@ function populateUserList(users) {
     });
 
     // Handle user updates
-$('.user-list-table').on('click', '.update-button', function () {
-    const userId = $(this).data('user-id');
-    const row = $(this).closest('tr');
-    const editButton = $(this);
+    $('.user-list-table').on('click', '.update-button', function () {
+        const userId = $(this).data('user-id');
+        const row = $(this).closest('tr');
+        const editButton = $(this);
 
-    if (editButton.text() === 'Edit') {
-        // Switch to edit mode
-        editButton.text('Save');
-        row.find('.editable').prop('contenteditable', true).addClass('editing');
-    } else {
-        // Switch to save mode
-        editButton.text('Edit');
-        row.find('.editable').prop('contenteditable', false).removeClass('editing');
-
-        // Collect the updated data and perform the save
-        row.find('.editable.editing').each(function () {
-            const field = $(this).data('field');
-            const newValue = $(this).text().trim();
+        if (editButton.text() === 'Edit') {
+            // Switch to edit mode
+            editButton.text('Save');
+            row.find('.editable').prop('contenteditable', true).addClass('editing');
+        } else if (editButton.text() === 'Save') {
+            // Handle the save logic here
+            const field = row.find('.editing').data('field');
+            const newValue = row.find('.editing').text().trim();
             updateUserData(userId, field, newValue);
-        });
+
+            // Switch back to edit mode after saving
+            editButton.text('Edit');
+            row.find('.editable').prop('contenteditable', false).removeClass('editing');
+        }
+    });
+
+
+    // Handle user deletions (using event delegation)
+$('.user-list-table').on('click', '.delete-button', function () {
+    const userId = $(this).data('user-id'); // Get the user ID from the data attribute
+    if (confirm(`Are you sure you want to delete user with ID ${userId}?`)) {
+        // If the user confirms the deletion, call the deleteUser function
+        deleteUser(userId);
     }
 });
 
 
-    $('.delete-button').on('click', function () {
-        const userId = $(this).data('user-id');
-        deleteUser(userId);
-    });
-
-
-
-function updateUserData(userId, field, newValue) {
-    const accessToken = getAccessToken();
-
-    if (accessToken) {
-        const userData = {};
-        userData[field] = newValue;
-
-        $.ajax({
-            type: 'PUT',
-            url: `http://localhost:8080/api/users/${userId}`,
-            data: JSON.stringify(userData),
-            contentType: 'application/json',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function (data) {
-                // Handle the successful response, e.g., update the user list
+    function updateUserData(userId, field, newValue, row) {
+        const accessToken = getAccessToken();
+    
+        if (accessToken) {
+            const updateData = {
+                [field]: newValue // Create a JSON object with a single field
+            };
+    
+            $.ajax({
+                type: 'PUT',
+                url: `http://localhost:8080/api/users/${userId}`,
+                data: JSON.stringify(updateData), // Send only the field to update
+                contentType: 'application/json',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                success: function (data) {
+                    console.log('Update successful:', data);
+                },
+                error: function (err) {
+                    console.error('Error updating user data: ', err);
+                }
+            }).done(function() {
                 loadUsers();
-            },
-            error: function (err) {
-                console.error('Error updating user data: ', err);
-            }
-        });
+                row.find('.editable').prop('contenteditable', false).removeClass('editing');
+            });
+        }
     }
-}
+    
