@@ -40,11 +40,9 @@ INSERT INTO addresses (street, postalcode, city, country) VALUES
 ('1-22 Kandasuda-cho Chiyoda-ku','101-0054','Tokyo','Japan'),                   -- 10
 ('Pilzgasse 12','1210','Wien','Österreich');                                    -- 11
 
-
 INSERT INTO roles (name) VALUES
 ('user'),    -- 1
 ('admin');   -- 2
-
 
 INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 (1, 1), -- 1
@@ -59,13 +57,10 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 (2, 7), -- 10
 (2, 8); -- 11
 
-
 /* password is always the word password for each user */
 INSERT INTO users (username, password, role_id, address_id, cart_id  ) VALUES
 ('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1, 1),      -- 1
 ('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1, 2);     -- 2
-
-
 
 INSERT INTO carts(id) VALUES
 (1),
@@ -78,7 +73,6 @@ INSERT INTO console_generations (name) VALUES
 ('Xbox One'),           -- 4
 ('Playstation 4');      -- 5
 
-
 INSERT INTO producers (name, address_id) VALUES
 ('Iam8bit', 1),                                 -- 1
 ('Nintendo', 2),                                -- 2
@@ -87,20 +81,19 @@ INSERT INTO producers (name, address_id) VALUES
 ('Sega', 5),                                    -- 5
 ('From Soft', 6),                               -- 6
 ('Naughty Dog', 7),                             -- 7
-('Square Enix', 8),                             -- 8
-('Game Freak', 9),                              -- 9
-('HAL Laboratories', 10),                       -- 10
-('Gameverse', 11),                              -- 11
-('Ubisoft', 12),                                -- 12
-('Aeternum Game Studios S.L', 13),              -- 13
-('BANDAI NAMCO Entertainment', 14),             -- 14
-('Focus Home Interactive', 15),                 -- 15
-('SquareEnix', 16),                             -- 16
-('Electronic Arts', 17),                        -- 17
-('2K Games', 18),                               -- 18
-('Annapurna Interactive', 19),                  -- 19
-('NIS America', 20);                            -- 20
-
+('Square Enix', 1),                             -- 8
+('Game Freak', 1),                              -- 9
+('HAL Laboratories', 1),                       -- 10
+('Gameverse', 1),                              -- 11
+('Ubisoft', 1),                                -- 12
+('Aeternum Game Studios S.L', 1),              -- 13
+('BANDAI NAMCO Entertainment', 1),             -- 14
+('Focus Home Interactive', 1),                 -- 15
+('SquareEnix', 1),                             -- 16
+('Electronic Arts', 1),                        -- 17
+('2K Games', 1),                               -- 18
+('Annapurna Interactive', 1),                  -- 19
+('NIS America', 2);                            -- 20
 
 INSERT INTO genres (name) VALUES
 ('First Person Shooters'),      -- 1
@@ -114,7 +107,6 @@ INSERT INTO genres (name) VALUES
 ('Survival & Horror'),          -- 9
 ('Stealth');                    -- 10
 
-
 INSERT INTO categories (name) VALUES
 ('Games'),          -- 1
 ('Consoles'),       -- 2
@@ -122,7 +114,6 @@ INSERT INTO categories (name) VALUES
 ('Accessories'),    -- 4
 ('Giftcards'),      -- 5
 ('Sale');           -- 6
-
 
 INSERT INTO products
 (name, description, price, image, tax, stock, gtin, available, esrb_rating, console_generation_id, category_id, producer_id)
@@ -248,7 +239,6 @@ VALUES
 INSERT INTO products_to_carts (product_id, cart_id) VALUES
 (2, 1), -- 1
 (3, 1); -- 2
-
 
 INSERT INTO products_to_genres (product_id, genre_id) VALUES
 (1, 2),     -- 1
