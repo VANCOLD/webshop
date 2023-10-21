@@ -1,12 +1,8 @@
 package com.waff.gameverse_backend.dto;
 
-import com.waff.gameverse_backend.model.Producer;
-import com.waff.gameverse_backend.model.User;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter

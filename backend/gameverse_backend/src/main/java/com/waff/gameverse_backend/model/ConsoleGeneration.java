@@ -46,7 +46,7 @@ public class ConsoleGeneration implements DataTransferObject<ConsoleGenerationDt
      */
     @OneToMany(mappedBy = "consoleGeneration")
 
-    private List<Product> products = new ArrayList<>();;
+    private List<Product> products = new ArrayList<>();
 
     public ConsoleGeneration(ConsoleGenerationDto consoleGeneration) {
         this.id = consoleGeneration.getId();

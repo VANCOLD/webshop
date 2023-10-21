@@ -56,13 +56,17 @@ public class AddressService {
      * @throws IllegalArgumentException If a address with the same name already exists.
      */
     public Address save(AddressDto addressDto) {
-        var toCheck = this.addressRepository.findById(addressDto.getId());
-        if (toCheck.isEmpty()) {
+
+        if (!this.exists(addressDto)) {
             Address toSave = new Address(addressDto);
             return this.addressRepository.save(toSave);
         } else {
-            throw new IllegalArgumentException("The specified name is already used by a address");
+            throw new IllegalArgumentException("Angegebene Adresse existiert bereits!");
         }
+    }
+
+    public boolean exists(AddressDto address) {
+        return addressRepository.existsByStreetAndCityAndPostalCodeAndCountry(address.getStreet(), address.getCity(), address.getPostalCode(), address.getCountry());
     }
 
     /**
@@ -120,5 +124,10 @@ public class AddressService {
         this.addressRepository.delete(toDelete);
         return toDelete;
     }
+
+    public Address findByAddress(AddressDto address) {
+        return addressRepository.findByStreetAndCityAndPostalCodeAndCountry(address.getStreet(), address.getCity(), address.getPostalCode(), address.getCountry());
+    }
+
 
 }

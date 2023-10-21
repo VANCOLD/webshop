@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;

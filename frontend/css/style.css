@@ -193,12 +193,11 @@ Register Login Style
 */
 
     .register-background {
-        background-image: url("./../images/register-bg.png");
-        background-size: cover; /* Updated property */
-        background-repeat: no-repeat; /* Updated property */
-        background-position: center; /* Added property */
-        height: 120vh;
-    }
+    background-image: url("./../images/register-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
     .justified {
         text-align: center;
@@ -515,6 +514,27 @@ Shopping Cart Style
   transition: background-color 0.3s;
 }
 
+/* Checkout button styling */
+.cancel-button {
+  position: absolute;
+  bottom: 30px;
+  right: 200px;
+  min-width: 140px;
+  background-color: #e75e8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #ff4e84;
+}
+
 .checkout-button:hover {
   background-color: #ff4e84;
 }
@@ -545,6 +565,12 @@ Shopping Cart Style
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.payment {
+  width:180px;
+  height: 40px;
+  font-size: 20px;
 }
 
 /* Shopping Cart Total */
@@ -658,6 +684,184 @@ Shopping Cart Style
   }
 }
 
+/* 
+---------------------------------------------
+User Management Style
+--------------------------------------------- 
+*/
+
+
+.user-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+} 
+
+label {
+  color: #ff4e84;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s;
+  border-radius: 5px; 
+  padding: 5px; 
+  box-sizing: border-box;
+}
+
+/* Create User Form */
+.create-user-form {
+  background-color: #27292a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: flex;
+}
+
+.create-user-form h2 {
+  color: #e75e8d;
+}
+
+.user-create-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.user-create-form input[type="text"],
+.user-create-form input[type="email"],
+.user-create-form input[type="password"] {
+  width: 100%;
+  border-radius: 3px; /* Adjust the border-radius value */
+  background-color: #f2f2f2;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s; /* Smooth transition for the border */
+}
+
+
+.create-user {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  left: 0; 
+}
+
+/* User List Table */
+.user-list-table {
+  background-color: #27292a;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* User List Table Header */
+.user-list-table thead {
+  font-size: 16px;
+  background-color: #e75e8d;
+  color: white;
+}
+
+.user-list-table thead {
+  margin: 0%;
+}
+
+/* User List Table Header Cells */
+.user-list-table th {
+  text-align: center; /* Add this line to center the text */
+  padding: 5px;
+}
+
+/* User List Table Body Rows */
+.user-list-table tbody tr {
+  font-size: 14px;
+  text-align: center; /* Add this line to center the text */
+
+  background-color: #f2f2f2;
+  color: #27292a;
+}
+
+.user-list-table input[type="text"],
+.user-list-table input[type="password"],
+.user-list-table input[type="email"],
+select {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    transition: border 0.3s; /* Smooth transition for the border */
+    outline: none; /* Remove the default outline */
+}
+
+/* User List Table Action Buttons */
+.user-list-table .delete-button, .user-list-table .update-button, .user-list-table .admin-button {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.user-list-table .delete-button:hover, .user-list-table .update-button:hover {
+  background-color: #ff4e84;
+}
+
+/* Apply zebra striping to the table */
+.user-list-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Background color for odd rows */
+}
+
+.user-list-table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* Background color for even rows */
+}
+
+/* For small screens (e.g., mobile phones) */
+@media (max-width: 576px) {
+  .user-list-table {
+    font-size: 12px; /* Reduce font size for small screens */
+  }
+}
+
+/* For medium-sized screens (e.g., tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+  .user-list-table {
+    font-size: 14px; /* Adjust font size for tablets */
+  }
+}
+
+/* For larger screens (e.g., desktop) */
+@media (min-width: 993px) {
+  .user-list-table {
+    font-size: 16px; /* Adjust font size for desktops */
+  }
+}
 
 /*
 ---------------------------------------------
@@ -795,9 +999,31 @@ Responsive Style
     }
   }
 
-/* For responsive button in Register/Login */
- @media (min-width: 768px) {
-    .custom-button-bgcolor {
-      min-width: auto
+   /* Responsive Queries Register */
+
+  /* Add styles for small screens (up to 766px) */
+  @media (max-width: 766px) {
+    .tab-content {
+        border-radius: 50px; /* Ensure that the .tab-content container retains rounded corners on small screens */
     }
-}
+
+    .login-container {
+        border-radius: 50px; /* Ensure the .login-container retains rounded corners on small screens */
+    }
+
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+          font-size: 19px; /* Restore font size on larger screens */
+  }
+  }
+
+  /* Add styles for screens between 767px and 991px */
+  @media (min-width: 767px) and (max-width: 991px) {
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+      font-size: 19px; /* Restore font size on screens between 767px and 990px */
+  }
+  }
+
+  /* Additional styles for specific elements on larger screens (above 991px) */
+  @media (min-width: 992px) {
+    /* Add additional styles for elements as needed */
+  }

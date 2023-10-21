@@ -43,13 +43,13 @@ public class Role implements DataTransferObject<RoleDto> {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "privileges_in_role", joinColumns = {@JoinColumn(name = "role_id")},
         inverseJoinColumns = {@JoinColumn(name = "privilege_id")})
-    private List<Privilege> privileges = new ArrayList<>();;
+    private List<Privilege> privileges = new ArrayList<>();
 
     /**
      * The list of users who have this role.
      */
     @OneToMany(mappedBy="role")
-    private List<User> users = new ArrayList<>();;
+    private List<User> users = new ArrayList<>();
 
     /**
      * Constructs a Role entity from a RoleDto.

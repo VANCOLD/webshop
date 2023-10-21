@@ -1,12 +1,12 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.CartDto;
-import com.waff.gameverse_backend.dto.SimpleUserDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.Cart;
+import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.service.CartService;
+import com.waff.gameverse_backend.service.OrderService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,14 +34,17 @@ public class UserController {
 
     private final CartService cartService;
 
+    private final OrderService orderService;
+
     /**
      * Constructs a new UserController with the provided UserService.
      *
      * @param userService The UserService to use for managing users.
      */
-    public UserController(UserService userService, CartService cartService) {
-        this.userService = userService;
-        this.cartService = cartService;
+    public UserController(UserService userService, CartService cartService, OrderService orderService) {
+        this.userService    = userService;
+        this.cartService    = cartService;
+        this.orderService   = orderService;
     }
 
     /**
@@ -62,6 +65,24 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
+    @GetMapping("/all/full")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<List<UserDto>> findAllFullUser() {
+        var users = userService.findAll();
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+        }
+    }
     /**
      * Retrieves a user by their ID.
      *
@@ -82,6 +103,26 @@ public class UserController {
     }
 
     /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
+    @GetMapping("/full/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<UserDto> findFullUserById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id).convertToDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+
+    /**
      * Creates a new user.
      *
      * @param userDto The SimpleUserDto containing the user information to be created.
@@ -91,7 +132,7 @@ public class UserController {
      */
     @PostMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
@@ -110,9 +151,9 @@ public class UserController {
      */
     @PutMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<UserDto> update(@Validated @RequestBody UserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
+            return ResponseEntity.ok(userService.update(userDto).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -128,9 +169,14 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
+            if (userService.findByUsername(jwt.getSubject()).getId() != id) {
+                this.userService.delete(id);
+                return ResponseEntity.ok("User with id " + id + " deleted");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("User der gelöscht werden soll is eingeloggte User!\nIllegale Aktion");
+            }
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
@@ -165,4 +211,75 @@ public class UserController {
         Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
         return ResponseEntity.ok(updatedCart.convertToDto());
     }
+
+    @GetMapping("/orders")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<List<OrderDto>> getOrders(@AuthenticationPrincipal Jwt jwt) {
+        List<Order> orders = userService.findByUsername(jwt.getSubject()).getOrders();
+
+        if(orders.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(orders.stream().map(Order::convertToDto).toList());
+        }
+    }
+
+    @GetMapping("/openOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> getOpenOrders(@AuthenticationPrincipal Jwt jwt) {
+
+        User user =  userService.findByUsername(jwt.getSubject());
+
+        try {
+            var toCheck = this.orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+            return ResponseEntity.ok(toCheck.convertToDto());
+
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+    }
+
+
+    @PostMapping("/saveOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> save(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+
+        if(this.userService.findByUsername(user.getUsername()) != null) {
+            return ResponseEntity.ok(this.orderService.save(user.convertToDto()).convertToDto());
+        } else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+    }
+
+    @PutMapping("/confirmOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> confirm(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+
+        order = this.orderService.confirm(order.convertToDto());
+        return ResponseEntity.ok(order.convertToDto());
+    }
+
+    @DeleteMapping("/deleteOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<?> cancel(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
+        System.out.println("LOL" + order.getId());
+
+        order = this.orderService.delete(order.getId());
+        return ResponseEntity.ok("deleted order");
+    }
+
+
+    @GetMapping("/me")
+    @PreAuthorize("@tokenService.hasPrivilege('view_profile')")
+    public ResponseEntity<UserDto> loggedInUser(@AuthenticationPrincipal Jwt jwt) {
+        return ResponseEntity.ok(userService.findByUsername(jwt.getSubject()).convertToDto());
+    }
+
 }
