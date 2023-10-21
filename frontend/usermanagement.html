@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <!-- Standard settings; Meta viewport enables responsive design on mobile phones -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Includes the Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>User Management</title>
+
+    <!-- Includes Bootstrap core CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Includes Font Awesome for icons -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+
+    <!-- Includes your custom CSS style -->
+    <link href="./css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Includes a navbar component-->
+    <div id="navbar-bind"></div>
+
+    <div class="user-container-wrapper">
+        <div class="user-management-container">
+                <div class="user-create-form">
+                    <h2>Create User</h2>
+                    <form id="user-create-form">
+                        <label for="create-username">Username:</label>
+                        <input type="text" id="create-username" required placeholder="Fill in your username here">
+                
+                        <label for="create-password">Password:</label>
+                        <input type="password" id="create-password" required placeholder="Fill in your password">
+
+                        <label for="repeat-password">Repeat Password:</label>
+                        <input type="password" id="repeat-password" required placeholder="Repeat your password">
+                        <p id="password-match-error" style="color: red; display: none;">Passwords do not match.</p>
+                
+                        <label for="create-firstname">First Name:</label>
+                        <input type="text" id="create-firstname" required placeholder="Fill in your first name">
+                
+                        <label for="create-lastname">Last Name:</label>
+                        <input type="text" id="create-lastname" required placeholder="Fill in your last name">
+                
+                        <label for="create-email">Email:</label>
+                        <input type="email" id="create-email" required placeholder="Fill in your email address">
+
+                        <label for="create-city">City:</label>
+                        <input type="text" id="create-city" required placeholder="Fill in your city">
+
+                        <label for="create-country">Country:</label>
+                        <input type="text" id="create-country" required placeholder="Fill in your country">
+
+                        <label for="create-postalCode">PostalCode:</label>
+                        <input type="text" id="create-postalCode" required placeholder="Fill in your postalcode">
+
+                        <label for="create-street">Street:</label>
+                        <input type="text" id="create-street" required placeholder="Fill in your street">
+
+                        <label for="select-gender">Gender:</label>
+                        <select id="select-gender" class="form-select" aria-label="Select your gender">
+                            <option value="1" selected>Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Diverse</option>
+                        </select>
+
+                        <label for="select-role">Role</label>
+                        <div id="role-bind"></div>
+                
+                        <button class="create-user" type="submit">Create User</button>
+                    </form> 
+                </div>
+                
+                <div class="user-list">
+                    <h2>Existing Users</h2>
+                    <table class="user-list-table" id="user-display-table">
+                        <thead>
+                            <tr>
+                                <th class="user-id">ID</th>
+                                <th class="user-username">User</th>
+                                <th class="user-password">Pass</th>
+                                <th class="user-gender">Gender</th>
+                                <th class="user-firstname">Name</th>
+                                <th class="user-lastname">Surname</th>
+                                <th class="user-email">Email</th>
+                                <th class="user-address">Address</th>
+                                <th class="user-role">Role</th>
+                                <th class="user-action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="user-list-tbody" id="user-list-tbody">
+                            <!-- User data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- Include a footer component (You can add it here or dynamically load it with JavaScript) -->
+    <div id="footer-bind"></div>
+
+<!-- Include JavaScript files -->
+<script src="./js/loader.js"></script>
+<script src="./js/usermanagement.js"></script>
+</body>
+</html>

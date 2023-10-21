@@ -61,9 +61,10 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 
 
 /* password is always the word password for each user */
-INSERT INTO users (username, password, role_id, address_id, cart_id, firstname, lastname, gender, email  ) VALUES
-('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1, 1, 'Peter', 'Pota', 'Male', 'peter@pota.com'),            -- 1
-('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1, 2, 'Susi', 'Sosa', 'Female', '69susi69@hotmail.at');     -- 2
+INSERT INTO users (username, password, role_id, address_id, cart_id, gender, firstname, lastname, email)
+VALUES
+('user', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 1, 1, 1, 'Male', 'John', 'Doe', 'user@example.com'),      -- User 1
+('admin', '$2a$12$p4lekWiTI3LZHx8b1cOVQ.IyRPDZhuZBHw3fGazVotMq2iVBGuwPq', 2, 1, 2, 'Male', 'Admin', 'Admin', 'admin@example.com');  -- User 2
 
 
 

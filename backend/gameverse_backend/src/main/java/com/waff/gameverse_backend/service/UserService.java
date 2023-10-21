@@ -2,8 +2,9 @@ package com.waff.gameverse_backend.service;
 
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.enums.Gender;
+import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Cart;
-import com.waff.gameverse_backend.model.Role;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,13 +25,19 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    private final RoleService roleService;
+
+    private final AddressService addressService;
+
     /**
      * Constructs a new UserService instance.
      *
      * @param userRepository The UserRepository for database interactions.
      */
-    UserService(UserRepository userRepository) {
+    UserService(UserRepository userRepository, RoleService roleService, AddressService addressService) {
         this.userRepository = userRepository;
+        this.roleService    = roleService;
+        this.addressService = addressService;
     }
 
     /**
@@ -76,6 +83,7 @@ public class UserService implements UserDetailsService {
 
         if (toCheck.isEmpty()) {
             User toSave = new User(userDto);
+            toSave.setRole(roleService.findByName("user"));
             return this.userRepository.save(toSave);
         } else {
             throw new IllegalArgumentException("The provided username is already in use by another user.");
@@ -91,9 +99,16 @@ public class UserService implements UserDetailsService {
      */
     public User save(UserDto userDto) {
         var toCheck = this.userRepository.findByUsername(userDto.getUsername());
+        var role = this.roleService.findByName(userDto.getRole().getName());
+
+        var address = addressService.exists(userDto.getAddress())
+            ? this.addressService.findByAddress(userDto.getAddress())
+            : this.addressService.save(userDto.getAddress());
 
         if (toCheck.isEmpty()) {
             User toSave = new User(userDto);
+            toSave.setRole(role);
+            toSave.setAddress(address);
             return this.userRepository.save(toSave);
         } else {
             throw new IllegalArgumentException("The provided username is already in use by another user.");
@@ -108,13 +123,26 @@ public class UserService implements UserDetailsService {
      * @throws IllegalArgumentException If the provided username is blank or null.
      * @throws NoSuchElementException   If the user with the given ID does not exist.
      */
-    public User update(SimpleUserDto userDto) {
+    public User update(UserDto userDto) {
         var toUpdate = this.userRepository.findById(userDto.getId())
             .orElseThrow(() -> new NoSuchElementException("User with the given ID does not exist"));
 
         toUpdate.setUsername(userDto.getUsername());
         toUpdate.setPassword(userDto.getPassword());
-        toUpdate.setRole(new Role(userDto.getRole()));
+        toUpdate.setFirstname(userDto.getFirstname());
+        toUpdate.setLastname(userDto.getLastname());
+        toUpdate.setEmail(userDto.getEmail());
+        toUpdate.setGender(Gender.valueOf(userDto.getGender()));
+        toUpdate.setRole(this.roleService.findById(userDto.getRole().getId()));
+
+        if(!addressService.exists(userDto.getAddress())) {
+            var newAddress = addressService.save(userDto.getAddress());
+            toUpdate.setAddress(newAddress);
+        } else {
+            var existingAddress = addressService.findByAddress(userDto.getAddress());
+            toUpdate.setAddress(existingAddress);
+        }
+
         return this.userRepository.save(toUpdate);
     }
 
@@ -125,12 +153,15 @@ public class UserService implements UserDetailsService {
      * @return The deleted user.
      * @throws NoSuchElementException If the user with the given ID does not exist.
      */
-    public User delete(Long id) {
+    public void delete(Long id) {
         var toDelete = this.userRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("User with the given ID does not exist"));
 
+        toDelete.setRole(null);
+        toDelete.setAddress(null);
+        toDelete.setCart(null);
+        toDelete.setOrders(List.of());
         this.userRepository.delete(toDelete);
-        return toDelete;
     }
 
     /**

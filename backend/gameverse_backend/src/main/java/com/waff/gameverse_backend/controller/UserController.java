@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +65,24 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
+    @GetMapping("/all/full")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<List<UserDto>> findAllFullUser() {
+        var users = userService.findAll();
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+        }
+    }
     /**
      * Retrieves a user by their ID.
      *
@@ -83,6 +103,26 @@ public class UserController {
     }
 
     /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
+    @GetMapping("/full/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<UserDto> findFullUserById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id).convertToDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+
+    /**
      * Creates a new user.
      *
      * @param userDto The SimpleUserDto containing the user information to be created.
@@ -92,7 +132,7 @@ public class UserController {
      */
     @PostMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
@@ -111,9 +151,9 @@ public class UserController {
      */
     @PutMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<UserDto> update(@Validated @RequestBody UserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
+            return ResponseEntity.ok(userService.update(userDto).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -129,14 +169,20 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
+            if (userService.findByUsername(jwt.getSubject()).getId() != id) {
+                this.userService.delete(id);
+                return ResponseEntity.ok("User with id " + id + " deleted");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("User der gelöscht werden soll is eingeloggte User!\nIllegale Aktion");
+            }
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @PutMapping("/addToCart/{productId}")
     @PreAuthorize("@tokenService.hasPrivilege('view_carts')")

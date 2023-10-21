@@ -52,10 +52,8 @@ public class UserDto implements Serializable {
     @NotEmpty
     private String email;
 
-    @NotNull
     private AddressDto address;
 
-    @NotNull
     private RoleDto role;
 
 }

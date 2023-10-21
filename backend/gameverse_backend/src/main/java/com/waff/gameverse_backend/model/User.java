@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.model;
 
+import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.utils.DataTransferObject;
@@ -91,18 +92,18 @@ public class User implements UserDetails, DataTransferObject<UserDto>, SimpleDat
     public User(SimpleUserDto simpleUserDto) {
         this.username = simpleUserDto.getUsername();
         this.password = simpleUserDto.getPassword();
-        this.role = new Role(simpleUserDto.getRole());
+        this.role     = simpleUserDto.getRole() == null ? new Role() : new Role(simpleUserDto.getRole());
     }
 
     public User(UserDto userDto) {
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
-        this.role = new Role(userDto.getRole());
+        this.role = userDto.getRole() == null ? new Role() : new Role(userDto.getRole());
         this.firstname = userDto.getFirstname();
         this.lastname = userDto.getLastname();
-        this.gender = Gender.valueOf(userDto.getGender().toUpperCase());
+        this.gender = Gender.valueOf(userDto.getGender());
         this.email  = userDto.getEmail();
-        this.address = new Address(userDto.getAddress());
+        this.address = userDto.getAddress() == null ? new Address() : new Address(userDto.getAddress());
     }
 
     /**
