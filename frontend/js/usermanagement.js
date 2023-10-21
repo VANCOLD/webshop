@@ -3,9 +3,12 @@ function getAccessToken() {
     return localStorage.getItem('token');
 }
 
+var roles;
+
 $(document).ready(function () {
+    loadRoles();
     loadUsers();
-    
+
     // Add an event listener to the user creation form
     $('#user-create-form').submit(function (e) {
         e.preventDefault();
@@ -15,6 +18,7 @@ $(document).ready(function () {
             $('#password-match-error').show();
         }
     });
+
 });
 
 // Function to check if the passwords match
@@ -41,7 +45,7 @@ function loadUsers() {
             },
             success: function (data) {
                 // Handle the successful response, e.g., populate the user list
-                populateUserList(data);
+                populateUserList(data, roles);
             },
             error: function (err) {
                 console.error('Error loading users: ', err);
@@ -64,17 +68,20 @@ function createUser() {
     
     const genderHook = document.getElementById("select-gender");
     const gender = genderHook.options[genderHook.selectedIndex].text;
-    const address = { city: city, postalCode: postalCode, country: country, street: street};
-    const role = "user"; //automatically assigns user role
+    const roleHook   = document.getElementById("select-role");
+    const role = roleHook.options[roleHook.selectedIndex].text;
+
+    const address = { city: city.trim(), postalCode: postalCode.trim(), country: country.trim(), street: street.trim()};
+
 
 
     if (accessToken && username && password) {
         const userData = {
-            username: username,
-            password: password,
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
+            username: username.trim(),
+            password: password.trim(),
+            firstname: firstname.trim(),
+            lastname: lastname.trim(),
+            email: email.trim(),
             gender: gender,
             address: address,
             role: role
@@ -98,6 +105,12 @@ function createUser() {
                 $('#create-firstname').val('');
                 $('#create-lastname').val('');
                 $('#create-email').val('');
+                $('#create-street').val('');
+                $('#create-city').val('');
+                $('#create-country').val('');
+                $('#create-postalCode').val('');
+                $('#create-gender').value = 'Male';
+                $('#create-role').value = 'user';
             },
             error: function (xhr, status, error) {
                 if (xhr.status === 409) {
@@ -174,7 +187,6 @@ function handleUpdateUser(userId, newUserData) {
             },
             success: function (data) {
                 // Handle the successful response, e.g., update the user list
-                console.log(data)
                 loadUsers();
             },
             error: function (err) {
@@ -184,63 +196,73 @@ function handleUpdateUser(userId, newUserData) {
     }
 }
 
-function populateUserList(users) {
+function populateUserList(users,roles) {
     const userTableBody = $('#user-list-tbody');
     userTableBody.empty();
 
     users.forEach(function (user) {
-        const userRow = `
+        let userRow = `
             <tr data-user-id="${user.id}">
             <td>${user.id}</td>
-            <td class="editable" data-field="username">${user.username}</td>
-            <td class="editable" data-field="password">
-            <span class="placeholder">****</span>
-            <input type="password" value="${user.password}" style="display: none;"></td>
+            <td class="editable" data-field="username" data-user-id>${user.username}</td>
+            <td> **** </td>
+            <td class="editable" style="display:none;" data-field="password">${user.password}</td>
             <td class="editable" data-field="gender">${user.gender}</td>
             <td class="editable" data-field="firstname">${user.firstname}</td>
             <td class="editable" data-field="lastname">${user.lastname}</td>
             <td class="editable" data-field="email">${user.email}</td>
-            <td class="editable" data-field="role" data-user-id="${user.id}">${user.role.name}</td>
+            <td class="editable" data-field="address" data-user-id="${user.address.id}">${user.address.street};${user.address.postalCode};${user.address.city};${user.address.country}</td>`;
+
+            const roleOptions = roles.map(function (role) {
+                return `<option value="${role.id}" ${user.role.id === role.id ? "selected" : ""}>${role.name}</option>`;
+            });
+
+
+            userRow += `
+            <td class="editable" style="width:100px" data-field="role" data-user-id="${user.id}">  
+                    <select disabled id="update-role${user.id}">
+                        ${roleOptions.join('')} <!-- Join the array to form the options -->
+                    </select>
+            </td>
             <td>
                 <button class="delete-button" data-user-id="${user.id}">Delete</button>
                 <button class="update-button" data-user-id="${user.id}">Edit</button>
-                <button class="admin-button" data-user-id="${user.id}">Admin</button>
                 </td>
-        </tr>
-        `;
+            </tr>`;
         userTableBody.append(userRow);
     });
 }
 
-// Add an event listener to the Edit button
-const editButtons = document.querySelectorAll('.edit-button');
+function loadRoles() {
+    const accessToken = getAccessToken();
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: `http://localhost:8080/api/roles/all`,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function (data) {
+                roles = data;
+                const roleOptions = roles.map(function (role) {
+                    return `<option value="${role.id}"}>${role.name}</option>`;
+                });
+    
+    
+                $('#role-bind').replaceWith(` 
+                <select id="select-role" class="form-select" aria-label="Select your role">
+                    ${roleOptions.join('')} <!-- Join the array to form the options -->
+                </select>`);
+                
+            },
+            error: function (err) {
+                console.error('Error retrieving role data: ', err);
+            }
+        });
+    }
+}
 
-editButtons.forEach((button) => {
-    button.addEventListener('click', function () {
-        const parent = this.closest('td');
-        const input = parent.querySelector('input[type="password"]');
-        const placeholder = parent.querySelector('.placeholder');
 
-        // Toggle the display of input and placeholder
-        if (input.style.display === 'none') {
-            input.style.display = 'block';
-            placeholder.style.display = 'none';
-        } else {
-            input.style.display = 'none';
-            placeholder.style.display = 'inline';
-        }
-    });
-});
-
-
-    // Handle user updates
-    $('.editable').on('blur', function () {
-        const userId = $(this).closest('tr').data('user-id');
-        const field = $(this).attr('name');
-        const newValue = $(this).val();
-
-        updateUserData(userId, field, newValue);
-    });
 
     // Handle user updates
     $('.user-list-table').on('click', '.update-button', function () {
@@ -252,75 +274,98 @@ editButtons.forEach((button) => {
             // Switch to edit mode
             editButton.text('Save');
             row.find('.editable').prop('contenteditable', true).addClass('editing');
+            document.getElementById('update-role'+userId).disabled = false;
         } else if (editButton.text() === 'Save') {
-            // Handle the save logic here
-            const field = row.find('.editing').data('field');
-            const newValue = row.find('.editing').text().trim();
-            updateUserData(userId, field, newValue);
+            updateUserData(userId);
 
             // Switch back to edit mode after saving
             editButton.text('Edit');
+            document.getElementById('update-role'+userId).disabled = true;
             row.find('.editable').prop('contenteditable', false).removeClass('editing');
         }
     });
 
 
     // Handle user deletions (using event delegation)
-$('.user-list-table').on('click', '.delete-button', function () {
-    const userId = $(this).data('user-id'); // Get the user ID from the data attribute
-    if (confirm(`Are you sure you want to delete user with ID ${userId}?`)) {
-        // If the user confirms the deletion, call the deleteUser function
-        deleteUser(userId);
-    }
-});
+    $('.user-list-table').on('click', '.delete-button', function () {
+        const userId = $(this).data('user-id'); // Get the user ID from the data attribute
+        if (confirm(`Are you sure you want to delete user with ID ${userId}?`)) {
+            // If the user confirms the deletion, call the deleteUser function
+            deleteUser(userId);
+        }
+    });
 
-function changeRoleToAdmin() {
-    // Find the element containing the role string and update it
-    const roleElement = document.querySelector('.editable[user.role.name]');
-    if (roleElement) {
-        roleElement.textContent = 'Admin';
+
+function updateUserData(userId, field, newValue, row) {
+    const accessToken = getAccessToken();
+
+    if (accessToken) {
+
+        // Get a reference to the table by its ID
+        const table = document.getElementById('user-display-table');
+        
+        var cellContent = []
+
+        // Check if the table exists
+        if (table) {
+            // Search for the row with the specified data-user-id attribute
+            const rows = table.querySelectorAll(`tr[data-user-id="${userId}"]`);
+            // Access the cells in the row
+            const cells = rows[0].cells;
+
+            // Loop through the cells and extract their content
+            for (let i = 0; i < cells.length; i++) {
+                console.log(i + " " + cells[i].textContent);
+                if(i != 2) { 
+                    if(i != 9) {
+                        if(i != 8) {
+                            cellContent.push(cells[i].textContent);
+                        } else {
+                            const out = cells[i].textContent.split(';');
+                            const dataUserId = cells[i].getAttribute('data-user-id');
+                            cellContent.push({id: dataUserId, street:out[0].trim(), postalCode: out[1].trim(), city: out[2].trim(), country: out[3].trim()})
+                        }
+                    } else {
+                        const select = cells[i].querySelector('select');
+                        cellContent.push({id: select.value, name: select.options[select.selectedIndex].text.trim()});
+                    }
+                }
+            }
+
+            console.log(cellContent);
+        }
+
+
+        const updateData = {
+            id: cellContent[0].trim(),
+            username: cellContent[1].trim(),
+            password: cellContent[2].trim(),
+            gender: cellContent[3].trim(),
+            firstname: cellContent[4].trim(),
+            lastname: cellContent[5].trim(),
+            email: cellContent[6].trim(),
+            address: cellContent[7],
+            role: cellContent[8]
+        };
+
+        $.ajax({
+            type: 'PUT',
+            url: `http://localhost:8080/api/users`,
+            data: JSON.stringify(updateData), // Send only the field to update
+            contentType: 'application/json',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function (data) {
+                console.log('Update successful:', data);
+            },
+            error: function (err) {
+                console.error('Error updating user data: ', err);
+            }
+        }).done(function() {
+            loadUsers();
+            row.find('.editable').prop('contenteditable', false).removeClass('editing');
+        });
     }
 }
-
-// Add a click event listener to the "Change Role" button
-$('.user-list-table').on('click', '.admin-button', function () {
-    const userId = $(this).data('user-id'); // Get the user ID from the button's data attribute
-
-    // Find the element containing the role string for the specific user and update it
-    const roleElement = $(`td[data-field="role"][data-user-id="${userId}"]`);
-    
-    if (roleElement.length) {
-        roleElement.text('Admin');
-    }
-});
-
-
-    function updateUserData(userId, field, newValue, row) {
-        const accessToken = getAccessToken();
-    
-        if (accessToken) {
-            const updateData = {
-                [field]: newValue // Create a JSON object with a single field
-            };
-    
-            $.ajax({
-                type: 'PUT',
-                url: `http://localhost:8080/api/users/${userId}`,
-                data: JSON.stringify(updateData), // Send only the field to update
-                contentType: 'application/json',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                },
-                success: function (data) {
-                    console.log('Update successful:', data);
-                },
-                error: function (err) {
-                    console.error('Error updating user data: ', err);
-                }
-            }).done(function() {
-                loadUsers();
-                row.find('.editable').prop('contenteditable', false).removeClass('editing');
-            });
-        }
-    }
     

@@ -73,6 +73,9 @@
                             <option value="2">Female</option>
                             <option value="3">Diverse</option>
                         </select>
+
+                        <label for="select-role">Role</label>
+                        <div id="role-bind"></div>
                 
                         <button class="create-user" type="submit">Create User</button>
                     </form> 
@@ -80,16 +83,17 @@
                 
                 <div class="user-list">
                     <h2>Existing Users</h2>
-                    <table class="user-list-table">
+                    <table class="user-list-table" id="user-display-table">
                         <thead>
                             <tr>
                                 <th class="user-id">ID</th>
-                                <th class="user-username">Username</th>
-                                <th class="user-password">Password</th>
+                                <th class="user-username">User</th>
+                                <th class="user-password">Pass</th>
                                 <th class="user-gender">Gender</th>
-                                <th class="user-firstname">First Name</th>
-                                <th class="user-lastname">Last Name</th>
+                                <th class="user-firstname">Name</th>
+                                <th class="user-lastname">Surname</th>
                                 <th class="user-email">Email</th>
+                                <th class="user-address">Address</th>
                                 <th class="user-role">Role</th>
                                 <th class="user-action">Action</th>
                             </tr>
