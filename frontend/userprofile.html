@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <!-- Standard settings; Meta viewport enables responsive design on mobile phones -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Includes the Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>User Profile</title>
+
+    <!-- Includes Bootstrap core CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Includes Font Awesome for icons -->
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+
+    <!-- Includes your custom CSS style -->
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Includes a navbar component-->
+    <div id="navbar-bind"></div>
+
+    <div class="user-container-wrapper">
+        <div class="user-profile-container">
+            <h2>Your User Profile</h2>
+            <form id="user-profile-form">
+                <div class="user-profile-form-group">
+                    <label for="profile-username">Username:</label>
+                    <input type="text" id="profile-username" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-firstname">First Name:</label>
+                    <input type="text" id="profile-firstname" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-lastname">Last Name:</label>
+                    <input type="text" id="profile-lastname" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-password">Password:</label>
+                    <input type="text" id="profile-password" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-email">Email:</label>
+                    <input type="email" id="profile-email" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-gender">Gender:</label>
+                    <input type="text" id="profile-gender" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-address-city">City:</label>
+                    <input type="text" id="profile-address-city" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-address-street">Street:</label>
+                    <input type="text" id="profile-address-street" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-address-postalcode">Postal Code:</label>
+                    <input type="text" id="profile-address-postalcode" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-address-country">Country:</label>
+                    <input type="text" id="profile-address-country" class="form-control" readonly>
+                </div>
+                <div class="user-profile-form-group">
+                    <label for="profile-role">Role:</label>
+                    <input type="text" id="profile-role"  disabled class="form-control" readonly>
+                </div>
+                <button type="button" class="btn btn-primary" id="user-profile-save-button">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include a footer component (You can add it here or dynamically load it with JavaScript) -->
+    <div id="footer-bind"></div>
+
+    <!-- Include JavaScript files -->
+    <script src="./js/loader.js"></script>
+    <script src="./js/userprofile.js"></script> <!-- You may need a separate script for the user profile -->
+</body>
+</html>
