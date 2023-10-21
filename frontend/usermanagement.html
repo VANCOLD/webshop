@@ -41,6 +41,10 @@
                 
                         <label for="create-password">Password:</label>
                         <input type="password" id="create-password" required placeholder="Fill in your password">
+
+                        <label for="repeat-password">Repeat Password:</label>
+                        <input type="password" id="repeat-password" required placeholder="Repeat your password">
+                        <p id="password-match-error" style="color: red; display: none;">Passwords do not match.</p>
                 
                         <label for="create-firstname">First Name:</label>
                         <input type="text" id="create-firstname" required placeholder="Fill in your first name">
@@ -70,7 +74,7 @@
                             <option value="3">Diverse</option>
                         </select>
                 
-                        <button type="submit">Create User</button>
+                        <button class="create-user" type="submit">Create User</button>
                     </form> 
                 </div>
                 

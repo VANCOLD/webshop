@@ -4,11 +4,29 @@ function getAccessToken() {
 }
 
 $(document).ready(function () {
-    loadUsers(); // Load users when the page loads
+    loadUsers();
+    
+    // Add an event listener to the user creation form
     $('#user-create-form').submit(function (e) {
         e.preventDefault();
-        createUser(); // Handle the form submission to create a new user
+        if (passwordsMatch()) {
+            createUser();
+        } else {
+            $('#password-match-error').show();
+        }
     });
+});
+
+// Function to check if the passwords match
+function passwordsMatch() {
+    const password = $('#create-password').val();
+    const repeatPassword = $('#repeat-password').val();
+    return password === repeatPassword;
+}
+
+// Add an event listener to the "Repeat Password" input to hide the error message
+$('#repeat-password').on('input', function () {
+    $('#password-match-error').hide();
 });
 
 function loadUsers() {
@@ -76,6 +94,7 @@ function createUser() {
                 // Clears the form fields
                 $('#create-username').val('');
                 $('#create-password').val('');
+                $('#repeat-password').val('');
                 $('#create-firstname').val('');
                 $('#create-lastname').val('');
                 $('#create-email').val('');
@@ -118,7 +137,6 @@ function deleteUser(userId) {
     }
 }
 
-
 function updateUser(userId, userData) {
     const accessToken = getAccessToken();
 
@@ -141,41 +159,6 @@ function updateUser(userId, userData) {
     }
 }
 
-function showUpdateForm(userData) {
-    // Display a modal dialog with user data for updating
-    const updateForm = `
-        <div id="update-user-modal" class="modal">
-            <div class="modal-content">
-                <h3>Update User</h3>
-                <form id="update-user-form">
-                    <label for="update-username">Username:</label>
-                    <input type="text" id="update-username" name="username" value="${userData.username}" required>
-                    <label for="update-password">Password:</label>
-                    <input type="password" id="update-password" name="password" value="${userData.password}" required>
-                    <!-- Add input fields for other user-related data here with values from userData -->
-                    <button type="submit">Update</button>
-                </form>
-            </div>
-        </div>
-    `;
-
-    // Append the update form to the document
-    $('body').append(updateForm);
-
-    // Handle form submission for updating user data
-    $('#update-user-form').submit(function (e) {
-        e.preventDefault();
-        const newUserData = {
-            username: $('#update-username').val(),
-            password: $('#update-password').val(),
-            // Add other user-related data fields
-        };
-
-        // Call a separate function to update the user data
-        handleUpdateUser(userData.id, newUserData);
-        $('#update-user-modal').remove(); // Remove the modal after submission
-    });
-}
 
 function handleUpdateUser(userId, newUserData) {
     const accessToken = getAccessToken();
@@ -228,28 +211,6 @@ function populateUserList(users) {
         userTableBody.append(userRow);
     });
 }
-
-
-function changeRoleToAdmin() {
-    // Find the element containing the role string and update it
-    const roleElement = document.querySelector('.editable[user.role.name]');
-    if (roleElement) {
-        roleElement.textContent = 'Admin';
-    }
-}
-
-// Add a click event listener to the "Change Role" button
-$('.user-list-table').on('click', '.admin-button', function () {
-    const userId = $(this).data('user-id'); // Get the user ID from the button's data attribute
-
-    // Find the element containing the role string for the specific user and update it
-    const roleElement = $(`td[data-field="role"][data-user-id="${userId}"]`);
-    
-    if (roleElement.length) {
-        roleElement.text('Admin');
-    }
-});
-
 
 // Add an event listener to the Edit button
 const editButtons = document.querySelectorAll('.edit-button');
@@ -312,6 +273,27 @@ $('.user-list-table').on('click', '.delete-button', function () {
         deleteUser(userId);
     }
 });
+
+function changeRoleToAdmin() {
+    // Find the element containing the role string and update it
+    const roleElement = document.querySelector('.editable[user.role.name]');
+    if (roleElement) {
+        roleElement.textContent = 'Admin';
+    }
+}
+
+// Add a click event listener to the "Change Role" button
+$('.user-list-table').on('click', '.admin-button', function () {
+    const userId = $(this).data('user-id'); // Get the user ID from the button's data attribute
+
+    // Find the element containing the role string for the specific user and update it
+    const roleElement = $(`td[data-field="role"][data-user-id="${userId}"]`);
+    
+    if (roleElement.length) {
+        roleElement.text('Admin');
+    }
+});
+
 
     function updateUserData(userId, field, newValue, row) {
         const accessToken = getAccessToken();

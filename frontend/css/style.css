@@ -683,6 +683,13 @@ Shopping Cart Style
   }
 }
 
+/* 
+---------------------------------------------
+User Management Style
+--------------------------------------------- 
+*/
+
+
 .user-container-wrapper {
   display: flex;
   flex-direction: column;
@@ -703,13 +710,15 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 select {
-    padding: 10px; /* Adjust the padding value to your preference */
-}
-
-button[type="submit"] {
-  padding: 10px 20px; /* Adjust the padding values for top/bottom and left/right as needed */
-  margin-top: 20px;
-  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s;
+  border-radius: 5px; 
+  padding: 5px; 
+  box-sizing: border-box;
 }
 
 /* Create User Form */
@@ -722,7 +731,7 @@ button[type="submit"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px; /* Adjust the width as needed */
+  width: flex;
 }
 
 .create-user-form h2 {
@@ -738,24 +747,24 @@ button[type="submit"] {
 .user-create-form input[type="email"],
 .user-create-form input[type="password"] {
   width: 100%;
+  border-radius: 3px; /* Adjust the border-radius value */
   background-color: #f2f2f2;
   font-size: 16px;
   margin-bottom: 15px;
   transition: border 0.3s; /* Smooth transition for the border */
 }
 
-.create-user-form button {
+
+.create-user {
   background-color: #e75e8d;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
   cursor: pointer;
-  margin-top: 10px;
-}
-
-.create-user-form button:hover {
-  background-color: #ff4e84;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  left: 0; 
 }
 
 /* User List Table */
@@ -817,7 +826,6 @@ select {
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
-  width: flex;
 }
 
 .user-list-table .delete-button:hover, .user-list-table .update-button:hover {
