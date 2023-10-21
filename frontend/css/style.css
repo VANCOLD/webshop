@@ -193,12 +193,11 @@ Register Login Style
 */
 
     .register-background {
-        background-image: url("./../images/register-bg.png");
-        background-size: cover; /* Updated property */
-        background-repeat: no-repeat; /* Updated property */
-        background-position: center; /* Added property */
-        height: 120vh;
-    }
+    background-image: url("./../images/register-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
     .justified {
         text-align: center;
@@ -820,9 +819,31 @@ Responsive Style
     }
   }
 
-/* For responsive button in Register/Login */
- @media (min-width: 768px) {
-    .custom-button-bgcolor {
-      min-width: auto
+   /* Responsive Queries Register */
+
+  /* Add styles for small screens (up to 766px) */
+  @media (max-width: 766px) {
+    .tab-content {
+        border-radius: 50px; /* Ensure that the .tab-content container retains rounded corners on small screens */
     }
-}
+
+    .login-container {
+        border-radius: 50px; /* Ensure the .login-container retains rounded corners on small screens */
+    }
+
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+          font-size: 19px; /* Restore font size on larger screens */
+  }
+  }
+
+  /* Add styles for screens between 767px and 991px */
+  @media (min-width: 767px) and (max-width: 991px) {
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+      font-size: 19px; /* Restore font size on screens between 767px and 990px */
+  }
+  }
+
+  /* Additional styles for specific elements on larger screens (above 991px) */
+  @media (min-width: 992px) {
+    /* Add additional styles for elements as needed */
+  }
