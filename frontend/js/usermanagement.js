@@ -221,7 +221,7 @@ function populateUserList(users) {
             <td>
                 <button class="delete-button" data-user-id="${user.id}">Delete</button>
                 <button class="update-button" data-user-id="${user.id}">Edit</button>
-                <button class="admin-button" data-user-id="${user.id}">Change Role</button>
+                <button class="admin-button" data-user-id="${user.id}">Admin</button>
                 </td>
         </tr>
         `;

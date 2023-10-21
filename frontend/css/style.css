@@ -783,12 +783,15 @@ button[type="submit"] {
 
 /* User List Table Header Cells */
 .user-list-table th {
+  text-align: center; /* Add this line to center the text */
   padding: 5px;
 }
 
 /* User List Table Body Rows */
 .user-list-table tbody tr {
   font-size: 14px;
+  text-align: center; /* Add this line to center the text */
+
   background-color: #f2f2f2;
   color: #27292a;
 }
