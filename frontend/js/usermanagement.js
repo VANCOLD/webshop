@@ -203,7 +203,6 @@ function handleUpdateUser(userId, newUserData) {
 
 function populateUserList(users) {
     const userTableBody = $('#user-list-tbody');
-    const userModal = $('#userModal');
     userTableBody.empty();
 
     users.forEach(function (user) {
@@ -211,23 +210,66 @@ function populateUserList(users) {
             <tr data-user-id="${user.id}">
             <td>${user.id}</td>
             <td class="editable" data-field="username">${user.username}</td>
-            <td class="editable" data-field="password">${user.password}</td>
+            <td class="editable" data-field="password">
+            <span class="placeholder">****</span>
+            <input type="password" value="${user.password}" style="display: none;"></td>
             <td class="editable" data-field="gender">${user.gender}</td>
             <td class="editable" data-field="firstname">${user.firstname}</td>
             <td class="editable" data-field="lastname">${user.lastname}</td>
             <td class="editable" data-field="email">${user.email}</td>
-            <td>${user.role.name}</td>
+            <td class="editable" data-field="role" data-user-id="${user.id}">${user.role.name}</td>
             <td>
                 <button class="delete-button" data-user-id="${user.id}">Delete</button>
                 <button class="update-button" data-user-id="${user.id}">Edit</button>
-            </td>
+                <button class="admin-button" data-user-id="${user.id}">Change Role</button>
+                </td>
         </tr>
         `;
-
         userTableBody.append(userRow);
     });
 }
 
+
+function changeRoleToAdmin() {
+    // Find the element containing the role string and update it
+    const roleElement = document.querySelector('.editable[user.role.name]');
+    if (roleElement) {
+        roleElement.textContent = 'Admin';
+    }
+}
+
+// Add a click event listener to the "Change Role" button
+$('.user-list-table').on('click', '.admin-button', function () {
+    const userId = $(this).data('user-id'); // Get the user ID from the button's data attribute
+
+    // Find the element containing the role string for the specific user and update it
+    const roleElement = $(`td[data-field="role"][data-user-id="${userId}"]`);
+    
+    if (roleElement.length) {
+        roleElement.text('Admin');
+    }
+});
+
+
+// Add an event listener to the Edit button
+const editButtons = document.querySelectorAll('.edit-button');
+
+editButtons.forEach((button) => {
+    button.addEventListener('click', function () {
+        const parent = this.closest('td');
+        const input = parent.querySelector('input[type="password"]');
+        const placeholder = parent.querySelector('.placeholder');
+
+        // Toggle the display of input and placeholder
+        if (input.style.display === 'none') {
+            input.style.display = 'block';
+            placeholder.style.display = 'none';
+        } else {
+            input.style.display = 'none';
+            placeholder.style.display = 'inline';
+        }
+    });
+});
 
 
     // Handle user updates
@@ -270,7 +312,6 @@ $('.user-list-table').on('click', '.delete-button', function () {
         deleteUser(userId);
     }
 });
-
 
     function updateUserData(userId, field, newValue, row) {
         const accessToken = getAccessToken();
