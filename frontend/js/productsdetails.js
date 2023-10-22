@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 
 function loadData() {
-    
+
     const productContainer = $('.product-container');
 
     $.ajax({
@@ -29,8 +29,8 @@ function loadData() {
                 <div class='container h-auto pb-5'>
                     <h2 class='text-center pt-3 mb-1' style='margin: 20px;'>${product.name}</h2>
                     <div class='product-container d-flex align-items-center' style='margin-top: 20px;'>
-                        <img class='product-image col-lg-5' src='${imageSrc}' alt='${product.name}'>
-                        <div>
+                        <img class='product-image col-lg-5 w-25 h-25 mx-4' src='${imageSrc}' alt='${product.name}'>
+                        <div class="mx-4">
                             <p class='product-description'>
                             ${product.description}
                             </p>
