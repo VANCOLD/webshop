@@ -151,9 +151,9 @@ public class UserController {
      */
     @PutMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
-    public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
+    public ResponseEntity<UserDto> update(@Validated @RequestBody UserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
+            return ResponseEntity.ok(userService.update(userDto).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
