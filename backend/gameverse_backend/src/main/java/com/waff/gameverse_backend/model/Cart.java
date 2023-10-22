@@ -43,6 +43,6 @@ public class Cart implements DataTransferObject<CartDto> {
 
     @Override
     public CartDto convertToDto() {
-        return new CartDto(id, user.convertToSimpleDto(), products.stream().map(Product::convertToSimpleDto).toList());
+        return new CartDto(id, user.convertToSimpleDto(), products.stream().map(Product::convertToDto).toList());
     }
 }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    
+        <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+    
+        <title>Products</title>
+    
+        <!-- Bootstrap core CSS -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+        <script crossorigin="anonymous"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <!-- Fontawesome-->
+        <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+        <!-- Gibt uns Icons (Social Media / Navbar)-->
+    
+        <!-- Unser eigenes CSS-->
+        <link href="./css/style.css" rel="stylesheet">
+    
+    </head>
+
+    <body>
+        <div id="navbar-bind"></div>
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Create Product</h2>
+                            <div class="d-flex align-items-center mt-2">
+
+                                <form id="create-product-form">
+
+                                    <label for="create-name">Productname:</label>
+                                    <input class="contact-input" type="text" id="create-name" name="create-name" placeholder="Name" required>
+
+                                    <label for="create-description">Product Description:</label>
+                                    <input class="contact-input" type="text" id="create-description" name="create-description" placeholder="Description">
+
+                                    <label for="create-price">Price:</label>
+                                    <input class="contact-input" type="number" id="create-price" name="create-price" placeholder="Price" required>
+
+                                    <label for="create-image">Image:</label>
+                                    <input class="contact-input" type="text" id="create-image" name="create-image" placeholder="Image URL">
+
+                                    <label for="create-tax">Tax:</label>
+                                    <input class="contact-input" type="number" id="create-tax" name="create-tax" placeholder="Tax" required>
+
+                                    <label for="create-stock">Stock:</label>
+                                    <input class="contact-input" type="number" id="create-stock" name="create-stock" placeholder="Stock" required>
+
+                                    <label for="create-gtin">GTIN:</label>
+                                    <input class="contact-input" type="text" id="create-gtin" name="create-gtin" placeholder="GTIN" required>
+
+                                    <label for="create-categories">Categories:</label>
+                                    <select class="contact-input" id="create-categories" name="create-categories" required></select>
+
+                                    <label for="create-console_generations">Console Generation:</label>
+                                    <select class="contact-input" id="create-console_generations" name="create-console_generations"></select>
+
+                                    <label for="create-producers">Producer:</label>
+                                    <select class="contact-input" id="create-producers" name="create-producers" required></select>
+
+                                    <div class="text-center mt-4 mb-2">
+                                        <button class="btn btn-buy-now w-50 form-control"
+                                            type="button" onclick="saveProduct()">Save
+                                        </button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="footer-bind"></div>
+        <script src="./js/loader.js"></script>
+        <script src="./js/productmanagament.js"></script>
+    </body>
+</html>

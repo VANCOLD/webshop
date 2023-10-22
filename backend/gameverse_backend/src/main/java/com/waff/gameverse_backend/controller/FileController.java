@@ -4,16 +4,15 @@ import com.waff.gameverse_backend.dto.FileUploadResponse;
 import com.waff.gameverse_backend.service.FileService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@EnableMethodSecurity
 @RequestMapping("/api/files")
 public class FileController {
 
@@ -23,25 +22,12 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    private static final String authorityAdmin = "edit_products";
-
 
     @PostMapping
-    public ResponseEntity<FileUploadResponse>  upload(
-            @RequestParam("file") MultipartFile file
-    ) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isAdmin = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::toString)
-                .anyMatch(val -> val.equals(authorityAdmin));
-
-        if (isAdmin) {
-            String reference = fileService.upload(file);
-            return ResponseEntity.ok(new FileUploadResponse(true, reference));
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
+    public ResponseEntity<FileUploadResponse>  upload(@RequestParam("file") MultipartFile file) {
+        String reference = fileService.upload(file);
+        return ResponseEntity.ok(new FileUploadResponse(true, reference));
     }
 
     @GetMapping("/{reference}")

@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.repository;
 
+import com.waff.gameverse_backend.dto.ProducerDto;
 import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Producer;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,6 @@ public interface ProducerRepository extends JpaRepository<Producer, Long> {
     Optional<Producer> findByName(String name);
 
     List<Producer> findAllByAddress(Address address);
+
+    boolean existsByName(String name);
 }
