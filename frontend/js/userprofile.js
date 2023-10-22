@@ -4,14 +4,38 @@ function getAccessToken() {
 }
 
 function getUserIdFromToken(token) {
+    const tokenParts = token.split('.');
+    
+    if (tokenParts.length !== 3) {
+        console.error('Invalid token format');
+        return null;
+    }
+
+    const encodedPayload = tokenParts[1];
+    const base64 = encodedPayload.replace('-', '+').replace('_', '/');
+    const decodedPayload = atob(base64);
+
     try {
-        const decodedToken = jwt_decode(token);
-        return decodedToken.sub; // Assuming 'sub' is the claim containing the user ID
+        const payloadObj = JSON.parse(decodedPayload);
+        if (payloadObj && payloadObj.id) {
+            return payloadObj.id;
+        } else {
+            console.error('Token does not contain the "id" claim.');
+            return null;
+        }
     } catch (error) {
         console.error('Error decoding token:', error);
         return null;
     }
 }
+
+// Usage
+const token = 'getAccessToken()';
+const userId = getUserIdFromToken(token);
+if (userId !== null) {
+    console.log('User ID:', userId);
+}
+
 
 $(document).ready(function () {
     loadUserProfile(); // Call loadUserProfile on document ready to fetch the user's data
@@ -44,19 +68,33 @@ function loadUserProfile() {
 }
 
 function populateUserProfile(userData) {
-    // Populate the user profile form fields with the user's data
-    $('#profile-username').val(userData.username);
-    $('#profile-firstname').val(userData.firstname);
-    $('#profile-lastname').val(userData.lastname);
-    $('#profile-password').val(userData.password);
-    $('#profile-email').val(userData.email);
-    $('#profile-gender').val(userData.gender);
-    $('#profile-address-city').val(userData.address.city);
-    $('#profile-address-street').val(userData.address.street);
-    $('#profile-address-postalcode').val(userData.address.postalCode);
-    $('#profile-address-country').val(userData.address.country);
-    $('#profile-role').val(userData.role.name);
-}
+    
+        // Clear all form fields before populating them with the new data
+        $('#profile-username').val('');
+        $('#profile-firstname').val('');
+        $('#profile-lastname').val('');
+        $('#profile-password').val('');
+        $('#profile-email').val('');
+        $('#profile-gender').val('');
+        $('#profile-address-city').val('');
+        $('#profile-address-street').val('');
+        $('#profile-address-postalcode').val('');
+        $('#profile-address-country').val('');
+        $('#profile-role').val('');
+    
+        // Populate the user profile form fields with the user's data
+        $('#profile-username').val(userData.username);
+        $('#profile-firstname').val(userData.firstname);
+        $('#profile-lastname').val(userData.lastname);
+        $('#profile-password').val(userData.password);
+        $('#profile-email').val(userData.email);
+        $('#profile-gender').val(userData.gender);
+        $('#profile-address-city').val(userData.address.city);
+        $('#profile-address-street').val(userData.address.street);
+        $('#profile-address-postalcode').val(userData.address.postalCode);
+        $('#profile-address-country').val(userData.address.country);
+        $('#profile-role').val(userData.role.name);
+    }
 
 function saveUserProfile() {
     // Implement the logic to save user profile changes
