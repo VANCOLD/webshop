@@ -176,15 +176,11 @@ INSERT INTO categories (name) VALUES
 ('Consoles'),       -- 2
 ('Merchandise'),    -- 3
 ('Accessories'),    -- 4
-('Giftcards'),      -- 5
-('Sale');           -- 6
+('Giftcards');      -- 5
 
 INSERT INTO products
 (name, description, price, image, tax, stock, gtin, available, esrb_rating, console_generation_id, category_id, producer_id)
 VALUES
-
-
-
 
 -- PS4 Games        id = 5
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'

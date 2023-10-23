@@ -1,8 +1,6 @@
 const apiGetItemsUrl = 'http://localhost:8080/api/users/cart';
 const apiLoggedInUserUrl = 'http://localhost:8080/api/users/me';
 const apiSaveOrder       = 'http://localhost:8080/api/users/saveOrder';
-const apiMyOrders        = 'http://localhost:8080/api/users/orders';
-
 
 $(document).ready(function () {
     loadLoggedInUser();
@@ -102,6 +100,7 @@ function loadOrderedProducts() {
                 }
             });
 
+            var total = 0;
             // Iterate through productQuantities and display each product once with its quantity and buttons
             productQuantities.forEach((quantity, productId) => {
                 const product = data.products.find(p => p.id === productId);
@@ -112,7 +111,7 @@ function loadOrderedProducts() {
                         currency: 'EUR',
                     }).format(product.price * quantity);
 
-
+                    total += product.price * quantity;
 
                     orderHtml += `
                     <div class="mb-4 mt-4">
@@ -121,12 +120,19 @@ function loadOrderedProducts() {
                 }
             });
 
+
+                const totalFormatted = new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'EUR',
+                }).format(total);
+
                 orderHtml += `</div>`;
+                orderHtml += `<h2>Total: ${totalFormatted}<h2>`;
                 orderContainer.replaceWith(orderHtml);
             
 
             },
-            error: function(err) {
+            error: function(err) {  
                 console.log(err);
             }
         });
@@ -150,67 +156,6 @@ function createOrder    () {
             },
             error: function(err) {
                 console.log(err);
-            }
-        });
-    }
-}
-
-function loadMyOrders() {
-    const myOrdersContainer = $('.myorders-container');
-    const accessToken = localStorage.getItem('token');
-    if (accessToken) {
-        $.ajax({
-            type: 'GET',
-            url: apiMyOrders,
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function(data) {
-                const order = data;
-
-                for (const order of orders){
-                    const priceFormatted = new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: 'EUR',
-                    }).format(order.orderedProducts.price);
-                
-                    const imageSrc = isValidURL(order.image) ? order.image: './images/articles/games/placeholder_game.png';
-
-                    const myOrdersHTML = $(`
-                        <div class="myorders-container">
-                            <div class="cart-item">
-                                <img src="${imageSrc}" alt="${order.orderedProducts.name}" style="width: 125px; height: 125px;">
-                                <div class="cart-item-details">
-                                    <h2>${order.orderStatus}</h2>
-                                    <div>
-                                        <h3  class='pt-3 mb-1' style='margin: 20px;'>
-                                            ${order.orderedProducts.name}
-                                        </h2>
-                                    </div>
-
-                                    <div class="m-4">
-                                        <p class='product-description'>
-                                            ${order.orderedProducts.description}
-                                        </p>
-                                    </div>
-
-                                    <div class='product-price'>
-                                        Price: ${priceFormatted}
-                                    </div>
-
-                                    <div>
-                                        ${order.orderedProducts.tax}
-                                    </div>
-
-                                    <div>
-                                        ${order.orderedProducts.amount}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
-                    myOrdersContainer.append(myOrdersHTML);
-                }
             }
         });
     }

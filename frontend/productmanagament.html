@@ -32,7 +32,7 @@
     <body>
         <div id="navbar-bind"></div>
         <main>
-            <div class="container-fluid">
+            <div class="container-fluid mb-4">
                 <div class="row">
                     <div class="page-content pb-4 mb-4">
                         <div class="container h-auto pb-5">
@@ -40,7 +40,7 @@
                             <div class="d-flex align-items-center mt-2">
 
                                 <form id="create-product-form">
-
+                                    
                                     <label for="create-name">Productname:</label>
                                     <input class="contact-input" type="text" id="create-name" name="create-name" placeholder="Name" required>
 
@@ -84,10 +84,100 @@
                                                 type="button" onclick="saveProduct()"><a href="">Save</a>
                                         </button>
                                         <button class="btn btn-buy-now w-25 form-control"
-                                            type="button"><a href="./createproducer.html">New Producer</a>
+                                            type="button"><a href="./createcategory.html">New Category</a>
                                         </button>
-                                        <button class="btn btn-buy-now w-25 form-control"
-                                            type="button"><a href="./createcongen.html">New Console Generation</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Update / Delete Product</h2>
+                            <div class="d-flex align-items-center mt-2">
+                                <table class="user-list-table no-overflow" id="user-display-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:white;" class="product-id">ID</th>
+                                            <th style="color:white;" class="product-name">Name</th>
+                                            <th style="color:white;" class="product-description">Descrip</th>
+                                            <th style="color:white;" class="product-price">Price</th>
+                                            <th style="color:white;" class="product-tax">Tax</th>
+                                            <th style="color:white;" class="product-stock">#</th>
+                                            <th style="color:white;" class="product-gtin">GTIN</th>
+                                            <th style="color:white;" class="product-available">When </th>
+                                            <th style="color:white;" class="product-esrb">ESRB</th>
+                                            <th style="color:white;" class="product-category">Cat</th>
+                                            <th style="color:white;" class="product-conget">Conegn</th>
+                                            <th style="color:white;" class="product-producer">Prod</th>
+                                            <th style="color:white;" class="product-action">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="user-list-tbody" id="product-list-tbody">
+                                        <!-- User data will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Update / Delete Product</h2>
+                            <div class="d-flex align-items-center mt-2">
+
+                                <form id="create-product-form">
+
+                                    <label for="update-id">ID:</label>
+                                    <input class="contact-input" type="number" id="update-id" name="update-id" placeholder="ID" disabled>
+
+                                    <label for="update-name">Productname:</label>
+                                    <input class="contact-input" type="text" id="update-name" name="update-name" placeholder="Name" disabled required>
+
+                                    <label for="update-description">Product Description:</label>
+                                    <input class="contact-input" type="text" id="update-description" name="update-description" placeholder="Description" disabled>
+
+                                    <label for="update-price">Price:</label>
+                                    <input class="contact-input" type="number" id="update-price" name="update-price" placeholder="Price" disabled required>
+                                    
+                                    <label for="update-tax">Tax:</label>
+                                    <input class="contact-input" type="number" id="update-tax" name="update-tax" placeholder="Tax" disabled required>
+                                    
+                                    <label for="update-stock">Stock:</label>
+                                    <input class="contact-input" type="number" id="update-stock" name="update-stock" placeholder="Stock" disabled required>
+
+                                    <label for="update-gtin">GTIN:</label>
+                                    <input class="contact-input" type="text" id="update-gtin" name="update-gtin" placeholder="GTIN" disabled required>
+                                    
+                                    <label for="update-available">Available Date:</label>
+                                    <input class="contact-input" type="date" id="update-available" name="update-available" disabled required></input>
+                                    
+                                    <label for="update-categories">Categories:</label>
+                                    <select class="contact-input" id="update-categories" name="update-categories" disabled required></select>
+                                    
+                                    <label for="update-esrb" id="label-update-esrb">ESRB Rating:</label>
+                                    <select class="contact-input" id="update-esrb" name="update-esrb" disabled></select>
+                                    
+                                    <label for="update-console_generations" id="label-update-console_generations">Console Generation:</label>
+                                    <select class="contact-input" id="update-console_generations" name="update-console_generations" disabled></select>
+                                    
+                                    <label for="update-producers">Producer:</label>
+                                    <select class="contact-input" id="update-producers" name="update-producers" disabled required></select>
+                                    
+                                    <label for="update-image">Product Image:</label>
+                                    <input class="contact-input" type="file" id="update-image" name="update-image" disabled>
+                                    <img id="update-image-preview" class="image-fluid w-25 h-25" src="./images/articles/games/placeholder_game.png" alt="Product Image Preview"/>
+
+                                    <div class="text-center mt-4 mb-2">
+                                        <button class="btn btn-buy-now form-control" id="update-button" disabled
+                                                type="button" onclick="updateProduct()"><a href="">Update</a>
                                         </button>
                                     </div>
                                 </form>
