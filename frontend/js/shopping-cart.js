@@ -84,12 +84,11 @@ function populateCart(cartData) {
                     currency: 'EUR',
                 }).format(product.price);
 
-                const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
 
                 const cartItemHTML = `
                     <div class="cart-items-container">
                         <div class="cart-item">
-                            <img src="${imageSrc}" alt="${product.name}" style="width: 125px; height: 125px;">
+                            <img id="product-image${productId}" src="" alt="${product.name}" style="width: 125px; height: 125px;">
                             <div class="cart-item-details">
                                 <h2>${product.name}</h2>
                                 <p>${product.description}</p>
@@ -105,6 +104,27 @@ function populateCart(cartData) {
                 `;
 
                 cartContainer.append(cartItemHTML);
+                const imageElement = document.getElementById('product-image'+productId);
+
+                // Assuming you received the Blob from a fetch request
+                fetch('http://localhost:8080/files/' + product.image)
+                .then(response => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.blob();
+                    } else {
+                        console.error('HTTP error! Status:', response.status);
+                        // Handle the error appropriately
+                    }
+                })
+                .then(blobData => {
+                    const imageUrl = URL.createObjectURL(blobData);
+                    imageElement.src = imageUrl;
+                    
+                })
+                .catch(error => {
+                    console.error('Error loading the image:', error);
+                    imageElement.src = './images/articles/games/placeholder_game.png';
+                });
             }
         });
 
@@ -170,17 +190,6 @@ function increaseProduct(productId) {
     }
 }
 
-// Function to check if a URL is valid
-function isValidURL(str) {
-    // We use a regular expression to check if the string is a valid URL
-    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-    return !!pattern.test(str);
-}
 
 // Function to calculate the total amount
 function calculateTotalAmount(cartData) {

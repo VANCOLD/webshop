@@ -11,6 +11,7 @@ import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -114,10 +115,9 @@ public class OrderService {
 
         }
 
-        for(Product toConvert : userCart.getProducts()) {
+        for(Product toConvert : new HashSet<>(userCart.getProducts()) ) {
 
             int orderAmount   = userCart.getProducts().stream().filter(product -> product.equals(toConvert)).toList().size();
-
             toConvert.setStock(toConvert.getStock() - orderAmount);
 
         }

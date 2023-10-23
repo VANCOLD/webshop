@@ -54,7 +54,6 @@ function loadData() {
             productContainer.append(productTemplate);
             const imageElement = document.getElementById('product-image');
 
-
             // Assuming you received the Blob from a fetch request
             fetch('http://localhost:8080/files/' + product.image)
             .then(response => {
@@ -67,7 +66,6 @@ function loadData() {
             })
             .then(blobData => {
                 const imageUrl = URL.createObjectURL(blobData);
-                
                 imageElement.src = imageUrl;
                 
             })
