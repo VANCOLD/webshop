@@ -863,6 +863,25 @@ select {
 
 /*
 ---------------------------------------------
+User Profile Style 
+--------------------------------------------- 
+*/
+
+.profile-page-update-user {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  left: 0; 
+}
+
+
+/*
+---------------------------------------------
 Responsive Style
 --------------------------------------------- 
 */
