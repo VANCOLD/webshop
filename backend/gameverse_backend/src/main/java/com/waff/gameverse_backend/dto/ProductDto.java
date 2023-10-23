@@ -1,5 +1,6 @@
 package com.waff.gameverse_backend.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductDto {
+public class ProductDto implements Serializable {
 
     /** The unique identifier of the product. */
     private Long id;

@@ -1,9 +1,7 @@
 package com.waff.gameverse_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.waff.gameverse_backend.controller.CartController;
 import com.waff.gameverse_backend.dto.AddProductToCartDto;
-import com.waff.gameverse_backend.dto.SimpleProductDto;
 import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.service.CartService;
 import org.hamcrest.Matchers;

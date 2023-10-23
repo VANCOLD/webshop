@@ -7,6 +7,7 @@ import com.waff.gameverse_backend.model.*;
 import com.waff.gameverse_backend.repository.OrderRepository;
 import com.waff.gameverse_backend.repository.OrderedProductRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
+import com.waff.gameverse_backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,13 +21,16 @@ public class OrderService {
 
     private final UserService userService;
 
+    private final UserRepository userRepository;
+
     private final ProductRepository productRepository;
 
     private final OrderedProductRepository orderedProductRepository;
 
-    public OrderService(OrderRepository orderRepository, UserService userService, ProductRepository productRepository, OrderedProductRepository orderedProductRepository) {
+    public OrderService(OrderRepository orderRepository, UserService userService, UserRepository userRepository, ProductRepository productRepository, OrderedProductRepository orderedProductRepository) {
         this.orderRepository = orderRepository;
         this.userService     = userService;
+        this.userRepository = userRepository;
         this.productRepository  = productRepository;
         this.orderedProductRepository = orderedProductRepository;
     }
@@ -62,10 +66,6 @@ public class OrderService {
     public Order save(UserDto user) {
         User toOrder = userService.findById(user.getId());
 
-        if(toOrder.getOrders().stream().anyMatch(order -> order.getOrderStatus() == OrderStatus.IN_PROGRESS)) {
-            throw new IllegalStateException("Es gibt schon eine Bestellung in Bearbeitung! Bitte diese vorher abschließen");
-        }
-
         Order order  = new Order();
 
         Cart userCart = toOrder.getCart();
@@ -73,13 +73,16 @@ public class OrderService {
             throw new IllegalArgumentException("Der Einkaufswagen ist leer!");
         }
 
-        order.setOrderStatus(OrderStatus.IN_PROGRESS);
+        order.setOrderStatus(OrderStatus.ORDERED);
         order.setUser(toOrder);
 
         var orderedItems = new ArrayList<OrderedProduct>();
         order.setOrderedProducts(orderedItems);
-        orderRepository.save(order);
         populateOrder(order, userCart);
+        orderRepository.save(order);
+
+        toOrder.getCart().getProducts().clear();
+        userRepository.save(toOrder);
         return order;
 
     }
@@ -107,6 +110,7 @@ public class OrderService {
             orderedProduct.setOrder(order);
 
             orderedItems.add(orderedProduct);
+            orderedProductRepository.save(orderedProduct);
 
         }
 
@@ -119,28 +123,36 @@ public class OrderService {
         }
 
         order.setOrderedProducts(orderedItems);
-        for(OrderedProduct item : orderedItems)
-            orderedProductRepository.save(item);
     }
 
-    /**
-     * Update a order with the information from the provided OrderDto.
-     *
-     * @param orderDto The OrderDto containing updated order information.
-     * @return The updated order.
-     * @throws NoSuchElementException  If the order with the given ID does not exist.
-     */
+
     public Order confirm(OrderDto orderDto) {
         var toUpdate = this.orderRepository.findById(orderDto.getId())
             .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
 
-        if(toUpdate.getOrderStatus() == OrderStatus.COMPLETED) {
+        if(toUpdate.getOrderStatus() == OrderStatus.SHIPPED) {
             throw new IllegalArgumentException("Bestellung ist bestätigt, kann nicht nochmal bestätigt werden!");
         }
 
-        toUpdate.setOrderStatus(OrderStatus.COMPLETED);
-        toUpdate.getUser().getCart().setProducts(new ArrayList<>());
+        toUpdate.setOrderStatus(OrderStatus.SHIPPED);
         return this.orderRepository.save(toUpdate);
+    }
+
+
+    public Order cancel(OrderDto orderDto) {
+        var toUpdate = this.orderRepository.findById(orderDto.getId())
+            .orElseThrow(() -> new NoSuchElementException("Order with the given ID does not exist"));
+
+        if(toUpdate.getOrderStatus() == OrderStatus.CANCELED) {
+            throw new IllegalArgumentException("Bestellung ist abgebrochen, kann nicht nochmal abgebrochen werden!");
+        }
+
+        toUpdate.setOrderStatus(OrderStatus.CANCELED);
+        this.resetProducts();
+        return this.orderRepository.save(toUpdate);
+    }
+
+    private void resetProducts() {
     }
 
     /**

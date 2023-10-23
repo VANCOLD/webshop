@@ -50,7 +50,7 @@ public enum EsrbRating {
     /**
      * Used for products that don't get a rating (consoles, merchandise, giftcards etc)
      */
-    NONE("No Rating");
+    NO_RATING("No Rating");
 
     private final String name;
 

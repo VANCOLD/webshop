@@ -224,24 +224,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/openOrder")
-    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
-    public ResponseEntity<OrderDto> getOpenOrders(@AuthenticationPrincipal Jwt jwt) {
-
-        User user =  userService.findByUsername(jwt.getSubject());
-
-        try {
-            var toCheck = this.orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
-            return ResponseEntity.ok(toCheck.convertToDto());
-
-        } catch (NoSuchElementException ex) {
-            ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-
-    }
-
-
     @PostMapping("/saveOrder")
     @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
     public ResponseEntity<OrderDto> save(@AuthenticationPrincipal Jwt jwt) {
@@ -253,28 +235,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-
-    @PutMapping("/confirmOrder")
-    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
-    public ResponseEntity<OrderDto> confirm(@AuthenticationPrincipal Jwt jwt) {
-        User user = userService.findByUsername(jwt.getSubject());
-        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
-
-        order = this.orderService.confirm(order.convertToDto());
-        return ResponseEntity.ok(order.convertToDto());
-    }
-
-    @DeleteMapping("/deleteOrder")
-    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
-    public ResponseEntity<?> cancel(@AuthenticationPrincipal Jwt jwt) {
-        User user = userService.findByUsername(jwt.getSubject());
-        Order order = orderService.findByUserAndOrderStatus(user, OrderStatus.IN_PROGRESS);
-        System.out.println("LOL" + order.getId());
-
-        order = this.orderService.delete(order.getId());
-        return ResponseEntity.ok("deleted order");
-    }
-
 
     @GetMapping("/me")
     @PreAuthorize("@tokenService.hasPrivilege('view_profile')")
