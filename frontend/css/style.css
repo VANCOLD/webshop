@@ -765,7 +765,6 @@ select {
   transition: border 0.3s; /* Smooth transition for the border */
 }
 
-
 .create-user {
   background-color: #e75e8d;
   color: white;

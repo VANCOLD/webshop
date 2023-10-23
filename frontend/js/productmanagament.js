@@ -455,7 +455,6 @@ $('.user-list-table').on('click', '.update-button', function () {
         loadProduct(productId);
 
     } else if (editButton.text() === 'Revert') {
-        updateProductData(userId);
         resetUpdateForm();
 
         // Switch back to edit mode after saving
