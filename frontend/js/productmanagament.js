@@ -551,7 +551,6 @@ function loadProduct(productId) {
                 $('#update-tax').val(data.tax);
                 $('#update-stock').val(data.stock);
                 $('#update-gtin').val(data.gtin);
-                $('#update-image').val(data.image);
                 $('#update-available').val(data.available.split('T')[0]);
                 $('#update-categories').val(data.category.id);
                 $('#update-esrb').val(data.esrbRating);
