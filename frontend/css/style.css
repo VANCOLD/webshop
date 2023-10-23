@@ -414,6 +414,7 @@ Home Page Style
     width: 100px; /* Adjust the width as needed */
     height: 125px; /* Adjust the height as needed */
   }
+}
 
 /* 
 ---------------------------------------------
@@ -1149,4 +1150,3 @@ Responsive Style
   @media (min-width: 992px) {
     /* Add additional styles for elements as needed */
   }
-} 
