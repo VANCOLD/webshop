@@ -15,7 +15,7 @@ import java.util.UUID;
 public class LocalFileService implements FileService{
 
 
-    private final Path uploadDirectory = Paths.get("images");
+    private final Path uploadDirectory = Paths.get("./src/main/resources/static");
 
     @Override
     public String upload(MultipartFile file) {
