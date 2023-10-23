@@ -306,7 +306,7 @@ VALUES
 ('NBA 2K23', 'In dem Basketballsimulationsspiel von Visual Concepts spielst du als einer deiner Lieblingsspieler oder -mannschaften.',
  59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
  -- Accessoires    id = 5
- ('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt.',20.00, 'sonic_shirt.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
+ ('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt.',20.00, 'sonic_shirt.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', null,  3, 7);
  -- Konsolen id = 6
  -- Merchandise id = 7
  -- Giftcard id = 8

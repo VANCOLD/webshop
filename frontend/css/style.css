@@ -481,6 +481,37 @@ product Style
   position: relative; /* Required for absolute positioning of the button */
 } 
 
+.product-header {
+  background-color: #e75e8d;
+  color: white;
+  padding: 10px;
+}
+
+.product-card {
+  border: 4px solid #e75e8d; /* Add a border around each product card */
+  border-radius: 13%;
+  margin-bottom: 20px; /* Add some spacing between product cards */
+  padding: 10px;
+   /* Inner padding (margin) */
+   padding-top: 30px;
+   padding-bottom: 30px;
+   padding-left: 30px;
+   padding-right: 30px;
+}
+
+.product-card h3 {
+  color: #e75e8d; /* Set the title color to the header color */
+}
+
+.product-card p {
+  color: white; /* Set the text color to white */
+}
+
+.product-card img {
+  width: 250px;
+  height: 320px;
+}
+
 /* 
 ---------------------------------------------
 cards Style

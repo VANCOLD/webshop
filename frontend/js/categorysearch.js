@@ -14,17 +14,17 @@ $(document).ready(function () {
 function loadCategories() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/categories', // Replace with your backend URL
+        url: 'http://localhost:8080/categories',
         success: function (categories) {
-            const categoriesContainer = $('.categories');
-            categoriesContainer.empty();
+            const categorySelect = $('#category-select');
+            categorySelect.empty();
 
+            // Add an option for each category
             categories.forEach(function (category) {
-                const categoryItem = $('<div class="category-item">');
-                categoryItem.text(category.name);
-                categoryItem.data('category-id', category.id);
-
-                categoriesContainer.append(categoryItem);
+                categorySelect.append($('<option>', {
+                    value: category.id,
+                    text: category.name
+                }));
             });
         },
         error: function (err) {
@@ -32,6 +32,13 @@ function loadCategories() {
         }
     });
 }
+
+// Event handler for category selection
+$('#category-select').on('change', function () {
+    const categoryId = $(this).val(); // Get the selected category value
+    loadProductsByCategory(categoryId);
+});
+
 
 function loadProductsByCategory(categoryId) {
     const url = categoryId !== null
