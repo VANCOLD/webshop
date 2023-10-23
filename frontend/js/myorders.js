@@ -19,15 +19,13 @@ function loadMyOrders() {
                 const orders = data;
                 
 
-                for (const order of orders) {
-                    
-                    console.log(order)
+                for (const order of orders) {          
 
                     var myOrdersHTML = `
-                    <div class="myorders-container">
+                    <div class="myorders-container mt-4 mb-4">
                     <div class="cart-item">
                     <div class="cart-item-details">
-                    <h2>${order.orderStatus}</h2>
+                    <h1>Order #${order.id} | ${order.orderStatus}</h1>
                     <div>`;
 
                                         
