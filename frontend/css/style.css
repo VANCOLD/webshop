@@ -453,6 +453,34 @@ product Style
   height:420px;
 }
 
+.product-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+} 
+
+.product-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 60px;  
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative; /* Required for absolute positioning of the button */
+} 
+
 /* 
 ---------------------------------------------
 cards Style

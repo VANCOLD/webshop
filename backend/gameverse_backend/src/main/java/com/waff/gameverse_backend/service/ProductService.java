@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -186,5 +187,20 @@ public class ProductService {
 
         this.productRepository.delete(toDelete);
         return toDelete;
+    }
+
+    /**
+     * Retrieve all products associated with a specific category by category ID.
+     *
+     * @param categoryId The ID of the category to search for.
+     * @return A list of products containing the specified category.
+     * @throws NoSuchElementException If the category with the given ID does not exist.
+     */
+    public List<Product> findAllProductsByCategory(Long categoryId) {
+        Category category = categoryService.findById(categoryId);
+
+        List<Product> productsInCategory = productRepository.findAllByCategory(category);
+
+        return productsInCategory;
     }
 }
