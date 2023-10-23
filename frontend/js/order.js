@@ -156,7 +156,7 @@ function createOrder    () {
 }
 
 function loadMyOrders() {
-    const myOrdersContainer = $('myorders-container')
+    const myOrdersContainer = $('.myorders-container');
     const accessToken = localStorage.getItem('token');
     if (accessToken) {
         $.ajax({
@@ -166,30 +166,53 @@ function loadMyOrders() {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                const product = data;
+                const order = data;
 
-                const priceFormatted = new Intl.NumberFormat('de-DE', {
+                for (const order of orders){
+                    const priceFormatted = new Intl.NumberFormat('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
-                }).format(product.price);
+                    }).format(order.orderedProducts.price);
                 
-                const imageSrc = isValidURL(product.image) ? product.image: './images/articles/games/placeholder_game.png';
+                    const imageSrc = isValidURL(order.image) ? order.image: './images/articles/games/placeholder_game.png';
 
-                const myOrdersHTML = `
-                    <div class="cart-items-container">
-                        <div class="cart-item">
-                            <img src="${imageSrc}" alt="${product.name}" style="width: 125px; height: 125px;">
-                            <div class="cart-item-details">
-                                <h2>${product.name}</h2>
-                                <p>Price: ${priceFormatted}</p>
-                                <span class="quantity">${quantity}</span>
+                    const myOrdersHTML = $(`
+                        <div class="myorders-container">
+                            <div class="cart-item">
+                                <img src="${imageSrc}" alt="${order.orderedProducts.name}" style="width: 125px; height: 125px;">
+                                <div class="cart-item-details">
+                                    <h2>${order.orderStatus}</h2>
+                                    <div>
+                                        <h3  class='pt-3 mb-1' style='margin: 20px;'>
+                                            ${order.orderedProducts.name}
+                                        </h2>
+                                    </div>
+
+                                    <div class="m-4">
+                                        <p class='product-description'>
+                                            ${order.orderedProducts.description}
+                                        </p>
+                                    </div>
+
+                                    <div class='product-price'>
+                                        Price: ${priceFormatted}
+                                    </div>
+
+                                    <div>
+                                        ${order.orderedProducts.tax}
+                                    </div>
+
+                                    <div>
+                                        ${order.orderedProducts.amount}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                myOrdersContainer.append(myOrdersHTML);
+                    `);
+                    myOrdersContainer.append(myOrdersHTML);
+                }
             }
-        })
+        });
     }
 }
 

@@ -30,7 +30,7 @@ function loadData() {
                         <img id="product-image" class='product-image col-lg-5 w-25 h-25 mx-4' src='' alt='${product.name}'>
                         <div class="m-4">
                             <p class='product-description'>
-                            ${product.description}
+                                ${product.description}
                             </p>
                             <div class='product-price'>
                                 ${priceFormatted}
