@@ -231,6 +231,10 @@ VALUES
 , 14.99, 'sw_stardewvalley.jpg', 10, 10, '123475', '2016-02-26', 'EVERYONE', 3, 1, 16),
 ('Tears of the Kingdom', 'Begib dich in eine Welt voller Magie und Abenteuer, in der du als Held gegen finstere Mächte kämpfen musst. Löse Rätsel und erkunde eine faszinierende Welt.'
 , 29.99, 'sw_zeldatotk.jpg', 10, 10, '123476', '2023-09-15', 'TEEN', 3, 1, 13),
+('Super Mario Wonder', 'Betritt in Super Mario Bros. Wonder für Nintendo Switch eine Welt voller Wunder!',
+ 55.99, 'sw_supermariowonder.jpg', 10, 10, '123476', '2023-12-24', 'TEEN', 3, 1, 13 ),
+('Super Mario RPG', 'Betritt in Super Mario RPG für Nintendo Switch eine Welt voller Wunder!',
+ 55.99, 'sw_supermariorpg.jpg', 10, 10, '123476', '2023-12-24', 'TEEN', 3, 1, 13 ),
 
 -- Playstation 5 Games id = 2
 ('Resident Evil Village', 'In dem Survival-Horrorspiel von Capcom kehrt Ethan Winters nach dem Vorfall in Raccoon City nach Europa zurück, um seine entführte Tochter zu finden.',
@@ -253,6 +257,9 @@ VALUES
  39.99, 'ps5_lifeisstrangetruecolors.jpg', 10, 10, '123485', '2023-09-15', 'TEEN', 2,  1, 25),
 ('Need For Speed: Unbund', 'In dem Rennspiel von Electronic Arts stürzt du dich in atemberaubende Rennen durch eine offene Welt.',
  59.99, 'ps5_nfsunbound.jpg', 10, 10, '123486', '2023-09-15', 'TEEN', 2,  1, 26),
+('Spider Man 2', 'Get ready to swing into the action with "Spider-Man 2," the blockbuster sequel that takes web-slinging to new heights and brings your favorite Marvel heroes back into the spotlight.',
+69.99, 'ps5_spiderman2.jpg', 10, 10, '123486', '2023-09-15', 'TEEN', 2,  1, 26),
+
 
 -- XBOX SX    id = 1
 ('Assassins Creed Valhalla', 'In dem Action-Rollenspiel von Ubisoft reist du als Eivor durch die Wikingerzeit, um England zu erobern.',
@@ -297,8 +304,15 @@ VALUES
 ('FIFA 22', 'In dem Fußballsimulationsspiel von EA Sports spielst du als einer deiner Lieblingsspieler oder -mannschaften.',
  59.99, 'xboxo_fifa22.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
 ('NBA 2K23', 'In dem Basketballsimulationsspiel von Visual Concepts spielst du als einer deiner Lieblingsspieler oder -mannschaften.',
- 59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
+ 59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
 
+
+ -- Accessoires    id = 5
+ ('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt.',20.00, 'sonic_shirt.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
+
+ -- Konsolen id = 6
+ -- Merchandise id = 7
+ -- Giftcard id = 8
 
 INSERT INTO products_to_carts (product_id, cart_id) VALUES
 (2, 1), -- 1
