@@ -17,20 +17,18 @@ function loadData() {
         url: `http://localhost:8080/products/${productId}`,
         success: function(data) {
             const product = data;
-        
             const priceFormatted = new Intl.NumberFormat('de-DE', {
                 style: 'currency',
                 currency: 'EUR',
             }).format(product.price);
             
-            const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
-        
-            const productTemplate = `
+
+            const productTemplate = $(`
                 <div class='container h-auto pb-5'>
                     <h2 class='text-center pt-3 mb-1' style='margin: 20px;'>${product.name}</h2>
                     <div class='product-container d-flex align-items-center' style='margin-top: 20px;'>
-                        <img class='product-image col-lg-5 w-25 h-25 mx-4' src='${imageSrc}' alt='${product.name}'>
-                        <div class="mx-4">
+                        <img id="product-image" class='product-image col-lg-5 w-25 h-25 mx-4' src='' alt='${product.name}'>
+                        <div class="m-4">
                             <p class='product-description'>
                             ${product.description}
                             </p>
@@ -51,25 +49,35 @@ function loadData() {
                         </div>
                     </div>
                 </div>
-            `;
+            `);
         
             productContainer.append(productTemplate);
+            const imageElement = document.getElementById('product-image');
+
+
+            // Assuming you received the Blob from a fetch request
+            fetch('http://localhost:8080/files/' + product.image)
+            .then(response => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.blob();
+                } else {
+                    console.error('HTTP error! Status:', response.status);
+                    // Handle the error appropriately
+                }
+            })
+            .then(blobData => {
+                const imageUrl = URL.createObjectURL(blobData);
+                
+                imageElement.src = imageUrl;
+                
+            })
+            .catch(error => {
+                console.error('Error loading the image:', error);
+                imageElement.src = './images/articles/games/placeholder_game.png';
+            });
         }
-        
     });
 
-}
-
-// Function to check if a URL is valid
-function isValidURL(str) {
-    // We use a regular expression to check if the string is a valid URL
-    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-    return !!pattern.test(str);
 }
 
 function addToCart() {                               

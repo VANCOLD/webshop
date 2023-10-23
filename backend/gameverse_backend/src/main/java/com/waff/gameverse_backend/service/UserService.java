@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.dto.UserDto;
 import com.waff.gameverse_backend.enums.Gender;
-import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.model.User;
 import com.waff.gameverse_backend.repository.UserRepository;

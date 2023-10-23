@@ -143,6 +143,10 @@ public class Product implements DataTransferObject<ProductDto>{
         this.gtin  = productDto.getGtin();
         this.price = productDto.getPrice();
         this.stock = productDto.getStock();
+        this.available = productDto.getAvailable();
+
+        var rating = EsrbRating.getEsrbRating(productDto.getEsrbRating());
+        this.esrbRating =  rating == null ? EsrbRating.NO_RATING : rating;
     }
 
 

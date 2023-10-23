@@ -50,34 +50,47 @@
                                     <label for="create-price">Price:</label>
                                     <input class="contact-input" type="number" id="create-price" name="create-price" placeholder="Price" required>
 
-                                    <label for="create-image">Image:</label>
-                                    <input class="contact-input" type="text" id="create-image" name="create-image" placeholder="Image URL">
-
+                                    
                                     <label for="create-tax">Tax:</label>
                                     <input class="contact-input" type="number" id="create-tax" name="create-tax" placeholder="Tax" required>
-
+                                    
                                     <label for="create-stock">Stock:</label>
                                     <input class="contact-input" type="number" id="create-stock" name="create-stock" placeholder="Stock" required>
 
                                     <label for="create-gtin">GTIN:</label>
                                     <input class="contact-input" type="text" id="create-gtin" name="create-gtin" placeholder="GTIN" required>
-
+                                    
+                                    <label for="create-available">Available Date:</label>
+                                    <input class="contact-input" type="date" id="create-available" name="create-available" required></input>
+                                    
                                     <label for="create-categories">Categories:</label>
                                     <select class="contact-input" id="create-categories" name="create-categories" required></select>
-
-                                    <label for="create-console_generations">Console Generation:</label>
+                                    
+                                    <label for="create-esrb" id="label-esrb">ESRB Rating:</label>
+                                    <select class="contact-input" id="create-esrb" name="create-esrb"></select>
+                                    
+                                    <label for="create-console_generations" id="label-console_generations">Console Generation:</label>
                                     <select class="contact-input" id="create-console_generations" name="create-console_generations"></select>
-
+                                    
                                     <label for="create-producers">Producer:</label>
                                     <select class="contact-input" id="create-producers" name="create-producers" required></select>
+                                    
+                                    <label for="create-image">Product Image:</label>
+                                    <input class="contact-input" type="file" id="create-image" name="create-image">
+                                    <img id="create-image-preview" class="image-fluid w-25 h-25" src="./images/articles/games/placeholder_game.png" alt="Product Image Preview"/>
 
                                     <div class="text-center mt-4 mb-2">
-                                        <button class="btn btn-buy-now w-50 form-control"
-                                            type="button" onclick="saveProduct()">Save
+                                        <button class="btn btn-buy-now w-25 form-control"
+                                                type="button" onclick="saveProduct()"><a href="">Save</a>
+                                        </button>
+                                        <button class="btn btn-buy-now w-25 form-control"
+                                            type="button"><a href="./createproducer.html">New Producer</a>
+                                        </button>
+                                        <button class="btn btn-buy-now w-25 form-control"
+                                            type="button"><a href="./createcongen.html">New Console Generation</a>
                                         </button>
                                     </div>
                                 </form>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -30,34 +30,8 @@ public class FileController {
         return ResponseEntity.ok(new FileUploadResponse(true, reference));
     }
 
-    @GetMapping("/{reference}")
-    public ResponseEntity<Resource> getFile(@PathVariable String reference) {
-        Resource fileResource = fileService.get(reference);
-
-        if (fileResource != null) {
-            String filename = fileResource.getFilename();
-            String fileExtension = filename.substring(filename.lastIndexOf(".") + 1);
-
-            MediaType mediaType = MediaType.APPLICATION_OCTET_STREAM;
-            if (fileExtension.equalsIgnoreCase("png")) {
-                mediaType = MediaType.IMAGE_PNG;
-            } else if (fileExtension.equalsIgnoreCase("jpg") || fileExtension.equalsIgnoreCase("jpeg")) {
-                mediaType = MediaType.IMAGE_JPEG;
-            }
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(mediaType);
-            headers.setContentDispositionFormData("attachment", filename);
-
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .body(fileResource);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @DeleteMapping("/{reference}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<Void> deleteFile(@PathVariable String reference) {
         boolean deleted = fileService.delete(reference);
 
