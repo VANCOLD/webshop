@@ -1,7 +1,6 @@
-const apiCancelOrderUrl  = 'http://localhost:8080/api/users/deleteOrder';
-const apiConfirmOrderUrl = 'http://localhost:8080/api/users/confirmOrder';
+const apiGetItemsUrl = 'http://localhost:8080/api/users/cart';
 const apiLoggedInUserUrl = 'http://localhost:8080/api/users/me';
-const apiOpenOrderUrl    = 'http://localhost:8080/api/users/openOrder';
+const apiSaveOrder       = 'http://localhost:8080/api/users/saveOrder';
 const apiMyOrders        = 'http://localhost:8080/api/users/orders';
 
 
@@ -74,32 +73,57 @@ function loadOrderedProducts() {
     if (accessToken) {
         $.ajax({
             type: 'GET',
-            url: apiOpenOrderUrl,
+            url: apiGetItemsUrl,
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                console.log(data);
                 const orderContainer = $('.order-bind');
                 var orderHtml = `
                 <div id="order-data mt-4 mb-4">
                     <h2>Order Details</h2>
                 `;
 
-                data.orderedProducts.forEach((element) => {
-                    const total = element.amount * element.price;
-                    const totalFormatted = new Intl.NumberFormat('de-DE', {
+            // Sort the products by ID
+            data.products.sort((a, b) => a.id - b.id);
+
+            const productQuantities = new Map();
+
+            // Iterate through the products and update quantities
+            data.products.forEach(product => {
+                const productId = product.id;
+
+                if (productQuantities.has(productId)) {
+                    // Product already exists in the cart, increase the quantity
+                    productQuantities.set(productId, productQuantities.get(productId) + 1);
+                } else {
+                    // Product is not in the cart, add it with quantity 1
+                    productQuantities.set(productId, 1);
+                }
+            });
+
+            // Iterate through productQuantities and display each product once with its quantity and buttons
+            productQuantities.forEach((quantity, productId) => {
+                const product = data.products.find(p => p.id === productId);
+
+                if (product) {
+                    const priceFormatted = new Intl.NumberFormat('de-DE', {
                         style: 'currency',
                         currency: 'EUR',
-                    }).format(total);
+                    }).format(product.price * quantity);
+
+
+
                     orderHtml += `
                     <div class="mb-4 mt-4">
-                    <h4 class="text-color">Product: ${element.name} - Quantity: ${element.amount} - Total Price: ${totalFormatted} </h4>
+                    <h4 class="text-color">Product: ${product.name} - Quantity: ${quantity} - Total Price: ${priceFormatted}</h4>
                     </div>`;
-                });
+                }
+            });
 
                 orderHtml += `</div>`;
                 orderContainer.replaceWith(orderHtml);
+            
 
             },
             error: function(err) {
@@ -109,16 +133,15 @@ function loadOrderedProducts() {
     }
 }
 
-function cancelOrder() {
+function createOrder    () {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
-
 
     // Check if the access token exists in local storage
     if (accessToken) {
         $.ajax({
-            type: 'DELETE',
-            url: apiCancelOrderUrl,
+            type: 'POST',
+            url: apiSaveOrder,
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             },

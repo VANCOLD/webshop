@@ -51,14 +51,6 @@ public class CartService {
 
             Cart userCart = user.getCart();
 
-            if (userCart == null) {
-                userCart = new Cart();
-                userCart.setUser(user);
-                cartRepository.save(userCart);
-                user.setCart(userCart);
-                userRepository.save(user);
-            }
-
             userCart.getProducts().add(product);
             this.userRepository.save(user);
             return userCart;
@@ -77,16 +69,8 @@ public class CartService {
 
             Cart userCart = user.getCart();
 
-            if (userCart == null) {
-                userCart = new Cart();
-                userCart.setUser(user);
-                cartRepository.save(userCart);
-                user.setCart(userCart);
-                userRepository.save(user);
-                return userCart;
-            }
-
             userCart.getProducts().remove(product);
+            product.getCarts().remove(userCart);
             this.userRepository.save(user);
             return userCart;
         } catch (NoSuchElementException ex) {

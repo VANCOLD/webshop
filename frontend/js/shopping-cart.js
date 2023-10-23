@@ -5,8 +5,9 @@ const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
 const apiOpenOrderUrl       = 'http://localhost:8080/api/users/openOrder';
 const apiSaveOrderUrl       = 'http://localhost:8080/api/users/saveOrder';
 
+var itemCount = 0;
+
 $(document).ready(function () {
-    checkOrders();
     loadData();
 });
 
@@ -80,6 +81,7 @@ function populateCart(cartData) {
 
         // Iterate through the products and update quantities
         cartData.products.forEach(product => {
+            itemCount += 1;
             const productId = product.id;
 
             if (productQuantities.has(productId)) {
@@ -104,73 +106,65 @@ function populateCart(cartData) {
                     currency: 'EUR',
                 }).format(product.price);
 
-                const imageSrc = isValidURL(product.image) ? product.image : './images/articles/games/placeholder_game.png';
 
                 const cartItemHTML = `
                     <div class="cart-items-container">
                         <div class="cart-item">
-                            <img src="${imageSrc}" alt="${product.name}" style="width: 125px; height: 125px;">
+                            <img id="product-image${productId}" src="" alt="${product.name}" style="width: 125px; height: 125px;">
                             <div class="cart-item-details">
                                 <h2>${product.name}</h2>
                                 <p>${product.description}</p>
                                 <p>Price: ${priceFormatted}</p>
                             </div>
                             <div class="quantity-controls">
-                                <button class="quantity-btn minus" data-product-id="${productId}">-</button>
+                                <button class="quantity-btn minus" onclick="reduceProduct(${productId})">-</button>
                                 <span class="quantity">${quantity}</span>
-                                <button class="quantity-btn plus" data-product-id="${productId}">+</button>
+                                <button class="quantity-btn plus" onclick="increaseProduct(${productId})">+</button>
                             </div>
                         </div>
                     </div>
                 `;
 
                 cartContainer.append(cartItemHTML);
+                const imageElement = document.getElementById('product-image'+productId);
+
+                // Assuming you received the Blob from a fetch request
+                fetch('http://localhost:8080/files/' + product.image)
+                .then(response => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.blob();
+                    } else {
+                        console.error('HTTP error! Status:', response.status);
+                        // Handle the error appropriately
+                    }
+                })
+                .then(blobData => {
+                    const imageUrl = URL.createObjectURL(blobData);
+                    imageElement.src = imageUrl;
+                    
+                })
+                .catch(error => {
+                    console.error('Error loading the image:', error);
+                    imageElement.src = './images/articles/games/placeholder_game.png';
+                });
             }
         });
 
-        // Attach event listeners to the Add and Remove buttons using class selectors
-        $('.quantity-btn.minus').on('click', function() {
-            const productId = $(this).data('product-id');
-            reduceProduct(productId);
-        });
-
-        $('.quantity-btn.plus').on('click', function() {
-            const productId = $(this).data('product-id');
-            increaseProduct(productId);
-        });
-
         $('.checkout-button').on('click', function() {
-            checkout();
+            if(itemCount > 0)
+                checkout();
         });
     }
 }
 
 function checkout() {
-    const accessToken = localStorage.getItem('token');
-
-    // Check if the access token exists in local storage
-    if (accessToken) {
-        // The access token doesn't exist in local storage, so you can use the URL without the token.
-        $.ajax({
-            type: 'POST',
-            url: apiSaveOrderUrl,
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function(data) {
-                window.location.href = "order.html";
-            },
-            error: function(err) {
-                // Handle errors
-                console.error('Error getting user cart: ', err);
-            }
-        }); 
-    }
+    window.location.href = "order.html";
 }
 
 function reduceProduct(productId) {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
+    console.log('lol');
 
     // Check if the access token exists in local storage
     if (accessToken) {
@@ -196,6 +190,7 @@ function increaseProduct(productId) {
 
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
+    console.log('WTF');
 
     // Check if the access token exists in local storage
     if (accessToken) {

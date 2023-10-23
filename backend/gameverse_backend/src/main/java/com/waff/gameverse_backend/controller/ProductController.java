@@ -1,7 +1,7 @@
 package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.ProductDto;
-import com.waff.gameverse_backend.dto.SimpleProductDto;
+import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -67,19 +69,23 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/esrb")
+    public ResponseEntity<List<String>> getEsrbRatings() {
+        return ResponseEntity.ok(List.of(EsrbRating.values()).stream().map(EsrbRating::getName).toList());
+    }
+
     /**
      * Creates a new product.
      *
      * @param productDto The ProductDto containing the product information to be created.
      * @return ResponseEntity<ProductDto> A ResponseEntity containing the newly created ProductDto.
      * @throws IllegalArgumentException if there is a conflict or error while creating the product.
-     * @see SimpleProductDto
      */
     @PostMapping
     @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
-    public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody SimpleProductDto productDto) {
+    public ResponseEntity<ProductDto> save(@Validated @RequestBody ProductDto productDto) {
         try {
-            return ResponseEntity.ok(productService.save(productDto).convertToSimpleDto());
+            return ResponseEntity.ok(productService.save(productDto).convertToDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();

@@ -111,4 +111,8 @@ public class ProducerService {
         this.producerRepository.delete(toDelete);
         return toDelete;
     }
+
+    public boolean exists(ProducerDto producer) {
+        return this.producerRepository.existsByName(producer.getName());
+    }
 }
