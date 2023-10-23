@@ -355,6 +355,18 @@ product Style
   width:350px;
   height:420px;
 }
+.product-tax {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-amount {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
 
 /* 
 ---------------------------------------------
