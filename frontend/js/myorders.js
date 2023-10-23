@@ -19,7 +19,9 @@ function loadMyOrders() {
                 const orders = data;
                 
 
-                    for (const order of orders) {
+                for (const order of orders) {
+                    
+                    console.log(order)
 
                     var myOrdersHTML = `
                     <div class="myorders-container">
@@ -31,7 +33,6 @@ function loadMyOrders() {
                                         
                     var printedItems = []
                     for(orderedItem of order.orderedProducts) {
-                        console.log(printedItems)
 
                         if(!printedItems.includes(orderedItem)) {
 
@@ -65,10 +66,10 @@ function loadMyOrders() {
                                 </div>
                             </div>
                             </div>`;
-                            myOrdersContainer.append(myOrdersHTML);
                             printedItems.push(orderedItem);
                         }
                     }
+                    myOrdersContainer.append(myOrdersHTML);
                 }
             }
         });

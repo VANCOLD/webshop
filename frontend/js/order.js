@@ -100,6 +100,7 @@ function loadOrderedProducts() {
                 }
             });
 
+            var total = 0;
             // Iterate through productQuantities and display each product once with its quantity and buttons
             productQuantities.forEach((quantity, productId) => {
                 const product = data.products.find(p => p.id === productId);
@@ -110,7 +111,7 @@ function loadOrderedProducts() {
                         currency: 'EUR',
                     }).format(product.price * quantity);
 
-
+                    total += product.price * quantity;
 
                     orderHtml += `
                     <div class="mb-4 mt-4">
@@ -119,12 +120,19 @@ function loadOrderedProducts() {
                 }
             });
 
+
+                const totalFormatted = new Intl.NumberFormat('de-DE', {
+                style: 'currency',
+                currency: 'EUR',
+                }).format(total);
+
                 orderHtml += `</div>`;
+                orderHtml += `<h2>Total: ${totalFormatted}<h2>`;
                 orderContainer.replaceWith(orderHtml);
             
 
             },
-            error: function(err) {
+            error: function(err) {  
                 console.log(err);
             }
         });
