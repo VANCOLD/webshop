@@ -40,175 +40,177 @@
 
     <div id="navbar-bind"></div>
    
-    <div class="container-fluid register-background">
+    <main>
+        <div class="register-background">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5" style="padding: 0">
+                <div class="container login-container custom-border-radius w-50 h-auto mt-5 mb-5" style="padding: 0">
 
-                <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
-                    <button aria-controls="nav-signup" aria-selected="true"
-                            class="nav-link custom-button-rounded-color-left flex-fill" data-bs-target="#nav-signup" 
-                            data-bs-toggle="tab" id="nav-signup-tab" role="tab" style="" type="button">Sign Up
-                    </button>
-                    <button class="nav-link custom-button-rounded-color flex-fill" id="nav-signin-tab" role="tab"
-                            aria-controls="nav-signin" aria-selected="false" data-bs-target="#nav-signin" data-bs-toggle="tab" 
-                            style="font-size:19px;" type="button">Sign In
-                    </button>
-                </div>
+                    <div class="nav nav-tabs justify-content-end col-lg-12" id="nav-tab" role="tablist">
+                        <button aria-controls="nav-signup" aria-selected="true"
+                                class="nav-link custom-button-rounded-color-left flex-fill" data-bs-target="#nav-signup" 
+                                data-bs-toggle="tab" id="nav-signup-tab" role="tab" style="" type="button">Sign Up
+                        </button>
+                        <button class="nav-link custom-button-rounded-color flex-fill" id="nav-signin-tab" role="tab"
+                                aria-controls="nav-signin" aria-selected="false" data-bs-target="#nav-signin" data-bs-toggle="tab" 
+                                style="font-size:19px;" type="button">Sign In
+                        </button>
+                    </div>
 
-                <div class="tab-content container" id="nav-tabContent">
-                    <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <form class="form-inline col-lg-10 register-validation">
-                                <div class="form-group nav-justified">
-                                    <div class="col-lg-10 pt-4">
-                                        <h1 class="text-color">Begin Your Quest</h1>
-                                        <p>Enter the gaming realm by creating an account.</p>
-                                    </div>
+                    <div class="tab-content container" id="nav-tabContent">
+                        <div aria-labelledby="nav-signup-tab" class="tab-pane fade show active" id="nav-signup" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <form class="form-inline col-lg-10 register-validation">
+                                    <div class="form-group nav-justified">
+                                        <div class="col-lg-10 pt-4">
+                                            <h1 class="text-color">Begin Your Quest</h1>
+                                            <p>Enter the gaming realm by creating an account.</p>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="username"><b>Username</b></label>
-                                        <input class="form-control" name="username" placeholder="Username"
-                                            type="text" id="username" data-toggle="tooltip" data-placement="bottom">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="email"><b>Email</b></label>
-                                        <input class="form-control" name="email" placeholder="Email"
-                                            type="text" id="email">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="username"><b>Username</b></label>
+                                            <input class="form-control" name="username" placeholder="Username"
+                                                type="text" id="username" data-toggle="tooltip" data-placement="bottom">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="email"><b>Email</b></label>
+                                            <input class="form-control" name="email" placeholder="Email"
+                                                type="text" id="email">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="anrede"><b>Gender</b></label>
-                                        <select class="form-select form-control" placeholder="Gender" name="gender" id="gender">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Diverse">Diverse</option>
-                                        </select>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="anrede"><b>Gender</b></label>
+                                            <select class="form-select form-control" placeholder="Gender" name="gender" id="gender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Diverse">Diverse</option>
+                                            </select>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="name"><b>Name</b></label>
-                                        <input class="form-control" name="firstname" placeholder="First name"
-                                            type="text" id="firstname">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="name"><b>Name</b></label>
+                                            <input class="form-control" name="firstname" placeholder="First name"
+                                                type="text" id="firstname">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="surname"><b>Surname</b></label>
-                                        <input class="form-control" name="surname" placeholder="Surname"
-                                            type="text" id="surname">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="surname"><b>Surname</b></label>
+                                            <input class="form-control" name="surname" placeholder="Surname"
+                                                type="text" id="surname">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="plz"><b>Postal-Code</b></label>
-                                        <input class="form-control" name="plz" placeholder="Postal-code"
-                                            type="text" id="postalcode">
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="ort"><b>City</b></label>
-                                        <input class="form-control" name="city" placeholder="City"
-                                            type="text" id="city">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="plz"><b>Postal-Code</b></label>
+                                            <input class="form-control" name="plz" placeholder="Postal-code"
+                                                type="text" id="postalcode">
+                                        </div>
 
 
-                                    <div class="form-group">
-                                        <label for="street"><b>Address</b></label>
-                                        <input class="form-control" name="address" placeholder="Street, House Number, Abbreviation"
-                                            type="text" id="address">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="ort"><b>City</b></label>
+                                            <input class="form-control" name="city" placeholder="City"
+                                                type="text" id="city">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="psw"><b>Password</b></label>
-                                        <input class="form-control" name="psw" placeholder="Password"
-                                            type="password" id="password">
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="psw-repeat"><b>Repeat Password</b></label>
-                                        <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
-                                            type="password" id="passwordRepeat">
-                                    </div><br>
+                                        <div class="form-group">
+                                            <label for="street"><b>Address</b></label>
+                                            <input class="form-control" name="address" placeholder="Street, House Number, Abbreviation"
+                                                type="text" id="address">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="row col-lg-12 mt-4 mb-2">
-                                                <div class="form-group d-inline-flex align-items-center">
-                                                    <button class="btn btn-primary form-control" type="click" id="register">
-                                                        Register
-                                                    </button>
+                                        <div class="form-group">
+                                            <label for="psw"><b>Password</b></label>
+                                            <input class="form-control" name="psw" placeholder="Password"
+                                                type="password" id="password">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                                            <input class="form-control" name="psw-repeat" placeholder="Repeat Password"
+                                                type="password" id="passwordRepeat">
+                                        </div><br>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="row col-lg-12 mt-4 mb-2">
+                                                    <div class="form-group d-inline-flex align-items-center">
+                                                        <button class="btn btn-primary form-control" type="click" id="register">
+                                                            Register
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <p class="disclaimer-text mt-3">
-                                            By creating an account you are consenting to our 
-                                            <a href="agb.html" class="text-color mb-4">
-                                                <br>
-                                                Terms & Privacy.
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-                    <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <form class="form-inline col-lg-10 login-validation">
-
-                                <div class="form-group nav-justified">
-                                    <div class="col-lg-10 pt-4">
-                                        <h1 class="text-color">Return To Questing</h1>
-                                        <p>Continue your epic adventure by logging in!</p>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="username"><b>Username</b></label>
-                                        <input class="form-control" name="usernameLogin" placeholder="Username"
-                                            type="text" id="usernameLogin">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="psw"><b>Passwort</b></label>
-                                        <input class="form-control" name="psw" placeholder="Password"
-                                            type="password" id="passwordLogin">
-                                    </div><br>
-
-                                    <div class="row col-lg-12">
-                                        <div class="form-group d-inline-flex align-items-center">
-                                            <button class="btn btn-primary form-control mt-2" type="click" id="login-button">
-                                                    Login
-                                            </button>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="disclaimer-text mt-3">
+                                                By creating an account you are consenting to our 
+                                                <a href="agb.html" class="text-color mb-4">
+                                                    <br>
+                                                    Terms & Privacy.
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="container fluid-containner col-lg-12 mt-4 mb-2">
-                                        <p class="text-center">Forgot your
-                                            <a href="#" class="text-color mb-4">password?</a>
-                                        </p>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div aria-labelledby="nav-signin-tab" class="tab-pane fade" id="nav-signin" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <form class="form-inline col-lg-10 login-validation">
+
+                                    <div class="form-group nav-justified">
+                                        <div class="col-lg-10 pt-4">
+                                            <h1 class="text-color">Return To Questing</h1>
+                                            <p>Continue your epic adventure by logging in!</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="username"><b>Username</b></label>
+                                            <input class="form-control" name="usernameLogin" placeholder="Username"
+                                                type="text" id="usernameLogin">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="psw"><b>Passwort</b></label>
+                                            <input class="form-control" name="psw" placeholder="Password"
+                                                type="password" id="passwordLogin">
+                                        </div><br>
+
+                                        <div class="row col-lg-12">
+                                            <div class="form-group d-inline-flex align-items-center">
+                                                <button class="btn btn-primary form-control mt-2" type="click" id="login-button">
+                                                        Login
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </form>
+                                    <div class="row">
+                                        <div class="container fluid-containner col-lg-12 mt-4 mb-2">
+                                            <p class="text-center">Forgot your
+                                                <a href="#" class="text-color mb-4">password?</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <div id="footer-bind"></div>
     <script src="./js/loader.js"></script>

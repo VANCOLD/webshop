@@ -24,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
-public class Product implements DataTransferObject<ProductDto>, SimpleDataTransferObject<SimpleProductDto> {
+public class Product implements DataTransferObject<ProductDto>{
 
     /**
      * The unique identifier for this product.
@@ -106,7 +106,7 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     /**
      * The producer or manufacturer of the product.
      */
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="producer_id")
     private Producer producer;
 
@@ -134,42 +134,21 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     )
     private List<Cart> carts = new ArrayList<>();
 
-    public Product(SimpleProductDto productDto) {
-        this.id = productDto.getId();
-        this.name = productDto.getName();
-        this.description = productDto.getDescription();
-        this.image = productDto.getImage();
-        this.tax   = productDto.getTax();
-    }
-
     public Product(ProductDto productDto) {
         this.id = productDto.getId();
         this.name = productDto.getName();
         this.description = productDto.getDescription();
         this.image = productDto.getImage();
         this.tax   = productDto.getTax();
-        this.category = new Category(productDto.getCategory());
-        this.genres   = productDto.getGenres().stream().map(Genre::new).toList();
-        this.producer = new Producer(productDto.getProducer());
-        this.consoleGeneration = new ConsoleGeneration(productDto.getConsoleGeneration());
+        this.gtin  = productDto.getGtin();
+        this.price = productDto.getPrice();
+        this.stock = productDto.getStock();
+        this.available = productDto.getAvailable();
+
+        var rating = EsrbRating.getEsrbRating(productDto.getEsrbRating());
+        this.esrbRating =  rating == null ? EsrbRating.NO_RATING : rating;
     }
 
-    @Override
-    public SimpleProductDto convertToSimpleDto() {
-
-        SimpleProductDto simpleProductDto = new SimpleProductDto();
-
-        simpleProductDto.setId(id);
-        simpleProductDto.setName(name);
-        simpleProductDto.setDescription(description);
-        simpleProductDto.setPrice(price);
-        simpleProductDto.setImage(image);
-        simpleProductDto.setTax(tax);
-        simpleProductDto.setStock(stock);
-        simpleProductDto.setGtin(gtin);
-
-        return simpleProductDto;
-    }
 
     @Override
     public ProductDto convertToDto() {
