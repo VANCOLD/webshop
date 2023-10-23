@@ -814,6 +814,9 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
 select {
   width: 100%;
   border: 1px solid #ccc;
@@ -859,7 +862,6 @@ select {
   transition: border 0.3s; /* Smooth transition for the border */
 }
 
-
 .create-user {
   background-color: #e75e8d;
   color: white;
@@ -889,6 +891,11 @@ select {
   font-size: 16px;
   background-color: #e75e8d;
   color: white;
+}
+
+.no-overflow {
+  table-layout: fixed; 
+  width: 100%; 
 }
 
 .user-list-table thead {

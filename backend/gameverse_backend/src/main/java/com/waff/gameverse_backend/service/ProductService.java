@@ -123,7 +123,7 @@ public class ProductService {
      * @throws IllegalArgumentException If the product name is empty.
      */
     public Product update(ProductDto product) {
-        var toUpdate = this.productRepository.findById(product.getId())
+            var toUpdate = this.productRepository.findById(product.getId())
             .orElseThrow(() -> new NoSuchElementException("Product with the given ID does not exist"));
 
         if (product.getName().isEmpty()) {
