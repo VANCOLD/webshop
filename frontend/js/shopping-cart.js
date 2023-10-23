@@ -142,7 +142,6 @@ function checkout() {
 function reduceProduct(productId) {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
-    console.log('lol');
 
     // Check if the access token exists in local storage
     if (accessToken) {
@@ -168,7 +167,6 @@ function increaseProduct(productId) {
 
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
-    console.log('WTF');
 
     // Check if the access token exists in local storage
     if (accessToken) {

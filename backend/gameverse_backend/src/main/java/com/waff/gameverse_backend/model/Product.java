@@ -163,9 +163,9 @@ public class Product implements DataTransferObject<ProductDto>{
         productDto.setTax(tax);
         productDto.setStock(stock);
         productDto.setGtin(gtin);
-        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
-        productDto.setProducer(producer.convertToDto());
-        productDto.setCategory(category.convertToDto());
+        productDto.setGenres(genres == null ? null : genres.stream().map(Genre::convertToDto).toList());
+        productDto.setProducer(producer == null ? null : producer.convertToDto());
+        productDto.setCategory(category == null ? null : category.convertToDto());
         productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
         productDto.setAvailable(available);
         productDto.setEsrbRating(esrbRating.getName());

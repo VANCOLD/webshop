@@ -188,11 +188,11 @@ VALUES
 
 -- PS4 Games        id = 5
 ('Assassins Creed Mirage', 'Ein gewitzter Straßendieb muss in Bagdad im neunten Jahrhundert Antworten und Gerechtigkeit finden. Mithilfe einer geheimnisvollen Organisation wird er zu einem tödlichen Assassinen.'
-, 49.99, 'ps4_assasinscreedmirage.jpg', 10, 10, '123456', '2023-10-05', 'MATURE17', 5, 1, 1),                                                                   -- 48
+, 49.99, 'ps4_assasinscreedmirage.jpg', 10, 10, '123456', '2023-10-05', 'MATURE_17', 5, 1, 1),                                                                   -- 48
 ('Aeterna Noctis', 'Aeterna Noctis ist ein 2D-Metroidvania-Spiel, in dem du als König der Dunkelheit in einem riesigen Universum deine verlorenen Fähigkeiten wiedererlangen musst.'
 , 39.99, 'ps4_aeternanoctis.jpg', 10, 10, '123457', '2022-11-04', 'EVERYONE_10', 5, 1, 2),                                                                   -- 49
 ('Naruto x Boruto Ultimate Ninja Storm Connections', 'Feiere das 20-jährige Jubiläum von Narutos Anime-Debüt mit NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS, dem nächsten Teil der erfolgreichen Ultimate Ninja STORM-Reihe.'
-, 59.99, 'ps4_naruto.jpg', 10, 10, '123458', '2023-11-17', 'MATURE17', 5, 1, 3),                                                                   -- 50
+, 59.99, 'ps4_naruto.jpg', 10, 10, '123458', '2023-11-17', 'MATURE_17', 5, 1, 3),                                                                   -- 50
 ('Cuphead', 'Cuphead ist ein klassisches Shoot-''em-up-Actionspiel, in dem du als Cuphead oder Mugman seltsame Welten erkundest und gewaltige Bosse bekämpfst, um deine Seele vom Teufel zurückzugewinnen.'
 , 39.99, 'ps4_cuphead.jpg', 10, 0, '125459', '2022-12-06', 'EVERYONE_10', 5, 1, 4),                                                                     -- 51
 ('Evil West', 'In Evil West musst du als Vampirjäger die USA vor einer Zombie-Apokalypse retten.'
@@ -210,7 +210,7 @@ VALUES
 
 -- Nintendo Switch Games        id = 3
 ('Bayonetta 3', 'Bayonetta ist zurück! Die beliebte Hexe kehrt zurück und muss erneut gegen übernatürliche Mächte kämpfen, um die Welt zu retten.'
-, 59.99, 'sw_bayonetta3.jpg', 10, 10, '123466', '2023-12-01', 'MATURE17', 3, 1, 11),
+, 59.99, 'sw_bayonetta3.jpg', 10, 10, '123466', '2023-12-01', 'MATURE_17', 3, 1, 11),
 ('Death\'s Door', 'In Death''s Door spielst du als Rabe und musst die Seelen der Verstorbenen einsammeln. Ein düsteres Abenteuer erwartet dich in dieser actiongeladenen Welt.'
 , 24.99, 'sw_deathsdoor.jpg', 10, 10, '123467', '2022-07-20', 'TEEN', 3, 1, 12),
 ('Digimon World: Next Order', 'In Digimon World: Next Order erlebst du ein packendes Abenteuer, in dem du mit deinen Digimon-Partnern gegen gefährliche Kreaturen kämpfst und Entscheidungen triffst, die den Verlauf der Geschichte beeinflussen.'
@@ -248,11 +248,11 @@ VALUES
 ('Dragonball Z: Kakarot', 'In dem Action-Rollenspiel von Bandai Namco Entertainment erlebst du die Geschichte von Dragon Ball Z aus der Perspektive von Goku.',
  39.99, 'ps5_dbzkakarot.jpg', 10, 10, '123481', '2023-09-15', 'TEEN', 2,  1, 3),
 ('Call Of Duty: Modern Warfare 2', 'In dem Ego-Shooter von Activision kehrst du in die Rolle von Task Force 141 zurück, um die Welt vor einer neuen Bedrohung zu retten.',
- 69.99, 'ps5_codmw2.jpg', 10, 10, '123482', '2023-09-15', 'MATURE17', 2,  1, 22),
+ 69.99, 'ps5_codmw2.jpg', 10, 10, '123482', '2023-09-15', 'MATURE_17', 2,  1, 22),
 ('Eldenring', 'In dem Action-Rollenspiel von FromSoftware erkundest du eine riesige Welt voller Gefahren und Geheimnisse.',
- 59.99, 'ps5_eldenring.jpg', 10, 10, '123483', '2023-09-15', 'MATURE17', 2,  1, 23),
+ 59.99, 'ps5_eldenring.jpg', 10, 10, '123483', '2023-09-15', 'MATURE_17', 2,  1, 23),
 ('God Of War: Ragnarok', 'In der Fortsetzung des Action-Adventures von Sony Interactive Entertainment kehrst du als Kratos und Atreus nach Midgard zurück, um sich dem Ragnarök zu stellen.',
- 69.99, 'ps5_gow.jpg', 10, 10, '123484', '2023-09-15', 'MATURE17', 2,  1, 1),
+ 69.99, 'ps5_gow.jpg', 10, 10, '123484', '2023-09-15', 'MATURE_17', 2,  1, 1),
 ('Life Is Strange_ True Colors', 'In dem Adventure-Spiel von Deck Nine Games spielst du als Alex Chen, eine junge Frau, die die Fähigkeit hat, die Emotionen anderer Menschen zu spüren.',
  39.99, 'ps5_lifeisstrangetruecolors.jpg', 10, 10, '123485', '2023-09-15', 'TEEN', 2,  1, 25),
 ('Need For Speed: Unbund', 'In dem Rennspiel von Electronic Arts stürzt du dich in atemberaubende Rennen durch eine offene Welt.',
@@ -263,7 +263,7 @@ VALUES
 
 -- XBOX SX    id = 1
 ('Assassins Creed Valhalla', 'In dem Action-Rollenspiel von Ubisoft reist du als Eivor durch die Wikingerzeit, um England zu erobern.',
- 69.99, 'xboxsx_assassinscreedvalhalla.jpg', 10, 10, '123487', '2023-09-15', 'MATURE17', 1,  1, 1),
+ 69.99, 'xboxsx_assassinscreedvalhalla.jpg', 10, 10, '123487', '2023-09-15', 'MATURE_17', 1,  1, 1),
 ('Bee Simulator', 'In dem Action-Adventure von Animoon Studios erlebst du die Welt aus der Perspektive einer Biene.',
  29.99, 'xboxsx_beesimulator.jpg', 10, 10, '123488', '2023-09-15', 'EVERYONE', 1,  1, 27),
 ('Bus Simulator', 'In dem Bus-Simulator von Stillalive Studios steuerst du einen Bus durch eine offene Welt.',
@@ -275,9 +275,9 @@ VALUES
 ('Farming Simulator 22', 'In dem Landwirtschafts-Simulator von Giants Software verwaltest du einen Bauernhof.',
  29.99, 'xboxsx_farminsimulator22.jpg', 10, 10, '123492', '2023-09-15', 'EVERYONE', 1,  1, 31),
 ('Hunting Simulator 2', 'In dem Jagd-Simulator von Avalanche Software jagst du wilde Tiere in einer offenen Welt.',
- 29.99, 'xboxsx_hunting2simulator.jpg', 10, 10, '123493', '2023-09-15', 'MATURE17', 1,  1, 32),
+ 29.99, 'xboxsx_hunting2simulator.jpg', 10, 10, '123493', '2023-09-15', 'MATURE_17', 1,  1, 32),
 ('The Callisto Protocol', 'In dem Horror-Spiel von Striking Distance Studios spielst du als Isaac Clarke, der in einer Gefängniskolonie auf dem Jupitermond Callisto gegen Monster kämpft.',
- 59.99, 'xboxsx_thecallistoprotocol.jpg', 10, 10, '123494', '2023-09-15', 'MATURE17', 1,  1, 33),
+ 59.99, 'xboxsx_thecallistoprotocol.jpg', 10, 10, '123494', '2023-09-15', 'MATURE_17', 1,  1, 33),
 ('Werkstatt Simulator', 'In dem Werkstatt-Simulator von astragon Entertainment verwaltest du eine Werkstatt.',
  29.99, 'xboxsx_werkstattsimulator.jpg', 10, 10, '123495', '2023-09-15', 'EVERYONE', 1,  1, 29),
 ('Zoo Tycoon', 'In dem Zoo-Simulationsspiel von Frontier Developments verwaltest du einen Zoo.',
@@ -286,15 +286,15 @@ VALUES
 
 -- XBOX ONE    id = 4
 ('Grand Theft Auto V', 'In dem Action-Adventure von Rockstar Games spielst du als Michael De Santa, Franklin Clinton und Trevor Philips, die versuchen, in Los Santos ein neues Leben zu beginnen.',
-69.99, 'xboxo_grandtheftauto5.jpg', 10, 10, '123496', '2023-09-15', 'MATURE17', 4,  1, 35),
+69.99, 'xboxo_grandtheftauto5.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 35),
 ('PlayerUnknown\'s Battlegrounds', 'In dem Battle Royale-Spiel von PUBG Corporation kämpfst du als einer von 100 Spielern ums Überleben auf einer kleinen Insel.',
-29.99, 'xboxo_playerunknownsbattlegrounds.jpg', 10, 10, '123496', '2023-09-15', 'MATURE17', 4,  1, 36),
+29.99, 'xboxo_playerunknownsbattlegrounds.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 36),
 ('Red Dead Redemption 2', 'In dem Action-Adventure von Rockstar Games reist du als Arthur Morgan durch den Wilden Westen, um für die Van der Linde-Bande zu arbeiten.',
- 69.99, 'xboxo_reddeadredemption2.jpg', 10, 10, '123496', '2023-09-15', 'MATURE17', 4,  1, 35),
+ 69.99, 'xboxo_reddeadredemption2.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 35),
 ('Call of Duty: Modern Warfare', 'In dem Ego-Shooter von Infinity Ward kämpfst du als Teil einer Elite-Einheit gegen Terroristen.',
- 69.99, 'xboxo_callofdutymodernwarfare.jpg', 10, 10, '123496', '2023-09-15', 'MATURE17', 4,  1, 22),
+ 69.99, 'xboxo_callofdutymodernwarfare.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 22),
 ('Call of Duty: Black Ops 4', 'In dem Ego-Shooter von Treyarch kämpfst du in verschiedenen Modi, darunter Multiplayer, Zombies und Blackout.',
- 69.99, 'xboxo_callofdutyblackops4.jpg', 10, 10, '123496', '2023-09-15', 'MATURE17', 4,  1, 37),
+ 69.99, 'xboxo_callofdutyblackops4.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 37),
 ('Forza Horizon 4', 'In dem Rennspiel von Playground Games fährst du durch eine offene Welt in Mexiko.',
  69.99, 'xboxo_forzahorizon4.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 38),
 ('Minecraft', 'In dem Sandbox-Spiel von Mojang Studios kannst du deiner Kreativität freien Lauf lassen.',
