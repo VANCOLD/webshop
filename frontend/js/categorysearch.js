@@ -46,13 +46,39 @@ function loadProductsByCategory(categoryId) {
             productsContainer.empty(); // Clear previous content
 
             products.forEach(function (product) {
+
+                var imageElement = document.createElement('img');
+                imageElement.id = 'product-image' + product.id;
+
+                fetch('http://localhost:8080/files/' + product.image)
+                .then(response => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.blob();
+                    } else {
+                        console.error('HTTP error! Status:', response.status);
+                        // Handle the error appropriately
+                    }
+                })
+                .then(blobData => {
+                    const imageUrl = URL.createObjectURL(blobData);
+                    imageElement.src = imageUrl;
+                    
+                })
+                .catch(error => {
+                    console.error('Error loading the image:', error);
+                    imageElement.src = './images/articles/games/placeholder_game.png';
+                });
+
+
                 const productCard = $('<div class="product-card">');
                 productCard.append('<h3>' + product.name + '</h3>');
                 productCard.append('<p>' + product.description + '</p>');
                 productCard.append('<p>Price: $' + product.price + '</p>');
-                productCard.append('<img src="' + product.image + '">');
+                productCard.append(imageElement);
 
                 productsContainer.append(productCard);
+
+
             });
         },
         error: function (err) {
