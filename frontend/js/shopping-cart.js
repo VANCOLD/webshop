@@ -32,7 +32,6 @@ function checkOrders() {
     }
 }
 
-
 function loadData() {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
@@ -67,7 +66,6 @@ function loadData() {
         });
     } 
 }
-
 
 function populateCart(cartData) {
     const cartContainer = $('.cart-container');
@@ -170,9 +168,6 @@ function checkout() {
     }
 }
 
-
-
-
 function reduceProduct(productId) {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
@@ -196,7 +191,6 @@ function reduceProduct(productId) {
         }); 
     }
 }
-
 
 function increaseProduct(productId) {
 
@@ -223,7 +217,6 @@ function increaseProduct(productId) {
     }
 }
 
-
 // Function to check if a URL is valid
 function isValidURL(str) {
     // We use a regular expression to check if the string is a valid URL
@@ -235,7 +228,6 @@ function isValidURL(str) {
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     return !!pattern.test(str);
 }
-
 
 // Function to calculate the total amount
 function calculateTotalAmount(cartData) {

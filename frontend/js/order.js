@@ -2,6 +2,7 @@ const apiCancelOrderUrl  = 'http://localhost:8080/api/users/deleteOrder';
 const apiConfirmOrderUrl = 'http://localhost:8080/api/users/confirmOrder';
 const apiLoggedInUserUrl = 'http://localhost:8080/api/users/me';
 const apiOpenOrderUrl    = 'http://localhost:8080/api/users/openOrder';
+const apiMyOrders        = 'http://localhost:8080/api/users/orders';
 
 
 $(document).ready(function () {
@@ -131,6 +132,43 @@ function cancelOrder() {
     }
 }
 
+function loadMyOrders() {
+    const myOrdersContainer = $('myorders-container')
+    const accessToken = localStorage.getItem('token');
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: apiMyOrders,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                const product = data;
+
+                const priceFormatted = new Intl.NumberFormat('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                }).format(product.price);
+                
+                const imageSrc = isValidURL(product.image) ? product.image: './images/articles/games/placeholder_game.png';
+
+                const myOrdersHTML = `
+                    <div class="cart-items-container">
+                        <div class="cart-item">
+                            <img src="${imageSrc}" alt="${product.name}" style="width: 125px; height: 125px;">
+                            <div class="cart-item-details">
+                                <h2>${product.name}</h2>
+                                <p>Price: ${priceFormatted}</p>
+                                <span class="quantity">${quantity}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                myOrdersContainer.append(myOrdersHTML);
+            }
+        })
+    }
+}
 
 function confirmOrder() {
     // Retrieve the access token from local storage
@@ -152,4 +190,8 @@ function confirmOrder() {
             }
         });
     }
+}
+
+function backToUserProfile() {
+    window.location.href = "userprofile.html";
 }
