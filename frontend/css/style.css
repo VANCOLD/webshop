@@ -338,6 +338,9 @@ Home Page Style
 
 .platform p{
   color: #e75e8d; /* Change the text color to your desired color */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 5px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
 }
 
 /* Remove the margin from the last icon to prevent extra spacing */
@@ -393,8 +396,13 @@ Home Page Style
 /* Style for the game titles in popular items */
 .game-title {
   font-size: 16px; /* Adjust the font size as needed */
-  margin-top: 5px; /* Add space between the image and the title */
-  color: #333; /* Set the text color to your desired color */
+  margin-top: 10px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
+}
+
+.game-info {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin: 0;  
   font-weight: bold; /* Make the text bold */
 }
 
@@ -405,11 +413,6 @@ Home Page Style
   .popular-items img {
     width: 100px; /* Adjust the width as needed */
     height: 125px; /* Adjust the height as needed */
-  }
-
-  .game-title {
-    font-size: 14px; /* Adjust the font size as needed */
-    margin-top: 3px; /* Adjust the margin between image and title */
   }
 
 /* 

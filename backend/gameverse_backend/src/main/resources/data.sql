@@ -297,7 +297,9 @@ VALUES
 ('FIFA 22', 'In dem Fußballsimulationsspiel von EA Sports spielst du als einer deiner Lieblingsspieler oder -mannschaften.',
  59.99, 'xboxo_fifa22.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
 ('NBA 2K23', 'In dem Basketballsimulationsspiel von Visual Concepts spielst du als einer deiner Lieblingsspieler oder -mannschaften.',
- 59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
+ 59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
+ ('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt.',
+  20.00, 'sonic-shirt.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
 
 
 INSERT INTO products_to_carts (product_id, cart_id) VALUES
