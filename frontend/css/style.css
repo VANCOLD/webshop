@@ -312,12 +312,109 @@ Home Page Style
 --------------------------------------------- 
 */
 
+.index-console-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+} 
 
-#carouselGames {
-    margin: 0;
-    padding: 0;
+.platform img {
+  width: 150px;
+  height: 150px;
 }
 
+.platform a {
+  display: inline-block; /* Display items next to each other */
+
+}
+
+.platform p{
+  color: #e75e8d; /* Change the text color to your desired color */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 5px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
+}
+
+/* Remove the margin from the last icon to prevent extra spacing */
+.platform img:last-child {
+  margin-right: 0;
+} 
+
+/* Apply the styles to the popular items container */
+.popular-items-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+}
+
+/* Style for the popular items header */
+.pop-item-header h2 {
+  font-size: 35px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: #e75e8d; /* Change the text color to your desired color */
+  margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+/* Apply the styles to the items (image + game title) in the popular items */
+.popular-items a {
+  display: inline-block; /* Display items next to each other */
+  align-items: center; /* Center-align the items */
+  margin-right: 80px; /* Increase the margin between items (adjust as needed) */
+}
+
+.popular-items p {
+  color: #e75e8d; /* Change the text color to your desired color */
+}
+
+/* Remove the margin from the last item to prevent extra spacing */
+.popular-items a:last-child {
+  margin-right: 0;
+}
+
+/* Style for the images in popular items */
+.popular-items img {
+  width: 200px; /* Adjust the width as needed */
+  height: 250px; /* Maintain aspect ratio */
+}
+
+/* Style for the game titles in popular items */
+.game-title {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 10px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
+}
+
+.game-info {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin: 0;  
+  font-weight: bold; /* Make the text bold */
+}
+
+/* Media query for screens smaller than 768px (adjust as needed) */
+@media (max-width: 768px) {
+  /* Reduce the image size and text size */
+  .platform img,
+  .popular-items img {
+    width: 100px; /* Adjust the width as needed */
+    height: 125px; /* Adjust the height as needed */
+  }
+}
 
 /* 
 ---------------------------------------------
@@ -776,7 +873,6 @@ select {
   margin-bottom: 15px;
   transition: border 0.3s; /* Smooth transition for the border */
 }
-
 
 .create-user {
   background-color: #e75e8d;

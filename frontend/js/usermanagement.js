@@ -213,11 +213,6 @@ function populateUserList(users,roles) {
             <td class="editable" data-field="email">${user.email}</td>
             <td class="editable" data-field="address" data-user-id="${user.address.id}">${user.address.street};${user.address.postalCode};${user.address.city};${user.address.country}</td>`;
 
-            const roleOptions = roles.map(function (role) {
-                return `<option value="${role.id}" ${user.role.id === role.id ? "selected" : ""}>${role.name}</option>`;
-            });
-
-
             userRow += `
             <td class="editable" style="width:100px" data-field="role" data-user-id="${user.id}">  
                     <select disabled id="update-role${user.id}">
