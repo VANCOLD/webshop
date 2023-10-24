@@ -25,7 +25,7 @@ function loadData() {
 
             const productTemplate = $(`
                 <div class='container h-auto pb-5'>
-                    <h2 class='text-center pt-3 mb-1' style='margin: 20px;'>${product.name}</h2>
+                    <h2 class='text-center pt-3 mb-1 text-color' style='margin: 20px;'>${product.name}</h2>
                     <div class='product-container d-flex align-items-center' style='margin-top: 20px;'>
                         <img id="product-image" class='product-image col-lg-5 w-25 h-25 mx-4' src='' alt='${product.name}'>
                         <div class="m-4">
