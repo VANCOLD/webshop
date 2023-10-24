@@ -11,6 +11,28 @@ $(document).ready(function () {
     loadData();
 });
 
+function checkOrders() {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        $.ajax({
+            type: 'GET',
+            url: apiOpenOrderUrl,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function(data) {
+                window.location.href = "order.html";
+            },
+            error: function(err) {
+                console.log(data);
+            }
+        });
+    }
+}
+
 function loadData() {
     // Retrieve the access token from local storage
     const accessToken = localStorage.getItem('token');
@@ -188,6 +210,17 @@ function increaseProduct(productId) {
     }
 }
 
+// Function to check if a URL is valid
+function isValidURL(str) {
+    // We use a regular expression to check if the string is a valid URL
+    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(str);
+}
 
 // Function to calculate the total amount
 function calculateTotalAmount(cartData) {

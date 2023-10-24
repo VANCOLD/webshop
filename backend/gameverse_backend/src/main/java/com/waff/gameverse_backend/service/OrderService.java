@@ -93,7 +93,7 @@ public class OrderService {
 
         var orderedItems = new ArrayList<OrderedProduct>();
 
-        for(Product toConvert : userCart.getProducts()) {
+        for(Product toConvert : new HashSet<>(userCart.getProducts())) {
 
             int productAmount = toConvert.getStock();
             int orderAmount   = userCart.getProducts().stream().filter(product -> product.equals(toConvert)).toList().size();

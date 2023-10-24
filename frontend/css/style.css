@@ -267,6 +267,7 @@ Register Login Style
         border-radius: 5px;
         outline-color: white;
         border-color: white;
+        border-radius: 5px;
     }
 
 /* 
@@ -452,6 +453,18 @@ product Style
 .product-image {
   width:350px;
   height:420px;
+}
+.product-tax {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-amount {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
 }
 
 .product-container {

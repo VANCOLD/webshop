@@ -143,3 +143,8 @@ function saveUserProfile() {
         });
     }
 }
+
+function goToMyOrders() {
+    window.location.href = "myOrders.html";
+}
+
