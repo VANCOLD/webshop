@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -45,8 +46,22 @@ public class DisplayController {
 
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDto>> listAllProducts () {
-        return ResponseEntity.ok(productService.findAll().stream().map(Product::convertToDto).toList());
+    public ResponseEntity<List<ProductDto>> listProductsByCategory(@RequestParam(name = "categoryId", required = false) Long categoryId) {
+        List<Product> products;
+
+        if (categoryId != null) {
+            products = productService.findAllProductsByCategory(categoryId);
+        } else {
+            products = productService.findAll();
+        }
+
+        List<ProductDto> productDtos = products.stream().map(Product::convertToDto).toList();
+        return ResponseEntity.ok(productDtos);
+    }
+
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ProductDto> listProductById(@PathVariable Long productId) {
+        return ResponseEntity.ok(productService.findById(productId).convertToDto());
     }
 
     @GetMapping("/categories")
