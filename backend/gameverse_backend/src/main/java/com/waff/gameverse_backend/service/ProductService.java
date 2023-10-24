@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -21,8 +20,6 @@ public class ProductService {
     private final ProducerService producerService;
 
     private final ConsoleGenerationService consoleGenerationService;
-
-    private final GenreService genreService;
 
 
     public ProductService(ProductRepository productRepository,
@@ -35,7 +32,6 @@ public class ProductService {
         this.categoryService            = categoryService;
         this.producerService            = producerService;
         this.consoleGenerationService   = consoleGenerationService;
-        this.genreService               = genreService;
     }
 
     /**
@@ -198,9 +194,6 @@ public class ProductService {
      */
     public List<Product> findAllProductsByCategory(Long categoryId) {
         Category category = categoryService.findById(categoryId);
-
-        List<Product> productsInCategory = productRepository.findAllByCategory(category);
-
-        return productsInCategory;
+        return productRepository.findAllByCategory(category);
     }
 }

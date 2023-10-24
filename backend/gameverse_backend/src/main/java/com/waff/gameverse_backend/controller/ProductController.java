@@ -11,9 +11,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 /**
  * The ProductController class handles operations related to products and permissions.
@@ -71,7 +71,7 @@ public class ProductController {
 
     @GetMapping("/esrb")
     public ResponseEntity<List<String>> getEsrbRatings() {
-        return ResponseEntity.ok(List.of(EsrbRating.values()).stream().map(EsrbRating::getName).toList());
+        return ResponseEntity.ok(Stream.of(EsrbRating.values()).map(EsrbRating::getName).toList());
     }
 
     /**

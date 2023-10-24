@@ -4,7 +4,6 @@ import com.waff.gameverse_backend.dto.AddProductToCartDto;
 import com.waff.gameverse_backend.dto.CartDto;
 import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.service.CartService;
-import com.waff.gameverse_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

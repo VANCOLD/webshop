@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.model;
 
-import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
 import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.utils.DataTransferObject;

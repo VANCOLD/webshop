@@ -1,7 +1,6 @@
 package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.*;
-import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.Cart;
 import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.model.User;
@@ -13,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -171,7 +168,7 @@ public class UserController {
     @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<String> delete(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
         try {
-            if (userService.findByUsername(jwt.getSubject()).getId() != id) {
+            if (!userService.findByUsername(jwt.getSubject()).getId().equals(id)) {
                 this.userService.delete(id);
                 return ResponseEntity.ok("User with id " + id + " deleted");
             } else {

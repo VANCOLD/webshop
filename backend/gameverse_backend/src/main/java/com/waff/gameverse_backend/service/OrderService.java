@@ -8,7 +8,6 @@ import com.waff.gameverse_backend.repository.OrderRepository;
 import com.waff.gameverse_backend.repository.OrderedProductRepository;
 import com.waff.gameverse_backend.repository.ProductRepository;
 import com.waff.gameverse_backend.repository.UserRepository;
-import com.waff.gameverse_backend.utils.DataTransferObject;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -142,7 +141,7 @@ public class OrderService {
         this.resetProducts(toDelete.getOrderedProducts());
         toDelete.getUser().getOrders().remove(toDelete);
         toDelete.setUser(null);
-        toDelete.getOrderedProducts().stream().forEach(element -> orderedProductRepository.delete(element));
+        orderedProductRepository.deleteAll(toDelete.getOrderedProducts());
         toDelete.setOrderedProducts(null);
         orderRepository.delete(toDelete);
 

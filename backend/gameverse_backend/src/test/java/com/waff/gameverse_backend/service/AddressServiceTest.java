@@ -88,7 +88,7 @@ public class AddressServiceTest {
 
         // Lösche des Eintrages der Rolle user
         var testCase1 = this.addressService.delete(address1);
-        assertThat(testCase1.getStreet()).isEqualTo("Johnstraße 12");
+        assertThat(testCase1.getStreet()).isEqualTo(checkAddress.getStreet());
 
         // Da wir den Eintrag gelöscht haben sollten wir diesen auch nicht mehr finden!
         assertThrows(NoSuchElementException.class, () -> this.addressService.findById(address1));

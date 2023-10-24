@@ -3,7 +3,6 @@ package com.waff.gameverse_backend.model;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
-import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
 import lombok.*;
 

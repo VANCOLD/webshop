@@ -2,9 +2,6 @@ package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.FileUploadResponse;
 import com.waff.gameverse_backend.service.FileService;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;

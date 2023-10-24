@@ -1,6 +1,5 @@
 package com.waff.gameverse_backend.repository;
 
-import com.waff.gameverse_backend.dto.ProducerDto;
 import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Producer;
 import org.springframework.data.jpa.repository.JpaRepository;
