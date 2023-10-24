@@ -259,26 +259,26 @@ function loadRoles() {
 
 
 
-    // Handle user updates
-    $('.user-list-table').on('click', '.update-button', function () {
-        const userId = $(this).data('user-id');
-        const row = $(this).closest('tr');
-        const editButton = $(this);
+// Handle user updates
+$('.user-list-table').on('click', '.update-button', function () {
+    const userId = $(this).data('user-id');
+    const row = $(this).closest('tr');
+    const editButton = $(this);
 
-        if (editButton.text() === 'Edit') {
-            // Switch to edit mode
-            editButton.text('Save');
-            row.find('.editable').prop('contenteditable', true).addClass('editing');
-            document.getElementById('update-role'+userId).disabled = false;
-        } else if (editButton.text() === 'Save') {
-            updateUserData(userId);
+    if (editButton.text() === 'Edit') {
+        // Switch to edit mode
+        editButton.text('Save');
+        row.find('.editable').prop('contenteditable', true).addClass('editing');
+        document.getElementById('update-role'+userId).disabled = false;
+    } else if (editButton.text() === 'Save') {
+        updateUserData(userId);
 
-            // Switch back to edit mode after saving
-            editButton.text('Edit');
-            document.getElementById('update-role'+userId).disabled = true;
-            row.find('.editable').prop('contenteditable', false).removeClass('editing');
-        }
-    });
+        // Switch back to edit mode after saving
+        editButton.text('Edit');
+        document.getElementById('update-role'+userId).disabled = true;
+        row.find('.editable').prop('contenteditable', false).removeClass('editing');
+    }
+});
 
 
     // Handle user deletions (using event delegation)

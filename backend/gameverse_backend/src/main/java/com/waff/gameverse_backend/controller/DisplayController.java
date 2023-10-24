@@ -64,11 +64,6 @@ public class DisplayController {
         return ResponseEntity.ok(productService.findById(productId).convertToDto());
     }
 
-    @GetMapping("/products/{productId}")
-    public ResponseEntity<ProductDto> listProductById(@PathVariable Long productId) {
-        return ResponseEntity.ok(productService.findById(productId).convertToDto());
-    }
-
     @GetMapping("/categories")
     public ResponseEntity<List<CategoryDto>> listAllCategories() {
         return ResponseEntity.ok(categoryService.findAll().stream().map(Category::convertToDto).toList());

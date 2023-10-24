@@ -36,16 +36,23 @@ function populateOrders(orders) {
     orders.forEach(function (order) {
 
         orderArray.push(order);
-        var products = [];
+        var products = new Map();
         order.orderedProducts.forEach(function (product) {
-            products.push(product.name);
-        })
+            products.set(product.name, product.amount );
+        });
+
+        var output = '';
+        for (var [key, value] of products) {  
+            output += value + 'x ' + key + '<br>';  
+         }
+
+        console.log(output);
 
         var orderRow = $('<tr data-user-id="' + order.id + '">');
         orderRow.append('<td data-field="id">' + order.id + '</td>');
         orderRow.append('<td data-field="status" data-user-id><select id="order-status' + order.id + '"></select></td>');
         orderRow.append('<td data-field="user">' + order.user.username + '</td>');   
-        orderRow.append('<td data-field="products">' + products + '</td>'); 
+        orderRow.append('<td data-field="products">' + output + '</td>'); 
         orderRow.append('<td><button class="delete-button" data-user-id="' + order.id +'">Delete</button><button class="update-button" data-user-id="' + order.id +'">Edit</button></td>');
         orderRow.append('</tr>');
         orderTableBody.append(orderRow);

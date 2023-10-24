@@ -110,8 +110,8 @@ public class Product implements DataTransferObject<ProductDto>{
     @JoinColumn(name="producer_id")
     private Producer producer;
 
-    @OneToOne(mappedBy="product")
-    private OrderedProduct orderedProduct;
+    @OneToMany(mappedBy="product", cascade = {CascadeType.ALL})
+    private List<OrderedProduct> orderedProducts;
 
     /**
      * The list of genres associated with this product.

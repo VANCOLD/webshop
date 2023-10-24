@@ -57,7 +57,7 @@ function loadProductsByCategory(categoryId) {
             products.forEach(function (product) {
 
                 var imageElement = document.createElement('img');
-                imageElement.id = 'product-image' + product.id;
+                imageElement.setAttribute('onclick', 'window.location.href = "./details.html?productId='+ product.id + '";');
 
                 fetch('http://localhost:8080/files/' + product.image)
                 .then(response => {
@@ -78,9 +78,9 @@ function loadProductsByCategory(categoryId) {
                     imageElement.src = './images/articles/games/placeholder_game.png';
                 });
 
-
+                var link = '<a class="text-color" href="./details.html?productId=' + product.id + '">';
                 const productCard = $('<div class="product-card">');
-                productCard.append('<h3>' + product.name + '</h3>');
+                productCard.append('<h3>' + link + product.name + '</a></h3>');
                 productCard.append('<p>' + product.description + '</p>');
                 productCard.append('<p class="price">Price: $' + product.price + '</p>');
                 productCard.append(imageElement);
@@ -94,7 +94,6 @@ function loadProductsByCategory(categoryId) {
                 });
 
                 productCard.append(addToCartButton);
-
                 productsContainer.append(productCard);
 
             });

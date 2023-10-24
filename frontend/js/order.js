@@ -152,28 +152,6 @@ function createOrder    () {
                 'Authorization': `Bearer ${accessToken}`
             },
             success: function(data) {
-                window.location.href = "shoppingcart.html";
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    }
-}
-
-function confirmOrder() {
-    // Retrieve the access token from local storage
-    const accessToken = localStorage.getItem('token');
-
-    // Check if the access token exists in local storage
-    if (accessToken) {
-        $.ajax({
-            type: 'PUT',
-            url: apiConfirmOrderUrl,
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            },
-            success: function(data) {
                 $('.cart-container').replaceWith('<p style="color:white; font-size:20px;" class="mt-4">Deine Bestellung wurde erfolgreich abgeschlossen!</p>');
             },
             error: function(err) {

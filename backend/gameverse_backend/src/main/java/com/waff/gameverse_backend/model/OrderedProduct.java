@@ -41,8 +41,8 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
     @JoinColumn(name="order_id")
     private Order order;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id", name="product_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="product_id")
     private Product product;
 
     public OrderedProduct(OrderedProductDto orderedProducts) {
