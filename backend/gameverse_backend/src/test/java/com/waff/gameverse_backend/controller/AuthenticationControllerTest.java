@@ -52,7 +52,7 @@ public class AuthenticationControllerTest {
         testCase1.setPassword("test");
         testCase1.setFirstname("test");
         testCase1.setLastname("test");
-        testCase1.setGender(Gender.MALE.name());
+        testCase1.setGender(Gender.Male.name());
         testCase1.setEmail("test@test.com");
         testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase1.setRole(new RoleDto(null, "test", List.of()));
@@ -62,7 +62,7 @@ public class AuthenticationControllerTest {
         testCase2.setPassword("test");
         testCase2.setFirstname("test");
         testCase2.setLastname("test");
-        testCase2.setGender(Gender.MALE.name());
+        testCase2.setGender(Gender.Male.name());
         testCase2.setEmail("test@test.com");
         testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase2.setRole(new RoleDto(null, "test", List.of()));

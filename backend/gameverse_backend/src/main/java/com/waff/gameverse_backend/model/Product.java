@@ -145,7 +145,7 @@ public class Product implements DataTransferObject<ProductDto>{
         this.stock = productDto.getStock();
         this.available = productDto.getAvailable();
 
-        var rating = EsrbRating.getEsrbRating(productDto.getEsrbRating());
+        var rating = productDto.getEsrbRating() != null ? EsrbRating.getEsrbRating(productDto.getEsrbRating()) : null;
         this.esrbRating =  rating == null ? EsrbRating.NO_RATING : rating;
     }
 

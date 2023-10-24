@@ -117,10 +117,10 @@ public class UserControllerTest {
         testCase1.setPassword("test");
         testCase1.setFirstname("test");
         testCase1.setLastname("test");
-        testCase1.setGender(Gender.MALE.name());
+        testCase1.setGender(Gender.Male.name());
         testCase1.setEmail("test@test.com");
-        testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
-        testCase1.setRole(new RoleDto(null, "test", List.of()));
+        testCase1.setAddress(new AddressDto(1L, "test","test","test","test"));
+        testCase1.setRole(new RoleDto(1L, "user", List.of()));
 
         // Already existing user, should return conflict!
         UserDto testCase2 = new UserDto();
@@ -128,10 +128,10 @@ public class UserControllerTest {
         testCase2.setPassword("test");
         testCase2.setFirstname("test");
         testCase2.setLastname("test");
-        testCase2.setGender(Gender.MALE.name());
+        testCase2.setGender(Gender.Male.name());
         testCase2.setEmail("test@test.com");
-        testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
-        testCase2.setRole(new RoleDto(null, "test", List.of()));
+        testCase2.setAddress(new AddressDto(1L, "test","test","test","test"));
+        testCase2.setRole(new RoleDto(1L, "user", List.of()));
 
         // Should be ok and return the newly created user
         mockMvc
@@ -166,7 +166,7 @@ public class UserControllerTest {
         testCase.setPassword("test");
         testCase.setFirstname("test");
         testCase.setLastname("test");
-        testCase.setGender(Gender.MALE.name());
+        testCase.setGender(Gender.Male.name());
         testCase.setEmail("test@test.com");
         testCase.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase.setRole(new RoleDto(null, "test", List.of()));
@@ -196,10 +196,10 @@ public class UserControllerTest {
         testCase1.setPassword("test");
         testCase1.setFirstname("test");
         testCase1.setLastname("test");
-        testCase1.setGender(Gender.MALE.name());
+        testCase1.setGender(Gender.Male.name());
         testCase1.setEmail("test@test.com");
-        testCase1.setAddress(new AddressDto(null, "test","test","test","test"));
-        testCase1.setRole(new RoleDto(null, "test", List.of()));
+        testCase1.setAddress(new AddressDto(1L, "test","test","test","test"));
+        testCase1.setRole(new RoleDto(1L, "test", List.of()));
 
         // New user, doesn't exist in db => NotFound
         UserDto testCase2 = new UserDto();
@@ -208,10 +208,10 @@ public class UserControllerTest {
         testCase2.setPassword("test");
         testCase2.setFirstname("test");
         testCase2.setLastname("test");
-        testCase2.setGender(Gender.MALE.name());
+        testCase2.setGender(Gender.Male.name());
         testCase2.setEmail("test@test.com");
-        testCase2.setAddress(new AddressDto(null, "test","test","test","test"));
-        testCase2.setRole(new RoleDto(null, "test", List.of()));
+        testCase2.setAddress(new AddressDto(1L, "test","test","test","test"));
+        testCase2.setRole(new RoleDto(1L, "test", List.of()));
 
         // Should be ok and return the updated user
         mockMvc
@@ -248,7 +248,7 @@ public class UserControllerTest {
         testCase.setPassword("test");
         testCase.setFirstname("test");
         testCase.setLastname("test");
-        testCase.setGender(Gender.MALE.name());
+        testCase.setGender(Gender.Male.name());
         testCase.setEmail("test@test.com");
         testCase.setAddress(new AddressDto(null, "test","test","test","test"));
         testCase.setRole(new RoleDto(null, "test", List.of()));
@@ -272,7 +272,7 @@ public class UserControllerTest {
         String token = this.getToken("admin");
 
         // First user in data.sql
-        String privName = "user";
+        String privName = "User with id 1 deleted";
 
         // user exist, should delete without a problem
         Long testCase1 = 1L;
@@ -287,7 +287,7 @@ public class UserControllerTest {
         mockMvc
             .perform(delete("/api/users/{id}", testCase1).header("Authorization", "Bearer " + token))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.username", Matchers.is(privName)));
+            .andExpect(jsonPath("$", Matchers.is(privName)));
 
         // Should be not found because the user was deleted in the last mock call!
         mockMvc

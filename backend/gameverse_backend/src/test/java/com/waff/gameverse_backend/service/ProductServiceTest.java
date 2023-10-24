@@ -3,12 +3,26 @@ package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,11 +35,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Testclass für ProductService Service. Benutzt die Daten des data.sql!
  */
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureDataJpa
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@DataJpaTest
-@DirtiesContext
-@Import(ProductService.class)
+@ExtendWith(SpringExtension.class)
+@EnableMethodSecurity
 @ActiveProfiles("test")
+@ComponentScan("com.waff.gameverse_backend.service")
 public class ProductServiceTest {
 
     @Autowired
@@ -70,6 +87,7 @@ public class ProductServiceTest {
     }
 
     @Test
+    @DirtiesContext
     void saveTest() {
 
         // Already existing product, should return conflict!
@@ -95,24 +113,37 @@ public class ProductServiceTest {
     }
 
     @Test
+    @DirtiesContext
     void updateTest() {
 
-        ProductDto product = new ProductDto();
-        product.setId(1000L);
-        product.setName("test");
+        // New product, doesn"t exist in db
+        ProductDto testCase = new ProductDto();
+        testCase.setId(1000L);
+        testCase.setName("Froggyo");
+        testCase.setDescription("froggo");
+        testCase.setPrice(120.00);
+        testCase.setImage("Cool frogs");
+        testCase.setTax(20);
+        testCase.setStock(2);
+        testCase.setEsrbRating(EsrbRating.TEEN.getName());
+        testCase.setCategory(new CategoryDto(1L, "Games"));
+        testCase.setProducer(new ProducerDto(1L, "Nintendo", new AddressDto(2L, "11-1 Hokotate-cho","601-8501","Kyoto","Japan")));
+        testCase.setConsoleGeneration(new ConsoleGenerationDto(3L, "Nintendo Switch" ));
+        testCase.setGtin("asdasd");
 
-        assertThrows(NoSuchElementException.class,() -> this.productService.update(product));
+        assertThrows(NoSuchElementException.class,() -> this.productService.update(testCase));
 
-        product.setId(1L);
-        var updatedRole = this.productService.update(product);
-        assertThat(updatedRole.getName()).isEqualTo(product.getName());
+        testCase.setId(1L);
+        var updatedRole = this.productService.update(testCase);
+        assertThat(updatedRole.getName()).isEqualTo(testCase.getName());
 
-        product.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.productService.update(product));
+        testCase.setName("");
+        assertThrows(IllegalArgumentException.class, () -> this.productService.update(testCase));
 
     }
 
     @Test
+    @DirtiesContext
     void deleteTest() {
 
         // Product view_profile

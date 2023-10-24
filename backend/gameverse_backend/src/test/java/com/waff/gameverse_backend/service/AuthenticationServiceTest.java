@@ -37,7 +37,7 @@ public class AuthenticationServiceTest {
         testUser.setPassword("test");
         testUser.setFirstname("test");
         testUser.setLastname("test");
-        testUser.setGender(Gender.MALE.name());
+        testUser.setGender(Gender.Male.name());
         testUser.setEmail("test@test.com");
         testUser.setAddress(new AddressDto(null, "test","test","test","test"));
         testUser.setRole(new RoleDto(null, "test", List.of()));
