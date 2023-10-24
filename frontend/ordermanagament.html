@@ -32,6 +32,31 @@
     <body>
         <div id="navbar-bind"></div>
         <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Orders</h2>
+                            <div class="d-flex align-items-center mt-2">
+                                <table class="user-list-table no-overflow" id="user-display-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:white;" class="order-id">ID</th>
+                                            <th style="color:white;" class="order-status">Status</th>
+                                            <th style="color:white;" class="order-user">User</th>
+                                            <th style="color:white;" class="order-products">Products</th>
+                                            <th style="color:white;" class="order-actions">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="user-list-tbody" id="order-list-tbody">
+                                        <!-- User data will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <div id="footer-bind"></div>

@@ -13,4 +13,12 @@ public enum OrderStatus {
         return name;
     }
 
+    public static OrderStatus getOrderStatus(String name) {
+        try {
+            return OrderStatus.valueOf(name.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+            throw new IllegalArgumentException("Given string doesn't match any Order Status!");
+        }
+    }
 }

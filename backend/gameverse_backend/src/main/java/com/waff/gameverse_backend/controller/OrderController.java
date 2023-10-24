@@ -2,6 +2,7 @@ package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.OrderDto;
 import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.enums.OrderStatus;
 import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.service.OrderService;
 import com.waff.gameverse_backend.service.UserService;
@@ -9,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -40,6 +43,11 @@ public class OrderController {
         }
     }
 
+    @GetMapping("/orderstatus")
+    public ResponseEntity<List<String>> getAllOrderStatus() {
+        return ResponseEntity.ok(Arrays.stream(OrderStatus.values()).toList().stream().map(OrderStatus::getName).toList());
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<OrderDto>> findAll() {
 
@@ -53,7 +61,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDto> save(UserDto user) {
+    public ResponseEntity<OrderDto> save(@Validated @RequestBody UserDto user) {
         if(this.userService.findByUsername(user.getUsername()) != null) {
             return ResponseEntity.ok(this.orderService.save(user).convertToDto());
         } else {
@@ -61,27 +69,20 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/confirm")
-    public ResponseEntity<OrderDto> confirm(OrderDto orderDto) {
-        var toCheck = this.orderService.findById(orderDto.getId());
-
-        if(toCheck != null) {
-
-            Order order = this.orderService.confirm(orderDto);
-            return ResponseEntity.ok(order.convertToDto());
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
+    @PutMapping
+    public ResponseEntity<OrderDto> update(@Validated @RequestBody OrderDto orderDto) {
+        return ResponseEntity.ok(this.orderService.update(orderDto).convertToDto());
     }
 
-    @DeleteMapping
-    public ResponseEntity<OrderDto> delete(Long orderId) {
+
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<String> delete(@PathVariable Long orderId) {
         var toCheck = this.orderService.findById(orderId);
 
         if(toCheck != null) {
 
-            Order order = this.orderService.delete(orderId);
-            return ResponseEntity.ok(order.convertToDto());
+            this.orderService.delete(orderId);
+            return ResponseEntity.ok("Order erfolgreich gelöscht");
         } else {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
