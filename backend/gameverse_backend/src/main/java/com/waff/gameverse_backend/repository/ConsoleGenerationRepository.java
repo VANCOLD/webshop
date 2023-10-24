@@ -29,4 +29,5 @@ public interface ConsoleGenerationRepository extends JpaRepository<ConsoleGenera
      */
     Optional<ConsoleGeneration> findByName(String name);
 
+    boolean existsByName(String name);
 }

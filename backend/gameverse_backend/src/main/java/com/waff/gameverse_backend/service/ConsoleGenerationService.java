@@ -110,4 +110,8 @@ public class ConsoleGenerationService {
         this.consoleGenerationRepository.delete(toDelete);
         return toDelete;
     }
+
+    public boolean exists(ConsoleGenerationDto consoleGeneration) {
+        return this.consoleGenerationRepository.existsByName(consoleGeneration.getName());
+    }
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +44,12 @@ public class Category implements DataTransferObject<CategoryDto> {
      * The product associated with this category.
      */
     @OneToMany(mappedBy="category")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
+
+    public Category(CategoryDto category) {
+        this.id = category.getId();
+        this.name = category.getName();
+    }
 
     @Override
     public CategoryDto convertToDto() {

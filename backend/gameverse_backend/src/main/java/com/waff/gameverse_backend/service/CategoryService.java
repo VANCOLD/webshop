@@ -113,4 +113,8 @@ public class CategoryService {
         this.categoryRepository.delete(toDelete);
         return toDelete;
     }
+
+    public boolean exists(CategoryDto category) {
+        return this.categoryRepository.existsByName(category.getName());
+    }
 }

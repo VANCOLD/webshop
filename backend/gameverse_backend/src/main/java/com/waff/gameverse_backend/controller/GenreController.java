@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.GenreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.NoSuchElementException;
 /**
  * The GenreController class handles operations related to genres and permissions.
  */
+@EnableMethodSecurity
 @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
 @RequestMapping("/api/genres")
 @RestController

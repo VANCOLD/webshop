@@ -29,4 +29,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
      *         or an empty {@code Optional} if no matching category is found.
      */
     Optional<Category> findByName(String name);
+
+    boolean existsByName(String name);
 }

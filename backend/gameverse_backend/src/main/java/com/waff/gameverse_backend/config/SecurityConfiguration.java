@@ -80,8 +80,7 @@ public class SecurityConfiguration {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/authenticate").permitAll();
-                auth.requestMatchers("/register").permitAll();
+                auth.requestMatchers("/**").permitAll();
                 auth.requestMatchers("/api/**").authenticated();
             })
             .oauth2ResourceServer()

@@ -1,21 +1,24 @@
 package com.waff.gameverse_backend.controller;
 
 import com.waff.gameverse_backend.dto.ProductDto;
-import com.waff.gameverse_backend.dto.SimpleProductDto;
+import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.model.Product;
 import com.waff.gameverse_backend.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 /**
  * The ProductController class handles operations related to products and permissions.
  */
-@PreAuthorize("@tokenService.hasPrivilege('edit_products')")
+@EnableMethodSecurity
 @RequestMapping("/api/products")
 @RestController
 public class ProductController {
@@ -66,18 +69,23 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/esrb")
+    public ResponseEntity<List<String>> getEsrbRatings() {
+        return ResponseEntity.ok(Stream.of(EsrbRating.values()).map(EsrbRating::getName).toList());
+    }
+
     /**
      * Creates a new product.
      *
      * @param productDto The ProductDto containing the product information to be created.
      * @return ResponseEntity<ProductDto> A ResponseEntity containing the newly created ProductDto.
      * @throws IllegalArgumentException if there is a conflict or error while creating the product.
-     * @see SimpleProductDto
      */
     @PostMapping
-    public ResponseEntity<SimpleProductDto> save(@Validated @RequestBody SimpleProductDto productDto) {
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
+    public ResponseEntity<ProductDto> save(@Validated @RequestBody ProductDto productDto) {
         try {
-            return ResponseEntity.ok(productService.save(productDto.getName()).convertToSimpleDto());
+            return ResponseEntity.ok(productService.save(productDto).convertToDto());
         } catch (IllegalArgumentException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -93,6 +101,7 @@ public class ProductController {
      * @see ProductDto
      */
     @PutMapping
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<ProductDto> update(@Validated @RequestBody ProductDto productDto) {
         try {
             return ResponseEntity.ok(productService.update(productDto).convertToDto());
@@ -110,6 +119,7 @@ public class ProductController {
      * @throws NoSuchElementException if the product with the given ID does not exist.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_products')")
     public ResponseEntity<ProductDto> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(productService.delete(id).convertToDto());

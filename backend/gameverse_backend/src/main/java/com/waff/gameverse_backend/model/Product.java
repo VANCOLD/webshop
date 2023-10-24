@@ -3,14 +3,11 @@ package com.waff.gameverse_backend.model;
 import com.waff.gameverse_backend.dto.*;
 import com.waff.gameverse_backend.enums.EsrbRating;
 import com.waff.gameverse_backend.utils.DataTransferObject;
-import com.waff.gameverse_backend.utils.SimpleDataTransferObject;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "products")
-public class Product implements DataTransferObject<ProductDto>, SimpleDataTransferObject<SimpleProductDto> {
+public class Product implements DataTransferObject<ProductDto>{
 
     /**
      * The unique identifier for this product.
@@ -108,21 +105,25 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
     /**
      * The producer or manufacturer of the product.
      */
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="producer_id")
     private Producer producer;
+
+    @OneToMany(mappedBy="product", cascade = {CascadeType.ALL})
+    private List<OrderedProduct> orderedProducts;
 
     /**
      * The list of genres associated with this product.
      * Each genre in the list categorizes this product.
      */
+    @ToString.Exclude
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "products_to_genres",
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "genre_id") }
     )
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -130,15 +131,23 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         joinColumns = { @JoinColumn(name = "product_id") },
         inverseJoinColumns = { @JoinColumn(name = "cart_id") }
     )
-    private List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
 
-    public Product(SimpleProductDto productDto) {
+    public Product(ProductDto productDto) {
         this.id = productDto.getId();
         this.name = productDto.getName();
         this.description = productDto.getDescription();
         this.image = productDto.getImage();
         this.tax   = productDto.getTax();
+        this.gtin  = productDto.getGtin();
+        this.price = productDto.getPrice();
+        this.stock = productDto.getStock();
+        this.available = productDto.getAvailable();
+
+        var rating = productDto.getEsrbRating() != null ? EsrbRating.getEsrbRating(productDto.getEsrbRating()) : null;
+        this.esrbRating =  rating == null ? EsrbRating.NO_RATING : rating;
     }
+
 
     @Override
     public ProductDto convertToDto() {
@@ -153,29 +162,13 @@ public class Product implements DataTransferObject<ProductDto>, SimpleDataTransf
         productDto.setTax(tax);
         productDto.setStock(stock);
         productDto.setGtin(gtin);
+        productDto.setGenres(genres == null ? null : genres.stream().map(Genre::convertToDto).toList());
+        productDto.setProducer(producer == null ? null : producer.convertToDto());
+        productDto.setCategory(category == null ? null : category.convertToDto());
+        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
         productDto.setAvailable(available);
         productDto.setEsrbRating(esrbRating.getName());
-        productDto.setConsoleGeneration(consoleGeneration == null ? new ConsoleGenerationDto() : consoleGeneration.convertToDto());
-        productDto.setCategory(category == null ? new CategoryDto() : category.convertToDto());
-        productDto.setProducer(producer == null ? new ProducerDto() : producer.convertToDto());
-        productDto.setGenres(genres.stream().map(Genre::convertToDto).toList());
 
         return productDto;
-    }
-
-    @Override
-    public SimpleProductDto convertToSimpleDto() {
-
-        SimpleProductDto simpleProductDto = new SimpleProductDto();
-
-        simpleProductDto.setName(name);
-        simpleProductDto.setDescription(description);
-        simpleProductDto.setPrice(price);
-        simpleProductDto.setImage(image);
-        simpleProductDto.setTax(tax);
-        simpleProductDto.setStock(stock);
-        simpleProductDto.setGtin(gtin);
-
-        return simpleProductDto;
     }
 }

@@ -81,7 +81,7 @@ public class GenreServiceTest {
 
     @Test
     void updateTest() {
-        GenreDto genre = new GenreDto("test");
+        GenreDto genre = new GenreDto(100L, "test");
         assertThrows(NoSuchElementException.class,() -> this.genreService.update(genre));
 
         genre.setId(1L);

@@ -6,82 +6,79 @@ Global Styles
 
 * {
     box-sizing: border-box;
-}
-
-html, body {
+  }
+  
+  html, body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    /* font-size: 16px; */
     -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #1f2122;
     background-color: #1e1e1e;
-}
-
-a {
-    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  a {
+      color: white;
     text-decoration: none !important;
-}
-
-a:hover {
-    color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
+  }
+  a:hover {
+      color: white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
     margin-top: 0px;
     margin-bottom: 0px;
     color: #fff;
     font-weight: 700;
-}
-
-ul {
+  }
+  
+  ul {
     margin-bottom: 0px;
-}
-
-
-body .page-content {
+  }
+  
+  body .page-content {
     background-color: #27292a;
     border-radius: 23px;
-    width: 85%;
+    width:85%;
     margin: 0 auto;
-}
-
-
-.page-content {
+  }
+  
+  .page-content {
     margin: 15%;
-}
-
-::selection {
+  }
+  
+  ::selection {
     background: #e75e8d;
     color: #fff;
-}
-
-::-moz-selection {
+  }
+  
+  ::-moz-selection {
     background: #e75e8d;
     color: white;
-}
-
-.container-fluid {
+  }
+  
+  .container-fluid{
     padding: 0 !important;
-}
-
-.row {
+  }
+  
+  .row {
     margin: 0;
-}
-
-main {
-    flex: 1;
-}
-
-/* Trick um den Footer ans Ende der Seite zu schieben */
-.orderbox {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
+    min-width: auto;
+    max-width: auto;
+    min-height: auto;
+    max-height: auto;
+  }
+  
+  main {
+      flex:1;
+  }
+  
 /* 
 ---------------------------------------------
 Navigationsbar Style
@@ -89,67 +86,47 @@ Navigationsbar Style
 */
 
 .icon-button {
-    text-align: center;
-}
-
-.icon-button i {
-    font-size: 32px;
-    color: #ec6090;
-    width: 64px;
-    height: auto;
-}
-
-.icon-button p {
-    font-size: 16px;
+    text-align:center;
+  }
+  
+  .icon-button i {
+    font-size:38px;
+    color:#ec6090;
+    width:64px;
+    height:auto;
+  }
+  
+  .icon-button p {
+    font-size: 18px;
+    color:white;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox to create a horizontal layout */
+  }
+  
+  .navbar-list li {
+    margin-right: 10px; /* Add spacing between list items if desired */
+  }
+  
+  #search-field input {
+    background-color:#1e1e1e;
     color: white;
-}
-
-.search-icon {
-    border-bottom: 1px solid #ec6090;
-    padding-bottom: 4px;
-    padding-left: 4px;
-}
-
-
-.icon-button input {
-    outline: none;
-    background-color: #1e1e1e;
-    color: white;
+    font-size:20px;
+    border-color: #ec6090;
+    border-top:  0px;
     border-left: 0px;
     border-right: 0px;
-    border-top: 0px;
-    border-bottom: 1px solid #ec6090;
-
-    /* Entfernt den Rand (Border) des Inputs; */
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-}
-
-
-.icon-button input:focus {
-    outline: none;
-    background-color: #1f2122;
-    color: white;
-    border-left: 0px;
-    border-right: 0px;
-    border-top: 0px;
-    border-bottom: 1px solid #ec6090;
-
-    /* Entfernt den Fokus (blaue Umrandung) */
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-/* Since the navbar contains floated elements, you should add a clearfix to ensure proper positioning and avoid overlapping issues */
-
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+    min-width: 80%;
+    min-height: auto;
+  }
+  
+  #search-field input:focus {
+    outline-color: #ec6090;
+  }
 
 
 /* 
@@ -158,71 +135,140 @@ Footer Style
 --------------------------------------------- 
 */
 
-footer a {
-    font-size: 14px;
-}
-
-footer p {
+  footer a {
+    font-size: 14 px;  
+  }
+  
+  footer p {
     text-align: center;
     color: #fff;
-    font-weight: 300;
-    font-size: 12px;
-}
-
-footer {
-    position: relative;
-    bottom: 0px;
-}
-
-.bg-footer {
+    font-weight: 300; 
+    font-size: 12px ;
+  }
+  
+  footer {
+    position:relative;
+    bottom:0px;
+  }
+  
+  .bg-footer {
     background-color: #ec6090;
-}
-
-.socials {
+  }
+  
+  .socials {
     color: white;
-}
-
-.socials li {
-    display: inline;
-    margin-top: 16px;
-}
-
-footer > hr {
-    color: white;
-    height: 1px;
+  }
+  
+  .socials li {
+    display:inline;
+    margin-top:16px;
+  }
+  
+  footer > hr {
+    color:white; 
+    height: 1px; 
     margin: 0 auto;
-}
-
-
-.small-links li {
+  }
+  
+  
+  .small-links li{
     background-color: #ec6090;
     text-align: center;
-    color: white;
-    border-color: white;
+    color:white;
+    border-color:white;
     border-left: none;
-    border-right: none;
-}
-
-.buttonlist {
-    font-style: none;
+    border-right:none; 
+  }
+  
+  .buttonlist {
+    font-style:none;
     font-size: 12px;;
-}
+  }
 
 
 /* 
 ---------------------------------------------
-Impressum Style
+Register Login Style
 --------------------------------------------- 
 */
 
-.justified {
-    text-align: center;
-    text-justify: inter-word;
-    text-align-last: center;
-    color: darkgray;
-
+    .register-background {
+    background-image: url("./../images/register-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 120vh;
 }
 
+    .justified {
+        text-align: center;
+        text-justify: inter-word;
+        text-align-last: center;
+        color: darkgray;
+    }
+
+    .login-container {
+        background-color: whitesmoke;
+        border-bottom-left-radius: 50px;
+    }
+
+    .form-group + .form-group {
+        margin-top: 8px;
+    }
+
+    .custom-border-radius {
+        border-radius: 50px;
+    }
+
+    .text-color {
+        color: #e75e8d;
+    }
+
+    .disclaimer-text {
+        position:relative; 
+        text-align:center; 
+        font-size:12px; 
+    }
+
+    .custom-button-rounded-color-left:focus, .custom-button-rounded-color-left:hover, .custom-button-rounded-color-left:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color-left {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-left-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color {
+        color: #e75e8d;
+        background-color: white;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .custom-button-rounded-color:focus, .custom-button-rounded-color:hover, .custom-button-rounded-color:active {
+        color: white;
+        background-color: #e75e8d;
+        transition: none;
+        border-top-right-radius: 50px !important;
+        font-size:19px;
+    }
+
+    .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover{
+        background-color: #e75e8d;
+        border-radius: 5px;
+        outline-color: white;
+        border-color: white;
+        border-radius: 5px;
+    }
 
 /* 
 ---------------------------------------------
@@ -268,11 +314,305 @@ Home Page Style
 --------------------------------------------- 
 */
 
+.index-console-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+} 
 
-#carouselGames {
-    margin: 0;
-    padding: 0;
+.platform img {
+  width: 150px;
+  height: 150px;
 }
+
+.platform a {
+  display: inline-block; /* Display items next to each other */
+
+}
+
+.platform p{
+  color: #e75e8d; /* Change the text color to your desired color */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 5px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
+}
+
+/* Remove the margin from the last icon to prevent extra spacing */
+.platform img:last-child {
+  margin-right: 0;
+} 
+
+/* Apply the styles to the popular items container */
+.popular-items-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+}
+
+/* Style for the popular items header */
+.pop-item-header h2 {
+  font-size: 35px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: #e75e8d; /* Change the text color to your desired color */
+  margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+/* Apply the styles to the items (image + game title) in the popular items */
+.popular-items a {
+  display: inline-block; /* Display items next to each other */
+  align-items: center; /* Center-align the items */
+  margin-right: 80px; /* Increase the margin between items (adjust as needed) */
+}
+
+.popular-items p {
+  color: #e75e8d; /* Change the text color to your desired color */
+}
+
+/* Remove the margin from the last item to prevent extra spacing */
+.popular-items a:last-child {
+  margin-right: 0;
+}
+
+/* Style for the images in popular items */
+.popular-items img {
+  width: 200px; /* Adjust the width as needed */
+  height: 250px; /* Maintain aspect ratio */
+}
+
+/* Style for the game titles in popular items */
+.game-title {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 10px; /* Add space between the image and the title */
+  font-weight: bold; /* Make the text bold */
+}
+
+.game-info {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin: 0;  
+  font-weight: bold; /* Make the text bold */
+}
+
+/* Media query for screens smaller than 768px (adjust as needed) */
+@media (max-width: 768px) {
+  /* Reduce the image size and text size */
+  .platform img,
+  .popular-items img {
+    width: 100px; /* Adjust the width as needed */
+    height: 125px; /* Adjust the height as needed */
+  }
+}
+
+/* 
+---------------------------------------------
+product Style
+--------------------------------------------- 
+*/
+.products-body {
+  font-family: sans-serif;
+}
+
+.product-description {
+  margin-left: 20px;
+  color: #e75e8d;
+}
+.product-price {
+  margin: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-category {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-stock {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+
+.product-image {
+  width:350px;
+  height:420px;
+}
+.product-tax {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+.product-amount {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #e75e8d;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+  width: flex;
+  min-width: flex;
+  text-align: center; /* Center-align the icons within the container */
+} 
+/* Center align the content */
+/* Base styles for all screen sizes */
+.product-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 60px;
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative;
+}
+
+.product-header {
+  background-color: #e75e8d;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.product-card {
+  border: 4px solid #e75e8d;
+  border-radius: 13%;
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.product-card h3 {
+  color: #e75e8d;
+}
+
+.product-card p {
+  color: white;
+}
+
+.product-card img {
+  width: 250px;
+  height: 320px;
+}
+
+/* Add to Cart button styling */
+.add-to-cart {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #c94272;
+}
+
+.product-card p.price {
+  color: #e75e8d; /* Set the text color for the price */
+  font-size: 18px; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the price text bold */
+  margin-top: 10px; /* Add spacing above the price */
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
+  /* Styles for screens up to 768px (e.g., tablets) */
+  .product-container-wrapper {
+    margin: 10px; /* Adjust margins for smaller screens */
+  }
+
+  .product-card {
+    width: 80%; /* Make the product cards 80% of the width */
+    margin: 10px auto; /* Center the product cards horizontally */
+  }
+
+  .add-to-cart {
+    position: static; /* Reset positioning for mobile screens */
+    display: block; /* Display the button as a block element */
+    margin: 10px auto; /* Center the button horizontally */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Styles for screens up to 480px (e.g., mobile devices) */
+  .product-card {
+    padding: 15px; /* Increase padding for smaller screens */
+  }
+}
+
+/* 
+---------------------------------------------
+Cards Style
+--------------------------------------------- 
+*/
+
+
+.btn-buy-now  {
+  margin-left: 20px;
+  background-color: #ec6090;
+  border-color: #ec6090;
+  color: #1e1e1e;
+}
+
+.contact-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+#create-product-form > * {
+  font-size:16px;
+  min-height: 50px;
+  height: 50px; 
+}
+
 
 /* 
 ---------------------------------------------
@@ -280,167 +620,244 @@ Shopping Cart Style
 --------------------------------------------- 
 */
 
+/* CSS for the container wrapper */
+.cart-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 60px;  
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative; /* Required for absolute positioning of the button */
+} 
+
 /* Shopping Cart Container */
 .cart-container {
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 30px;
+  background-color: #27292a;
+  padding: 30px;
+  min-height: 300px;
 }
 
-/* Shopping Cart Header */
-.cart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ebebeb;
-    margin-bottom: 20px;
-}
-
-/* Shopping Cart Title */
-.cart-title {
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0;
+/* Shopping Cart Items Container */
+.cart-items-container {
+  display: flex;
+  flex-direction: column; /* Display items in a column */
+  gap: 20px; /* Add spacing between items */
 }
 
 /* Shopping Cart Item */
 .cart-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 /* Shopping Cart Item Image */
 .cart-item img {
-    max-width: 100%;
-    height: auto;
-    margin-right: 20px;
+  max-width: 100%;
+  height: auto;
+  margin-right: 20px;
 }
 
 /* Shopping Cart Item Details */
 .cart-item-details {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 /* Shopping Cart Item Title */
-.cart-item-details h5 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-    color: #000;
+.cart-item-details h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
 }
 
 /* Shopping Cart Item Platform */
 .cart-item-details p:nth-child(2) {
-    font-size: 14px;
-    color: #666;
-    margin: 5px 0;
+  font-size: 14px;
+  color: white;
+  margin: 5px 0;
 }
 
 /* Shopping Cart Item Price */
 .cart-item-details p:nth-child(3) {
-    font-size: 16px;
-    color: #e75e8d;
-    font-weight: 600;
-    margin: 5px 0;
+  font-size: 16px;
+  color: #e75e8d;
+  font-weight: 600;
+  margin: 5px 0;
 }
 
 /* Shopping Cart Item Quantity */
 .cart-item-quantity {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
-/* Shopping Cart Item Quantity Button */
-.btn-quantity {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #f2f2f2;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #666;
-    cursor: pointer;
-    margin: 0 10px;
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the spacing as needed */
 }
 
-/* Shopping Cart Item Quantity Button Hover */
-.btn-quantity:hover {
-    background-color: #e75e8d;
-    color: #fff;
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
 }
 
-/* Shopping Cart Item Quantity Button Plus */
-.plus::before {
-    content: "+";
+.quantity-btn:hover {
+  background-color: #e75e8d;
+  color: #fff;
 }
 
-/* Shopping Cart Item Quantity Button Minus */
-.minus::before {
-    content: "-";
-}
-
-/* Shopping Cart Item Quantity Value */
 .quantity {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 10px;
+  color:white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 10px;
 }
+
+
+/* Checkout button styling */
+.checkout-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  min-width: 140px;
+  background-color: #e75e8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+/* Checkout button styling */
+.cancel-button {
+  position: absolute;
+  bottom: 30px;
+  right: 200px;
+  min-width: 140px;
+  background-color: #e75e8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #ff4e84;
+}
+
+.checkout-button:hover {
+  background-color: #ff4e84;
+}
+
 
 /* Shopping Cart Item Remove Button */
 .btn-remove {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #f2f2f2;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #666;
-    cursor: pointer;
-    position: relative;
-    left: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  left: 10px;
 }
 
-/* Shopping Cart Item Remove Button Icon */
 .btn-remove::after {
-    content: "\f00d";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 16px;
-    color: #e75e8d;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  content: "\f00d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 16px;
+  color: #e75e8d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.payment {
+  width:180px;
+  height: 40px;
+  font-size: 20px;
 }
 
 /* Shopping Cart Total */
 .cart-total {
-    margin-top: 30px;
-    text-align: right;
+  text-align: right;
+  margin-top: 10px;
 }
 
-.cart-total h5 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
+#total-amount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e75e8d;
+  margin-left: 10px; /* Add some spacing between "Total:" and the amount */
 }
 
-.cart-total p {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 5px;
+@media (max-width: 767px) {
+  .cart-item-details {
+      margin-left: 20px;
+  }
+
+  .cart-item-quantity {
+      margin-right: 20px;
+  }
 }
 
-.cart-total button.btn-primary {
-    margin-top: 10px;
+@media (max-width: 576px) {
+  .cart-table {
+      overflow-x: auto;
+  }
+
+  .cart-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .cart-item img {
+      max-width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .cart-item-details {
+      text-align: center;
+  }
+
+  .cart-item-quantity {
+      margin-top: 10px;
+  }
+
+  .cart-total {
+      margin-top: 20px;
+  }
 }
+
 
 @media (max-width: 767px) {
     .cart-item-details {
@@ -463,7 +880,7 @@ Shopping Cart Style
         align-items: center;
     }
 
-    .cart-item img {
+    .cart-item img {  
         max-width: 100%;
         margin-bottom: 10px;
     }
@@ -479,6 +896,229 @@ Shopping Cart Style
     .cart-total {
         margin-top: 20px;
     }
+
+  @media (max-width: 767px) {
+    .checkout-button {
+      bottom: 20px;
+      right: 20px;
+      min-width: auto;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 576px) {
+  .checkout-button {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 10px;
+    font-size: 12px;
+    }
+  }
+}
+
+/* 
+---------------------------------------------
+User Management Style
+--------------------------------------------- 
+*/
+
+
+.user-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #27292a;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  position: relative; /* Required for absolute positioning of the button */
+} 
+
+label {
+  color: #ff4e84;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+select {
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s;
+  border-radius: 5px; 
+  padding: 5px; 
+  box-sizing: border-box;
+}
+
+/* Create User Form */
+.create-user-form {
+  background-color: #27292a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: flex;
+}
+
+.create-user-form h2 {
+  color: #e75e8d;
+}
+
+.user-create-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.user-create-form input[type="text"],
+.user-create-form input[type="email"],
+.user-create-form input[type="password"] {
+  width: 100%;
+  border-radius: 3px; /* Adjust the border-radius value */
+  background-color: #f2f2f2;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: border 0.3s; /* Smooth transition for the border */
+}
+
+.create-user {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  left: 0; 
+}
+
+/* User List Table */
+.user-list-table {
+  background-color: #27292a;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* User List Table Header */
+.user-list-table thead {
+  font-size: 16px;
+  background-color: #e75e8d;
+  color: white;
+}
+
+.no-overflow {
+  table-layout: fixed; 
+  width: 100%; 
+}
+
+.user-list-table thead {
+  margin: 0%;
+}
+
+/* User List Table Header Cells */
+.user-list-table th {
+  text-align: center; /* Add this line to center the text */
+  padding: 5px;
+}
+
+/* User List Table Body Rows */
+.user-list-table tbody tr {
+  font-size: 14px;
+  text-align: center; /* Add this line to center the text */
+
+  background-color: #f2f2f2;
+  color: #27292a;
+}
+
+.user-list-table input[type="text"],
+.user-list-table input[type="password"],
+.user-list-table input[type="email"],
+select {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    transition: border 0.3s; /* Smooth transition for the border */
+    outline: none; /* Remove the default outline */
+}
+
+/* User List Table Action Buttons */
+.user-list-table .delete-button, .user-list-table .update-button, .user-list-table .admin-button {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.user-list-table .delete-button:hover, .user-list-table .update-button:hover {
+  background-color: #ff4e84;
+}
+
+/* Apply zebra striping to the table */
+.user-list-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Background color for odd rows */
+}
+
+.user-list-table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* Background color for even rows */
+}
+
+/* For small screens (e.g., mobile phones) */
+@media (max-width: 576px) {
+  .user-list-table {
+    font-size: 12px; /* Reduce font size for small screens */
+  }
+}
+
+/* For medium-sized screens (e.g., tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+  .user-list-table {
+    font-size: 14px; /* Adjust font size for tablets */
+  }
+}
+
+/* For larger screens (e.g., desktop) */
+@media (min-width: 993px) {
+  .user-list-table {
+    font-size: 16px; /* Adjust font size for desktops */
+  }
+}
+
+/*
+---------------------------------------------
+User Profile Style 
+--------------------------------------------- 
+*/
+
+.profile-page-update-user {
+  background-color: #e75e8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  left: 0; 
 }
 
 
@@ -489,61 +1129,160 @@ Responsive Style
 */
 
 
+/* Desktop breakpoint */
 @media (min-width: 1200px) {
-
-    .socials li i {
-        font-size: 32px;
-        margin-left: 16px;
-        margin-right: 16px;
+    
+    #navbar-normal {
+        display: block;
     }
 
-    footer {
+    #navbar-small {
+         display: none;
+    }
+
+    #search-field input {
         min-width: 100%;
-        min-height: 100%;
     }
-
-}
-
-@media (max-width: 1200px) {
-
-    .socials li i {
-        font-size: 24px;
-        margin-left: 12px;
-        margin-right: 12px;
-    }
-
-    footer {
-        min-width: 100%;
-        min-height: 100%;
-    }
-}
-
-@media (max-width: 767px) {
-
-    .socials li i {
+    .icon-button i {
+        font-size:38px;
+        color:#ec6090;
+        width:64px;
+        height:auto;
+      }
+      
+      .icon-button p {
         font-size: 18px;
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-
-    footer {
-        min-width: 100%;
-        min-height: 100%;
-    }
-
-}
-
-@media (min-width: 767px) {
+        color:white;
+      }
 
     .socials li i {
-        font-size: 18px;
-        margin-left: 8px;
-        margin-right: 8px;
+      font-size:32px;
+      margin-left:16px;
+      margin-right:16px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{
+      min-width:100%;
+      min-height:100%
+      
+    }
+  }
+  
+  /* Tablet breakpoint */
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+    #navbar-normal {
+        display: block;
     }
 
-    footer {
-        min-width: 100%;
-        min-height: 100%;
+    #navbar-small {
+        display: none;
     }
 
-}
+    #search-field input { 
+        min-width: 50%;
+    }
+
+    .icon-button i {
+        font-size:19px;
+        color:#ec6090;
+        width:32px;
+        height:auto;
+      }
+      
+    .icon-button p {
+        font-size: 9px;
+        color:white;
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+  
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
+  
+  }
+  
+  /* Mobile breakpoint */
+  @media (min-width: 320px) and (max-width: 766px) {
+      
+    #navbar-normal {
+        display: none;
+    }
+
+    #navbar-small {
+        display: block; 
+    }
+
+    .socials li i {
+      font-size:18px;
+      margin-left:8px;
+      margin-right:8px;
+    }
+    header {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    main {
+      min-width:100%;
+      min-height:100%
+    }
+  
+    footer{   
+      min-width:100%;
+      min-height:100%;
+    }
+  }
+
+   /* Responsive Queries Register */
+
+  /* Add styles for small screens (up to 766px) */
+  @media (max-width: 766px) {
+    .tab-content {
+        border-radius: 50px; /* Ensure that the .tab-content container retains rounded corners on small screens */
+    }
+
+    .login-container {
+        border-radius: 50px; /* Ensure the .login-container retains rounded corners on small screens */
+    }
+
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+          font-size: 19px; /* Restore font size on larger screens */
+  }
+  }
+
+  /* Add styles for screens between 767px and 991px */
+  @media (min-width: 767px) and (max-width: 991px) {
+    .custom-button-rounded-color-left, .custom-button-rounded-color {
+      font-size: 19px; /* Restore font size on screens between 767px and 990px */
+  }
+  }
+
+  /* Additional styles for specific elements on larger screens (above 991px) */
+  @media (min-width: 992px) {
+    /* Add additional styles for elements as needed */
+  }

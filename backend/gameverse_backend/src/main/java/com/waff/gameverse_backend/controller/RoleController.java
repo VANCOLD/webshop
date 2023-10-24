@@ -6,6 +6,7 @@ import com.waff.gameverse_backend.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
 /**
  * The RoleController class handles operations related to roles and permissions.
  */
+@EnableMethodSecurity
 @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
 @RequestMapping("/api/roles")
 @RestController

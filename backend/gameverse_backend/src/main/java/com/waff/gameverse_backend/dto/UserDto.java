@@ -2,11 +2,9 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * The UserDto class represents a Data Transfer Object (DTO) for user information.
@@ -14,6 +12,9 @@ import java.util.List;
  */
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class UserDto implements Serializable {
 
     /**
@@ -35,85 +36,24 @@ public class UserDto implements Serializable {
     @NotEmpty
     private String password;
 
-    /**
-     * The role associated with the user.
-     */
     @NotNull
+    @NotEmpty
+    private String gender;
+
+    @NotNull
+    @NotEmpty
+    private String firstname;
+
+    @NotNull
+    @NotEmpty
+    private String lastname;
+
+    @NotNull
+    @NotEmpty
+    private String email;
+
+    private AddressDto address;
+
     private RoleDto role;
 
-    @NotNull
-    private List<OrderDto> orders;
-
-    @NotNull
-    private CartDto cart;
-
-    /**
-     * Constructs an empty UserDto with default values (id=0, username="", password="", role=empty RoleDto).
-     */
-    public UserDto() {
-        this(0L, "", "", new RoleDto());
-    }
-
-    /**
-     * Constructs a UserDto with the specified username and default id (0), password (""),
-     * and role (empty RoleDto).
-     *
-     * @param username The username of the user.
-     */
-    public UserDto(String username) {
-        this(0L, username, "", new RoleDto());
-    }
-
-    /**
-     * Constructs a UserDto with the specified username, password, and default id (0) and role (empty RoleDto).
-     *
-     * @param username The username of the user.
-     * @param password The password of the user.
-     */
-    public UserDto(String username, String password) {
-        this(0L, username, password, new RoleDto());
-    }
-
-    /**
-     * Constructs a UserDto with the specified id, username, password, and default role (empty RoleDto).
-     *
-     * @param id       The unique identifier for the user.
-     * @param username The username of the user.
-     * @param password The password of the user.
-     */
-    public UserDto(Long id, String username, String password) {
-        this(id, username, password, new RoleDto());
-    }
-
-    /**
-     * Constructs a UserDto with the specified username, password, and role.
-     *
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @param role     The role associated with the user.
-     */
-    public UserDto(String username, String password, RoleDto role) {
-        this(0L, username, password, role);
-    }
-
-    /**
-     * Constructs a UserDto with the specified id, username, password, and role.
-     *
-     * @param id       The unique identifier for the user.
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @param role     The role associated with the user.
-     */
-    public UserDto(Long id, String username, String password, RoleDto role) {
-        this(id, username, password, role, List.of(), new CartDto());
-    }
-
-    public UserDto(Long id, String username, String password, RoleDto role, List<OrderDto> orders, CartDto cart ) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.orders = orders;
-        this.cart   = cart;
-    }
 }

@@ -2,8 +2,7 @@ package com.waff.gameverse_backend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * The ConsoleGenerationDto class represents a Data Transfer Object (DTO) for a console generation in products {@Link Product}.
@@ -11,6 +10,9 @@ import lombok.Setter;
  */
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ConsoleGenerationDto {
 
     /**
@@ -24,31 +26,4 @@ public class ConsoleGenerationDto {
     @NotNull
     @NotEmpty
     private String name;
-
-    /**
-     * Constructs an empty ConsoleGenerationDto with default values (id=0, name="").
-     */
-    public ConsoleGenerationDto() {
-        this(0L, "");
-    }
-
-    /**
-     * Constructs a ConsoleGenerationDto with the specified name and default id (0).
-     *
-     * @param name The name of the console generation.
-     */
-    public ConsoleGenerationDto(String name) {
-        this(0L, name);
-    }
-
-    /**
-     * Constructs a ConsoleGenerationDto with the specified id and name.
-     *
-     * @param id   The unique identifier for the console generation.
-     * @param name The name of the console generation.
-     */
-    public ConsoleGenerationDto(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

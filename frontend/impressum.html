@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
 
     <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
@@ -19,6 +18,7 @@
     <script crossorigin="anonymous"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Fontawesome-->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
@@ -30,322 +30,163 @@
 </head>
 
 <body>
-<div class="orderbox">
+
     <!-- ***** Header Area Start ***** -->
-    <header>
+    <div id="navbar-bind"></div>
+
+    <main>
         <div class="container-fluid">
             <div class="row">
-                <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
-                    <div class="logo">
-                        <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
-                    </div>
-                    <div class="d-flex flex-row">
-                        <div class="nav-link" onclick="navbehave()">
-                            <div class="icon-button">
-                                <div class="input-group">
-                                    <input aria-describedby="searc-field" aria-label="Searchfield" class="form-control "
-                                           placeholder="Search" type="text">
-                                    <div class="input-group-append">
-                                        <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./support.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                    <p>Support</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./register.html">
-                                <div class="icon-button">
-                                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
-                                    <p>Cart</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./register.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-user fa-fw"></i>
-                                    <p>Profile</p>
-                                </div>
-                            </a>
-                        </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+                <div class="page-content">
+            <span class="text-center text-wrap">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="page-content">
-        <span class="text-center text-wrap">
-
-            <h4 class="pt-3">Impressum</h4>
-                
-            <div class="col-lg-12 mb-2 mt-4">
-                <h5>Informationspflicht laut §5 E-Commerce Gesetz, <br>§14 Unternehmensgesetzbuch, §63 Gewerbeordnung und <br>Offenlegungspflicht laut §25 Mediengesetz</h6>
-            </div>
-
-            <div class="justified">
-                Gamerverse GmbH<br>
-                Langegasse 5,<br>
-                1090 Wien,<br>
-                Österreich<br>
-            </div>
-            <br>
-            <h5 class=mb-2>Unternehmensgegenstand: Verkauf von Videospielen,<br> Videospiel-Hardware / Zubehör<br></h5>
-            <div class="justified">
-                UID-Nummer: ATU1232342378<br>
-                GLN: 1234567891234<br>  
-                GISA: 12345678<br>
-                Firmenbuchnummer: 123456a<br>
-                Firmenbuchgericht: Wien<br>
-                Firmensitz: 1070 Wien<br>
-                Tel.: 01234/42224324<br>
-                E-Mail: office@gameverse.com<br>
-
-                Mitglied bei: WKO<br>
-                Berufsrecht: Gewerbeordnung: www.ris.bka.gv.at<br>
-
-                Aufsichtsbehörde/Gewerbebehörde: Magistrat Wien<br>
-                Berufsbezeichnung: Webdesigner, Grafiker<br>
-                Verleihungsstaat: Österreich<br>
-
-                Geschäftsführer: Polak Rene, Grafl Florian, Abdlhadi Raja<br>
-                Beteiligungsverhältnisse: Gesellschafter Grafl Florian  33%, Polak Rene 33%, Abdlhadi Raja 33%<br>
-            </div>
-
-            <br>
-
-            <h5 class=mb-2>Kontaktdaten des Verantwortlichen für Datenschutz<br></h5>
-            <div class="justified">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                Sollten Sie Fragen zum Datenschutz haben, finden Sie nachfolgend die Kontaktdaten der verantwortlichen Person bzw. Stelle:
-                Gameverse GmbH<br>
-                Langegasse 5, 1070 Wien, Österreich<br>
-                Vertretungsberechtigt: Polak Rene<br>
-                E-Mail-Adresse: r.polak@gameverse.com<br>
-                Telefon: 01234/133451<br>
-                    </div>
-                    <div class="col-lg-2"></div> 
-                </div><br>
-            </div>
-            <br>
-
-            <h5 class=mb-2>EU-Streitschlichtung<br></h5>
-            <div class="justified">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        Gemäß Verordnung über Online-Streitbeilegung in Verbraucherangelegenheiten (ODR-Verordnung) möchten wir Sie über die Online-Streitbeilegungsplattform informieren.
-                        <br>Verbraucher haben die Möglichkeit, Beschwerden an die <br><b>Online Streitbeilegungsplattform der Europäischen Kommission</b><br> unter folgenden Link einzureichen: <b> http://ec.europa.eu/odr?tid=121890425 </b> 
-                        <br><br> Die dafür notwendigen Kontaktdaten finden Sie oberhalb in unserem Impressum.<br>
-                        Wir möchten Sie jedoch darauf hinweisen, dass wir nicht bereit oder verpflichtet sind, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-                    </div>
-                    <div class="col-lg-2"></div>   
-                </div><br> 
-            </div>
-              
-
-            <h5 class=mb-2>Haftung für Inhalte dieser Website<br></h5>
-            <div class="justified">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                    Wir entwickeln die Inhalte dieser Website ständig weiter und bemühen uns korrekte und aktuelle Informationen bereitzustellen.
-                    Leider können wir keine Haftung für die Korrektheit aller Inhalte auf dieser Website übernehmen, speziell für jene, die seitens Dritter bereitgestellt wurden.
-                    Als Diensteanbieter sind wir nicht verpflichtet, die von ihnen übermittelten oder gespeicherten Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                <h4 class="pt-3">Impressum</h4>
                     
-                    Unsere Verpflichtungen zur Entfernung von Informationen oder zur Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-                    aufgrund von gerichtlichen oder behördlichen Anordnungen bleiben auch im Falle unserer Nichtverantwortlichkeit davon unberührt.
-                    Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, bitte wir Sie uns umgehend zu kontaktieren, damit wir die rechtswidrigen Inhalte entfernen können.
-                    Sie finden die Kontaktdaten im Impressum.
-                    <br><br>  
-                    </div> 
-                    <div class="col-lg-2"></div>
+                <div class="col-lg-12 mb-2 mt-4">
+                    <h5>Informationspflicht laut §5 E-Commerce Gesetz, <br>§14 Unternehmensgesetzbuch, §63 Gewerbeordnung und <br>Offenlegungspflicht laut §25 Mediengesetz</h6>
                 </div>
-            </div> 
-            <br>
-            <h5 class=mb-2>Haftung für Links auf dieser Website<br></h5>
-            <div class="justified">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        Unsere Website enthält Links zu anderen Websites für deren Inhalt wir nicht verantwortlich sind.
-                        Haftung für verlinkte Websites besteht für uns nicht, da wir keine Kenntnis rechtswidriger Tätigkeiten hatten und haben,
-                        uns solche Rechtswidrigkeiten auch bisher nicht aufgefallen sind und wir Links sofort entfernen würden, wenn uns Rechtswidrigkeiten bekannt werden.
-                        Wenn Ihnen rechtswidrige Links auf unserer Website auffallen, bitte wir Sie uns zu kontaktieren. 
+
+                <div class="justified">
+                    Gamerverse GmbH<br>
+                    Langegasse 5,<br>
+                    1090 Wien,<br>
+                    Österreich<br>
+                </div>
+                <br>
+                <h5 class=mb-2>Unternehmensgegenstand: Verkauf von Videospielen,<br> Videospiel-Hardware / Zubehör<br></h5>
+                <div class="justified">
+                    UID-Nummer: ATU1232342378<br>
+                    GLN: 1234567891234<br>  
+                    GISA: 12345678<br>
+                    Firmenbuchnummer: 123456a<br>
+                    Firmenbuchgericht: Wien<br>
+                    Firmensitz: 1070 Wien<br>
+                    Tel.: 01234/42224324<br>
+                    E-Mail: office@gameverse.com<br>
+
+                    Mitglied bei: WKO<br>
+                    Berufsrecht: Gewerbeordnung: www.ris.bka.gv.at<br>
+
+                    Aufsichtsbehörde/Gewerbebehörde: Magistrat Wien<br>
+                    Berufsbezeichnung: Webdesigner, Grafiker<br>
+                    Verleihungsstaat: Österreich<br>
+
+                    Geschäftsführer: Polak Rene, Grafl Florian, Abdlhadi Raja<br>
+                    Beteiligungsverhältnisse: Gesellschafter Grafl Florian  33%, Polak Rene 33%, Abdlhadi Raja 33%<br>
+                </div>
+
+                <br>
+
+                <h5 class=mb-2>Kontaktdaten des Verantwortlichen für Datenschutz<br></h5>
+                <div class="justified">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                    Sollten Sie Fragen zum Datenschutz haben, finden Sie nachfolgend die Kontaktdaten der verantwortlichen Person bzw. Stelle:
+                    Gameverse GmbH<br>
+                    Langegasse 5, 1070 Wien, Österreich<br>
+                    Vertretungsberechtigt: Polak Rene<br>
+                    E-Mail-Adresse: r.polak@gameverse.com<br>
+                    Telefon: 01234/133451<br>
+                        </div>
+                        <div class="col-lg-2"></div> 
+                    </div><br>
+                </div>
+                <br>
+
+                <h5 class=mb-2>EU-Streitschlichtung<br></h5>
+                <div class="justified">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            Gemäß Verordnung über Online-Streitbeilegung in Verbraucherangelegenheiten (ODR-Verordnung) möchten wir Sie über die Online-Streitbeilegungsplattform informieren.
+                            <br>Verbraucher haben die Möglichkeit, Beschwerden an die <br><b>Online Streitbeilegungsplattform der Europäischen Kommission</b><br> unter folgenden Link einzureichen: <b> http://ec.europa.eu/odr?tid=121890425 </b> 
+                            <br><br> Die dafür notwendigen Kontaktdaten finden Sie oberhalb in unserem Impressum.<br>
+                            Wir möchten Sie jedoch darauf hinweisen, dass wir nicht bereit oder verpflichtet sind, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                        </div>
+                        <div class="col-lg-2"></div>   
+                    </div><br> 
+                </div>
+                
+
+                <h5 class=mb-2>Haftung für Inhalte dieser Website<br></h5>
+                <div class="justified">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                        Wir entwickeln die Inhalte dieser Website ständig weiter und bemühen uns korrekte und aktuelle Informationen bereitzustellen.
+                        Leider können wir keine Haftung für die Korrektheit aller Inhalte auf dieser Website übernehmen, speziell für jene, die seitens Dritter bereitgestellt wurden.
+                        Als Diensteanbieter sind wir nicht verpflichtet, die von ihnen übermittelten oder gespeicherten Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                        
+                        Unsere Verpflichtungen zur Entfernung von Informationen oder zur Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
+                        aufgrund von gerichtlichen oder behördlichen Anordnungen bleiben auch im Falle unserer Nichtverantwortlichkeit davon unberührt.
+                        Sollten Ihnen problematische oder rechtswidrige Inhalte auffallen, bitte wir Sie uns umgehend zu kontaktieren, damit wir die rechtswidrigen Inhalte entfernen können.
                         Sie finden die Kontaktdaten im Impressum.
                         <br><br>  
+                        </div> 
+                        <div class="col-lg-2"></div>
                     </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            </div>
-
-            <br>
-
-            <h5 class=mb-2>Urheberrechtshinweis<br></h5>
-            <div class="justified">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        Alle Inhalte dieser Webseite (Bilder, Fotos, Texte, Videos) unterliegen dem Urheberrecht.
-                        Bitte fragen Sie uns bevor Sie die Inhalte dieser Website verbreiten, vervielfältigen oder verwerten wie zum Beispiel auf anderen Websites erneut veröffentlichen.
-                        Falls notwendig, werden wir die unerlaubte Nutzung von Teilen der Inhalte unserer Seite rechtlich verfolgen.
-                        Sollten Sie auf dieser Webseite Inhalte finden, die das Urheberrecht verletzen, bitten wir Sie uns zu kontaktieren.
-                        <br><br>  
+                </div> 
+                <br>
+                <h5 class=mb-2>Haftung für Links auf dieser Website<br></h5>
+                <div class="justified">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            Unsere Website enthält Links zu anderen Websites für deren Inhalt wir nicht verantwortlich sind.
+                            Haftung für verlinkte Websites besteht für uns nicht, da wir keine Kenntnis rechtswidriger Tätigkeiten hatten und haben,
+                            uns solche Rechtswidrigkeiten auch bisher nicht aufgefallen sind und wir Links sofort entfernen würden, wenn uns Rechtswidrigkeiten bekannt werden.
+                            Wenn Ihnen rechtswidrige Links auf unserer Website auffallen, bitte wir Sie uns zu kontaktieren. 
+                            Sie finden die Kontaktdaten im Impressum.
+                            <br><br>  
                         </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            </div>
-            <br><br>
-            <h5 class=mb-2>Bildernachweis<br></h5>
-            <div class="justified mb-3">
-                <div class="row">
-                    <div class="col-lg-2"></div>    
-                    <div class="col-lg-8">
-                        Die Bilder, Fotos und Grafiken auf dieser Webseite sind urheberrechtlich geschützt.
-                        <br>Die Bilderrechte liegen bei den folgenden Fotografen und Unternehmen:
-                        <br>Fotograf Peter Fotomann; Alle Texte sind urheberrechtlich geschützt.
+                        <div class="col-lg-2"></div>
                     </div>
-                    <div class="col-lg-2"></div>
                 </div>
-            </div>
 
-        </span>
+                <br>
 
+                <h5 class=mb-2>Urheberrechtshinweis<br></h5>
+                <div class="justified">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            Alle Inhalte dieser Webseite (Bilder, Fotos, Texte, Videos) unterliegen dem Urheberrecht.
+                            Bitte fragen Sie uns bevor Sie die Inhalte dieser Website verbreiten, vervielfältigen oder verwerten wie zum Beispiel auf anderen Websites erneut veröffentlichen.
+                            Falls notwendig, werden wir die unerlaubte Nutzung von Teilen der Inhalte unserer Seite rechtlich verfolgen.
+                            Sollten Sie auf dieser Webseite Inhalte finden, die das Urheberrecht verletzen, bitten wir Sie uns zu kontaktieren.
+                            <br><br>  
+                            </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+                <br><br>
+                <h5 class=mb-2>Bildernachweis<br></h5>
+                <div class="justified mb-3">
+                    <div class="row">
+                        <div class="col-lg-2"></div>    
+                        <div class="col-lg-8">
+                            Die Bilder, Fotos und Grafiken auf dieser Webseite sind urheberrechtlich geschützt.
+                            <br>Die Bilderrechte liegen bei den folgenden Fotografen und Unternehmen:
+                            <br>Fotograf Peter Fotomann; Alle Texte sind urheberrechtlich geschützt.
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+
+            </span>
+
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
+    <br>
+    <br>
+    
+    <div id="footer-bind"></div>
+    <script src="./js/loader.js"></script>
 
-    <footer class="bg-footer container-fluid w-100 h-100">
-
-        <div class="d-none d-md-block">
-            <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
-
-            <div class="d-flex flex-row justify-content-center mt-2">
-                <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>Contact</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="support.html">Support</a></li>
-                            <li><a href="./contact.html">Contact Us</a></li>
-                            <li><a href="#">Complaints</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-1"></div>
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>Information</h6>
-                        <ul class="list-unstyled"></li>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Payment methods</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-1"></div>
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>More</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="./impressum.html">Impressum</a></li>
-                            <li><a href="./agb.html">AGBs</a></li>
-                            <li><a href="">Data Protection</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
-
-
-        <div class="d-md-none small-links mb-3 w-100 h-100">
-            <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
-            <ul class="container-fluid justify-content-center">
-                <div class="row">
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseContact" aria-expanded="t" data-bs-toggle="collapse" href="#collapseContact"
-                           role="button">Contact</a>
-                        <div class="collapse" id="collapseContact">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="support.html">Support</a></li>
-                                <li><a href="./contact.html">Contact Us</a></li>
-                                <li><a href="#">Complaints</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseInformation" aria-expanded="t" data-bs-toggle="collapse" href="#collapseInformation"
-                           role="button">Information</a>
-                        <div class="collapse" id="collapseInformation">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Payment methods</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseMore" aria-expanded="t" data-bs-toggle="collapse" href="#collapseMore"
-                           role="button">More</a>
-                        <div class="collapse" id="collapseMore">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="./impressum.html">Impressum</a></li>
-                                <li><a href="./agb.html">AGBs</a></li>
-                                <li><a href="">Data Protection</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-                </div>
-            </ul>
-        </div>
-        <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
-
-        <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
-
-        <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
-        <div class="d-flex flex-row justify-content-center">
-            <ul class="list-unstyled socials">
-                <li><i class="fa-brands fa-discord"></i></li>
-                <li><i class="fa-brands fa-instagram"></i></li>
-                <li><i class="fa-brands fa-facebook"></i></li>
-                <li><i class="fa-brands fa-tiktok"></i></li>
-                <li><i class="fa-brands fa-twitter"></i></li>
-            </ul>
-        </div>
-
-        <div class="container-fluid text-center bg-footer">
-            <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
-        </div>
-
-    </footer>
-</div>
 </body>
-
 </html>
 

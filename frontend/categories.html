@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Standart Einstellungen; Meta viewport macht responsive Design auf Mobile Phones möglich!-->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    
+        <!-- Wir benutzen dir Schrift Poppins, diese binden wir hier ein!-->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+    
+        <title>New Category</title>
+    
+        <!-- Bootstrap core CSS -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+        <script crossorigin="anonymous"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+        <!-- Fontawesome-->
+        <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+        <!-- Gibt uns Icons (Social Media / Navbar)-->
+    
+        <!-- Unser eigenes CSS-->
+        <link href="./css/style.css" rel="stylesheet">
+    
+    </head>
+    
+    <body class="products-body">
+        <div id="navbar-bind"></div>
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Category</h2>
+                            <div class="d-flex align-items-center mt-2">
+                                <table class="user-list-table no-overflow" id="user-display-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:white;" class="category-id">ID</th>
+                                            <th style="color:white;" class="category-name">Name</th>
+                                            <th style="color:white;" class="category-action">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="user-list-tbody" id="category-list-tbody">
+                                        <!-- User data will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mb-4">
+                <div class="row">
+                    <div class="page-content pb-4 mb-4">
+                        <div class="container h-auto pb-5">
+                            <h2 class="text-center pt-3 mb-1 mt-2">Create Product</h2>
+                            <div class="mt-2">
+
+                                <form id="create-product-form">
+                                    
+                                    <label for="category-name">Category name:</label>
+                                    <input class="shit-input" type="text" id="category-name" name="category-name" placeholder="Name" required>
+
+                                    <div class="text-center mt-4 mb-2">
+                                        <button class="btn btn-buy-now w-25 form-control"
+                                                type="button" onclick="saveCategory()"><a href="">Save</a>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="./productmanagament.html"></a><button class="btn btn-buy-now w-25 form-control" type="button">Back</button></a>
+        </main>
+        <div id="footer-bind"></div>
+        <script src="./js/loader.js"></script>
+        <script src="./js/categories.js"></script>
+
+    </body>
+</html>

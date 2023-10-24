@@ -18,8 +18,8 @@ public class GenreService {
     private final ProductRepository productRepository;
 
     public GenreService(GenreRepository genreRepository, ProductRepository productRepository) {
-        this.genreRepository = genreRepository;
-        this.productRepository           = productRepository;
+        this.genreRepository    = genreRepository;
+        this.productRepository  = productRepository;
     }
 
     /**
