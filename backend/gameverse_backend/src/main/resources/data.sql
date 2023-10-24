@@ -25,7 +25,8 @@ INSERT INTO privileges (name) VALUES
 ('edit_carts'),           -- 5
 ('edit_users'),          -- 6
 ('edit_products'),       -- 7
-('view_orders');         -- 8
+('view_orders'),         -- 8
+('edit_orders');
 
 INSERT INTO addresses (street, postalcode, city, country) VALUES
 ('141 Avenue Paul Doumer','92120','Montrouge','France'),
@@ -90,7 +91,8 @@ INSERT INTO privileges_in_role (role_id, privilege_id) VALUES
 (2, 5), -- 8
 (2, 6), -- 9
 (2, 7), -- 10
-(2, 8); -- 11
+(2, 8), -- 11
+(2, 9);
 
 /* password is always the word password for each user */
 INSERT INTO users (username, password, role_id, address_id, cart_id, gender, firstname, lastname, email)

@@ -264,6 +264,7 @@ Register Login Style
 
     .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover{
         background-color: #e75e8d;
+        border-radius: 5px;
         outline-color: white;
         border-color: white;
         border-radius: 5px;

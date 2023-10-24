@@ -35,7 +35,7 @@ public class Order implements DataTransferObject<OrderDto> {
     private User user;
 
 
-    @OneToMany(mappedBy="order")
+    @OneToMany(mappedBy="order", cascade = {CascadeType.ALL})
     private List<OrderedProduct> orderedProducts;
 
 
