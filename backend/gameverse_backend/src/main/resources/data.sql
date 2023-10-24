@@ -211,7 +211,7 @@ VALUES
 -- Nintendo Switch Games        id = 3
 ('Bayonetta 3', 'Bayonetta ist zurück! Die beliebte Hexe kehrt zurück und muss erneut gegen übernatürliche Mächte kämpfen, um die Welt zu retten.'
 , 59.99, 'sw_bayonetta3.jpg', 10, 10, '123466', '2023-12-01', 'MATURE_17', 3, 1, 11),
-('Death\'s Door', 'In Death''s Door spielst du als Rabe und musst die Seelen der Verstorbenen einsammeln. Ein düsteres Abenteuer erwartet dich in dieser actiongeladenen Welt.'
+('Deaths Door', 'In Deaths Door spielst du als Rabe und musst die Seelen der Verstorbenen einsammeln. Ein düsteres Abenteuer erwartet dich in dieser actiongeladenen Welt.'
 , 24.99, 'sw_deathsdoor.jpg', 10, 10, '123467', '2022-07-20', 'TEEN', 3, 1, 12),
 ('Digimon World: Next Order', 'In Digimon World: Next Order erlebst du ein packendes Abenteuer, in dem du mit deinen Digimon-Partnern gegen gefährliche Kreaturen kämpfst und Entscheidungen triffst, die den Verlauf der Geschichte beeinflussen.'
 , 49.99, 'sw_digimon.jpg', 10, 10, '123468', '2023-03-31', 'EVERYONE_10', 3, 1, 3),
@@ -287,7 +287,7 @@ VALUES
 -- XBOX ONE    id = 4
 ('Grand Theft Auto V', 'In dem Action-Adventure von Rockstar Games spielst du als Michael De Santa, Franklin Clinton und Trevor Philips, die versuchen, in Los Santos ein neues Leben zu beginnen.',
 69.99, 'xboxo_grandtheftauto5.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 35),
-('PlayerUnknown\'s Battlegrounds', 'In dem Battle Royale-Spiel von PUBG Corporation kämpfst du als einer von 100 Spielern ums Überleben auf einer kleinen Insel.',
+('PlayerUnknowns Battlegrounds', 'In dem Battle Royale-Spiel von PUBG Corporation kämpfst du als einer von 100 Spielern ums Überleben auf einer kleinen Insel.',
 29.99, 'xboxo_playerunknownsbattlegrounds.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 36),
 ('Red Dead Redemption 2', 'In dem Action-Adventure von Rockstar Games reist du als Arthur Morgan durch den Wilden Westen, um für die Van der Linde-Bande zu arbeiten.',
  69.99, 'xboxo_reddeadredemption2.jpg', 10, 10, '123496', '2023-09-15', 'MATURE_17', 4,  1, 35),
@@ -307,12 +307,42 @@ VALUES
  59.99, 'xboxo_nba2k23.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7),
 
 
- -- Accessoires    id = 5
- ('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt.',20.00, 'sonic_shirt.jpg', 10, 10, '123496', '2023-09-15', 'EVERYONE', 4,  1, 7);
+-- Accessoires    id = 5
+('DualSense™ Wireless-Controller Blue', 'Controller für Playstation 5.',
+ 79.99, 'ps5controllerblue.jpg', 10, 10, '68951', '2023-12-24', 'NO_RATING', 2, 4, 43 ),
+('DualSense™ Wireless-Controller Red ', 'Controller für Playstation 5.',
+ 79.99, 'ps5controllerred.jpg', 10, 10, '3741', '2023-12-24', 'NO_RATING', 2, 4, 43 ),
+('PS4 Dualshock 4 Controller Black', 'Controller für Playstation 4.',
+ 59.99, 'ps4controllerblack.jpg', 10, 10, '98952', '2023-12-24', 'NO_RATING', 5, 4, 43 ),
+('PS4 Dualshock 4 Controller White', 'Controller für Playstation 4.',
+ 59.99, 'ps4controllerblack.jpg', 10, 10, '987652', '2023-12-24', 'NO_RATING', 5, 4, 43 ),
+('Nintendo Switch Wired Controller Zelda', 'Controller für Nintendo Switch.',
+ 59.99, 'switchcontrollerzelda.jpg', 10, 10, '78787', '2023-12-24', 'NO_RATING', 3, 4, 13 ),
+('Nintendo Switch Joycons Mint/Lavender', 'Joycons für Nintendo Switch.',
+ 59.99, 'switchjoycons.jpg', 10, 10, '969696', '2023-12-24', 'NO_RATING', 3, 4, 13 ),
+('XBOX Series X Wireless Galaxy', 'Controller für XBOX Series X.',
+ 59.99, 'xboxcontrollergalaxy.jpg', 10, 10, '2132132', '2023-12-24', 'NO_RATING', 1, 4, 44 ),
+('XBOX Series X Wireless Pink', 'Controller für XBOX Series X.',
+ 59.99, 'xboxcontrollerpink.jpg', 10, 10, '545875', '2023-12-24', 'NO_RATING', 1, 4, 44 ),
 
- -- Konsolen id = 6
- -- Merchandise id = 7
- -- Giftcard id = 8
+ -- Konsolen id = 2
+('PS4', 'SONY PlayStation 4 Slim Konsole 500 GB', 299.99, 'PS4.jpg', 60, 0, '87459', '2013-11-15', 'EVERYONE', 5, 2, 43),
+('PS5', 'SONY PlayStation 5 Digital Edition', 449.99, 'PS5.jpg', 90, 5, '874559', '2020-11-12', 'EVERYONE', 2, 2, 43),
+('Nintendo Switch', 'NINTENDO Switch Weiß (OLED Modell)', 339.99, 'NintendoSwitch.jpg', 67, 10, '89759', '2021-10-08', 'EVERYONE', 3, 2, 13),
+('Xbox', 'MICROSOFT Xbox Series X 1 TB', 549.99, 'Xbox_xSeries.jpg', 110, 25, '873339', '2020-11-10', 'EVERYONE', 1, 2, 44),
+('Xbox One', 'SONY PlayStation 5 Digital Edition', 449, 'Xbox_One.jpg', 90, 20, '989559', '2013-11-22', 'EVERYONE', 4, 2, 44),
+
+ -- Merchandise id = 3
+('Sonic T-Shirt', 'Ein hippes Sonic-T-Shirt', 20.00, 'sonic_shirt.jpg', 10, 10, '123496', '2023-09-15', 'NO_RATING', null,  3, 7),
+('Pokemon', 'Tasse mit Thermoeffekt Pickachu', 13.99, 'pokemon.jpg', 3, 10, '122296', '2022-11-21', 'NO_RATING', null,  3, 7),
+('Pokémon Hoodie', 'Pokémon - Hoodie Evoli (Größe L)', 24.99, 'pokemon2.jpg', 5, 25, '1222663', '2019-04-24', 'NO_RATING', null,  3, 7),
+('Rick and Morty Hoodie', 'Rick and Morty - Hoodie Pickle Rick (Größe L)', 24.99, 'rickandmorty.jpg', 5, 25, '188883', '2018-12-12', 'NO_RATING', null,  3, 7),
+('Yu-Gi-Oh! T-Shirt', 'Yu-Gi-Oh! - T-Shirt schwarz (Größe L)', 24.99, 'yugiyo.jpg', 5, 25, '1244443', '2018-08-17', 'NO_RATING', null,  3, 7),
+
+-- Giftcard id = 5
+('Giftcard', 'Gutscheinkarte für 10 €', 10, 'giftcard.jpg', 2, 100, '111111', '2022-11-03', 'NO_RATING', null, 5, 45),
+('Giftcard', 'Gutscheinkarte für 20 €', 20, 'giftcard.jpg', 4, 100, '111112', '2022-11-03', 'NO_RATING', null, 5, 45),
+('Giftcard', 'Gutscheinkarte für 50 €', 50, 'giftcard.jpg', 6, 100, '111113', '2022-11-03', 'NO_RATING', null, 5, 45);
 
 INSERT INTO products_to_carts (product_id, cart_id) VALUES
 (2, 1), -- 1
