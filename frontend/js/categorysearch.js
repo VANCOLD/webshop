@@ -1,3 +1,5 @@
+const apiCartIncreaseUrl    = 'http://localhost:8080/api/users/addToCart/';
+
 $(document).ready(function () {
     loadCategories(); // Call loadCategories on document ready
 
@@ -80,11 +82,20 @@ function loadProductsByCategory(categoryId) {
                 const productCard = $('<div class="product-card">');
                 productCard.append('<h3>' + product.name + '</h3>');
                 productCard.append('<p>' + product.description + '</p>');
-                productCard.append('<p>Price: $' + product.price + '</p>');
+                productCard.append('<p class="price">Price: $' + product.price + '</p>');
                 productCard.append(imageElement);
 
-                productsContainer.append(productCard);
+                const addToCartButton = $('<button class="add-to-cart">Add to Cart</button>');
+                addToCartButton.data('product-id', product.id);
 
+                addToCartButton.on('click', function () {
+                    const productId = $(this).data('product-id');
+                    addToCart(productId);
+                });
+
+                productCard.append(addToCartButton);
+
+                productsContainer.append(productCard);
 
             });
         },
@@ -92,4 +103,28 @@ function loadProductsByCategory(categoryId) {
             console.error('Error loading products: ', err);
         }
     });
+}
+
+function addToCart(productId) {
+    // Retrieve the access token from local storage
+    const accessToken = localStorage.getItem('token');
+
+    // Check if the access token exists in local storage
+    if (accessToken) {
+        $.ajax({
+            type: 'PUT', // Change the HTTP method to PUT to add the product to the cart
+            url: apiCartIncreaseUrl + productId,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            success: function (data) {
+                // Handle the successful addition to the cart
+                // You can update the cart count or provide feedback to the user
+            },
+            error: function (err) {
+                // Handle errors
+                console.error('Error adding product to the cart: ', err);
+            }
+        });
+    }
 }
