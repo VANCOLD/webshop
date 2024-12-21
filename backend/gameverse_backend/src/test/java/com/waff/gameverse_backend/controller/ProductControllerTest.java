@@ -26,7 +26,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,15 +66,6 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$.size()", Matchers.is(7)));
     }
 
-    @Test
-    void findAllNoPrivilegeTest() throws Exception {
-
-        // User with no privileges shouldn"t be able to call the route
-        String token = this.getToken("user");
-
-        mockMvc.perform(get("/api/products/all").header("Authorization", "Bearer " + token))
-            .andExpect(status().isForbidden());
-    }
 
     @Test
     void findByIdTest() throws Exception {
@@ -95,16 +85,6 @@ public class ProductControllerTest {
             .andExpect(status().isNoContent());
     }
 
-    @Test
-    void findByIdNoPrivilegeTest() throws Exception {
-
-        Long testCase1    = 1L;
-        // User with no privileges shouldn"t be able to call the route
-        String token = this.getToken("user");
-
-        mockMvc.perform(get("/api/products/{id}",testCase1).header("Authorization", "Bearer " + token))
-            .andExpect(status().isForbidden());
-    }
 
     @Test
     @DirtiesContext
@@ -113,23 +93,29 @@ public class ProductControllerTest {
         String token = this.getToken("admin");
 
         // New product, doesn"t exist in db
-        SimpleProductDto testCase1 = new SimpleProductDto();
+        ProductDto testCase1 = new ProductDto();
         testCase1.setName("Froggyo");
         testCase1.setDescription("froggo");
         testCase1.setPrice(120.00);
         testCase1.setImage("Cool frogs");
         testCase1.setTax(20);
         testCase1.setStock(2);
+        testCase1.setCategory(new CategoryDto(1L, "Games"));
+        testCase1.setProducer(new ProducerDto(1L, "Nintendo", new AddressDto(2L, "11-1 Hokotate-cho","601-8501","Kyoto","Japan")));
+        testCase1.setConsoleGeneration(new ConsoleGenerationDto(3L, "Nintendo Switch" ));
         testCase1.setGtin("asdasd");
 
         // Already existing product, should return conflict!
-        SimpleProductDto testCase2 = new SimpleProductDto();
+        ProductDto testCase2 = new ProductDto();
         testCase2.setName("The Legend Of Zelda: Breath Of The Wild");
         testCase2.setDescription("Cool zelda");
         testCase2.setPrice(60.00);
         testCase2.setImage("Cool Image");
         testCase2.setTax(20);
         testCase2.setStock(200);
+        testCase2.setCategory(new CategoryDto(1L, "Games"));
+        testCase2.setProducer(new ProducerDto(1L, "Nintendo", new AddressDto(2L, "11-1 Hokotate-cho","601-8501","Kyoto","Japan")));
+        testCase2.setConsoleGeneration(new ConsoleGenerationDto(3L, "Nintendo Switch" ));
         testCase2.setGtin("1234");
 
         // Should be ok and return the newly created product
@@ -160,13 +146,15 @@ public class ProductControllerTest {
         String token = this.getToken("user");
 
         // New product, doesn"t exist in db
-        SimpleProductDto testCase = new SimpleProductDto();
+        ProductDto testCase = new ProductDto();
         testCase.setName("Froggyo");
         testCase.setDescription("froggo");
         testCase.setPrice(120.00);
         testCase.setImage("Cool frogs");
         testCase.setTax(20);
         testCase.setStock(2);
+        testCase.setCategory(new CategoryDto(1L, "Games"));
+        testCase.setProducer(new ProducerDto(1L, "Ninetndo", new AddressDto(2L, "11-1 Hokotate-cho","601-8501","Kyoto","Japan")));
         testCase.setGtin("asdasd");
 
         // Should return forbidden since the user doesn"t have to correct product
@@ -191,13 +179,15 @@ public class ProductControllerTest {
         ProductDto testCase1 = new ProductDto(
             1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
-            List.of(new GenreDto("Adventure")));
+            new ConsoleGenerationDto(1L, "Nintendo Switch"), new CategoryDto(1L, "Games"),
+                new ProducerDto(1L, "Nintendo",  new AddressDto(1L, "test", "test", "test", "test")),
+            List.of(new GenreDto(1L, "Adventure")));
 
         ProductDto testCase2 = new ProductDto(
             1000L, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd",
             LocalDateTime.of(2024,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"), new ProducerDto(2L, "Sony"),
+            new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"),
+                new ProducerDto(2L, "Sony",  new AddressDto(1L, "test", "test", "test", "test")),
             List.of(new GenreDto(9L, "Survival & Horror")));
 
 
@@ -233,8 +223,8 @@ public class ProductControllerTest {
         ProductDto testCase = new ProductDto(
             1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
             LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
-            new ConsoleGenerationDto("Nintendo Switch"), new CategoryDto("Games"), new ProducerDto("Nitendo"),
-            List.of(new GenreDto("Adventure")));
+            new ConsoleGenerationDto(null, "Nintendo Switch"), new CategoryDto(null, "Games"), new ProducerDto(null, "Nitendo",  new AddressDto(null, "test", "test", "test", "test")),
+            List.of(new GenreDto(null, "Adventure")));
 
         // Should return forbidden since the user doesn"t have to correct privilege
         mockMvc

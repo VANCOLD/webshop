@@ -1,14 +1,22 @@
 package com.waff.gameverse_backend.service;
 
-import com.waff.gameverse_backend.dto.ProductDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.enums.EsrbRating;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -18,11 +26,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Testclass für ProductService Service. Benutzt die Daten des data.sql!
  */
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureDataJpa
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@DataJpaTest
-@DirtiesContext
-@Import(ProductService.class)
+@ExtendWith(SpringExtension.class)
+@EnableMethodSecurity
 @ActiveProfiles("test")
+@ComponentScan("com.waff.gameverse_backend.service")
 public class ProductServiceTest {
 
     @Autowired
@@ -67,37 +78,63 @@ public class ProductServiceTest {
     }
 
     @Test
+    @DirtiesContext
     void saveTest() {
 
-        String product1 = "Banjo Kazooie";
+        // Already existing product, should return conflict!
+        ProductDto testCase1 = new ProductDto(
+                1L, "The Legend Of Zelda: Breath Of The Wild","Cool zelda", 60.00, "Cool Image",  20, 200, "1234",
+                LocalDateTime.of(2022,1,1,12,0), EsrbRating.EVERYONE.getName(),
+                new ConsoleGenerationDto(null, "Nintendo Switch"), new CategoryDto(null, "Games"),
+                new ProducerDto(null, "Nitendo",  new AddressDto(null, "test", "test", "test", "test")),
+                List.of(new GenreDto(null, "Adventure")));
 
-        String product2 = "The Legend Of Zelda: Breath Of The Wild";
+        ProductDto testCase2 = new ProductDto(
+                1000L, "Froggyo","froggo", 120.00, "Cool frogs",  20, 2, "asdasd",
+                LocalDateTime.of(2024,1,1,12,0), EsrbRating.EVERYONE.getName(),
+                new ConsoleGenerationDto(2L, "Playstation 5"), new CategoryDto(1L, "Games"),
+                new ProducerDto(2L, "Sony",  new AddressDto(null, "test", "test", "test", "test")),
+                List.of(new GenreDto(9L, "Survival & Horror")));
 
-        var testCase1 = this.productService.save(product1);
-        assertThat(testCase1.getName()).isEqualTo(product1);
 
-        assertThrows(IllegalArgumentException.class, () -> this.productService.save(product2));
+        var product1 = this.productService.save(testCase2);
+        assertThat(testCase2.getName()).isEqualTo(product1.getName());
+
+        assertThrows(IllegalArgumentException.class, () -> this.productService.save(testCase1));
     }
 
     @Test
+    @DirtiesContext
     void updateTest() {
 
-        ProductDto product = new ProductDto();
-        product.setId(1000L);
-        product.setName("test");
+        // New product, doesn"t exist in db
+        ProductDto testCase = new ProductDto();
+        testCase.setId(1000L);
+        testCase.setName("Froggyo");
+        testCase.setDescription("froggo");
+        testCase.setPrice(120.00);
+        testCase.setImage("Cool frogs");
+        testCase.setTax(20);
+        testCase.setStock(2);
+        testCase.setEsrbRating(EsrbRating.TEEN.getName());
+        testCase.setCategory(new CategoryDto(1L, "Games"));
+        testCase.setProducer(new ProducerDto(1L, "Nintendo", new AddressDto(2L, "11-1 Hokotate-cho","601-8501","Kyoto","Japan")));
+        testCase.setConsoleGeneration(new ConsoleGenerationDto(3L, "Nintendo Switch" ));
+        testCase.setGtin("asdasd");
 
-        assertThrows(NoSuchElementException.class,() -> this.productService.update(product));
+        assertThrows(NoSuchElementException.class,() -> this.productService.update(testCase));
 
-        product.setId(1L);
-        var updatedRole = this.productService.update(product);
-        assertThat(updatedRole.getName()).isEqualTo(product.getName());
+        testCase.setId(1L);
+        var updatedRole = this.productService.update(testCase);
+        assertThat(updatedRole.getName()).isEqualTo(testCase.getName());
 
-        product.setName("");
-        assertThrows(IllegalArgumentException.class, () -> this.productService.update(product));
+        testCase.setName("");
+        assertThrows(IllegalArgumentException.class, () -> this.productService.update(testCase));
 
     }
 
     @Test
+    @DirtiesContext
     void deleteTest() {
 
         // Product view_profile

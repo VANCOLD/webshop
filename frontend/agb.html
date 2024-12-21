@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
-    <title>Gamerverse - Allgemeine Geschäftsbedingungen</title>
+    <title>AGB's</title>
 
     <!-- Bootstrap core CSS -->
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -19,65 +19,23 @@
     <script crossorigin="anonymous"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Fontawesome-->
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/d84ba81ad4.js"></script>
+    <!-- Gibt uns Icons (Social Media / Navbar)-->
 
     <!-- Unser eigenes CSS-->
     <link href="./css/style.css" rel="stylesheet">
 
 </head>
 
+
 <body>
-<div class="orderbox">
-    <!-- ***** Header Area Start ***** -->
-    <header>
-        <div class="container-fluid">
-            <div class="row">
-                <nav class="navbar navbar-expand-lg navbar-dark p-4 justify-content-center">
-                    <div class="logo">
-                        <a href="./index.html"><img class="img-fluid w-25 h-25 " src="./images/Logo.png"></a>
-                    </div>
-                    <div class="d-flex flex-row">
-                        <div class="nav-link" onclick="navbehave()">
-                            <div class="icon-button">
-                                <div class="input-group">
-                                    <input aria-describedby="searc-field" aria-label="Searchfield" class="form-control "
-                                           placeholder="Search" type="text">
-                                    <div class="input-group-append">
-                                        <i class="fa-solid fa-magnifying-glass search-icon pb-4"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./support.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-circle-question"></i>
-                                    <p>Support</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./register.html">
-                                <div class="icon-button">
-                                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
-                                    <p>Cart</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="nav-link" href="./register.html">
-                                <div class="icon-button">
-                                    <i class="fa-regular fa-user fa-fw"></i>
-                                    <p>Profile</p>
-                                </div>
-                            </a>
-                        </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+    <!-- <div class="orderbox"> -->
+        <!-- ***** Header Area Start ***** -->
+        <div id="navbar-bind"></div>
+
     <!-- ***** Header Area End ***** -->
     <main>
         <div class="container-fluid">
@@ -145,124 +103,11 @@
         </div>
     </main>
 
-    <footer class="bg-footer container-fluid w-100 h-100">
-
-        <div class="d-none d-md-block">
-            <!-- Versteckt die Links wenn die Website die vorgegebene Größe von md erreich (breite; 768px) -->
-
-            <div class="d-flex flex-row justify-content-center mt-2">
-                <!-- Mit d-flex und flex-row können wir die Elemente in eine vertikale Reihenfolge zwingen-->
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>Contact</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="support.html">Support</a></li>
-                            <li><a href="./contact.html">Contact Us</a></li>
-                            <li><a href="#">Complaints</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-1"></div>
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>Information</h6>
-                        <ul class="list-unstyled"></li>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Payment methods</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-1"></div>
-
-                <div class="mx-3 my-3">
-                    <div class="text-center text-wrap">
-                        <h6>More</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="./impressum.html">Impressum</a></li>
-                            <li><a href="./agb.html">AGBs</a></li>
-                            <li><a href="">Data Protection</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div> <!-- END d-none d-md-block; Div der Links versteckt / anzeigt (für großes Layout!)-->
-
-
-        <div class="d-md-none small-links mb-3 w-100 h-100">
-            <!-- Zeigt die Buttonlinks wenn die Website die vorgegebene Größe von md erreicht / darunter liegt (breite; 768px) -->
-            <ul class="container-fluid justify-content-center">
-                <div class="row">
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseContact" aria-expanded="t" data-bs-toggle="collapse" href="#collapseContact"
-                           role="button">Contact</a>
-                        <div class="collapse" id="collapseContact">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="support.html">Support</a></li>
-                                <li><a href="./contact.html">Contact Us</a></li>
-                                <li><a href="#">Complaints</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseInformation" aria-expanded="t" data-bs-toggle="collapse" href="#collapseInformation"
-                           role="button">Information</a>
-                        <div class="collapse" id="collapseInformation">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Payment methods</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-
-                    <li class="list-group-item">
-
-                        <a aria-controls="collapseMore" aria-expanded="t" data-bs-toggle="collapse" href="#collapseMore"
-                           role="button">More</a>
-                        <div class="collapse" id="collapseMore">
-                            <ul class="list-unstyled buttonlist">
-                                <li><a href="./impressum.html">Impressum</a></li>
-                                <li><a href="./agb.html">AGBs</a></li>
-                                <li><a href="">Data Protection</a></li>
-                            </ul>
-                        </div>
-
-                    </li>
-                </div>
-            </ul>
-        </div>
-        <!-- END d-md-none small-links mt-3 mb-3; Toggle für Buttonlinks; Werden nur im kleinen Layout benötigt-->
-
-        <hr class="mb-4 w-50 d-none d-lg-block"> <!-- Horizontale Line-->
-
-        <!-- Brands; Werden über Fontawesome dargestellt; Code ist von FA kopiert. d-flexund flex-row zwingen sie wieder in eine vertikale Reihenfolge; justfiy zentriert sie-->
-        <div class="d-flex flex-row justify-content-center">
-            <ul class="list-unstyled socials">
-                <li><i class="fa-brands fa-discord"></i></li>
-                <li><i class="fa-brands fa-instagram"></i></li>
-                <li><i class="fa-brands fa-facebook"></i></li>
-                <li><i class="fa-brands fa-tiktok"></i></li>
-                <li><i class="fa-brands fa-twitter"></i></li>
-            </ul>
-        </div>
-
-        <div class="container-fluid text-center bg-footer">
-            <p class="text-light"><b>Copyright &copy; 2022 Gamerverse</b></p>
-        </div>
-
-    </footer>
-</div>
+    <br>
+    <br>
+    <div id="footer-bind"></div>
+    <script src="./js/loader.js"></script>
+<!-- </div> -->
 </body>
 
 </html>

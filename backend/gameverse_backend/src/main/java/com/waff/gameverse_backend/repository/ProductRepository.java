@@ -30,6 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      */
     Optional<Product> findByName(String name);
 
+
+
     /**
      * Find all products that have a specific category.
      *

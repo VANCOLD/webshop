@@ -3,6 +3,7 @@ package com.waff.gameverse_backend.service;
 import com.waff.gameverse_backend.dto.PrivilegeDto;
 import com.waff.gameverse_backend.dto.RoleDto;
 import com.waff.gameverse_backend.dto.SimpleUserDto;
+import com.waff.gameverse_backend.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -86,7 +87,7 @@ public class UserServiceTest {
     @Test
     void updateTest() {
 
-        SimpleUserDto user = new SimpleUserDto();
+        UserDto user = new UserDto();
         user.setId(1000L);
         user.setUsername("guest");
         user.setPassword("hallo");
@@ -110,8 +111,7 @@ public class UserServiceTest {
 
 
         // Lösche des Eintrages der Rolle user
-        var testCase1 = this.userService.delete(user1);
-        assertThat(testCase1.getUsername()).isEqualTo("user");
+        this.userService.delete(user1);
 
         // Da wir den Eintrag gelöscht haben sollten wir diesen auch nicht mehr finden!
         assertThrows(NoSuchElementException.class, () -> this.userService.findById(user1));

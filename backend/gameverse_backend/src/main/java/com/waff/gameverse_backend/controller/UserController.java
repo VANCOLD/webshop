@@ -1,12 +1,18 @@
 package com.waff.gameverse_backend.controller;
 
-import com.waff.gameverse_backend.dto.SimpleUserDto;
-import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.dto.*;
+import com.waff.gameverse_backend.model.Cart;
+import com.waff.gameverse_backend.model.Order;
 import com.waff.gameverse_backend.model.User;
+import com.waff.gameverse_backend.service.CartService;
+import com.waff.gameverse_backend.service.OrderService;
 import com.waff.gameverse_backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +22,26 @@ import java.util.NoSuchElementException;
 /**
  * The UserController class handles operations related to user management.
  */
-@PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+@EnableMethodSecurity
 @RequestMapping("/api/users")
 @RestController
 public class UserController {
 
     private final UserService userService;
 
+    private final CartService cartService;
+
+    private final OrderService orderService;
+
     /**
      * Constructs a new UserController with the provided UserService.
      *
      * @param userService The UserService to use for managing users.
      */
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService userService, CartService cartService, OrderService orderService) {
+        this.userService    = userService;
+        this.cartService    = cartService;
+        this.orderService   = orderService;
     }
 
     /**
@@ -39,6 +51,7 @@ public class UserController {
      * @see UserDto
      */
     @GetMapping("/all")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
     public ResponseEntity<List<SimpleUserDto>> findAll() {
         var users = userService.findAll();
 
@@ -46,6 +59,43 @@ public class UserController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.ok(users.stream().map(User::convertToSimpleDto).toList());
+        }
+    }
+
+
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity<List<UserDto>> A ResponseEntity containing a list of UserDto objects.
+     * @see UserDto
+     */
+    @GetMapping("/all/full")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<List<UserDto>> findAllFullUser() {
+        var users = userService.findAll();
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users.stream().map(User::convertToDto).toList());
+        }
+    }
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param id The ID of the user to retrieve.
+     * @return ResponseEntity<UserDto> A ResponseEntity containing the UserDto for the specified ID.
+     * @throws NoSuchElementException if the user with the given ID does not exist.
+     * @see UserDto
+     */
+    @GetMapping("/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<SimpleUserDto> findById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id).convertToSimpleDto());
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.noContent().build();
         }
     }
 
@@ -57,15 +107,17 @@ public class UserController {
      * @throws NoSuchElementException if the user with the given ID does not exist.
      * @see UserDto
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<SimpleUserDto> findById(@PathVariable Long id) {
+    @GetMapping("/full/{id}")
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<UserDto> findFullUserById(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.findById(id).convertToSimpleDto());
+            return ResponseEntity.ok(userService.findById(id).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.noContent().build();
         }
     }
+
 
     /**
      * Creates a new user.
@@ -76,7 +128,8 @@ public class UserController {
      * @see SimpleUserDto
      */
     @PostMapping
-    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody SimpleUserDto userDto) {
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<SimpleUserDto> save(@Validated @RequestBody UserDto userDto) {
         try {
             return ResponseEntity.ok(userService.save(userDto).convertToSimpleDto());
         } catch (IllegalArgumentException ex) {
@@ -94,9 +147,10 @@ public class UserController {
      * @see UserDto
      */
     @PutMapping
-    public ResponseEntity<SimpleUserDto> update(@Validated @RequestBody SimpleUserDto userDto) {
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<UserDto> update(@Validated @RequestBody UserDto userDto) {
         try {
-            return ResponseEntity.ok(userService.update(userDto).convertToSimpleDto());
+            return ResponseEntity.ok(userService.update(userDto).convertToDto());
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -111,12 +165,78 @@ public class UserController {
      * @throws NoSuchElementException if the user with the given ID does not exist.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<SimpleUserDto> delete(@PathVariable Long id) {
+    @PreAuthorize("@tokenService.hasPrivilege('edit_users')")
+    public ResponseEntity<String> delete(@AuthenticationPrincipal Jwt jwt, @PathVariable Long id) {
         try {
-            return ResponseEntity.ok(userService.delete(id).convertToSimpleDto());
+            if (!userService.findByUsername(jwt.getSubject()).getId().equals(id)) {
+                this.userService.delete(id);
+                return ResponseEntity.ok("User with id " + id + " deleted");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("User der gelöscht werden soll is eingeloggte User!\nIllegale Aktion");
+            }
         } catch (NoSuchElementException ex) {
             ex.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }
+
+
+    @PutMapping("/addToCart/{productId}")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
+    public ResponseEntity<CartDto> addToCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
+
+        Long userId  = userService.findByUsername(jwt.getSubject()).getId();
+        // Call the CartService to add the product to the user's cart
+        Cart updatedCart = cartService.addToCart(new AddProductToCartDto(productId, userId));
+
+        return ResponseEntity.ok(updatedCart.convertToDto());
+    }
+
+    @GetMapping("/cart")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
+    public ResponseEntity<CartDto> getCart(@AuthenticationPrincipal Jwt jwt) {
+        Cart cart = userService.findByUsername(jwt.getSubject()).getCart();
+        return ResponseEntity.ok(cart == null ? null : cart.convertToDto());
+
+    }
+
+    @PutMapping("/removeFromCart/{productId}")
+    @PreAuthorize("@tokenService.hasPrivilege('view_carts')")
+    public ResponseEntity<CartDto> removeFromCart(@AuthenticationPrincipal Jwt jwt, @PathVariable Long productId) {
+
+        Long userId  = userService.findByUsername(jwt.getSubject()).getId();
+        Cart updatedCart = cartService.removeFromCart(new AddProductToCartDto(productId, userId));
+        return ResponseEntity.ok(updatedCart.convertToDto());
+    }
+
+    @GetMapping("/orders")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<List<OrderDto>> getOrders(@AuthenticationPrincipal Jwt jwt) {
+        List<Order> orders = userService.findByUsername(jwt.getSubject()).getOrders();
+
+        if(orders.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(orders.stream().map(Order::convertToDto).toList());
+        }
+    }
+
+    @PostMapping("/saveOrder")
+    @PreAuthorize("@tokenService.hasPrivilege('view_orders')")
+    public ResponseEntity<OrderDto> save(@AuthenticationPrincipal Jwt jwt) {
+        User user = userService.findByUsername(jwt.getSubject());
+
+        if(this.userService.findByUsername(user.getUsername()) != null) {
+            return ResponseEntity.ok(this.orderService.save(user.convertToDto()).convertToDto());
+        } else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+    }
+
+    @GetMapping("/me")
+    @PreAuthorize("@tokenService.hasPrivilege('view_profile')")
+    public ResponseEntity<UserDto> loggedInUser(@AuthenticationPrincipal Jwt jwt) {
+        return ResponseEntity.ok(userService.findByUsername(jwt.getSubject()).convertToDto());
+    }
+
 }

@@ -29,7 +29,7 @@ public class PrivilegeService {
      */
     public PrivilegeService(PrivilegeRepository privilegeRepository, RoleRepository roleRepository) {
         this.privilegeRepository = privilegeRepository;
-        this.roleRepository = roleRepository;
+        this.roleRepository      = roleRepository;
     }
 
     /**

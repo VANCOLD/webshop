@@ -25,6 +25,9 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
     @Column(name = "name")
     private String name;
 
+    @Column(name="description")
+    private String description;
+
     @Column(name = "price")
     private Double price;
 
@@ -38,8 +41,21 @@ public class OrderedProduct implements DataTransferObject<OrderedProductDto> {
     @JoinColumn(name="order_id")
     private Order order;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="product_id")
+    private Product product;
+
+    public OrderedProduct(OrderedProductDto orderedProducts) {
+        this.id = orderedProducts.getId();
+        this.amount = orderedProducts.getAmount();
+        this.description = orderedProducts.getDescription();
+        this.tax = orderedProducts.getTax();
+        this.name = orderedProducts.getName();
+        this.price = orderedProducts.getPrice();
+    }
+
     @Override
     public OrderedProductDto convertToDto() {
-        return new OrderedProductDto(id, name, price, tax, amount);
+        return new OrderedProductDto(id, name, description, price, tax, amount);
     }
 }

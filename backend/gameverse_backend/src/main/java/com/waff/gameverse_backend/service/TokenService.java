@@ -32,9 +32,9 @@ public class TokenService {
      * @param privilegeService The PrivilegeService for managing privileges.
      */
     public TokenService(JwtEncoder jwtEncoder, UserService userService, PrivilegeService privilegeService) {
-        this.jwtEncoder = jwtEncoder;
-        this.userService = userService;
-        this.privilegeService = privilegeService;
+        this.jwtEncoder         = jwtEncoder;
+        this.userService        = userService;
+        this.privilegeService   = privilegeService;
     }
 
     /**
@@ -54,6 +54,7 @@ public class TokenService {
             .issuer("self")
             .issuedAt(now)
             .subject(authentication.getName())
+            .claim("id",""+((User) authentication.getPrincipal()).getId())
             .claim("authority", scope)
             .build();
 
@@ -87,5 +88,9 @@ public class TokenService {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public User getUser(Jwt token) {
+        return userService.findByUsername(token.getSubject());
     }
 }

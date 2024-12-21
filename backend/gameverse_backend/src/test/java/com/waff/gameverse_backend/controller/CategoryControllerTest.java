@@ -23,7 +23,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -112,10 +111,10 @@ public class CategoryControllerTest {
         String token = this.getToken("admin");
 
         // New category, doesn't exist in db
-        CategoryDto testCase1 = new CategoryDto("Anime");
+        CategoryDto testCase1 = new CategoryDto(null, "Anime");
 
         // Already existing category, should return conflict!
-        CategoryDto testCase2 = new CategoryDto("Games");
+        CategoryDto testCase2 = new CategoryDto(null, "Games");
 
         // Current amount of categories, will be used to see if the new cat has count + 1 as id
         int currentCount = categoryService.findAll().size();
@@ -149,7 +148,7 @@ public class CategoryControllerTest {
         String token = this.getToken("user");
 
         // New category, doesn't exist in db
-        CategoryDto testCase = new CategoryDto("Anime");
+        CategoryDto testCase = new CategoryDto(null, "Anime");
 
         // Should return forbidden since the user doesn't have to correct category
         mockMvc
@@ -204,7 +203,7 @@ public class CategoryControllerTest {
         String token = this.getToken("user");
 
         // Existing category in the db
-        CategoryDto testCase = new CategoryDto( "Anime");
+        CategoryDto testCase = new CategoryDto(null, "Anime");
 
         // Should return forbidden since the user doesn't have to correct privilege
         mockMvc

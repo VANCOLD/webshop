@@ -1,5 +1,9 @@
 package com.waff.gameverse_backend.service;
 
+import com.waff.gameverse_backend.dto.AddressDto;
+import com.waff.gameverse_backend.dto.RoleDto;
+import com.waff.gameverse_backend.dto.UserDto;
+import com.waff.gameverse_backend.enums.Gender;
 import com.waff.gameverse_backend.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,15 +32,22 @@ public class AuthenticationServiceTest {
     @Test
     void registerUserTest() {
 
-        String username = "test";
-        String password = "user";
+        UserDto testUser = new UserDto();
+        testUser.setUsername("test");
+        testUser.setPassword("test");
+        testUser.setFirstname("test");
+        testUser.setLastname("test");
+        testUser.setGender(Gender.Male.name());
+        testUser.setEmail("test@test.com");
+        testUser.setAddress(new AddressDto(null, "test","test","test","test"));
+        testUser.setRole(new RoleDto(null, "test", List.of()));
 
         // Neuer User, sollte erstellt werden können da er noch nicht existiert!
-        User user = authenticationService.registerUser(username,password);
-        assertThat(user.getUsername()).isEqualTo(username);
+        User user = authenticationService.registerUser(testUser);
+        assertThat(user.getUsername()).isEqualTo(testUser.getUsername());
 
         // Diesen User haben wir vorher angelegt, sollte einen Fehler werfen da er schon existiert!
-        assertThrows(BadCredentialsException.class, () -> authenticationService.registerUser(username,password));
+        assertThrows(BadCredentialsException.class, () -> authenticationService.registerUser(testUser));
     }
 
 

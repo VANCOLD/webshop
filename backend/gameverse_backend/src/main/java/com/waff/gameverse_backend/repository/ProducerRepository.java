@@ -1,9 +1,11 @@
 package com.waff.gameverse_backend.repository;
 
+import com.waff.gameverse_backend.model.Address;
 import com.waff.gameverse_backend.model.Producer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,4 +32,7 @@ public interface ProducerRepository extends JpaRepository<Producer, Long> {
      */
     Optional<Producer> findByName(String name);
 
+    List<Producer> findAllByAddress(Address address);
+
+    boolean existsByName(String name);
 }

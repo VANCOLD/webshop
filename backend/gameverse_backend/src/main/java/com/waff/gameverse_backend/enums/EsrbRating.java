@@ -35,7 +35,7 @@ public enum EsrbRating {
     /**
      * Mature 17+ rating, suitable for adults and those aged 17 and older.
      */
-    MATURE17("Mature 17"),
+    MATURE_17("Mature 17"),
 
     /**
      * Adults Only rating, restricted to adults only.
@@ -50,7 +50,7 @@ public enum EsrbRating {
     /**
      * Used for products that don't get a rating (consoles, merchandise, giftcards etc)
      */
-    NONE("No Rating");
+    NO_RATING("No Rating");
 
     private final String name;
 
